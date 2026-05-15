@@ -1,0 +1,248 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import secHero from "../../../assets/classes/SecurityOfficer/SecurityOfficer.png";
+---
+
+<BaseLayout
+    title="The Security Officer — Defender Class"
+    description="The Security Officer is the frontline backbone of the United Pants Defense Force — steady, stubborn, and professionally unimpressed by alien nonsense. Badge polished. Blaster loaded. Pants defended."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[var(--color-denim-500)]/20">
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 35%, rgba(59, 91, 219, 0.20), transparent 60%);"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-12">
+            <div class="flex items-center gap-4 text-xs tracking-[0.3em] uppercase font-display text-[var(--fg-soft)] mb-8">
+                <a href="/game/" class="hover:text-[var(--fg-strong)] transition">Game</a>
+                <span>/</span>
+                <a href="/game/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a>
+                <span>/</span>
+                <span class="text-[var(--color-denim-400)]">Security Officer</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="font-display text-xs md:text-sm tracking-[0.4em] text-[var(--color-denim-400)] uppercase">
+                        Defender Class · Anchor / Frontline
+                    </p>
+                    <h1 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow leading-tight">
+                        THE <span class="text-[var(--color-denim-400)]">SECURITY<br/>OFFICER</span>
+                    </h1>
+                    <p class="mt-6 text-[var(--fg-body)] italic text-lg">
+                        Somebody has to stand between Earth and the intergalactic pants thieves.
+                    </p>
+                    <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                        The Security Officer is the frontline backbone of the UPDF
+                        &mdash; steady, stubborn, and professionally unimpressed by
+                        alien nonsense.
+                    </p>
+                    <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                        When citizens panic, aliens swarm, and the mothership starts
+                        glowing in a way that definitely violates zoning laws, the
+                        Security Officer holds the line.
+                    </p>
+                    <p class="mt-6 font-display text-lg tracking-wide text-[var(--color-denim-400)]">
+                        Badge polished. Blaster loaded. Pants defended.
+                    </p>
+                </div>
+                <div class="relative aspect-square bg-[var(--bg-deep)] rounded-lg overflow-hidden">
+                    <Image src={secHero} alt="The Security Officer" widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 540px, 90vw" class="w-full h-full object-contain" loading="eager" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Role + Playstyle
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Role Fantasy</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Stand your ground.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You protect citizens, guard key areas, push back alien minions, and
+                keep the team from collapsing when everything gets loud.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Your job is to be the dependable center of the fight &mdash; the
+                Defender aliens have to get through first.
+            </p>
+            <p class="mt-6 text-[var(--fg-soft)] italic leading-relaxed">
+                If the UPDF is a wall, the Security Officer is the part of the wall
+                holding a blaster and saying, &ldquo;No.&rdquo;
+            </p>
+        </div>
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Playstyle</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Reliable. Difficult. There.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You are great at holding space, protecting citizens, and staying in
+                the fight. While other Defenders run, build, heal, or snipe, you
+                keep the invasion from overrunning the town.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Stay near citizens. Watch the lanes. Punish minion swarms. Protect
+                weaker teammates. When aliens break through, be the reason they
+                regret it.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Abilities
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-8">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-denim-400)] uppercase">
+                Combat Identity
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Abilities & Loadout
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="surface rounded-lg p-4 border border-[var(--color-denim-500)]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Sidearm</p>
+                <h3 class="mt-2 font-display text-lg">Button Blaster</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    A dependable UPDF sidearm for solving common problems: alien
+                    swarms, unauthorized pants handling, and suspicious orange
+                    movement.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Simple. Reliable. Officially issued after two minutes of training.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[var(--color-denim-500)]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Mobility</p>
+                <h3 class="mt-2 font-display text-lg">Blart Bash</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    A burst of security-grade mobility and attitude. Close distance,
+                    reposition, shove into the fight, and remind the Collectors that
+                    the UPDF does not approve of their behavior.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[var(--color-denim-500)]/20 md:col-span-2">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Class Passive</p>
+                <h3 class="mt-2 font-display text-lg">Frontline Presence</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    The Security Officer is strongest near citizens, teammates, and
+                    defensive objectives.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Aliens want easy targets. Your job is to be difficult.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Setup + Final Stand
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-6 border-l-2 border-[var(--color-denim-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">During Setup Phase</p>
+            <h3 class="mt-2 font-display text-lg">Look official.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Help establish safe areas and protect citizens while the rest of the
+                UPDF prepares. Guard doorways. Watch the streets. Stand near
+                vulnerable citizens.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                If aliens are scouting from the mothership, let them see exactly what
+                awaits them: one very tired officer with a very clear policy.
+            </p>
+        </div>
+        <div class="surface rounded-lg p-6 border-l-2 border-[var(--color-magenta-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Final Stand</p>
+            <h3 class="mt-2 font-display text-lg">Be the anchor.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                At the Pants Factory, you become the anchor of the defense. Protect
+                cannon operators. Push minions off key routes. Keep the line from
+                breaking.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                If the mothership wants the final pants supply, it has to go through
+                you first. And frankly, you have paperwork to avoid.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Lore
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <div class="surface rounded-lg p-5 md:p-6 border-l-2 border-[var(--color-denim-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Lore</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">I asked them to stop.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                Before the invasion, the Security Officer handled ordinary problems:
+                suspicious loitering, misplaced traffic cones, and citizens parking
+                hover-scooters in loading zones.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Then the Collectors arrived. The first alien pants theft was
+                confusing. The second was concerning. By the third, the Security
+                Officer had formed a perimeter, issued a warning, and joined the UPDF.
+            </p>
+            <p class="mt-4 text-[var(--fg-strong)] italic leading-relaxed">
+                His official statement remains:<br/>
+                &ldquo;I asked them to stop. They did not stop.&rdquo;
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Quotes
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8">
+        <p class="font-display text-xs tracking-[0.4em] text-[var(--color-denim-400)] uppercase text-center">
+            Field Recordings
+        </p>
+        <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow text-center">
+            Heard on patrol.
+        </h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Step away from the pants.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;This is a restricted laundry area.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;I don't know where you call home, but here stealing pants is evil.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Alien swine detected. Professional disappointment engaged.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic md:col-span-2 text-center">
+                &ldquo;You have the right to remain blasted.&rdquo;
+            </blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Next class
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8 text-center border-t border-[var(--border-subtle)]">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--fg-soft)] uppercase">Up Next on the UPDF Roster</p>
+        <a href="/game/defenders/tailor-engineer/" class="block mt-4 group">
+            <h3 class="font-display text-3xl md:text-4xl text-paper-glow group-hover:text-[var(--color-golden-400)] transition">
+                Meet the Tailor Engineer &nbsp;→
+            </h3>
+            <p class="mt-3 text-[var(--fg-muted)]">
+                Where the Security Officer holds the line, the Tailor Engineer
+                <em>builds</em> the line.
+            </p>
+        </a>
+    </section>
+</BaseLayout>

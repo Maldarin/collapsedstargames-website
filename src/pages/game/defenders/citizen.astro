@@ -1,0 +1,417 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import citizenHero from "../../../assets/classes/Citizen/citizen_4.png";
+import citizenScreamer from "../../../assets/classes/Citizen/citizen_8.png";
+import citizenHider from "../../../assets/classes/Citizen/citizen_5.png";
+import citizenCrowdFollower from "../../../assets/classes/Citizen/citizen_10.png";
+import citizenFreezer from "../../../assets/classes/Citizen/citizen_3.png";
+import citizenHero2 from "../../../assets/classes/Citizen/citizen_7.png";
+import citizenScene1 from "../../../assets/classes/Citizen/citizen_1.png";
+import citizenScene2 from "../../../assets/classes/Citizen/citizen_2.png";
+import citizenRunning from "../../../assets/classes/Citizen/citizen_9.png";
+import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
+---
+
+<BaseLayout
+    title="The Citizens — Non-Combat Class"
+    description="Citizens are the heart, soul, and extremely stealable pants supply of the battlefield. Untrained, unarmed, unreasonably important. Move them indoors, guide them to safe zones, and don't let them become inventory."
+>
+    {/* ============================================================
+        Hero — compact
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[#ffc14d]/20">
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 35%, rgba(255, 193, 77, 0.14), transparent 60%);"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-14">
+            <div class="flex items-center gap-4 text-xs tracking-[0.3em] uppercase font-display text-[var(--fg-soft)] mb-6">
+                <a href="/game/" class="hover:text-[var(--fg-strong)] transition">Game</a>
+                <span>/</span>
+                <a href="/game/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a>
+                <span>/</span>
+                <span class="text-[#ffc14d]">Citizens</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <p class="font-display text-xs tracking-[0.4em] text-[#ffc14d] uppercase">
+                        Non-Combat · Mission Objective
+                    </p>
+                    <h1 class="font-display text-3xl md:text-5xl mt-3 text-paper-glow leading-tight">
+                        THE <span class="text-[#ffc14d]">CITIZENS</span>
+                    </h1>
+                    <p class="mt-4 text-[var(--fg-body)] italic">
+                        Untrained. Unarmed. Unreasonably important.
+                    </p>
+                    <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                        The heart, soul, and extremely stealable pants supply of the
+                        battlefield. They did not ask for this. They did not train for
+                        this. Most were simply walking outside, enjoying a normal day,
+                        when the sky opened up.
+                    </p>
+                    <p class="mt-3 font-display text-base tracking-wide text-[#ffc14d]">
+                        Protect the citizens. Protect the pants. Try not to panic near windows.
+                    </p>
+                </div>
+                <div class="relative aspect-square bg-[var(--bg-deep)] rounded-lg overflow-hidden">
+                    <Image src={citizenHero} alt="A citizen being beamed up by a UFO" widths={[480, 720, 960]} sizes="(min-width: 768px) 540px, 90vw" class="w-full h-full object-cover" loading="eager" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)]/40 via-transparent to-transparent pointer-events-none"></div>
+                    <p class="absolute bottom-3 left-4 right-4 text-[var(--fg-strong)] text-sm italic">
+                        Citizens may not be soldiers. But in this war,
+                        <strong class="text-[var(--fg-primary)] not-italic">every citizen is an objective with shoes.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Role + Gameplay — compact 2-col
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-5">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Role Fantasy</p>
+            <h2 class="mt-2 font-display text-xl md:text-2xl">The chaotic cargo of the UPDF.</h2>
+            <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                Citizens are not built to fight. They are built to survive, complain,
+                flee in the wrong direction, and make every Defender's job more
+                complicated.
+            </p>
+            <p class="mt-3 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                The Collectors see citizens as inventory.<br/>
+                The UPDF sees citizens as people.<br/>
+                The citizens see both teams and would very much like to go inside.
+            </p>
+        </div>
+        <div class="surface rounded-lg p-5">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Gameplay</p>
+            <h2 class="mt-2 font-display text-xl md:text-2xl">Part objective, part comedy engine.</h2>
+            <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                During Setup, Defenders should move citizens into safer areas. Athletes
+                can carry or throw them. Tailor Engineers fortify around them. Security
+                Officers guard them. Dr. Peepers keeps the defense alive nearby.
+            </p>
+            <p class="mt-3 text-[var(--fg-soft)] italic text-sm">
+                Every rescued citizen keeps the UPDF in the fight.<br/>
+                Every captured citizen brings the mothership one step closer to victory.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Behavior types — 5 archetype cards (compact grid)
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-8">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Behavior Types</p>
+            <h2 class="font-display text-2xl md:text-4xl mt-2 text-paper-glow">
+                Five personalities. Five panic styles.
+            </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            <div class="surface rounded-lg overflow-hidden border-l-2 border-[#ff7547]/40">
+                <div class="relative aspect-[4/3] bg-[var(--bg-deep)] overflow-hidden">
+                    <Image src={citizenScreamer} alt="" widths={[200, 320]} sizes="(min-width: 1024px) 220px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <h3 class="font-display text-base">The Screamer</h3>
+                    <p class="mt-1.5 text-[var(--fg-muted)] text-xs leading-relaxed">
+                        Runs fast. Screams faster. Excellent at alerting everyone that
+                        something terrible is happening, usually by running directly
+                        through it.
+                    </p>
+                </div>
+            </div>
+            <div class="surface rounded-lg overflow-hidden border-l-2 border-[var(--color-denim-400)]/40">
+                <div class="relative aspect-[4/3] bg-[var(--bg-deep)] overflow-hidden">
+                    <Image src={citizenHider} alt="" widths={[200, 320]} sizes="(min-width: 1024px) 220px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <h3 class="font-display text-base">The Hider</h3>
+                    <p class="mt-1.5 text-[var(--fg-muted)] text-xs leading-relaxed">
+                        Sees danger and immediately remembers that buildings exist.
+                        The UPDF's favorite citizen.
+                    </p>
+                </div>
+            </div>
+            <div class="surface rounded-lg overflow-hidden border-l-2 border-[#ffc14d]/40">
+                <div class="relative aspect-[4/3] bg-[var(--bg-deep)] overflow-hidden">
+                    <Image src={citizenCrowdFollower} alt="" widths={[200, 320]} sizes="(min-width: 1024px) 220px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <h3 class="font-display text-base">The Crowd Follower</h3>
+                    <p class="mt-1.5 text-[var(--fg-muted)] text-xs leading-relaxed">
+                        Believes safety is wherever the largest group of equally
+                        terrified people happens to be.
+                    </p>
+                </div>
+            </div>
+            <div class="surface rounded-lg overflow-hidden border-l-2 border-[#8edcff]/40">
+                <div class="relative aspect-[4/3] bg-[var(--bg-deep)] overflow-hidden">
+                    <Image src={citizenFreezer} alt="" widths={[200, 320]} sizes="(min-width: 1024px) 220px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <h3 class="font-display text-base">The Freezer</h3>
+                    <p class="mt-1.5 text-[var(--fg-muted)] text-xs leading-relaxed">
+                        When danger appears, the Freezer briefly becomes public art.
+                        Defenders are encouraged to relocate them before the aliens
+                        admire the exhibit.
+                    </p>
+                </div>
+            </div>
+            <div class="surface rounded-lg overflow-hidden border-l-2 border-[var(--color-magenta-400)]/40">
+                <div class="relative aspect-[4/3] bg-[var(--bg-deep)] overflow-hidden">
+                    <Image src={citizenHero2} alt="" widths={[200, 320]} sizes="(min-width: 1024px) 220px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <h3 class="font-display text-base">The Hero</h3>
+                    <p class="mt-1.5 text-[var(--fg-muted)] text-xs leading-relaxed">
+                        Rare. Confused. Inspiring. May help man a cannon, follow a
+                        Defender's lead, or do something unexpectedly useful at the
+                        exact moment everyone assumed they would scream.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Phase blurbs (compact 3-col)
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="surface rounded-lg p-4">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Setup</p>
+                <h3 class="mt-1 font-display text-lg">Best chance to survive.</h3>
+                <p class="mt-2 text-[var(--fg-body)] text-xs leading-relaxed">
+                    Moved indoors, guided to safe areas, kept away from obvious alien
+                    landing routes.
+                </p>
+                <p class="mt-2 text-[var(--fg-soft)] italic text-xs">
+                    If a citizen can see the sky, the sky can see their pants.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-4">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Invasion</p>
+                <h3 class="mt-1 font-display text-lg">Panic at full volume.</h3>
+                <p class="mt-2 text-[var(--fg-body)] text-xs leading-relaxed">
+                    Some run. Some hide. Some freeze. Some make decisions that will be
+                    reviewed later by a committee.
+                </p>
+                <p class="mt-2 text-[var(--fg-soft)] italic text-xs">
+                    A citizen being chased is the mission happening right now.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-4 border border-[var(--color-magenta-500)]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Final Stand</p>
+                <h3 class="mt-1 font-display text-lg">Liability and legend.</h3>
+                <p class="mt-2 text-[var(--fg-body)] text-xs leading-relaxed">
+                    When things get desperate, a few brave citizens may step up and
+                    help man the cannons. Are they trained? No. Are they ready? Also no.
+                </p>
+                <p class="mt-2 text-[var(--fg-soft)] italic text-xs">
+                    Panic later. Fire cannon now.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Safety Tips + Public Safety Notice (combined, compact)
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-5 border-l-2 border-[#ffc14d]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Citizen Safety Tips</p>
+            <h2 class="mt-2 font-display text-xl">Survival guidelines.</h2>
+            <ol class="mt-3 space-y-1 text-[var(--fg-body)] text-sm">
+                <li><span class="text-[#ffc14d] font-display">1.</span> Go indoors.</li>
+                <li><span class="text-[#ffc14d] font-display">2.</span> Stay indoors.</li>
+                <li><span class="text-[#ffc14d] font-display">3.</span> Do not investigate glowing beams.</li>
+                <li><span class="text-[#ffc14d] font-display">4.</span> Do not negotiate with orange aliens.</li>
+                <li><span class="text-[#ffc14d] font-display">5.</span> If carried by an Athlete, remain calm and enjoy the emergency relocation.</li>
+                <li><span class="text-[#ffc14d] font-display">6.</span> If placed in a safe zone, do not wander back to where the screaming came from.</li>
+                <li><span class="text-[#ffc14d] font-display">7.</span> If someone shouts &ldquo;Final Stand,&rdquo; look for a cannon or a very sturdy wall.</li>
+                <li><span class="text-[#ffc14d] font-display">8.</span> Pants are not optional.</li>
+            </ol>
+        </div>
+        <div class="rounded-lg p-5 border border-[var(--color-magenta-500)]/20 bg-[var(--color-magenta-500)]/5">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">UPDF Public Safety Notice</p>
+            <h2 class="mt-2 font-display text-xl">Attention citizens.</h2>
+            <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                Due to increased Collector activity, the UPDF recommends remaining
+                calm, moving indoors, and avoiding all suspicious lights descending
+                from the sky.
+            </p>
+            <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                If approached by an orange alien, do not offer directions, snacks, or
+                pants. If a Defender tells you to move, please move. If an Athlete
+                throws you into a building, assume the building was safer than where
+                you were.
+            </p>
+            <p class="mt-3 text-[var(--fg-strong)] text-sm italic">
+                The UPDF thanks you for your cooperation.<br/>
+                You matter. Your pants matter slightly more.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Class relationships — compact 5-mini-card grid
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Citizens & Defenders</p>
+            <h2 class="font-display text-2xl md:text-3xl mt-2 text-paper-glow">
+                Working relationships with the UPDF.
+            </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+            <div class="surface rounded-lg p-4">
+                <p class="font-display text-xs text-[var(--color-denim-400)]">Security Officer</p>
+                <p class="mt-2 text-[var(--fg-body)] text-xs italic leading-relaxed">
+                    A safe citizen is often standing behind a Security Officer. Preferably several feet behind.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-4">
+                <p class="font-display text-xs text-[var(--color-golden-400)]">Tailor Engineer</p>
+                <p class="mt-2 text-[var(--fg-body)] text-xs italic leading-relaxed">
+                    Stay near whatever they build. Unless it beeps in a way that sounds experimental.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-4">
+                <p class="font-display text-xs text-[#5eddb0]">Dr. Peepers</p>
+                <p class="mt-2 text-[var(--fg-body)] text-xs italic leading-relaxed">
+                    Medical beams work better on people who are not sprinting in circles.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-4">
+                <p class="font-display text-xs text-[#ff7547]">Athlete</p>
+                <p class="mt-2 text-[var(--fg-body)] text-xs italic leading-relaxed">
+                    May pick you up, carry you, or throw you somewhere safer. This is not kidnapping.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-4">
+                <p class="font-display text-xs text-[#8edcff]">Needle Eye</p>
+                <p class="mt-2 text-[var(--fg-body)] text-xs italic leading-relaxed">
+                    If they tell you not to cross a street, do not cross the street. They can see things you cannot.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Collector warning — compact
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <div class="rounded-lg p-5 border border-[var(--color-alien-500)]/20 bg-[var(--color-alien-500)]/5">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Citizens vs Collectors</p>
+            <p class="mt-2 text-[var(--fg-strong)] text-sm leading-relaxed">
+                Collectors view citizens as mobile pants containers. This is rude.
+            </p>
+            <p class="mt-3 text-[var(--fg-body)] text-xs leading-relaxed">
+                Citizens should avoid:
+                <span class="text-[var(--fg-strong)]">orange aliens, glowing beams, suspicious saucers, purple portals, anything labeled &ldquo;inventory,&rdquo;</span>
+                and anyone saying <em>&ldquo;the pants were never yours.&rdquo;</em>
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Scenes from the streets — image strip
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase text-center mb-4">
+            Scenes from the streets
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--bg-deep)]">
+                <Image src={citizenScene1} alt="A group of citizens panicking under UFO beams" widths={[300, 480, 640]} sizes="(min-width: 768px) 300px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--bg-deep)]">
+                <Image src={citizenPair} alt="Two citizens running together" widths={[300, 480, 640]} sizes="(min-width: 768px) 300px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--bg-deep)]">
+                <Image src={citizenRunning} alt="A citizen running away from UFOs" widths={[300, 480, 640]} sizes="(min-width: 768px) 300px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--bg-deep)]">
+                <Image src={citizenScene2} alt="Five citizens running through the streets under multiple beams" widths={[300, 480, 640]} sizes="(min-width: 768px) 300px, 50vw" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Lore — compact
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-10">
+        <div class="surface rounded-lg p-6 border-l-2 border-[#ffc14d]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Lore</p>
+            <h2 class="mt-2 font-display text-xl md:text-2xl">Before the invasion, citizens lived ordinary lives.</h2>
+            <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                They went to work. They walked dogs. They took their kids to soccer
+                practice. They spied on neighbors. They wore pants without
+                considering the galactic implications.
+            </p>
+            <p class="mt-2 text-[var(--fg-body)] text-sm leading-relaxed">
+                Then the Collectors arrived and declared pants a
+                <em>&ldquo;high-priority acquisition category.&rdquo;</em>
+                Nobody knew what that meant. Then the beams started.
+            </p>
+            <p class="mt-3 text-[var(--fg-muted)] italic text-sm leading-relaxed">
+                Now every citizen is part of the UPDF's most important mission:
+                survive the invasion, keep their pants, and stop giving interviews
+                while standing in open streets.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Quotes — compact 2-row grid
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10">
+        <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase text-center">Heard on the Streets</p>
+        <div class="mt-5 grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;Why is the sky making that noise?&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;I was just buying snacks!&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;Do I look collectible to you?&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;Please stop calling me an objective.&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;I would like to be indoors now.&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;That alien is looking at my pants.&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;I don't know how to fire a cannon, but I know I don't like that mothership.&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;I was promised this neighborhood had low crime.&rdquo;</blockquote>
+            <blockquote class="surface rounded-lg p-3 text-sm text-[var(--fg-body)] italic">&ldquo;Is being carried by the Athlete covered by insurance?&rdquo;</blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Taglines strip + closing CTA
+       ============================================================ */}
+    <section class="border-y border-[#ffc14d]/15 py-6 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-center text-[var(--fg-soft)] font-display text-xs tracking-wider uppercase">
+                <li>Panic responsibly.</li>
+                <li class="text-[#ffc14d]/70">Stay indoors. Keep pants on.</li>
+                <li>Do not become inventory.</li>
+                <li class="text-[#ffc14d]/70">If you can hear the beam, move.</li>
+                <li>Heroes wear capes. Citizens wear pants.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-6 py-10 text-center">
+        <h2 class="font-display text-2xl md:text-3xl text-paper-glow">
+            Citizens are not just background characters.<br/>
+            <span class="text-[#ffc14d]">They are the reason the fight matters.</span>
+        </h2>
+        <p class="mt-3 text-[var(--fg-muted)] text-sm">
+            Protect the people. Save the pants. Stop the alien swine.
+        </p>
+        <div class="mt-6">
+            <a href="/game/defenders/" class="inline-block font-display text-sm tracking-wider px-5 py-2.5 border border-[var(--border-strong)] text-[var(--fg-strong)] rounded-md hover:bg-[var(--surface-hover)] transition">
+                ← Back to the UPDF
+            </a>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,230 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import secOfficerHero from "../../../assets/classes/SecurityOfficer/SecurityOfficer.png";
+import tailorHero from "../../../assets/classes/TailorEngineer/TailorEngineer.png";
+import drPeepersHero from "../../../assets/classes/DrPeepers/DrPeepers.png";
+import athleteHero from "../../../assets/classes/Athlete/Athlete.png";
+import needleEyeHero from "../../../assets/classes/NeedleEye/NeedleEye.png";
+import citizenThumb from "../../../assets/classes/Citizen/citizen_3.png";
+import battle2 from "../../../assets/battle/2v2.png";
+---
+
+<BaseLayout
+    title="The United Pants Defense Force"
+    description="The UPDF is made up of specialized heroes with very questionable training and very strong opinions about pants. Meet the five Defender classes — Security Officer, Tailor Engineer, Dr. Peepers, Athlete, and Needle Eye — and hold the line."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[var(--color-denim-500)]/20">
+        <div class="absolute inset-0 -z-10 opacity-20">
+            <Image src={battle2} alt="" class="w-full h-full object-cover" loading="eager" />
+        </div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-base)]/50 via-[var(--bg-base)]/85 to-[var(--bg-base)]"></div>
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 30%, rgba(59, 91, 219, 0.18), transparent 60%);"
+        ></div>
+
+        <div class="max-w-5xl mx-auto px-6 pt-10 pb-10 md:pt-16 text-center">
+            <a href="/game/" class="inline-block mb-5 text-xs tracking-[0.3em] text-[var(--fg-soft)] hover:text-[var(--color-denim-400)] uppercase font-display transition">
+                ← Back to the game
+            </a>
+
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-denim-400)] uppercase">
+                The United Pants Defense Force
+            </p>
+            <h1 class="font-display text-3xl md:text-5xl mt-4 text-paper-glow leading-tight">
+                EVERY PERSON DESERVES A GOOD PAIR OF
+                <span class="text-[var(--color-denim-400)]">JEANS.</span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-[var(--fg-body)] leading-relaxed">
+                When the first saucers appeared, the world panicked. When the first pants
+                disappeared, the world got organized. The UPDF was formed to stop alien
+                Collectors from stripping Earth of dignity, denim, and elastic waistbands.
+            </p>
+            <p class="mt-4 max-w-xl mx-auto text-[var(--fg-muted)] leading-relaxed italic text-sm">
+                Not the biggest army. Not the most organized army. Definitely not the
+                cleanest army. But they are the only thing standing between humanity and
+                a pantsless future.
+            </p>
+            <p class="mt-6 font-display text-base md:text-lg tracking-wide text-[var(--color-magenta-300)] italic">
+                &ldquo;This ends today. Not Our Pants, Alien Swine!&rdquo;
+            </p>
+            <p class="mt-1 text-[10px] tracking-[0.3em] text-[var(--fg-soft)] uppercase font-display">
+                UPDF Motto
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        The roster — compact thumbnail grid (6 cards: 5 Defenders + Citizen)
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">
+                The Roster
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-2 text-paper-glow">
+                Six members. One mission.
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <a href="/game/defenders/security-officer/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={secOfficerHero} alt="" widths={[160, 240, 320]} sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 45vw" class="w-full h-full object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-denim-400)] uppercase truncate">Anchor</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">Security Officer</h3>
+                </div>
+            </a>
+
+            <a href="/game/defenders/tailor-engineer/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={tailorHero} alt="" widths={[160, 240, 320]} sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 45vw" class="w-full h-full object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-golden-400)] uppercase truncate">Builder</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">Tailor Engineer</h3>
+                </div>
+            </a>
+
+            <a href="/game/defenders/dr-peepers/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={drPeepersHero} alt="" widths={[160, 240, 320]} sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 45vw" class="w-full h-full object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[#5eddb0] uppercase truncate">Medic</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">Dr. Peepers</h3>
+                </div>
+            </a>
+
+            <a href="/game/defenders/athlete/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={athleteHero} alt="" widths={[160, 240, 320]} sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 45vw" class="w-full h-full object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[#ff7547] uppercase truncate">Rescue</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">The Athlete</h3>
+                </div>
+            </a>
+
+            <a href="/game/defenders/needle-eye/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={needleEyeHero} alt="" widths={[160, 240, 320]} sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 45vw" class="w-full h-full object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[#8edcff] uppercase truncate">Sniper</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">Needle Eye</h3>
+                </div>
+            </a>
+
+            <a href="/game/defenders/citizen/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={citizenThumb} alt="" widths={[160, 240, 320]} sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 45vw" class="w-full h-full object-cover group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[#ffc14d] uppercase truncate">Non-Combat</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">Citizens</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Which Defender Should You Play? — compact
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">
+                Pick Your Role
+            </p>
+            <h2 class="font-display text-2xl md:text-3xl mt-2 text-paper-glow">
+                Which Defender should you play?
+            </h2>
+        </div>
+
+        <div>
+            <a href="/game/defenders/security-officer/" class="group flex items-baseline gap-4 py-2.5 border-b border-[var(--border-subtle)] hover:border-[var(--color-denim-400)]/30 transition">
+                <p class="font-display text-base md:text-lg text-[var(--fg-strong)] flex-1">Want to <span class="text-[var(--color-denim-400)]">hold the line</span>?</p>
+                <p class="font-display text-sm text-[var(--fg-soft)] group-hover:text-[var(--fg-primary)]/95 transition shrink-0">Play <strong class="text-[var(--color-denim-400)]">Security Officer</strong> →</p>
+            </a>
+            <a href="/game/defenders/tailor-engineer/" class="group flex items-baseline gap-4 py-2.5 border-b border-[var(--border-subtle)] hover:border-[var(--color-golden-400)]/30 transition">
+                <p class="font-display text-base md:text-lg text-[var(--fg-strong)] flex-1">Want to <span class="text-[var(--color-golden-400)]">build the line</span>?</p>
+                <p class="font-display text-sm text-[var(--fg-soft)] group-hover:text-[var(--fg-primary)]/95 transition shrink-0">Play <strong class="text-[var(--color-golden-400)]">Tailor Engineer</strong> →</p>
+            </a>
+            <a href="/game/defenders/dr-peepers/" class="group flex items-baseline gap-4 py-2.5 border-b border-[var(--border-subtle)] hover:border-[#5eddb0]/30 transition">
+                <p class="font-display text-base md:text-lg text-[var(--fg-strong)] flex-1">Want to <span class="text-[#5eddb0]">keep the line alive</span>?</p>
+                <p class="font-display text-sm text-[var(--fg-soft)] group-hover:text-[var(--fg-primary)]/95 transition shrink-0">Play <strong class="text-[#5eddb0]">Dr. Peepers</strong> →</p>
+            </a>
+            <a href="/game/defenders/athlete/" class="group flex items-baseline gap-4 py-2.5 border-b border-[var(--border-subtle)] hover:border-[#ff7547]/30 transition">
+                <p class="font-display text-base md:text-lg text-[var(--fg-strong)] flex-1">Want to <span class="text-[#ff7547]">sprint past the line and rescue someone screaming</span>?</p>
+                <p class="font-display text-sm text-[var(--fg-soft)] group-hover:text-[var(--fg-primary)]/95 transition shrink-0">Play <strong class="text-[#ff7547]">Athlete</strong> →</p>
+            </a>
+            <a href="/game/defenders/needle-eye/" class="group flex items-baseline gap-4 py-2.5 border-b border-[var(--border-subtle)] hover:border-[#8edcff]/30 transition">
+                <p class="font-display text-base md:text-lg text-[var(--fg-strong)] flex-1">Want to <span class="text-[#8edcff]">watch the line from a rooftop and judge everyone's positioning</span>?</p>
+                <p class="font-display text-sm text-[var(--fg-soft)] group-hover:text-[var(--fg-primary)]/95 transition shrink-0">Play <strong class="text-[#8edcff]">Needle Eye</strong> →</p>
+            </a>
+            <a href="/game/defenders/citizen/" class="group flex items-baseline gap-4 py-2.5 hover:border-[#ffc14d]/30 transition">
+                <p class="font-display text-base md:text-lg text-[var(--fg-strong)] flex-1">Want to <span class="text-[#ffc14d]">panic responsibly while someone heroically saves you</span>?</p>
+                <p class="font-display text-sm text-[var(--fg-soft)] group-hover:text-[var(--fg-primary)]/95 transition shrink-0">Play <strong class="text-[#ffc14d]">Citizen</strong> →</p>
+            </a>
+        </div>
+    </section>
+
+    {/* ============================================================
+        UPDF Field Manual — compact
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-10">
+        <div class="surface rounded-lg p-5 border-l-2 border-[var(--color-denim-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">UPDF Field Manual</p>
+            <h2 class="mt-1 font-display text-xl">The five official rules of pants defense.</h2>
+            <ol class="mt-4 space-y-1.5 text-sm">
+                <li class="flex gap-3 text-[var(--fg-body)]"><span class="font-display text-[var(--color-denim-400)] w-5 shrink-0">1.</span><span>Citizens are safer indoors.</span></li>
+                <li class="flex gap-3 text-[var(--fg-body)]"><span class="font-display text-[var(--color-denim-400)] w-5 shrink-0">2.</span><span>Aliens hate organized Defenders.</span></li>
+                <li class="flex gap-3 text-[var(--fg-body)]"><span class="font-display text-[var(--color-denim-400)] w-5 shrink-0">3.</span><span>Motherships are easier to hit when they get cocky.</span></li>
+                <li class="flex gap-3 text-[var(--fg-body)]"><span class="font-display text-[var(--color-denim-400)] w-5 shrink-0">4.</span><span>Never trust an orange minion near laundry.</span></li>
+                <li class="flex gap-3 text-[var(--fg-body)]"><span class="font-display text-[var(--color-denim-400)] w-5 shrink-0">5.</span><span>If all else fails, shout <em class="text-[var(--color-magenta-300)]">&ldquo;Not our pants!&rdquo;</em> and keep firing.</span></li>
+            </ol>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Tagline strip — compact
+       ============================================================ */}
+    <section class="border-y border-[var(--color-denim-500)]/15 py-5 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-center text-[var(--fg-soft)] font-display text-xs tracking-wider uppercase">
+                <li>Not our pants. Not today.</li>
+                <li class="text-[var(--color-denim-400)]/70">Enough is enough, Alien Swine!</li>
+                <li>No pants left behind.</li>
+                <li class="text-[var(--color-denim-400)]/70">The waistband war ends here.</li>
+                <li>Standing between Earth and galactic indecency.</li>
+            </ul>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Recruitment CTA — compact
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-10 text-center">
+        <h2 class="font-display text-2xl md:text-3xl text-paper-glow">
+            Because someone has to tell the aliens no.
+        </h2>
+        <p class="mt-3 text-[var(--fg-muted)] text-sm">
+            Benefits include official badge access, questionable equipment, hazard
+            pay, opportunities for heroism, frequent yelling, and pants retention.
+        </p>
+        <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/game/defenders/security-officer/" class="font-display text-sm tracking-wider px-5 py-2.5 bg-[var(--color-denim-500)] text-[var(--color-paper)] rounded-md hover:bg-[var(--color-denim-400)] transition">
+                Start with Security Officer →
+            </a>
+            <a href="/game/collectors/" class="font-display text-sm tracking-wider px-5 py-2.5 border border-[var(--border-strong)] text-[var(--fg-strong)] rounded-md hover:bg-[var(--surface-hover)] transition">
+                or join the Collectors instead
+            </a>
+        </div>
+    </section>
+</BaseLayout>

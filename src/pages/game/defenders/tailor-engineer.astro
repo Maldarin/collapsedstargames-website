@@ -1,0 +1,280 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import teHero from "../../../assets/classes/TailorEngineer/TailorEngineer.png";
+---
+
+<BaseLayout
+    title="The Tailor Engineer — Defender Class"
+    description="The Tailor Engineer proves sewing skills, mechanical genius, and battlefield panic can coexist beautifully. Build turrets, repair structures, deploy gadgets, and turn ordinary streets into UPDF-approved alien inconvenience zones."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[var(--color-golden-400)]/20">
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 35%, rgba(255, 212, 59, 0.16), transparent 60%);"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-12">
+            <div class="flex items-center gap-4 text-xs tracking-[0.3em] uppercase font-display text-[var(--fg-soft)] mb-8">
+                <a href="/game/" class="hover:text-[var(--fg-strong)] transition">Game</a>
+                <span>/</span>
+                <a href="/game/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a>
+                <span>/</span>
+                <span class="text-[var(--color-golden-400)]">Tailor Engineer</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="font-display text-xs md:text-sm tracking-[0.4em] text-[var(--color-golden-400)] uppercase">
+                        Defender Class · Builder / Support
+                    </p>
+                    <h1 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow leading-tight">
+                        THE <span class="text-[var(--color-golden-400)]">TAILOR<br/>ENGINEER</span>
+                    </h1>
+                    <p class="mt-6 text-[var(--fg-body)] italic text-lg">
+                        Measure twice. Build once. Blast aliens repeatedly.
+                    </p>
+                    <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                        The Tailor Engineer proves that sewing skills, mechanical
+                        genius, and battlefield panic can coexist beautifully.
+                    </p>
+                    <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                        Build defenses, repair structures, deploy gadgets, and turn
+                        ordinary streets into UPDF-approved alien inconvenience zones.
+                    </p>
+                    <p class="mt-6 font-display text-lg tracking-wide text-[var(--color-golden-400)]">
+                        The Collectors brought beams. You brought tools.
+                    </p>
+                </div>
+                <div class="relative aspect-square bg-[var(--bg-deep)] rounded-lg overflow-hidden">
+                    <Image src={teHero} alt="The Tailor Engineer" widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 540px, 90vw" class="w-full h-full object-contain" loading="eager" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Role + Playstyle
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Role Fantasy</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Shape the battlefield.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You are not trying to win every fight by yourself. You are shaping
+                the battlefield so your team wins the fight before it starts.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Build near citizen clusters. Fortify choke points. Repair what the
+                aliens break. Keep teammates supplied. Turn safe zones into strong
+                zones.
+            </p>
+            <p class="mt-6 text-[var(--fg-soft)] italic leading-relaxed">
+                The UPDF calls it engineering.<br/>
+                The Tailor Engineer calls it aggressive tailoring.
+            </p>
+        </div>
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Playstyle</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Preparation. Gadgets. Plans.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You are at your best when thinking ahead: where will aliens push,
+                where will citizens run, where will defenders hold, and where can
+                one well-placed gadget cause maximum alien regret?
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Your tools reward smart positioning and teamwork. You may not always
+                be at the front of the fight, but everyone notices when your
+                defenses are missing.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic">
+                Usually because they are screaming.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Abilities
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-8">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-golden-400)] uppercase">
+                Combat Identity
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Abilities & Loadout
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="surface rounded-lg p-4 border border-[var(--color-golden-400)]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Tool</p>
+                <h3 class="mt-2 font-display text-lg">Spanner Wrench</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Repair structures, rebuild windows and doors, maintain defenses,
+                    and remind machines that quitting is not allowed during an
+                    invasion.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Also useful for making threatening gestures near alien equipment.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[var(--color-golden-400)]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Deployable</p>
+                <h3 class="mt-2 font-display text-lg">Button Turret</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Deploy a UPDF defensive turret to help control lanes and punish
+                    careless minions.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Perfect for doorways, citizen safe zones, and places aliens
+                    thought were going to be easy.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[var(--color-golden-400)]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Support Station</p>
+                <h3 class="mt-2 font-display text-lg">Laundry Dispenser</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    A support station that helps keep Defenders supplied.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Because nothing says &ldquo;military logistics&rdquo; like
+                    battlefield laundry infrastructure.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[var(--color-golden-400)]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Deployable Cover</p>
+                <h3 class="mt-2 font-display text-lg">Dryer Door Shield</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    A repurposed appliance door bolted onto battlefield-grade
+                    hinges. Pop it open in front of you to soak alien beam fire,
+                    brace through a push, and prove that household engineering
+                    peaked in the laundry room.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Front-facing only. Aliens shooting from behind you will
+                    continue to be a personal problem.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[var(--color-golden-400)]/20 md:col-span-2">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Class Passive</p>
+                <h3 class="mt-2 font-display text-lg">Defensive Construction</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    The Tailor Engineer's real power is placement.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm">
+                    Build smart. Build early. Build where aliens have to go.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Setup + Final Stand
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-6 border-l-2 border-[var(--color-golden-400)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">During Setup Phase</p>
+            <h3 class="mt-2 font-display text-lg">Tailor Engineer time.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                While other Defenders are dragging citizens indoors and shouting,
+                you are building the reason those citizens might survive.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Place turrets. Prepare supply points. Fortify safe areas. Watch
+                where citizens gather and make those spots harder to raid.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                The aliens are scouting from above. Give them something unpleasant
+                to write down.
+            </p>
+        </div>
+        <div class="surface rounded-lg p-6 border-l-2 border-[var(--color-magenta-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Final Stand</p>
+            <h3 class="mt-2 font-display text-lg">Become critical.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Protect cannon zones. Repair defenses. Support chokepoints. Keep the
+                Pants Factory from becoming a Collector shopping cart.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                Every turret matters. Every repair matters. Every second bought
+                gives the UPDF another chance to blast the mothership out of the sky.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Lore
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <div class="surface rounded-lg p-5 md:p-6 border-l-2 border-[var(--color-golden-400)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Lore</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">From custom-fit emergency pants to automated turret fire.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                The Tailor Engineer began as a humble maker of uniforms, repairs,
+                and custom-fit emergency pants.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Then the aliens attacked. After witnessing the Collectors steal an
+                entire rack of freshly pressed slacks, the Tailor Engineer made a
+                vow: never again would fabric be taken without resistance,
+                reinforcement, and possibly automated turret fire.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic leading-relaxed">
+                The UPDF did not ask why the laundry machine had targeting software.
+                They were simply grateful it worked.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Quotes
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8">
+        <p class="font-display text-xs tracking-[0.4em] text-[var(--color-golden-400)] uppercase text-center">
+            Field Recordings
+        </p>
+        <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow text-center">
+            Heard from the workbench.
+        </h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;You call it a turret. I call it preventative tailoring.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;This safe zone has been reinforced with science and spite.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Nobody steals pants on my watch. I fitted those.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;If it breaks, I fix it. If it moves, the turret handles it.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic md:col-span-2 text-center">
+                &ldquo;Hold the seam line!&rdquo;
+            </blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Next class
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8 text-center border-t border-[var(--border-subtle)]">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--fg-soft)] uppercase">Up Next on the UPDF Roster</p>
+        <a href="/game/defenders/dr-peepers/" class="block mt-4 group">
+            <h3 class="font-display text-3xl md:text-4xl text-paper-glow group-hover:text-[#5eddb0] transition">
+                Meet Dr. Peepers &nbsp;→
+            </h3>
+            <p class="mt-3 text-[var(--fg-muted)]">
+                You build the line. Dr. Peepers keeps the people on the line alive.
+            </p>
+        </a>
+    </section>
+</BaseLayout>

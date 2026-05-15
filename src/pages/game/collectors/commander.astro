@@ -1,0 +1,269 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import commanderHero from "../../../assets/classes/Commander/Commander.png";
+---
+
+<BaseLayout
+    title="The Commander — Collector Class"
+    description="The Commander is the Collector team's frontline war machine — a walking invasion platform built to smash defenses, pressure Defenders, and open the way for minion swarms. Four arms. Heavy armor. Zero respect for pants security."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[#ffae3d]/20">
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 35%, rgba(255,160,40,0.18), transparent 60%);"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-12">
+            <div class="flex items-center gap-4 text-xs tracking-[0.3em] uppercase font-display text-[var(--fg-soft)] mb-8">
+                <a href="/game/" class="hover:text-[var(--fg-strong)] transition">Game</a>
+                <span>/</span>
+                <a href="/game/collectors/" class="hover:text-[var(--color-alien-400)] transition">Collectors</a>
+                <span>/</span>
+                <span class="text-[#ffae3d]">Commander</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="font-display text-xs md:text-sm tracking-[0.4em] text-[#ffae3d] uppercase">
+                        Collector Class · Frontline Mech
+                    </p>
+                    <h1 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow leading-tight">
+                        THE <span class="text-[#ffae3d]">COMMANDER</span>
+                    </h1>
+                    <p class="mt-6 text-[var(--fg-body)] italic text-lg">
+                        Four arms. Heavy armor. Zero respect for pants security.
+                    </p>
+                    <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                        The Collector team's frontline war machine &mdash; a walking
+                        invasion platform built to smash defenses, pressure Defenders,
+                        and open the way for minion swarms.
+                    </p>
+                    <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                        Where the Overlord schemes, the Commander advances. Where the
+                        UPDF builds a line, the Commander asks one question:
+                    </p>
+                    <p class="mt-4 font-display text-xl text-[#ffae3d]">
+                        &ldquo;Is this line load-bearing?&rdquo;
+                    </p>
+                </div>
+                <div class="relative aspect-square bg-[var(--bg-deep)] rounded-lg overflow-hidden">
+                    <Image
+                        src={commanderHero}
+                        alt="The Commander"
+                        widths={[480, 720, 960, 1200]}
+                        sizes="(min-width: 768px) 540px, 90vw"
+                        class="w-full h-full object-contain"
+                        loading="eager"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Role Fantasy + Playstyle
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffae3d] uppercase">Role Fantasy</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Pressure made of metal.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                Your job is to be impossible to ignore. Push into Defender positions,
+                disrupt safe zones, create openings, and make the UPDF choose between
+                fighting you or saving citizens.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                You are not subtle. You are not quiet. You are not here to discuss
+                pants law. You are here to apply force until the battlefield becomes
+                easier to collect from.
+            </p>
+            <p class="mt-6 text-[var(--fg-soft)] italic leading-relaxed">
+                Ignore the Commander, and the minions get through.<br/>
+                Focus the Commander, and the minions still get through.<br/>
+                That is called strategy.
+            </p>
+        </div>
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffae3d] uppercase">Playstyle</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Lead the push. Break the line.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                The Commander is for players who want to be the center of the invasion.
+                You lead pushes, punish grouped Defenders, and bully defensive setups
+                until something cracks.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                The best Commander players understand timing: push when minions are
+                moving, pressure when citizens are exposed, and retreat only when
+                doing so makes your next attack more annoying.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic">
+                The Commander does not sneak. The Commander arrives.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Abilities
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-8">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[#ffae3d] uppercase">
+                Combat Identity
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Abilities & Loadout
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="surface rounded-lg p-4 border border-[#ffae3d]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ffae3d] uppercase">Signature Weapon</p>
+                <h3 class="mt-2 font-display text-lg">Quad Lasers</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Four mechanical arms. Four firing angles. One very clear message.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    The UPDF can dodge one laser. Probably.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#ffae3d]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ffae3d] uppercase">Area Weapon</p>
+                <h3 class="mt-2 font-display text-lg">Multi-Beam DePantsinator</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    When regular depantsing lacks ambition, the Commander brings
+                    industrial-scale solutions.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Designed for crowd pressure, Defender disruption, and ruining
+                    everyone's confidence in belts.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#ffae3d]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ffae3d] uppercase">Mobility</p>
+                <h3 class="mt-2 font-display text-lg">Rocket Jump</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Reposition with explosive Collector engineering.
+                </p>
+                <ul class="mt-4 space-y-1 text-[var(--fg-soft)] italic text-sm">
+                    <li>Is it safe? <span class="text-[var(--fg-body)] not-italic">No.</span></li>
+                    <li>Is it effective? <span class="text-[var(--fg-body)] not-italic">Also sometimes no.</span></li>
+                    <li>Is it dramatic? <span class="text-[#ffae3d] not-italic font-display">Absolutely.</span></li>
+                </ul>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#ffae3d]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ffae3d] uppercase">Battlefield Control</p>
+                <h3 class="mt-2 font-display text-lg">Tactical Pressure</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    The Commander excels at forcing Defenders away from where they
+                    want to be. Push them off citizens. Push them off cannons.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm">
+                    Push them off their own plan.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Setup-phase note
+       ============================================================ */}
+    <section class="max-w-4xl mx-auto px-6 py-8">
+        <div class="surface rounded-lg p-8 border-l-2 border-[var(--color-alien-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">During Setup Phase</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Locked aboard. Temporarily.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                During the setup phase, the Commander is locked aboard the mothership
+                &mdash; temporarily denied the joy of smashing things directly.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Fortunately, the command terminal provides access to the Evil Eye
+                Drone, allowing the Commander to scout Defender fortifications before
+                deployment. Mark weak routes. Watch where citizens are moved. Identify
+                where the UPDF is pretending to be organized.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic">
+                Then, when deployment begins, go there loudly.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Lore
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <div class="surface rounded-lg p-5 md:p-6 border-l-2 border-[#ffae3d]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ffae3d] uppercase">Lore</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Engineered for battlefield leadership.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                The Commander was engineered for battlefield leadership, structural
+                intimidation, and carrying too many weapons at once.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Collector scientists originally designed the Commander to break
+                fortified strongholds. Then they found Earth. Now the Commander's
+                official mission includes
+                <em class="text-[var(--fg-strong)]">&ldquo;neutralize resistance,&rdquo;</em>
+                <em class="text-[var(--fg-strong)]">&ldquo;secure collection lanes,&rdquo;</em>
+                and
+                <em class="text-[var(--fg-strong)]">&ldquo;stop laughing when humans shout about how cold their legs suddenly are.&rdquo;</em>
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic">
+                The Commander has failed the third objective repeatedly.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Quotes pull-out
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8">
+        <p class="font-display text-xs tracking-[0.4em] text-[#ffae3d] uppercase text-center">
+            Field Recordings
+        </p>
+        <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow text-center">
+            Heard on the battlefield.
+        </h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Your barricade has been reviewed and found temporary.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;I do not chase pants. I create conditions where pants come to me.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;UPDF detected. Increasing disrespect.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;This is not a raid. This is a demonstration.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Four arms. One mission. Many pants.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Defensive line? Adorable.&rdquo;
+            </blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Companion class CTA
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8 text-center border-t border-[var(--border-subtle)]">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--fg-soft)] uppercase">Also on the Collector Roster</p>
+        <a href="/game/collectors/overlord/" class="block mt-4 group">
+            <h3 class="font-display text-3xl md:text-4xl text-paper-glow group-hover:text-[var(--color-magenta-300)] transition">
+                Meet the Overlord &nbsp;→
+            </h3>
+            <p class="mt-3 text-[var(--fg-muted)]">
+                The floating puppetmaster. Where the Commander advances, the Overlord schemes.
+            </p>
+        </a>
+    </section>
+</BaseLayout>

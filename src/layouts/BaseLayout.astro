@@ -1,0 +1,153 @@
+---
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import csgLogo from "../assets/brand/CSG-Logo_clean.png";
+
+interface Props {
+    title: string;
+    description?: string;
+    ogImage?: string;
+}
+
+const { title, description = "Collapsed Star Games — an independent game studio building multiplayer and single-player games designed to be remembered, replayed, and shared.", ogImage } = Astro.props;
+const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Collapsed Star Games`;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{fullTitle}</title>
+        <meta name="description" content={description} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        <link rel="icon" type="image/png" href="/favicon.png" />
+
+        {/* Theme init — runs BEFORE first paint to avoid flash of wrong theme.
+            Order: explicit user choice in localStorage > system preference > dark default. */}
+        <script is:inline>
+            (function () {
+                try {
+                    var saved = localStorage.getItem("csg-theme");
+                    var preferLight =
+                        window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+                    var theme = saved || (preferLight ? "light" : "dark");
+                    document.documentElement.setAttribute("data-theme", theme);
+                } catch (e) {
+                    document.documentElement.setAttribute("data-theme", "dark");
+                }
+            })();
+        </script>
+    </head>
+    <body class="min-h-screen flex flex-col">
+        <header class="border-b border-[var(--border-subtle)] backdrop-blur-md sticky top-0 z-50 bg-[var(--header-bg)]">
+            <nav class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-4">
+                <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Collapsed Star Games — home">
+                    <Image
+                        src={csgLogo}
+                        alt="Collapsed Star Games"
+                        height={48}
+                        widths={[96, 192]}
+                        sizes="96px"
+                        class="h-10 md:h-12 w-auto group-hover:scale-105 transition-transform"
+                        loading="eager"
+                    />
+                </a>
+                <div class="flex items-center gap-4 md:gap-8">
+                    <ul class="hidden md:flex items-center gap-8 text-sm">
+                        <li><a href="/" class="hover:text-[var(--color-magenta-400)] transition">Studio</a></li>
+                        <li><a href="/game/" class="hover:text-[var(--color-magenta-400)] transition">The Game</a></li>
+                        <li><a href="/game/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a></li>
+                        <li><a href="/game/collectors/" class="hover:text-[var(--color-alien-400)] transition">Collectors</a></li>
+                        <li><a href="/lore/" class="hover:text-[var(--color-chaos-400)] transition">Lore</a></li>
+                    </ul>
+                    {/* Theme toggle */}
+                    <button
+                        id="theme-toggle"
+                        type="button"
+                        aria-label="Toggle light/dark mode"
+                        title="Toggle light/dark mode"
+                        class="p-2 rounded-md border border-[var(--border-medium)] hover:bg-[var(--surface-hover)] transition flex items-center justify-center"
+                    >
+                        {/* Sun icon — visible in dark mode (click to switch to light) */}
+                        <svg
+                            class="w-5 h-5 hidden dark-mode-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <circle cx="12" cy="12" r="4.5" stroke-width="1.6"></circle>
+                            <path stroke-width="1.6" stroke-linecap="round" d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"></path>
+                        </svg>
+                        {/* Moon icon — visible in light mode (click to switch to dark) */}
+                        <svg
+                            class="w-5 h-5 hidden light-mode-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="flex-1">
+            <slot />
+        </main>
+
+        <footer class="border-t border-[var(--border-subtle)] mt-24">
+            <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-[var(--fg-soft)]">
+                <div>
+                    <p class="font-display text-base text-[var(--fg-body)]">COLLAPSED STAR GAMES, LLC</p>
+                    <p class="mt-1">Independent game studio. United States.</p>
+                </div>
+                <p>© {new Date().getFullYear()} Collapsed Star Games. All rights reserved.</p>
+            </div>
+        </footer>
+
+        {/* Theme toggle behavior + icon visibility */}
+        <script is:inline>
+            (function () {
+                var html = document.documentElement;
+                var btn = document.getElementById("theme-toggle");
+                var sunIcon = btn ? btn.querySelector(".dark-mode-icon") : null;
+                var moonIcon = btn ? btn.querySelector(".light-mode-icon") : null;
+
+                function syncIcons() {
+                    var theme = html.getAttribute("data-theme") || "dark";
+                    if (sunIcon && moonIcon) {
+                        if (theme === "dark") {
+                            sunIcon.classList.remove("hidden");
+                            moonIcon.classList.add("hidden");
+                        } else {
+                            sunIcon.classList.add("hidden");
+                            moonIcon.classList.remove("hidden");
+                        }
+                    }
+                }
+
+                syncIcons();
+
+                if (btn) {
+                    btn.addEventListener("click", function () {
+                        var current = html.getAttribute("data-theme") || "dark";
+                        var next = current === "dark" ? "light" : "dark";
+                        html.setAttribute("data-theme", next);
+                        try { localStorage.setItem("csg-theme", next); } catch (e) {}
+                        syncIcons();
+                    });
+                }
+            })();
+        </script>
+    </body>
+</html>

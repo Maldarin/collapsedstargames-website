@@ -1,0 +1,206 @@
+---
+/**
+ * Starfield backdrop with a central collapsed-star glow.
+ *
+ * Renders an SVG full-bleed inside its parent (parent must be position:relative).
+ * Stars are placed once at build time via a seeded PRNG so the layout is
+ * stable across builds (no twinkle jitter between rebuilds).
+ *
+ * Tunables exposed via props; defaults are tuned for a hero-section hero.
+ */
+interface Props {
+    /** Random seed (any integer). Change to reroll the constellation. */
+    seed?: number;
+    /** Tiny background stars. */
+    tinyCount?: number;
+    /** Medium stars. */
+    midCount?: number;
+    /** Big bright stars. */
+    bigCount?: number;
+    /** Override the central glow color. Defaults to brand magenta. */
+    glowColor?: string;
+    /** Show the central sun/star? */
+    showSun?: boolean;
+    /**
+     * Where the sun's bright core sits, relative to the parent's height.
+     * 50 = dead center. Use ~35-40 to align with the spiral icon when the
+     * studio logo is centered (spiral is in the upper part of the image,
+     * wordmark in the lower).
+     */
+    sunVerticalPct?: number;
+}
+
+const {
+    seed = 42,
+    tinyCount = 220,
+    midCount = 70,
+    bigCount = 22,
+    glowColor = "rgba(255, 31, 122, 1)",
+    showSun = true,
+    sunVerticalPct = 50,
+} = Astro.props;
+
+// Tiny seeded PRNG (mulberry32) — deterministic across rebuilds.
+function mulberry32(s: number) {
+    return function () {
+        s |= 0;
+        s = (s + 0x6d2b79f5) | 0;
+        let t = Math.imul(s ^ (s >>> 15), 1 | s);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+const rand = mulberry32(seed);
+
+function makeStars(count: number, rMin: number, rMax: number, opacityMin: number, opacityMax: number) {
+    const arr: { cx: number; cy: number; r: number; opacity: number }[] = [];
+    for (let i = 0; i < count; i++) {
+        arr.push({
+            cx: rand() * 100,
+            cy: rand() * 100,
+            r: rMin + rand() * (rMax - rMin),
+            opacity: opacityMin + rand() * (opacityMax - opacityMin),
+        });
+    }
+    return arr;
+}
+
+const tinyStars = makeStars(tinyCount, 0.04, 0.10, 0.3, 0.65);
+const midStars = makeStars(midCount, 0.10, 0.18, 0.55, 0.9);
+const bigStars = makeStars(bigCount, 0.18, 0.32, 0.75, 1.0);
+---
+
+<div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none starfield-decorative">
+    {/* Deep void backdrop */}
+    <div class="absolute inset-0 bg-[var(--color-void-950)]"></div>
+
+    {showSun && (
+        <>
+            {/* All layers use mix-blend-mode: screen so each one ADDS light
+               rather than alpha-blending against the dark base. This is what
+               makes the glow read as actual emitted light instead of a tinted
+               overlay. Mixing additive layers also lets the centers blow out
+               to near-white naturally. */}
+
+            {/* Outermost atmospheric bloom — huge, soft, dim. Fills viewport
+               for a sense of being IN the glow. Light enough not to show
+               through letter holes as "white fill." */}
+            <div
+                class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={`
+                    top: ${sunVerticalPct}%;
+                    width: clamp(1800px, 200vw, 3600px);
+                    height: clamp(1800px, 200vw, 3600px);
+                    mix-blend-mode: screen;
+                    background: radial-gradient(circle,
+                        rgba(255, 31, 122, 0.30) 0%,
+                        rgba(255, 31, 122, 0.18) 25%,
+                        rgba(180, 8, 60, 0.10) 50%,
+                        transparent 75%
+                    );
+                    filter: blur(50px);
+                `}
+            ></div>
+            {/* Mid bloom — saturated magenta around the icon, tight enough
+               not to extend down past the wordmark */}
+            <div
+                class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={`
+                    top: ${sunVerticalPct}%;
+                    width: clamp(550px, 55vw, 900px);
+                    height: clamp(550px, 55vw, 900px);
+                    mix-blend-mode: screen;
+                    background: radial-gradient(circle,
+                        rgba(255, 100, 175, 0.80) 0%,
+                        rgba(255, 60, 145, 0.50) 30%,
+                        rgba(255, 31, 122, 0.20) 60%,
+                        transparent 82%
+                    );
+                    filter: blur(28px);
+                `}
+            ></div>
+            {/* Inner saturated core — sized to roughly match the spiral icon */}
+            <div
+                class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={`
+                    top: ${sunVerticalPct}%;
+                    width: clamp(340px, 36vw, 560px);
+                    height: clamp(340px, 36vw, 560px);
+                    mix-blend-mode: screen;
+                    background: radial-gradient(circle,
+                        rgba(255, 200, 230, 1.0) 0%,
+                        rgba(255, 130, 190, 0.75) 30%,
+                        rgba(255, 60, 145, 0.35) 60%,
+                        transparent 82%
+                    );
+                    filter: blur(18px);
+                `}
+            ></div>
+            {/* Bright pinprick hotspot — very tight, gives the eye a sharp
+               focal point right behind the spiral icon's black hole */}
+            <div
+                class="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                style={`
+                    top: ${sunVerticalPct}%;
+                    width: clamp(130px, 13vw, 220px);
+                    height: clamp(130px, 13vw, 220px);
+                    mix-blend-mode: screen;
+                    background: radial-gradient(circle,
+                        rgba(255, 240, 250, 1.0) 0%,
+                        rgba(255, 200, 230, 0.85) 35%,
+                        rgba(255, 130, 190, 0.4) 70%,
+                        transparent 88%
+                    );
+                    filter: blur(8px);
+                `}
+            ></div>
+        </>
+    )}
+
+    {/* Star layer — single SVG covering 100% of parent via viewBox */}
+    <svg
+        class="absolute inset-0 w-full h-full"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+    >
+        {tinyStars.map((s) => (
+            <circle cx={s.cx} cy={s.cy} r={s.r} fill="white" opacity={s.opacity} />
+        ))}
+        {midStars.map((s) => (
+            <circle cx={s.cx} cy={s.cy} r={s.r} fill="white" opacity={s.opacity} />
+        ))}
+        {bigStars.map((s) => (
+            <g key={`b-${s.cx}-${s.cy}`}>
+                <circle cx={s.cx} cy={s.cy} r={s.r * 2.4} fill="white" opacity={s.opacity * 0.18} />
+                <circle cx={s.cx} cy={s.cy} r={s.r} fill="white" opacity={s.opacity} />
+            </g>
+        ))}
+    </svg>
+
+    {/* Optional vignette to soften edges */}
+    <div
+        class="absolute inset-0 pointer-events-none"
+        style="background: radial-gradient(ellipse at center, transparent 40%, var(--color-void-950) 95%);"
+    ></div>
+
+    {/* Wordmark darken-mask: sharp transition from transparent (sun visible)
+       to fully opaque void (wordmark sits on solid dark). The transition
+       happens RIGHT at the spiral-icon → wordmark boundary so the bright
+       glow stays in the upper half and the wordmark area is dark — letter
+       holes (O, A, P, D, S) read as transparent windows to void instead of
+       windows to pink fill. */}
+    <div
+        class="absolute inset-0 pointer-events-none"
+        style={`
+            background: linear-gradient(
+                180deg,
+                transparent 0%,
+                transparent ${sunVerticalPct - 2}%,
+                var(--color-void-950) ${sunVerticalPct + 6}%,
+                var(--color-void-950) 100%
+            );
+        `}
+    ></div>
+</div>

@@ -1,0 +1,270 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import neHero from "../../../assets/classes/NeedleEye/NeedleEye.png";
+---
+
+<BaseLayout
+    title="Needle Eye — Defender Class"
+    description="Needle Eye is the UPDF's long-range specialist: precise, patient, and deeply offended by aliens who float where everyone can see them. Take high ground. Cover lanes. Place traps. Thread the shot."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[#8edcff]/20">
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 35%, rgba(142, 220, 255, 0.16), transparent 60%);"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-12">
+            <div class="flex items-center gap-4 text-xs tracking-[0.3em] uppercase font-display text-[var(--fg-soft)] mb-8">
+                <a href="/game/" class="hover:text-[var(--fg-strong)] transition">Game</a>
+                <span>/</span>
+                <a href="/game/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a>
+                <span>/</span>
+                <span class="text-[#8edcff]">Needle Eye</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="font-display text-xs md:text-sm tracking-[0.4em] text-[#8edcff] uppercase">
+                        Defender Class · Sniper / Overwatch
+                    </p>
+                    <h1 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow leading-tight">
+                        <span class="text-[#8edcff]">NEEDLE<br/>EYE</span>
+                    </h1>
+                    <p class="mt-6 text-[var(--fg-body)] italic text-lg">
+                        One shot. One perch. Zero patience for hovering weirdos.
+                    </p>
+                    <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                        Needle Eye is the UPDF's long-range specialist: precise,
+                        patient, and deeply offended by aliens who float where
+                        everyone can see them.
+                    </p>
+                    <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                        Take high ground, cover lanes, place traps, grapple into
+                        position, and make the Collectors think twice before crossing
+                        open space.
+                    </p>
+                    <p class="mt-6 font-display text-lg tracking-wide text-[#8edcff]">
+                        Thread the shot. Pin the threat. Protect the pants.
+                    </p>
+                </div>
+                <div class="relative aspect-square bg-[var(--bg-deep)] rounded-lg overflow-hidden">
+                    <Image src={neHero} alt="Needle Eye" widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 540px, 90vw" class="w-full h-full object-contain" loading="eager" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Role + Playstyle
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">Role Fantasy</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Control where enemies are willing to go.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                Your strength comes from positioning. Find a perch, cover important
+                routes, support citizens from above, and force the Collectors to
+                respect the sightline.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                You are not just shooting enemies. You are controlling where enemies
+                are willing to go.
+            </p>
+            <p class="mt-6 text-[var(--fg-soft)] italic leading-relaxed">
+                The UPDF calls that tactical overwatch.<br/>
+                Needle Eye calls it &ldquo;finally, some quiet.&rdquo;
+            </p>
+        </div>
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">Playstyle</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Precision. Traps. Patience.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You should look for high ground, watch alien approach routes,
+                protect citizens from a distance, and pressure major threats like
+                the Commander or Overlord.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                You are strongest when you think ahead. Pick the right perch. Mine
+                the right route. Grapple before you are surrounded.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic leading-relaxed">
+                A good Needle Eye makes aliens feel watched.<br/>
+                A great Needle Eye makes them feel late.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Abilities
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-8">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[#8edcff] uppercase">
+                Combat Identity
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Abilities & Loadout
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="surface rounded-lg p-4 border border-[#8edcff]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">Signature Weapon</p>
+                <h3 class="mt-2 font-display text-lg">Sewing Needle Rifle</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    A long-range precision weapon for picking off threats and
+                    pressuring important targets.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Originally designed for tailoring.<br/>
+                    Heavily modified after the tailor complained about aliens.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#8edcff]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">Sidearm</p>
+                <h3 class="mt-2 font-display text-lg">Pin Pistol</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    A reliable sidearm for closer threats.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Because sometimes the aliens do not respect your preferred
+                    engagement distance.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#8edcff]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">Area Denial</p>
+                <h3 class="mt-2 font-display text-lg">Pin Mines</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Place traps on likely routes, perches, or rescue paths.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    A well-placed mine turns alien confidence into alien regret.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#8edcff]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">Mobility</p>
+                <h3 class="mt-2 font-display text-lg">Grappling Hook</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Reposition quickly, reach perches, and escape danger.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Needle Eye does not climb stairs when physics can be persuaded.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Setup + Final Stand
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-6 border-l-2 border-[#8edcff]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">During Setup Phase</p>
+            <h3 class="mt-2 font-display text-lg">Prepare the map.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Find overwatch spots. Watch citizen safe zones. Place traps along
+                likely invasion routes. Cover buildings where Defenders are hiding
+                citizens.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                The aliens may scout from above.<br/>
+                Needle Eye scouts back with judgment.
+            </p>
+        </div>
+        <div class="surface rounded-lg p-6 border-l-2 border-[var(--color-magenta-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Final Stand</p>
+            <h3 class="mt-2 font-display text-lg">The punctuation mark.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Cover cannons, lanes, rooftops, and incoming threats. Pick off
+                minions before they swarm. Pressure major Collectors. If an alien
+                starts a big dramatic push, make it regret doing that in your
+                sightline.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                Final Stand is chaos.<br/>
+                Needle Eye is the punctuation mark.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Lore
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <div class="surface rounded-lg p-5 md:p-6 border-l-2 border-[#8edcff]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#8edcff] uppercase">Lore</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">From threading needles to threading aliens.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                Needle Eye began as a quiet specialist in precision tailoring and
+                long-distance measurement.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Then the Collectors invaded, and the UPDF discovered that someone
+                who could thread a needle at fifty yards could also make aliens
+                extremely nervous at much greater distances.
+            </p>
+            <p class="mt-4 text-[var(--fg-strong)] italic leading-relaxed">
+                Needle Eye accepted the role on one condition:
+            </p>
+            <ul class="mt-3 space-y-1 text-[var(--fg-strong)] leading-relaxed">
+                <li>&mdash; No speeches.</li>
+                <li>&mdash; No group chants.</li>
+                <li>&mdash; No one touches the perch.</li>
+            </ul>
+            <p class="mt-4 text-[var(--fg-soft)] italic leading-relaxed">
+                The UPDF agreed immediately and then wrote several speeches anyway.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Quotes
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8">
+        <p class="font-display text-xs tracking-[0.4em] text-[#8edcff] uppercase text-center">
+            Field Recordings
+        </p>
+        <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow text-center">
+            Heard from the rooftop.
+        </h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Hold still. This is already difficult enough.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;I see the problem. It is orange.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;The sky is not a safe zone.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Pinned one.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic md:col-span-2 text-center">
+                &ldquo;If they didn't want to be sniped, they should be invisible.&rdquo;
+            </blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Roster wrap
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8 text-center border-t border-[var(--border-subtle)]">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--fg-soft)] uppercase">UPDF Roster Complete</p>
+        <a href="/game/defenders/" class="block mt-4 group">
+            <h3 class="font-display text-3xl md:text-4xl text-paper-glow group-hover:text-[var(--color-denim-400)] transition">
+                Back to the UPDF &nbsp;→
+            </h3>
+            <p class="mt-3 text-[var(--fg-muted)]">
+                Pick your role. Hold the line. Save Earth's denim.
+            </p>
+        </a>
+    </section>
+</BaseLayout>

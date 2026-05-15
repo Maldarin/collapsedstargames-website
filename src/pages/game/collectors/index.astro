@@ -1,0 +1,240 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
+import commanderHero from "../../../assets/classes/Commander/Commander.png";
+import minionShot from "../../../assets/classes/Minions/Minion_in-game_NOPAS.png";
+import battleLong from "../../../assets/battle/long_battle.png";
+---
+
+<BaseLayout
+    title="The Alien Collectors"
+    description="The Alien Collectors are an elite invasion force with one sacred mission: collect every pair of pants Earth has foolishly left lying around on people. Meet the Overlord and the Commander, descend from the mothership, and command the swarm."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[var(--color-alien-500)]/15">
+        <div class="absolute inset-0 -z-10 opacity-20">
+            <Image src={battleLong} alt="" class="w-full h-full object-cover" loading="eager" />
+        </div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-base)]/50 via-[var(--bg-base)]/85 to-[var(--bg-base)]"></div>
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 30%, rgba(111, 226, 111, 0.15), transparent 60%);"
+        ></div>
+
+        <div class="max-w-5xl mx-auto px-6 pt-10 pb-10 md:pt-16 text-center">
+            <a href="/game/" class="inline-block mb-5 text-xs tracking-[0.3em] text-[var(--fg-soft)] hover:text-[var(--color-alien-400)] uppercase font-display transition">
+                ← Back to the game
+            </a>
+
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-alien-400)] uppercase">
+                The Collector Invasion
+            </p>
+            <h1 class="font-display text-3xl md:text-5xl mt-4 text-paper-glow leading-tight">
+                THEY CALL US <span class="text-[var(--color-alien-400)]">INTERGALACTIC THIEVES.</span>
+                WE CALL IT <span class="text-[var(--color-magenta-300)]">INVENTORY.</span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-[var(--fg-body)] leading-relaxed">
+                The humans of Earth have spent generations hoarding pants. Pants in
+                drawers. Pants in closets. Pants on citizens.
+                <strong class="text-[var(--color-alien-400)]">Unacceptable.</strong>
+                Descend from the mothership, command minions, harvest pants, and teach
+                the UPDF that no waistband is truly safe.
+            </p>
+            <p class="mt-5 font-display text-base md:text-lg tracking-wide text-[var(--color-magenta-300)]">
+                Earth has pants. We have beams.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Mission + Playstyle — compact
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-5">
+        <div class="surface faction-collector rounded-lg p-5">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">The Mission</p>
+            <h2 class="mt-2 font-display text-xl md:text-2xl">Earth: one suspiciously abundant resource.</h2>
+            <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                The Collectors do not understand why humans are so attached to pants.
+                They only know that pants are useful, powerful, and extremely
+                collectible. Every pair stolen brings the mothership closer to full
+                power.
+            </p>
+            <p class="mt-3 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                The pants were never yours. They were merely uncollected.
+            </p>
+        </div>
+
+        <div class="surface faction-collector rounded-lg p-5">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Playstyle</p>
+            <h2 class="mt-2 font-display text-xl md:text-2xl">Overwhelm. Distract. Swarm.</h2>
+            <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                Not here to politely duel. Coordinate waves of minions, pressure
+                weak points, breach buildings. The best Collectors make the UPDF
+                chase the wrong problem while the pants quietly disappear.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Class roster — compact thumbnail grid
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">
+                The Roster
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-2 text-paper-glow">
+                Two leaders. One swarm.
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 md:gap-4 max-w-3xl mx-auto">
+            <a href="/game/collectors/overlord/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]"
+                     style="background: radial-gradient(circle at 50% 40%, rgba(255,31,122,0.15), transparent 70%), var(--bg-deep);">
+                    <Image src={overlordHero} alt="" widths={[160, 240, 320]} sizes="(min-width: 768px) 240px, 30vw" class="w-full h-full object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-magenta-400)] uppercase truncate">Puppetmaster</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">The Overlord</h3>
+                </div>
+            </a>
+
+            <a href="/game/collectors/commander/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]"
+                     style="background: radial-gradient(circle at 50% 40%, rgba(255,150,30,0.14), transparent 70%), var(--bg-deep);">
+                    <Image src={commanderHero} alt="" widths={[160, 240, 320]} sizes="(min-width: 768px) 240px, 30vw" class="w-full h-full object-contain group-hover:scale-105 transition-transform" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[#ffae3d] uppercase truncate">Frontline Mech</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">The Commander</h3>
+                </div>
+            </a>
+
+            <div class="surface rounded-lg overflow-hidden">
+                <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={minionShot} alt="" widths={[160, 240, 320]} sizes="(min-width: 768px) 240px, 30vw" class="w-full h-full object-contain" loading="lazy" />
+                </div>
+                <div class="p-3">
+                    <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-alien-400)] uppercase truncate">The Swarm</p>
+                    <h3 class="mt-0.5 font-display text-sm md:text-base leading-tight">Minions</h3>
+                </div>
+            </div>
+        </div>
+        <p class="mt-4 text-center text-[var(--fg-muted)] text-sm max-w-xl mx-auto">
+            Plus mothership command terminals, scouting drones, and a saucer that
+            grows more dangerous as the invasion progresses.
+        </p>
+    </section>
+
+    {/* ============================================================
+        Three phases — compact
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="grid md:grid-cols-3 gap-3">
+            <article class="surface faction-collector rounded-lg p-4 relative overflow-hidden">
+                <div class="absolute top-0 right-0 font-display text-5xl text-[var(--fg-primary)]/5 leading-none p-3 pointer-events-none">01</div>
+                <p class="font-display text-xs tracking-[0.25em] text-[var(--color-alien-400)] uppercase">Setup</p>
+                <h3 class="mt-1 font-display text-lg">Pre-sort the inventory.</h3>
+                <p class="mt-2 text-[var(--fg-body)] text-xs leading-relaxed">
+                    Use ship systems, scout the battlefield, watch Defender movement,
+                    and look for the cracks in their plan.
+                </p>
+                <p class="mt-2 text-[var(--fg-soft)] italic text-xs">
+                    The UPDF calls it spying. Collectors call it pre-sorting.
+                </p>
+            </article>
+            <article class="surface faction-collector rounded-lg p-4 relative overflow-hidden">
+                <div class="absolute top-0 right-0 font-display text-5xl text-[var(--fg-primary)]/5 leading-none p-3 pointer-events-none">02</div>
+                <p class="font-display text-xs tracking-[0.25em] text-[var(--color-alien-400)] uppercase">Invasion</p>
+                <h3 class="mt-1 font-display text-lg">The mothership opens.</h3>
+                <p class="mt-2 text-[var(--fg-body)] text-xs leading-relaxed">
+                    Minions flood the streets. Beams light up the sky. The mothership
+                    begins its glorious work.
+                </p>
+                <p class="mt-2 text-[var(--fg-soft)] italic text-xs">
+                    The UPDF may have courage. Collectors have logistics.
+                </p>
+            </article>
+            <article class="surface faction-collector rounded-lg p-4 relative overflow-hidden border border-[var(--color-magenta-500)]/20">
+                <div class="absolute top-0 right-0 font-display text-5xl text-[var(--fg-primary)]/5 leading-none p-3 pointer-events-none">03</div>
+                <p class="font-display text-xs tracking-[0.25em] text-[var(--color-magenta-400)] uppercase">Final Stand</p>
+                <h3 class="mt-1 font-display text-lg">The factory is full of pants.</h3>
+                <p class="mt-2 text-[var(--fg-body)] text-xs leading-relaxed">
+                    The mothership moves into position. The UPDF will try to hold
+                    the line. They will have no defense.
+                </p>
+                <p class="mt-2 text-[var(--fg-soft)] italic text-xs">
+                    Ignore the shouting and continue the operation.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Why Play + Identity + Warning — compact
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-5">
+        <div class="surface rounded-lg p-5">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Why Play Collectors?</p>
+            <ul class="mt-3 space-y-1.5 text-[var(--fg-body)] text-sm">
+                <li class="flex gap-2"><span class="text-[var(--color-alien-400)]">&rsaquo;</span> chaotic teamwork</li>
+                <li class="flex gap-2"><span class="text-[var(--color-alien-400)]">&rsaquo;</span> overwhelming defenses</li>
+                <li class="flex gap-2"><span class="text-[var(--color-alien-400)]">&rsaquo;</span> commanding minions</li>
+                <li class="flex gap-2"><span class="text-[var(--color-alien-400)]">&rsaquo;</span> disrupting rescue attempts</li>
+                <li class="flex gap-2"><span class="text-[var(--color-alien-400)]">&rsaquo;</span> stealing objectives while Defenders are distracted</li>
+                <li class="flex gap-2"><span class="text-[var(--color-alien-400)]">&rsaquo;</span> being the reason someone yells &ldquo;WHO LEFT THE CITIZENS OUTSIDE?&rdquo;</li>
+            </ul>
+        </div>
+        <div class="rounded-lg p-5 border border-[var(--color-magenta-500)]/20 bg-[var(--color-magenta-500)]/5">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">⚠ Warning Label</p>
+            <p class="mt-2 text-[var(--fg-body)] text-sm leading-relaxed">
+                The UPDF would like citizens to know that Collector beams are
+                unsafe, unauthorized, and extremely rude.
+            </p>
+            <p class="mt-2 text-[var(--fg-muted)] text-sm leading-relaxed italic">
+                The Collector High Command would like citizens to know that this
+                is misinformation. Collector beams are safe, authorized, and only
+                rude if you resist.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Tagline strip — compact
+       ============================================================ */}
+    <section class="border-y border-[var(--color-alien-500)]/15 py-5 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <ul class="flex flex-wrap justify-center gap-x-8 gap-y-2 text-center text-[var(--fg-soft)] font-display text-xs tracking-wider uppercase">
+                <li>Your pants have been selected.</li>
+                <li class="text-[var(--color-alien-400)]/70">Resistance is temporary. Collection is forever.</li>
+                <li>We came. We saw. We catalogued.</li>
+                <li class="text-[var(--color-alien-400)]/70">The UPDF protects pants. We improve distribution.</li>
+            </ul>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Recruitment CTA — compact
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-10 text-center">
+        <h2 class="font-display text-2xl md:text-3xl text-paper-glow">
+            Apply today. The pants will not collect themselves.
+        </h2>
+        <p class="mt-3 text-[var(--fg-muted)] text-sm">
+            Benefits include mothership access, minion support, advanced beams,
+            dramatic entrances, flexible morality, and excellent pants storage.
+        </p>
+        <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/game/collectors/overlord/" class="font-display text-sm tracking-wider px-5 py-2.5 bg-[var(--color-magenta-500)] text-[var(--color-paper)] rounded-md hover:bg-[var(--color-magenta-400)] transition">
+                THE OVERLORD →
+            </a>
+            <a href="/game/collectors/commander/" class="font-display text-sm tracking-wider px-5 py-2.5 border border-[var(--border-strong)] text-[var(--fg-strong)] rounded-md hover:bg-[var(--surface-hover)] transition">
+                THE COMMANDER →
+            </a>
+        </div>
+    </section>
+</BaseLayout>

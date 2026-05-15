@@ -1,0 +1,667 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import battleLong from "../../assets/battle/long_battle.png";
+
+const timeline = [
+    { day: "Day -∞", event: "Earth peacefully manufactures pants. No alien activity detected. Nobody knows how powerful pants are, and nobody bothers to check." },
+    { day: "Day -1", event: "A Suburbia physics lab opens a stable interdimensional rift for six minutes. The rift is classified as a successful experiment." },
+    { day: "Day 0", event: "First Collector reconnaissance drone enters Earth's airspace. The Pants Factory glows on every Collector instrument." },
+    { day: "Day 1", event: "First confirmed pants theft. The Hendersons file a police report." },
+    { day: "Day 3", event: "Local authorities escalate. Federal task force convened." },
+    { day: "Day 6", event: "The security guard at the Suburbia Mall food court confronts a Collector minion patrol. The phrase “I asked them to stop” enters the historical record." },
+    { day: "Day 7", event: "The UPDF is formed at the Suburbia Mall food court. Founding document signed on a napkin." },
+    { day: "Day 11", event: "The Underpants Summit. Humanity attempts diplomacy. Humanity is depantsed in eleven seconds. Diplomacy is permanently retired." },
+    { day: "Day 14", event: "First UPDF defensive operation. The Suburbia Laundromat holds the line for six hours without losing a single pair of pants." },
+    { day: "Day 21", event: "Federal task force arrives. Is politely told to go home. Goes home." },
+    { day: "Day 40", event: "First mothership engagement at the Pants Factory. Cannons identified as a viable defense for the first time, once the shield-storage relationship is understood." },
+    { day: "Day 67", event: "First UPDF rescue of beam-suspended citizens. Athletes class formalized." },
+    { day: "Day 88", event: "Dr. Peepers joins the UPDF after determining that pants theft is medically stressful." },
+    { day: "Day 112", event: "Needle Eye class formalized following a successful rooftop engagement of an Overlord." },
+    { day: "Day 180", event: "Citizen panic personalities formally catalogued by UPDF Sociology Division." },
+    { day: "Today", event: "Active conflict. Suburbia holds. Earth's pants remain (mostly) Earth's pants." },
+];
+
+const glossary = [
+    ["UPDF", "United Pants Defense Force. The all-volunteer defending force of Earth."],
+    ["Collector", "Member of the Collective. Term applies to all alien personnel, leadership and minion alike."],
+    ["Collective", "The full alien civilization. Officially: The Collective for Inter-Dimensional Acquisition Logistics."],
+    ["Mothership / Collection Vessel", "The orbital ship that processes captured pants into denimium fuel. CV-7745 is the one above Suburbia."],
+    ["Denimium", "The cosmic energy stored in woven plant-cellulose fibers. Recently rediscovered."],
+    ["The Rift", "The interdimensional portal opened by Suburbia scientists. Lasted six minutes. Started the war."],
+    ["The Underpants Summit", "Humanity's only attempt at diplomacy. Lasted eleven seconds. Ended in mass depantsing."],
+    ["Depantsing", "The Collectors' term: “reclassification.” The UPDF's term: “a crime.”"],
+    ["Shield Storage", "The reactor charge that powers the mothership's defensive array. Pants in = shields up. Pants kept on Earth = shields weak. Weak shields = vulnerable mothership."],
+    ["Setup", "Phase 1 of an engagement. Defenders prepare; Collectors scout from the mothership."],
+    ["Invasion", "Phase 2. Active raids begin."],
+    ["Final Stand", "Phase 3. The battle moves to the Pants Factory."],
+    ["Golden Pants", "The single most denimium-dense pair of pants in existence. Stored at the Pants Factory. Officially: bait."],
+    ["Suburbia", "Patient Zero. The neighborhood where the rift opened and the war began."],
+];
+---
+
+<BaseLayout
+    title="The Pants War — Lore"
+    description="The full history of the alien invasion no one saw coming, the local force nobody trained for, and the cosmic resource humanity didn't know was valuable until we accidentally showed someone."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[var(--border-subtle)]">
+        <div class="absolute inset-0 -z-10 opacity-15">
+            <Image src={battleLong} alt="" class="w-full h-full object-cover" loading="eager" />
+        </div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-base)]/60 via-[var(--bg-base)]/90 to-[var(--bg-base)]"></div>
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 30%, rgba(255, 31, 122, 0.12), transparent 60%);"
+        ></div>
+
+        <div class="max-w-4xl mx-auto px-6 pt-12 pb-10 md:pt-16 text-center">
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase">
+                Earth's Most Embarrassing Conflict
+            </p>
+            <h1 class="font-display text-4xl md:text-6xl mt-3 text-paper-glow leading-tight">
+                THE <span class="text-[var(--color-magenta-400)]">PANTS</span> WAR
+            </h1>
+            <p class="mt-6 text-[var(--fg-body)] text-lg leading-relaxed max-w-2xl mx-auto">
+                The galaxy's most expensive misunderstanding.
+                <br/><strong class="text-[var(--fg-strong)]">And, technically, our fault.</strong>
+            </p>
+            <p class="mt-4 text-[var(--fg-muted)] text-sm leading-relaxed max-w-2xl mx-auto">
+                The full history of the alien invasion no one saw coming, the local
+                force nobody trained for, and the cosmic resource humanity didn't
+                know was valuable until we accidentally showed someone.
+            </p>
+            <blockquote class="mt-8 max-w-xl mx-auto text-[var(--fg-body)] italic">
+                &ldquo;We opened the door. They walked in. They took our pants. The rest is footnotes.&rdquo;
+                <footer class="mt-2 text-xs tracking-[0.2em] uppercase font-display text-[var(--fg-soft)] not-italic">— UPDF Volume 1, Foreword</footer>
+            </blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Section 1: The Mistake That Started It All
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Origin</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The mistake that started it all.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>For most of human history, pants were pants.</p>
+            <p>
+                You wore them. You washed them. You complained about them. You bought
+                new ones when the old ones developed a hole in an unfortunate location.
+                They were, by every measure humanity ever applied, deeply ordinary.
+            </p>
+            <p>
+                What humanity did not know &mdash; what humanity had <strong class="text-[var(--fg-strong)]">no reason to suspect</strong>
+                &mdash; was that woven plant-cellulose textiles, particularly those with
+                high denim or canvas density, contain an extraordinarily powerful form
+                of cosmic energy. The technical term, retroactively coined by UPDF
+                Sciences Division, is <strong class="text-[var(--color-magenta-400)]">denimium.</strong>
+                Every pair of jeans on Earth has been quietly humming with it for as
+                long as denim has existed.
+            </p>
+            <p>We never noticed because we were busy wearing them.</p>
+            <p>The Collectors never noticed either, because the Collectors were several dimensions away.</p>
+            <p>Until, one afternoon, a research team at a private physics lab ran an experiment.</p>
+            <p>
+                The details are still classified, but the executive summary is
+                straightforward enough: a small interdimensional rift was opened, held
+                stable for approximately six minutes, and then closed. The rift was
+                supposed to verify the existence of adjacent dimensional layers. It did.
+                The experiment was considered a success.
+            </p>
+            <p>
+                What the researchers did not realize was that for those six minutes,
+                <strong class="text-[var(--fg-strong)]">a portion of the adjacent dimension's inhabitants had been watching back</strong>
+                &mdash; and during those six minutes, those inhabitants had clearly
+                observed roughly two dozen lab technicians, all of whom were wearing
+                pants, all of whom were unknowingly broadcasting a denimium signature
+                visible across the multidimensional spectrum.
+            </p>
+            <p>By the time the rift sealed, the Collector Collective knew three things:</p>
+            <ol class="ml-6 space-y-1 list-decimal text-[var(--fg-body)] marker:text-[var(--color-magenta-400)] marker:font-display">
+                <li><strong class="text-[var(--fg-strong)]">Pants exist.</strong></li>
+                <li><strong class="text-[var(--fg-strong)]">Pants are saturated with the densest concentration of denimium energy ever recorded.</strong></li>
+                <li><strong class="text-[var(--fg-strong)]">The species producing them appears to have no idea.</strong></li>
+            </ol>
+            <p>The Collective convened. The Collective deliberated. The Collective wrote a memo.</p>
+            <p>The memo authorized <strong class="text-[var(--color-magenta-400)]">immediate acquisition operations.</strong></p>
+        </div>
+
+        <aside class="document-card mt-8">
+            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-magenta-400)] uppercase">Internal UPDF Sciences Division Report &mdash; Document 003-A</p>
+            <p class="mt-2 text-[var(--fg-body)] italic">
+                &ldquo;In retrospect, the experiment may have been imprudent.&rdquo;
+            </p>
+            <p class="mt-1 text-[var(--fg-body)] italic">
+                &ldquo;In further retrospect, we should have at least drawn the blinds.&rdquo;
+            </p>
+            <p class="mt-2 text-xs text-[var(--fg-soft)]">Classified report submitted three days after first beam.</p>
+        </aside>
+    </section>
+
+    {/* ============================================================
+        Section 2: First Contact
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">First Contact</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">A Tuesday.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>The first mothership entered Earth's airspace on a Tuesday.</p>
+            <p>
+                Nobody noticed for forty-three minutes. The world was, by all accounts,
+                having a normal Tuesday: weather, traffic, light political grumbling.
+                Above the clouds, a Collector saucer the size of a regional shopping
+                center had quietly performed three reconnaissance loops and beamed a
+                sample of laundry off a backyard clothesline.
+            </p>
+            <p>The sample was processed in the Collective's central archives within the hour.</p>
+            <p>
+                The reply was immediate:
+                <em class="text-[var(--fg-strong)]">&ldquo;Recommend full acquisition operation. Subject region: Suburbia. Strategic priority: the Pants Factory.&rdquo;</em>
+            </p>
+            <h3 class="font-display text-xl mt-6 text-[var(--fg-primary)]">Why Suburbia?</h3>
+            <p>
+                The portal had been opened in a laboratory nearby. The dimensional
+                signature led the Collectors straight back to the source. And within
+                a short distance of that laboratory sat the densest concentration of
+                woven textiles anywhere on Earth: the
+                <strong class="text-[var(--fg-strong)]">Suburbia Pants Factory</strong>,
+                which manufactured approximately twelve thousand pairs of denim
+                trousers per week. Even worse, the experimental
+                <em>golden pants</em> were held there.
+            </p>
+            <p>From the Collective's logistical perspective, this was not a coincidence. This was a delivery address.</p>
+            <p>
+                Within forty-eight hours, three more motherships had positioned
+                themselves over the neighborhood. Citizens looked up. Citizens stared.
+                Citizens went inside. Citizens came back outside because they wanted
+                to see if they had really seen what they thought they had seen.
+            </p>
+            <p>The first beam came down at 4:47 PM on a Thursday.</p>
+            <p>
+                It collected a pair of dark-wash jeans from a clothesline behind the
+                Henderson residence at 12 Magnolia Lane. The clothesline was empty by
+                4:47:08. The Hendersons reported the incident to local authorities.
+                The local authorities reported it to state authorities. The state
+                authorities reported it to federal authorities. The federal
+                authorities looked up at the sky and said the same thing everyone
+                else had said:
+            </p>
+            <p class="text-center font-display text-lg text-[var(--color-magenta-400)] italic">&ldquo;Oh crap.&rdquo;</p>
+            <p>It was, in fact, happening.</p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Section 3: The Underpants Summit
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Diplomacy: Concluded</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Underpants Summit.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>Humanity is a species that, when confronted with an existential threat, tries to talk it out first.</p>
+            <p>
+                Eleven days into the invasion, a diplomatic delegation was assembled.
+                It consisted of three career negotiators, two retired generals, one
+                linguistics professor, a young aide who had been told this was a
+                routine assignment, and <strong class="text-[var(--fg-strong)]">Senator Johnson</strong>,
+                who had volunteered specifically so he could put &ldquo;first contact&rdquo;
+                on his memoir cover.
+            </p>
+            <p>The Collectors, to their credit, agreed to meet.</p>
+            <p>
+                The summit was scheduled for 11:00 AM at a neutral location on the
+                Suburbia outskirts. Both sides arrived on time. Translators were
+                present. Refreshments were served. Senator Johnson made a brief
+                opening statement about peace and mutual understanding.
+            </p>
+            <p>
+                The Collector delegation responded by
+                <strong class="text-[var(--color-magenta-400)]">immediately depantsing the entire human delegation in a single coordinated beam volley.</strong>
+            </p>
+            <p>
+                Records indicate that the beams operated for approximately eleven
+                seconds. When the dust settled, every human present was standing in
+                their underwear, holding a translator earpiece in one hand and the
+                remains of their dignity in the other. Senator Johnson, by all
+                accounts, did not finish his prepared remarks.
+            </p>
+            <p>The Collectors issued a brief statement before leaving:</p>
+            <p class="text-center text-[var(--fg-strong)] italic">
+                &ldquo;Acquisition successful. We thank the human delegation for their cooperation. Future negotiations are not anticipated.&rdquo;
+            </p>
+            <p>This was the only diplomatic effort humanity ever attempted.</p>
+            <p>
+                It has gone down in history as
+                <strong class="text-[var(--fg-strong)]">The Underpants Summit</strong>,
+                and every UPDF recruit is shown the surveillance footage during basic
+                training as a reminder of what is at stake. The footage runs
+                approximately ninety seconds. There is no audio.
+            </p>
+            <p class="text-[var(--fg-muted)] italic">There is also no audio commentary required.</p>
+        </div>
+
+        <aside class="document-card mt-8">
+            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-magenta-400)] uppercase">The Underpants Summit &mdash; post-summit press conference</p>
+            <div class="mt-2 space-y-2 text-sm text-[var(--fg-body)]">
+                <p><strong class="text-[var(--fg-strong)]">Reporter:</strong> &ldquo;Senator Johnson, can you describe what happened in there?&rdquo;</p>
+                <p><strong class="text-[var(--fg-strong)]">Sen. Johnson:</strong> &ldquo;I would prefer not to.&rdquo;</p>
+                <p><strong class="text-[var(--fg-strong)]">Reporter:</strong> &ldquo;Sir, you appear to be &mdash;&rdquo;</p>
+                <p><strong class="text-[var(--fg-strong)]">Sen. Johnson:</strong> &ldquo;I am very aware of what I appear to be. Next question.&rdquo;</p>
+            </div>
+            <p class="mt-3 text-xs text-[var(--fg-soft)]">Press transcript, archived in UPDF historical records under file <em>&ldquo;Diplomacy: Concluded.&rdquo;</em></p>
+        </aside>
+    </section>
+
+    {/* ============================================================
+        Section 4: The Founding of the UPDF
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">The UPDF</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Someone had to do something.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>The federal authorities took three weeks to convene a task force.</p>
+            <p>Suburbia did not have three weeks.</p>
+            <p>
+                By the end of the first week, the Henderson residence had been
+                depantsed entirely (clotheslines, closets, laundry hampers). By the
+                end of the second week, three additional neighborhoods had been
+                raided. By the end of the third week, citizens were running indoors
+                at the sound of distant humming and refusing to come back out.
+            </p>
+            <p>Someone had to do something.</p>
+            <p>
+                That someone turned out to be a local security guard at the Suburbia
+                Mall food court who had taken it upon himself to issue verbal warnings
+                to passing Collector minions during a routine patrol. The minions
+                ignored him. He issued the warnings again, louder. The minions
+                continued to ignore him. He drew his service blaster and issued one
+                final warning.
+            </p>
+            <p class="text-center font-display text-lg text-[var(--color-denim-400)] italic">
+                &ldquo;I asked them to stop. They did not stop.&rdquo;
+            </p>
+            <p>
+                The phrase entered the historical record at 2:14 PM. By 3:13 PM, the
+                security guard had formed a perimeter around the local laundromat
+                with three other off-duty officers, two local sewing-class
+                instructors, a high-school track star who happened to be running by,
+                an optometrist, and a citizen who insisted she was &ldquo;just trying
+                to get her dog inside.&rdquo;
+            </p>
+            <p>
+                This was the founding membership of what would later be called the
+                <strong class="text-[var(--color-denim-400)]">United Pants Defense Force.</strong>
+            </p>
+            <p>They held the perimeter for six hours. They did not lose a single pair of pants.</p>
+            <p>
+                By the next morning, the UPDF had a logo (drawn on a napkin), a motto
+                (<em>&ldquo;Every person deserves to have a good pair of jeans. This ends today. Not Our Pants, Alien Swine!&rdquo;</em>),
+                and a recruitment booth in the laundromat parking lot.
+            </p>
+            <p>
+                Within a month, the UPDF had absorbed roughly two thousand
+                volunteers, eighteen vehicles, four turret prototypes, a working
+                medical bay (the optometrist had connections), and a Tailor Engineer
+                who had begun building defensive structures out of repurposed laundry
+                equipment.
+            </p>
+            <p>The federal task force eventually arrived. They were politely told that things were under control. The federal task force, deeply confused, went home.</p>
+            <p>The UPDF has been the primary defending force ever since.</p>
+        </div>
+
+        <aside class="document-card mt-8" style="border-left-color: var(--color-denim-500);">
+            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-denim-400)] uppercase">UPDF Founding Document &mdash; Article I</p>
+            <div class="mt-2 space-y-2 text-[var(--fg-body)] italic">
+                <p>&ldquo;In the matter of the alien Collectors and their unsanctioned harvesting of woven textiles from the persons, residences, and clotheslines of Earth, we the undersigned do hereby declare ourselves opposed.&rdquo;</p>
+                <p>&ldquo;We do not pretend to be soldiers. We do not pretend to be qualified. We do not pretend to know how the cannons work yet.&rdquo;</p>
+                <p>&ldquo;We do, however, know whose pants those were. And they were not theirs.&rdquo;</p>
+                <p>&ldquo;This is the only credential we require.&rdquo;</p>
+            </div>
+            <p class="mt-3 text-xs text-[var(--fg-soft)]">Signed by the seven founding members of the UPDF, on a folded napkin from the Suburbia Mall food court. Original currently displayed under glass at UPDF Central Command.</p>
+        </aside>
+    </section>
+
+    {/* ============================================================
+        Section 5: The Collector Collective
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">The Enemy</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Collector Collective.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>The Collectors are not, despite the UPDF's strong opinions on the matter, a malicious species.</p>
+            <p>
+                They are a
+                <strong class="text-[var(--color-alien-400)]">highly organized administrative civilization</strong>
+                that views the rest of the multiverse through a single conceptual lens:
+                <em>unprocessed inventory.</em>
+                Everything that exists, in the Collector worldview, is either currently
+                catalogued or scheduled to be catalogued. Pants are not stolen. Pants
+                are <em>reclassified.</em>
+            </p>
+            <p class="text-[var(--fg-muted)] italic">This is not malice. This is paperwork.</p>
+            <p>
+                The Collective's official charter &mdash; a document of considerable
+                age, written in a language that does not translate cleanly into any
+                Earth tongue &mdash; establishes three foundational principles:
+            </p>
+            <ol class="ml-6 space-y-1.5 list-decimal text-[var(--fg-body)] marker:text-[var(--color-alien-400)] marker:font-display">
+                <li><strong class="text-[var(--fg-strong)]">Resources belong to those who recognize them as resources.</strong></li>
+                <li><strong class="text-[var(--fg-strong)]">Sentimental attachment is not a legal defense.</strong></li>
+                <li><strong class="text-[var(--fg-strong)]">All disputes will be resolved through enhanced logistical efficiency.</strong></li>
+            </ol>
+            <p>
+                By Collector law, Earth's pants are already Collective property. They
+                simply have not been moved to the Collective's storage facilities yet.
+                The invasion is, from this perspective, a delivery problem.
+            </p>
+            <p>
+                Before the rift opened, the Collectors had no contact with Earth and
+                no awareness that anything as denimium-rich as pants existed anywhere.
+                They have been making up for lost time ever since.
+            </p>
+            <p>
+                The <a href="/game/collectors/overlord/" class="text-[var(--color-magenta-400)] hover:underline"><strong>Overlord</strong></a>
+                class manages logistics from above. The
+                <a href="/game/collectors/commander/" class="text-[#ffae3d] hover:underline"><strong>Commander</strong></a>
+                class handles structural acquisition operations on the ground.
+                <strong class="text-[var(--color-alien-400)]">Minions</strong> serve as
+                the workforce &mdash; disposable, replaceable, and remarkably
+                committed considering they receive no benefits.
+            </p>
+            <p>
+                The mothership above Suburbia is officially registered as
+                <strong class="text-[var(--fg-strong)]">Collection Vessel CV-7745</strong>
+                and is one of approximately four hundred such vessels currently
+                operating across Earth. The other vessels are deployed across other
+                dense fabric-bearing regions of the world; Suburbia remains the
+                highest-priority operation because of the factory and its golden pants.
+            </p>
+        </div>
+
+        <aside class="document-card mt-8" style="border-left-color: var(--color-alien-500);">
+            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-alien-400)] uppercase">Intercepted Collective Dispatch &mdash; File CV-7745-308</p>
+            <div class="mt-2 space-y-1 text-sm text-[var(--fg-body)] italic">
+                <p>&ldquo;Acquisition Operation Status: Active&rdquo;</p>
+                <p>&ldquo;Sector: Suburbia, Earth&rdquo;</p>
+                <p>&ldquo;Estimated yield: 12,400 units pre-loss&rdquo;</p>
+                <p>&ldquo;Local resistance: detected, classified as &lsquo;United Pants Defense Force,&rsquo; threat level reclassified twice in last 72 hours&rdquo;</p>
+                <p>&ldquo;Local resistance commanding officer: classified as &lsquo;extremely persistent&rsquo;&rdquo;</p>
+                <p>&ldquo;Recommended action: continue operation; accept moderate inventory shrinkage; revise quarterly projections upward to account for Tuesday-related slowdowns&rdquo;</p>
+                <p>&ldquo;Status of citizen-side inventory: ongoing &mdash; note that some units are mobile and prefer to remain so&rdquo;</p>
+            </div>
+            <p class="mt-3 text-xs text-[var(--fg-soft)]">Decoded by UPDF Signals Division, displayed in the break room next to a hand-drawn caricature of an Overlord.</p>
+        </aside>
+    </section>
+
+    {/* ============================================================
+        Section 6: The Mothership
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Hardware</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Mothership.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>Every Collection Vessel is structurally identical.</p>
+            <p>
+                The mothership currently hovering over Suburbia is approximately the
+                diameter of a regional sports stadium, hovers at a good altitude
+                depending, and contains a denimium-conversion reactor in its central
+                chamber. Each captured pair of pants is processed through a series of
+                extraction stages &mdash; the fibers are stripped of their stored
+                energy, and what remains is shredded into useless lint that the
+                mothership periodically discharges into the upper atmosphere.
+            </p>
+            <p>
+                The mothership's outer hull is constructed of an alloy the UPDF has
+                not yet successfully identified. The lower section contains the
+                <strong class="text-[var(--fg-strong)]">tractor beam</strong> &mdash; a
+                focused gravity-displacement field used for the involuntary
+                relocation of textiles, citizens, and occasionally small dogs.
+            </p>
+            <p class="font-display text-lg text-[var(--color-magenta-400)] mt-6">The mothership is not invincible. It is, however, conditionally invincible.</p>
+            <p>
+                The mothership's primary defense is a
+                <strong class="text-[var(--fg-strong)]">denimium-fueled shield array</strong>
+                powered directly by the pants it has collected during the current
+                operation. The more pants it has stored, the stronger the shield. At
+                full storage, the hull is functionally impenetrable.
+            </p>
+            <p class="italic text-[var(--fg-muted)]">But the shields run on what's in the tank.</p>
+            <p>
+                Every pair the Collectors <em>fail</em> to collect is one less charge
+                in the reactor. The UPDF realized this early and built the entire
+                defensive doctrine around it:
+                <strong class="text-[var(--fg-strong)]">protect the pants, weaken the shields, take the shot.</strong>
+                When the storage falls below a critical threshold, the mothership's
+                hull becomes vulnerable to
+                <strong class="text-[var(--color-magenta-400)]">conventional armaments</strong>
+                &mdash; the modified cannons of the Pants Factory, sustained blaster
+                fire from coordinated ground forces, even small-arms fire from
+                Defenders who manage to climb high enough.
+            </p>
+        </div>
+
+        <aside class="document-card mt-6" style="border-left-color: var(--color-denim-500);">
+            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-denim-400)] uppercase">Core UPDF Strategic Doctrine</p>
+            <p class="mt-2 text-[var(--fg-body)] italic leading-relaxed">
+                &ldquo;Fewer pants stolen means weaker shields means the mothership
+                can be brought down with what we already have. We do not need a
+                miracle weapon. We need to hold the line.&rdquo;
+            </p>
+        </aside>
+
+        <div class="mt-6 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>
+                The Collectors have, repeatedly, declined to engineer a non-pants-based
+                shield system because &mdash; and this is a direct quote from a
+                Collector dispatch &mdash; <em>&ldquo;the locals are unlikely to figure out the cannons.&rdquo;</em>
+            </p>
+            <p class="font-display text-[var(--color-magenta-400)]">The locals have figured out the cannons.</p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Section 7: The Pants Factory
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">The Battlefield</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Pants Factory.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>The Suburbia Pants Factory is not in this conflict by accident.</p>
+            <p>
+                Before the rift opened, the factory produced approximately twelve
+                thousand pairs of denim trousers per week, distributed across a
+                regional supply chain. The warehouse stored several times that volume
+                at any moment. The factory floor employed nearly four hundred people.
+                It was, by every metric available,
+                <strong class="text-[var(--fg-strong)]">the single densest concentration of unbeamed denimium energy on Earth.</strong>
+            </p>
+            <p>When the Collectors mapped Earth's textile signatures through the rift, the Pants Factory glowed.</p>
+            <p>
+                This is why Suburbia is Patient Zero. This is why the war started
+                here. The neighborhood clothesline raids that came first were never
+                the point &mdash; they were warm-up, opportunistic strikes the
+                Collectors made while planning the real operation. The factory was
+                always the prize.
+            </p>
+            <p>
+                It is now the most heavily-defended building in the suburb. The
+                factory's production lines have been retooled to serve a dual
+                purpose: continued (greatly reduced) civilian pants manufacturing
+                during peacetime hours, and rapid-response defensive operations
+                during invasion phases. The factory now mounts
+                <strong class="text-[var(--fg-strong)]">four converted cannons</strong>
+                originally designed for industrial fabric-shearing that, when
+                modified with UPDF targeting software, produce a high-velocity
+                denim-disrupting projectile capable of damaging the mothership's
+                hull <em>once the shields are weak enough.</em>
+            </p>
+            <p>
+                The factory's central vault holds the
+                <strong class="text-[var(--color-golden-400)]">Golden Pants</strong>
+                (see next section).
+            </p>
+            <p>
+                If the Collectors capture the factory, they gain access to enough
+                denimium to fully shield the mothership and finish the operation.
+                If the UPDF holds it, they retain control of both the cannons and
+                the Golden Pants.
+            </p>
+            <p class="font-display text-[var(--fg-strong)]">This is why every match comes down to the factory.</p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Section 8: The Golden Pants
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">The Artifact</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Golden Pants.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>There is exactly one pair of Golden Pants in existence.</p>
+            <p>
+                They were woven decades ago by a UPDF Tailor Engineer's
+                great-grandmother, who was attempting to design a pair of slacks
+                that could not be lost in the wash. She used a proprietary fiber
+                blend, hand-spun thread, and &mdash; according to family legend
+                &mdash; <em>spite.</em>
+            </p>
+            <p>The resulting pants display two properties that have never been successfully reproduced:</p>
+            <ol class="ml-6 space-y-1.5 list-decimal text-[var(--fg-body)] marker:text-[var(--color-golden-400)] marker:font-display">
+                <li>They contain approximately <strong class="text-[var(--fg-strong)]">eight hundred times the denimium density</strong> of standard denim. A single pair could power a fully-charged mothership shield for several weeks.</li>
+                <li>They have never, in their entire existence, sustained damage of any kind.</li>
+            </ol>
+            <p>
+                The pants were donated to the Suburbia Pants Factory in their
+                original owner's will and kept on display for several years before
+                the rift opened. No one on Earth, outside of the factory owner,
+                cared. They are now considered the most valuable single object on
+                Earth from both the Collector and UPDF perspectives.
+            </p>
+            <p>The UPDF has filed multiple internal motions requesting that the Golden Pants be moved to a more secure location.</p>
+            <p>The motions have been declined every time.</p>
+            <p class="font-display text-[var(--color-golden-400)] italic">The official UPDF position is that the Golden Pants are bait.</p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Section 9: The Citizens
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Non-Combatants</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Citizens.</h2>
+
+        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+            <p>
+                There are approximately four thousand permanent residents of
+                Suburbia. The tunnel to the other parts of town has been collapsed.
+                The factory district residents are on their own, except for the UPDF
+                squad that broke through.
+            </p>
+            <p>
+                They did not ask for this. They have not adapted well. The UPDF has
+                issued seventeen separate citizen safety advisories, six of which
+                have been ignored at scale, three of which have been laminated and
+                posted on refrigerators with no apparent effect.
+            </p>
+            <p>
+                Citizen behavior during invasion phases has been studied extensively
+                and falls into five broad categories &mdash; the
+                <strong class="text-[#ffc14d]">Screamer</strong>, the
+                <strong class="text-[#ffc14d]">Hider</strong>, the
+                <strong class="text-[#ffc14d]">Crowd Follower</strong>, the
+                <strong class="text-[#ffc14d]">Freezer</strong>, and the rare but
+                invaluable <strong class="text-[#ffc14d]">Hero</strong>.
+                <a href="/game/defenders/citizen/" class="text-[#ffc14d] hover:underline">Each personality archetype responds differently to alien pressure</a>,
+                and effective Defenders learn to read citizen movement patterns the
+                way a quarterback reads a defense.
+            </p>
+            <p>
+                Citizens are not soldiers. They are not equipped. Most of them are
+                not even particularly fast. But they are the reason the UPDF exists,
+                and every successful match is measured first by how many of them
+                still have their pants when the dust settles.
+            </p>
+            <p class="text-center font-display text-[var(--fg-strong)] italic mt-6">
+                Cannon fire does not measure success. Pants count does.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Section 10: Timeline
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">The Record</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Timeline of the invasion.</h2>
+        <p class="mt-2 text-sm text-[var(--fg-muted)] italic">Approximate dates. Some events occurred faster than the UPDF was able to log them.</p>
+
+        <ol class="mt-6 space-y-0">
+            {timeline.map((t) => (
+                <li class="flex gap-5 py-3 border-b border-[var(--border-subtle)] last:border-b-0">
+                    <span class="font-display text-xs tracking-[0.2em] text-[var(--color-magenta-400)] uppercase shrink-0 w-24 pt-0.5">{t.day}</span>
+                    <span class="text-[var(--fg-body)] text-sm leading-relaxed">{t.event}</span>
+                </li>
+            ))}
+        </ol>
+    </section>
+
+    {/* ============================================================
+        Section 11: Glossary
+       ============================================================ */}
+    <section class="max-w-4xl mx-auto px-6 py-12">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Reference</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Glossary.</h2>
+
+        <dl class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-4">
+            {glossary.map(([term, def]) => (
+                <div>
+                    <dt class="font-display text-[var(--color-magenta-400)] text-sm tracking-wide">{term}</dt>
+                    <dd class="mt-1 text-[var(--fg-body)] text-sm leading-relaxed">{def}</dd>
+                </div>
+            ))}
+        </dl>
+    </section>
+
+    {/* ============================================================
+        Closing
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-16 text-center border-t border-[var(--border-subtle)]">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">In Conclusion</p>
+        <h2 class="mt-3 font-display text-2xl md:text-3xl text-[var(--fg-primary)] leading-tight">
+            The war for Earth's pants is far from over.
+        </h2>
+        <div class="mt-6 space-y-3 text-[var(--fg-body)] leading-relaxed">
+            <p>
+                Every Collector beam stopped is a citizen who keeps their dignity.
+                Every pair of pants the UPDF protects is one less denimium charge in
+                the mothership's reactor. Every weakened shield is one good cannon
+                volley away from a mothership in pieces.
+            </p>
+            <p class="text-[var(--fg-strong)]">The UPDF does not need heroes.</p>
+            <p class="text-[var(--fg-strong)]">The UPDF needs people who care enough to say no.</p>
+        </div>
+        <p class="mt-6 font-display text-xl md:text-2xl text-[var(--color-magenta-400)] italic">
+            Not our pants. Not today. Not ever.
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/game/defenders/" class="font-display text-sm tracking-wider px-5 py-2.5 bg-[var(--color-denim-500)] text-[var(--color-paper)] rounded-md hover:bg-[var(--color-denim-400)] transition">
+                Join the UPDF →
+            </a>
+            <a href="/game/collectors/" class="font-display text-sm tracking-wider px-5 py-2.5 border border-[var(--border-strong)] text-[var(--fg-strong)] rounded-md hover:bg-[var(--surface-hover)] transition">
+                or the Collectors
+            </a>
+        </div>
+    </section>
+</BaseLayout>

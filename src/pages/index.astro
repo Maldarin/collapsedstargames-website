@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Starfield from "../components/Starfield.astro";
+import { Image } from "astro:assets";
+import csgLogo from "../assets/brand/CSG-Logo_clean.png";
+import gameLogoSecondary from "../assets/brand/game_title_logo-secondary.png";
+---
+
+<BaseLayout title="Collapsed Star Games">
+    {/* ============================================================
+        Hero — studio identity over a starfield with collapsed-star glow
+       ============================================================ */}
+    <section class="relative min-h-[88vh] flex items-center justify-center overflow-hidden">
+        <Starfield seed={1729} sunVerticalPct={32} />
+
+        <div class="max-w-5xl mx-auto px-6 py-20 text-center relative">
+            <Image
+                src={csgLogo}
+                alt="Collapsed Star Games"
+                widths={[480, 720, 960, 1200]}
+                sizes="(min-width: 1024px) 900px, (min-width: 768px) 720px, 90vw"
+                class="mx-auto w-full max-w-2xl md:max-w-3xl drop-shadow-[0_0_80px_rgba(255,31,122,0.45)]"
+                loading="eager"
+            />
+            <p class="mt-10 text-lg md:text-xl max-w-2xl mx-auto text-[var(--fg-body)] leading-relaxed">
+                An independent game studio building multiplayer and
+                single-player games designed to be remembered, replayed,
+                and shared.
+            </p>
+            <p class="mt-4 text-sm tracking-[0.3em] text-[var(--fg-soft)] uppercase font-display">
+                Independent · LLC
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Featured game — game logo is the link into the game subsite
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-24">
+        <p class="font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase text-center">
+            Now in development &mdash; our first title
+        </p>
+
+        <a
+            href="/game/"
+            class="block group mt-8 mx-auto max-w-3xl"
+            aria-label="Not Our Pants, Alien Swine! — explore the game"
+        >
+            <div class="relative">
+                {/* Magenta hover halo behind the game logo */}
+                <div
+                    class="absolute inset-0 -z-10 rounded-full opacity-60 group-hover:opacity-100 transition-opacity blur-3xl"
+                    style="background: radial-gradient(circle, rgba(255, 31, 122, 0.4), transparent 60%);"
+                ></div>
+                <Image
+                    src={gameLogoSecondary}
+                    alt="Not Our Pants, Alien Swine!"
+                    widths={[480, 720, 960, 1200]}
+                    sizes="(min-width: 768px) 720px, 90vw"
+                    class="w-full transition-transform group-hover:scale-[1.03]"
+                    loading="lazy"
+                />
+            </div>
+        </a>
+
+        <p class="mt-10 text-center text-[var(--fg-body)] max-w-2xl mx-auto text-lg leading-relaxed">
+            An asymmetric multiplayer comedy shooter. <strong class="text-[var(--color-denim-400)]">8&ndash;10 defenders</strong>
+            protect their suburb's pants supply from <strong class="text-[var(--color-alien-400)]">1&ndash;2 alien Collectors</strong>
+            and their minion army. Whoever loses their pants loses their dignity. Coming to Roblox.
+        </p>
+        <div class="mt-8 text-center">
+            <a
+                href="/game/"
+                class="inline-block font-display tracking-wider px-6 py-3 border border-[var(--color-magenta-500)]/40 text-[var(--color-magenta-200)] rounded-md hover:bg-[var(--color-magenta-500)]/10 hover:border-[var(--color-magenta-400)] transition"
+            >
+                Explore the game →
+            </a>
+        </div>
+    </section>
+
+    {/* ============================================================
+        About the studio — studio values, not specific to any one game
+       ============================================================ */}
+    <section id="about" class="max-w-5xl mx-auto px-6 py-20">
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="surface rounded-lg p-6">
+                <p class="font-display text-[var(--color-magenta-400)] text-sm tracking-wider">CRAFT</p>
+                <h3 class="mt-2 font-display text-xl">Polish before<br/>scale.</h3>
+                <p class="mt-3 text-[var(--fg-muted)] text-sm leading-relaxed">
+                    We'd rather build a smaller world done well than a sprawling one
+                    held together by patches. Every game ships when it's ready, not
+                    when the calendar says so.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-6">
+                <p class="font-display text-[var(--color-magenta-400)] text-sm tracking-wider">PLAYER-FIRST</p>
+                <h3 class="mt-2 font-display text-xl">No pay-to-win.<br/>Ever.</h3>
+                <p class="mt-3 text-[var(--fg-muted)] text-sm leading-relaxed">
+                    Cosmetics and expansions if you want them. Stat boosts,
+                    manipulative grinds, dark patterns &mdash; never. Your time is
+                    the most expensive thing in our store, and we don't sell it
+                    back to you.
+                </p>
+            </div>
+            <div class="surface rounded-lg p-6">
+                <p class="font-display text-[var(--color-magenta-400)] text-sm tracking-wider">REPLAYABILITY</p>
+                <h3 class="mt-2 font-display text-xl">Built for the<br/>next session.</h3>
+                <p class="mt-3 text-[var(--fg-muted)] text-sm leading-relaxed">
+                    Games designed to be remembered, replayed, and shared. If you'd
+                    be done after one playthrough, we haven't finished building it.
+                </p>
+            </div>
+        </div>
+    </section>
+</BaseLayout>

@@ -1,0 +1,271 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import drpHero from "../../../assets/classes/DrPeepers/DrPeepers.png";
+---
+
+<BaseLayout
+    title="Dr. Peepers — Defender Class"
+    description="Dr. Peepers is the UPDF's battlefield medic, support specialist, and leading expert in yelling 'Hold still!' during laser fire. The diagnosis is invasion. The prescription is panic-resistant teamwork."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[#5eddb0]/20">
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 35%, rgba(94, 221, 176, 0.16), transparent 60%);"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-12">
+            <div class="flex items-center gap-4 text-xs tracking-[0.3em] uppercase font-display text-[var(--fg-soft)] mb-8">
+                <a href="/game/" class="hover:text-[var(--fg-strong)] transition">Game</a>
+                <span>/</span>
+                <a href="/game/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a>
+                <span>/</span>
+                <span class="text-[#5eddb0]">Dr. Peepers</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="font-display text-xs md:text-sm tracking-[0.4em] text-[#5eddb0] uppercase">
+                        Defender Class · Medic / Support
+                    </p>
+                    <h1 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow leading-tight">
+                        DR. <span class="text-[#5eddb0]">PEEPERS</span>
+                    </h1>
+                    <p class="mt-6 text-[var(--fg-body)] italic text-lg">
+                        Medicine, science, and deeply concerned eye contact.
+                    </p>
+                    <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                        Dr. Peepers is the UPDF's battlefield medic, support
+                        specialist, and leading expert in yelling
+                        &ldquo;Hold still!&rdquo; during laser fire.
+                    </p>
+                    <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                        Heal allies, shield teammates, leap to emergencies, and keep
+                        the defense standing long enough to ask why aliens are like
+                        this.
+                    </p>
+                    <p class="mt-6 font-display text-lg tracking-wide text-[#5eddb0]">
+                        The diagnosis is invasion.<br/>
+                        The prescription is panic-resistant teamwork.
+                    </p>
+                </div>
+                <div class="relative aspect-square bg-[var(--bg-deep)] rounded-lg overflow-hidden">
+                    <Image src={drpHero} alt="Dr. Peepers" widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 540px, 90vw" class="w-full h-full object-contain" loading="eager" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Role + Playstyle
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">Role Fantasy</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Save the push. Save the player.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You are not just healing health bars. You are saving pushes, rescuing
+                Defenders, stabilizing safe zones, and keeping the right people
+                alive at the right time.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                A good Dr. Peepers knows who matters most in the moment: the
+                wounded frontliner, the builder holding a choke, the citizen
+                rescuer, or the cannon operator during Final Stand.
+            </p>
+            <p class="mt-6 text-[var(--fg-soft)] italic leading-relaxed">
+                The UPDF fights harder when Dr. Peepers is nearby.<br/>
+                Also slightly weirder.
+            </p>
+        </div>
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">Playstyle</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Clutch saves. Read the fight.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You should stay near allies, watch for wounded teammates, and move
+                quickly when the fight shifts. Your job is to keep Defenders in the
+                fight and stop small mistakes from becoming large pants-related
+                tragedies.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic leading-relaxed">
+                You are not the loudest weapon on the battlefield.<br/>
+                You are the reason the loudest weapon is still alive.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Abilities
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-8">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[#5eddb0] uppercase">
+                Combat Identity
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Abilities & Loadout
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="surface rounded-lg p-4 border border-[#5eddb0]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">Signature Tool</p>
+                <h3 class="mt-2 font-display text-lg">Med Gun</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Heal allies with focused medical energy.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Side effects may include confidence, survival, and continued
+                    pants ownership.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#5eddb0]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">Support</p>
+                <h3 class="mt-2 font-display text-lg">Shield Generator</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Protect allies during dangerous pushes or desperate holds.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Perfect for cannon defense, citizen rescues, and moments where
+                    the UPDF says, &ldquo;This plan is terrible, but we are doing it.&rdquo;
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#5eddb0]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">Mobility</p>
+                <h3 class="mt-2 font-display text-lg">Emergency House-Call</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Leap to an ally in need and turn a bad situation into a slightly
+                    less bad situation.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Doctors make house calls.<br/>
+                    Dr. Peepers makes battlefield impact calls.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#5eddb0]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">Class Passive</p>
+                <h3 class="mt-2 font-display text-lg">Support Awareness</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Dr. Peepers wins by reading the fight.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm">
+                    Heal the right ally. Shield the right moment. Be where the next
+                    disaster is about to happen.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Setup + Final Stand
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-6 border-l-2 border-[#5eddb0]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">During Setup Phase</p>
+            <h3 class="mt-2 font-display text-lg">Position with the busy.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Follow busy Defender groups. Watch citizens being moved. Stay near
+                builders and frontliners. Prepare for the exact moment everything
+                stops being calm.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                The aliens may be watching. Dr. Peepers is watching back, through
+                extremely large lenses.
+            </p>
+        </div>
+        <div class="surface rounded-lg p-6 border-l-2 border-[var(--color-magenta-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Final Stand</p>
+            <h3 class="mt-2 font-display text-lg">Most important Defender on the field.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Keep cannon operators alive. Shield chokepoints. Heal teammates
+                under pressure. Leap to emergencies before they become losses.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                The factory does not need a miracle.<br/>
+                It needs medical coverage.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Lore
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <div class="surface rounded-lg p-5 md:p-6 border-l-2 border-[#5eddb0]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#5eddb0] uppercase">Lore</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">A respected researcher in emergency optics.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                Dr. Peepers was once a respected researcher in the field of
+                emergency optics, battlefield medicine, and
+                <em>&ldquo;why is everyone glowing?&rdquo;</em>
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                When the alien invasion began, Dr. Peepers joined the UPDF after
+                determining that pants theft was not only socially disruptive, but
+                medically stressful.
+            </p>
+            <p class="mt-4 text-[var(--fg-strong)] italic leading-relaxed">
+                His first UPDF memo read:<br/>
+                &ldquo;The patients are frightened, the aliens are orange, and
+                everyone needs to stop running away from the healing beam.&rdquo;
+            </p>
+            <p class="mt-3 text-[var(--fg-soft)] italic">
+                It remains required reading.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Quotes
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8">
+        <p class="font-display text-xs tracking-[0.4em] text-[#5eddb0] uppercase text-center">
+            Field Recordings
+        </p>
+        <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow text-center">
+            Heard during triage.
+        </h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Hold still! I am improving your survival!&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;House call!&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;That wound looks alien-related.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Stop bleeding on the pants.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Medical science says run toward me.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Good news: you're alive. Bad news: so are the aliens.&rdquo;
+            </blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Next class
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8 text-center border-t border-[var(--border-subtle)]">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--fg-soft)] uppercase">Up Next on the UPDF Roster</p>
+        <a href="/game/defenders/athlete/" class="block mt-4 group">
+            <h3 class="font-display text-3xl md:text-4xl text-paper-glow group-hover:text-[#ff7547] transition">
+                Meet the Athlete &nbsp;→
+            </h3>
+            <p class="mt-3 text-[var(--fg-muted)]">
+                You keep the line alive. The Athlete sprints <em>past</em> the line
+                and rescues someone screaming.
+            </p>
+        </a>
+    </section>
+</BaseLayout>

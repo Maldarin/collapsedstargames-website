@@ -1,0 +1,263 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import athleteHero from "../../../assets/classes/Athlete/Athlete.png";
+---
+
+<BaseLayout
+    title="The Athlete — Defender Class"
+    description="The Athlete is the UPDF's speed specialist: quick, mobile, and absolutely convinced that every problem can be solved by getting there first. Rescue citizens, dodge danger, flank aliens, and move people to safety whether they are emotionally prepared or not."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[#ff7547]/20">
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 35%, rgba(255, 117, 71, 0.18), transparent 60%);"
+        ></div>
+
+        <div class="max-w-6xl mx-auto px-6 pt-10 pb-8 md:pt-12">
+            <div class="flex items-center gap-4 text-xs tracking-[0.3em] uppercase font-display text-[var(--fg-soft)] mb-8">
+                <a href="/game/" class="hover:text-[var(--fg-strong)] transition">Game</a>
+                <span>/</span>
+                <a href="/game/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a>
+                <span>/</span>
+                <span class="text-[#ff7547]">Athlete</span>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 items-center">
+                <div>
+                    <p class="font-display text-xs md:text-sm tracking-[0.4em] text-[#ff7547] uppercase">
+                        Defender Class · Rescue / Skirmish
+                    </p>
+                    <h1 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow leading-tight">
+                        THE <span class="text-[#ff7547]">ATHLETE</span>
+                    </h1>
+                    <p class="mt-6 text-[var(--fg-body)] italic text-lg">
+                        Fast feet. Fast saves. Questionable throwing form.
+                    </p>
+                    <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                        The Athlete is the UPDF's speed specialist: quick, mobile,
+                        and absolutely convinced that every problem can be solved by
+                        getting there first.
+                    </p>
+                    <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                        Rescue citizens, dodge danger, flank aliens, and move people
+                        to safety whether they are emotionally prepared or not.
+                    </p>
+                    <p class="mt-6 font-display text-lg tracking-wide text-[#ff7547]">
+                        Run fast. Save pants. Try not to land on the citizen.
+                    </p>
+                </div>
+                <div class="relative aspect-square bg-[var(--bg-deep)] rounded-lg overflow-hidden">
+                    <Image src={athleteHero} alt="The Athlete" widths={[480, 720, 960, 1200]} sizes="(min-width: 768px) 540px, 90vw" class="w-full h-full object-contain" loading="eager" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Role + Playstyle
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">Role Fantasy</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">The team's mobile responder.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You are not meant to stand still. You patrol dangerous routes,
+                rescue citizens before they are captured, chase down minions, and
+                relocate civilians to safer places.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Your speed gives the UPDF flexibility. Your job is to be where the
+                aliens hoped nobody would be.
+            </p>
+            <p class="mt-6 text-[var(--fg-soft)] italic leading-relaxed">
+                The Collectors plan routes.<br/>
+                The Athlete ruins routes.
+            </p>
+        </div>
+        <div>
+            <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">Playstyle</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">Mobility. Reactions. Last-second saves.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                You should constantly watch for isolated citizens, dragged
+                teammates, weak points, and sudden alien pushes. The Athlete
+                rewards map awareness and bold movement.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                You may not be the strongest Defender in a straight fight, but you
+                are often the reason the fight happens somewhere better.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic">
+                Preferably indoors. With citizens not being abducted.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Abilities
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-8">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[#ff7547] uppercase">
+                Combat Identity
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Abilities & Loadout
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="surface rounded-lg p-4 border border-[#ff7547]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">Sidearm</p>
+                <h3 class="mt-2 font-display text-lg">Handgun</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    A reliable sidearm for quick pressure while moving.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Good for minions, distractions, and making aliens reconsider
+                    chasing you.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#ff7547]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">Close-Range Burst</p>
+                <h3 class="mt-2 font-display text-lg">Sawed-Off Shotgun</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Close-range burst damage for dangerous moments.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Ideal for clearing space, interrupting threats, and saying
+                    &ldquo;personal bubble&rdquo; in buckshot.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#ff7547]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">Mobility</p>
+                <h3 class="mt-2 font-display text-lg">Dodge Dash</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Move fast, evade danger, and reposition under pressure.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Excellent for clutch rescues and terrible for anyone trying to
+                    predict where you are going.
+                </p>
+            </div>
+
+            <div class="surface rounded-lg p-4 border border-[#ff7547]/20">
+                <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">Class Action</p>
+                <h3 class="mt-2 font-display text-lg">Carry / Throw Citizens</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                    Move citizens to safer areas before aliens can grab them.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Citizens may complain.<br/>
+                    The UPDF calls this gratitude delay.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Setup + Final Stand
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-6 border-l-2 border-[#ff7547]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">During Setup Phase</p>
+            <h3 class="mt-2 font-display text-lg">Win the match before it starts.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Find exposed citizens. Move them indoors. Carry stragglers to safer
+                zones. Help create defensible areas before the first alien lands.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                If a citizen is standing in the street saying, &ldquo;I'm sure it's
+                fine,&rdquo; it is your job to disagree physically.
+            </p>
+        </div>
+        <div class="surface rounded-lg p-6 border-l-2 border-[var(--color-magenta-500)]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Final Stand</p>
+            <h3 class="mt-2 font-display text-lg">A rescue machine.</h3>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Intercept minions. Save cannon operators. Move quickly between
+                pressure points. Rescue citizens before the mothership turns the
+                Pants Factory into a fabric buffet.
+            </p>
+            <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                The UPDF needs speed.<br/>
+                The Athlete has ignored leg day exactly zero times.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Lore
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <div class="surface rounded-lg p-5 md:p-6 border-l-2 border-[#ff7547]/40">
+            <p class="font-display text-xs tracking-[0.3em] text-[#ff7547] uppercase">Lore</p>
+            <h2 class="mt-3 font-display text-2xl md:text-3xl">From medals to mailboxes.</h2>
+            <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
+                Before the invasion, the Athlete trained for trophies, medals, and
+                local sports glory.
+            </p>
+            <p class="mt-4 text-[var(--fg-body)] leading-relaxed">
+                Then the Collectors arrived and revealed a terrifying truth: aliens
+                do not respect athletic schedules. After rescuing three citizens,
+                dodging two tractor beams, and punting a minion into a mailbox, the
+                Athlete was recruited into the UPDF.
+            </p>
+            <p class="mt-4 text-[var(--fg-strong)] italic leading-relaxed">
+                The official recruitment note read:<br/>
+                &ldquo;Can run fast. Can carry people. Doesn't ask enough questions.
+                Approved.&rdquo;
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Quotes
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8">
+        <p class="font-display text-xs tracking-[0.4em] text-[#ff7547] uppercase text-center">
+            Field Recordings
+        </p>
+        <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow text-center">
+            Heard mid-sprint.
+        </h2>
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;I moved the citizen. They'll thank me once they land.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;Too slow, space bacon.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;If pants are the objective, cardio is the answer.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
+                &ldquo;I saw danger and sprinted directly at it.&rdquo;
+            </blockquote>
+            <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic md:col-span-2 text-center">
+                &ldquo;Safe zone delivery complete-ish.&rdquo;
+            </blockquote>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Next class
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-8 text-center border-t border-[var(--border-subtle)]">
+        <p class="font-display text-xs tracking-[0.3em] text-[var(--fg-soft)] uppercase">Up Next on the UPDF Roster</p>
+        <a href="/game/defenders/needle-eye/" class="block mt-4 group">
+            <h3 class="font-display text-3xl md:text-4xl text-paper-glow group-hover:text-[#8edcff] transition">
+                Meet Needle Eye &nbsp;→
+            </h3>
+            <p class="mt-3 text-[var(--fg-muted)]">
+                You sprint into the fight. Needle Eye watches the fight from somewhere
+                you'll never find them.
+            </p>
+        </a>
+    </section>
+</BaseLayout>
