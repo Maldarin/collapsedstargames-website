@@ -237,7 +237,18 @@ body {
     box-shadow: 0 0 8px var(--color-magenta-500);
 }
 
-/* Hide starfield decorative layers when in light mode — they only read on dark */
-[data-theme="light"] .starfield-decorative {
+/* Hide decorative layers in light mode — they read as muddy noise over cream */
+[data-theme="light"] .starfield-decorative,
+[data-theme="light"] .dark-only-backdrop {
     display: none;
+}
+
+/* Hero glow overlay — magenta wash behind hero content.
+   In dark mode this layers as colored light. In light mode the same wash
+   is reduced and tinted softer to preserve readability against cream. */
+.hero-glow {
+    background: radial-gradient(ellipse at 50% 30%, rgba(255, 31, 122, 0.15), transparent 60%);
+}
+[data-theme="light"] .hero-glow {
+    background: radial-gradient(ellipse at 50% 30%, rgba(255, 31, 122, 0.18), transparent 65%);
 }
