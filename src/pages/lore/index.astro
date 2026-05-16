@@ -2,6 +2,17 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import battleLong from "../../assets/battle/long_battle.png";
+import loreHero from "../../assets/lore/lore-hero-they-came-for-pants.png";
+import loreUpdfFounded from "../../assets/lore/lore-updf-founded.png";
+import loreUpdfMotto from "../../assets/lore/lore-updf-motto.png";
+import loreSetupPhase from "../../assets/lore/lore-setup-phase.png";
+import loreInvasionBegins from "../../assets/lore/lore-invasion-begins.png";
+import loreCollectorsGoal from "../../assets/lore/lore-collectors-goal.png";
+import loreFinalStandFactory from "../../assets/lore/lore-final-stand-factory.png";
+import loreKnowYourEnemy from "../../assets/lore/lore-know-your-enemy.png";
+import loreCitizenSafetyTips from "../../assets/lore/lore-citizen-safety-tips.png";
+import lorePantsAreImportant from "../../assets/lore/lore-pants-are-important.png";
+import loreJoinUpdf from "../../assets/lore/lore-join-updf.png";
 
 const timeline = [
     { day: "Day -∞", event: "Earth peacefully manufactures pants. No alien activity detected. Nobody knows how powerful pants are, and nobody bothers to check." },
@@ -74,6 +85,18 @@ const glossary = [
                 &ldquo;We opened the door. They walked in. They took our pants. The rest is footnotes.&rdquo;
                 <footer class="mt-2 text-xs tracking-[0.2em] uppercase font-display text-[var(--fg-soft)] not-italic">— UPDF Volume 1, Foreword</footer>
             </blockquote>
+
+            <figure class="mt-10 max-w-3xl mx-auto">
+                <Image
+                    src={loreHero}
+                    alt="A Collector beam suspends a startled citizen above a Suburbia street while UPDF Defenders rally in the foreground. Cover text: 'They came for our pants. Now we're coming for them.'"
+                    class="w-full rounded-lg border border-[var(--border-subtle)] shadow-2xl"
+                    loading="eager"
+                />
+                <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center tracking-wide">
+                    They came for our pants. Now we're coming for them.
+                </figcaption>
+            </figure>
         </div>
     </section>
 
@@ -263,6 +286,17 @@ const glossary = [
         <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">The UPDF</p>
         <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Someone had to do something.</h2>
 
+        <figure class="mt-6">
+            <Image
+                src={loreUpdfFounded}
+                alt="A UPDF recruitment scene at the Suburbia Mall food court. A Security Officer and Dr. Peepers stand beside the founding napkin and recruitment sign."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                The UPDF was founded in a mall food court. Recruitment opened the same afternoon.
+            </figcaption>
+        </figure>
+
         <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
             <p>The federal authorities took three weeks to convene a task force.</p>
             <p>Suburbia did not have three weeks.</p>
@@ -314,6 +348,17 @@ const glossary = [
             <p>The UPDF has been the primary defending force ever since.</p>
         </div>
 
+        <figure class="mt-8 mx-auto max-w-md">
+            <Image
+                src={loreUpdfMotto}
+                alt="A chalkboard mounted at UPDF Central Command displaying the force's motto in hand-lettered chalk."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                The motto, chalked daily at Central Command. Smudges acceptable. Sentiment non-negotiable.
+            </figcaption>
+        </figure>
+
         <aside class="document-card mt-8" style="border-left-color: var(--color-denim-500);">
             <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-denim-400)] uppercase">UPDF Founding Document &mdash; Article I</p>
             <div class="mt-2 space-y-2 text-[var(--fg-body)] italic">
@@ -332,6 +377,17 @@ const glossary = [
     <section class="max-w-3xl mx-auto px-6 py-12">
         <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">The Enemy</p>
         <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Collector Collective.</h2>
+
+        <figure class="mt-6">
+            <Image
+                src={loreCollectorsGoal}
+                alt="Collector minions sort pants into towering piles inside the mothership processing bay. From the Collective's view, this is not theft — it is inventory management."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                They do not think they are stealing. They think they are processing inventory.
+            </figcaption>
+        </figure>
 
         <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
             <p>The Collectors are not, despite the UPDF's strong opinions on the matter, a malicious species.</p>
@@ -384,6 +440,17 @@ const glossary = [
             </p>
         </div>
 
+        <figure class="mt-8 mx-auto max-w-md">
+            <Image
+                src={loreKnowYourEnemy}
+                alt="A UPDF-issued propaganda poster titled 'Know Your Enemy', listing Collector ranks alongside unflattering UPDF nicknames."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                UPDF break-room poster. The Collectors find the naming conventions inaccurate but have not formally objected.
+            </figcaption>
+        </figure>
+
         <aside class="document-card mt-8" style="border-left-color: var(--color-alien-500);">
             <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-alien-400)] uppercase">Intercepted Collective Dispatch &mdash; File CV-7745-308</p>
             <div class="mt-2 space-y-1 text-sm text-[var(--fg-body)] italic">
@@ -405,6 +472,17 @@ const glossary = [
     <section class="max-w-3xl mx-auto px-6 py-12">
         <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Hardware</p>
         <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Mothership.</h2>
+
+        <figure class="mt-6">
+            <Image
+                src={loreInvasionBegins}
+                alt="An Overlord directs swarms of minions through Suburbia streets while Defenders return fire and citizens panic in the background."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                The Invasion phase. The mothership opens its bays. Suburbia stops being quiet.
+            </figcaption>
+        </figure>
 
         <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
             <p>Every Collection Vessel is structurally identical.</p>
@@ -473,6 +551,17 @@ const glossary = [
         <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">The Battlefield</p>
         <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Pants Factory.</h2>
 
+        <figure class="mt-6">
+            <Image
+                src={loreFinalStandFactory}
+                alt="The Final Stand. Pants Factory cannons fire skyward against the descending mothership while UPDF Defenders hold the perimeter."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                Final Stand. Cannons hot. Shields weakening. Every match comes down to this building.
+            </figcaption>
+        </figure>
+
         <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
             <p>The Suburbia Pants Factory is not in this conflict by accident.</p>
             <p>
@@ -525,6 +614,18 @@ const glossary = [
         <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">The Artifact</p>
         <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Golden Pants.</h2>
 
+        <figure class="mt-6 mx-auto max-w-md">
+            <Image
+                src={lorePantsAreImportant}
+                alt="A handmade Suburbia clothesline poster reading 'Pants are important.' — a UPDF community reminder of what is at stake."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
+                style="border-left: 4px solid var(--color-golden-400);"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                Community-printed clothesline poster. Distributed weekly by the UPDF Outreach Volunteer Squad.
+            </figcaption>
+        </figure>
+
         <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
             <p>There is exactly one pair of Golden Pants in existence.</p>
             <p>
@@ -558,6 +659,18 @@ const glossary = [
     <section class="max-w-3xl mx-auto px-6 py-12">
         <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Non-Combatants</p>
         <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Citizens.</h2>
+
+        <figure class="mt-6 mx-auto max-w-md">
+            <Image
+                src={loreCitizenSafetyTips}
+                alt="A laminated UPDF citizen safety advisory poster listing tips like 'Do not look up,' 'Stay indoors,' and 'Do not, under any circumstances, attempt diplomacy.'"
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
+                style="border-left: 4px solid #ffc14d;"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                UPDF Citizen Safety Advisory #4. Posted on refrigerators across Suburbia. Compliance: optional. Effectiveness: variable.
+            </figcaption>
+        </figure>
 
         <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
             <p>
@@ -604,7 +717,18 @@ const glossary = [
         <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Timeline of the invasion.</h2>
         <p class="mt-2 text-sm text-[var(--fg-muted)] italic">Approximate dates. Some events occurred faster than the UPDF was able to log them.</p>
 
-        <ol class="mt-6 space-y-0">
+        <figure class="mt-6">
+            <Image
+                src={loreSetupPhase}
+                alt="The Setup phase. Citizens shelter while Defenders haul barricades, lay caltrops, and prepare position. Above, the mothership scouts silently."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                The Setup phase. Defenders shore up. Collectors scout. The clock starts the moment the mothership casts a shadow.
+            </figcaption>
+        </figure>
+
+        <ol class="mt-8 space-y-0">
             {timeline.map((t) => (
                 <li class="flex gap-5 py-3 border-b border-[var(--border-subtle)] last:border-b-0">
                     <span class="font-display text-xs tracking-[0.2em] text-[var(--color-magenta-400)] uppercase shrink-0 w-24 pt-0.5">{t.day}</span>
@@ -652,6 +776,19 @@ const glossary = [
         <p class="mt-6 font-display text-xl md:text-2xl text-[var(--color-magenta-400)] italic">
             Not our pants. Not today. Not ever.
         </p>
+
+        <figure class="mt-10 mx-auto max-w-md">
+            <Image
+                src={loreJoinUpdf}
+                alt="A UPDF recruitment poster: 'Join the UPDF. Earth's pants need you.' featuring a determined Security Officer with the napkin-logo badge."
+                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
+                style="border-left: 4px solid var(--color-denim-400);"
+            />
+            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+                Recruitment opens daily at the laundromat parking lot. Bring your own pants.
+            </figcaption>
+        </figure>
+
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a href="/game/defenders/" class="font-display text-sm tracking-wider px-5 py-2.5 bg-[var(--color-denim-500)] text-[var(--color-paper)] rounded-md hover:bg-[var(--color-denim-400)] transition">
                 Join the UPDF →
