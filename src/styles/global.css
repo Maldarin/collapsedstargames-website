@@ -141,6 +141,15 @@
     --color-chaos-400:  #a82d72; /* dark purple-pink,  5.97:1 AA */
     --color-magenta-400:#b3074a; /* = magenta-700,     6.44:1 AA */
     --color-denim-400:  #3b5bdb; /* = denim-500,        5.29:1 AA */
+
+    /* Faction accent borders/stripes (the -500 shades) are also too pale on
+       cream — darken them so the faction-* stripes and accent borders read.
+       denim-500 (#3b5bdb, 5.29:1) is already dark enough, left as-is.
+       magenta-500 stays distinct from magenta-400 so the CTA buttons that go
+       bg-magenta-500 -> hover bg-magenta-400 keep a visible hover shift. */
+    --color-alien-500:  #1f6b1f; /* dark green,   6.16:1 */
+    --color-chaos-500:  #9c2b6a; /* dark pink,    6.61:1 */
+    --color-magenta-500:#c71f68; /* dark magenta, 5.13:1 */
 }
 
 /* ============================================================

@@ -3,7 +3,7 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
 import commanderHero from "../../../assets/classes/Commander/Commander.png";
-import minionShot from "../../../assets/classes/Minions/Minion_in-game_NOPAS.png";
+import minionShot from "../../../assets/classes/Minions/Minion_solo.png";
 import battleLong from "../../../assets/battle/long_battle.png";
 ---
 
@@ -87,7 +87,7 @@ import battleLong from "../../../assets/battle/long_battle.png";
 
             <div class="surface rounded-lg overflow-hidden">
                 <div class="relative aspect-[3/4] overflow-hidden bg-[var(--bg-deep)]">
-                    <Image src={minionShot} alt="" widths={[160, 240, 320]} sizes="(min-width: 768px) 240px, 30vw" class="w-full h-full object-contain" loading="lazy" />
+                    <Image src={minionShot} alt="" widths={[160, 240, 320]} sizes="(min-width: 768px) 240px, 30vw" class="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <div class="p-3">
                     <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-alien-400)] uppercase truncate">The Swarm</p>
