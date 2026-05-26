@@ -8,6 +8,8 @@
    Theme system: switches between dark (default) and light via
    [data-theme="light"] on <html>. Brand/game colors stay constant
    in both modes; only the bg/fg/surface/border semantics swap.
+   Exception: --color-golden-400 (#ffe066) is too pale to read on the
+   light cream bg (1.22:1), so the light theme remaps it to a dark amber.
    ============================================================ */
 
 @theme {
@@ -128,6 +130,12 @@
         0 0 48px rgba(255, 31, 122, 0.18);
 
     --comic-stroke-outline: #14172a;
+
+    /* Golden is the one brand color that fails on cream — #ffe066 reads at
+       1.22:1. Remap to a dark amber (5.33:1, AA) so every golden text/label/
+       border/marker becomes readable in light mode. The .text-comic-stroke
+       header keeps the bright fill via its own literal (it has a dark stroke). */
+    --color-golden-400: #8c5d00;
 }
 
 /* ============================================================
@@ -180,7 +188,7 @@ body {
 
 /* Comic-book outline for game-page headers (denim outline, golden fill) */
 .text-comic-stroke {
-    color: var(--color-golden-400);
+    color: #ffe066; /* always bright golden — the dark stroke brackets it in both themes */
     -webkit-text-stroke: 2px var(--comic-stroke-outline);
     text-shadow:
         4px 4px 0 var(--color-denim-600),
