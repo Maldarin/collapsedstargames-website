@@ -97,8 +97,52 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                             <path stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"></path>
                         </svg>
                     </button>
+
+                    {/* Mobile menu toggle — only on small screens; desktop uses the inline <ul> above */}
+                    <button
+                        id="mobile-menu-toggle"
+                        type="button"
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                        aria-controls="mobile-menu"
+                        class="md:hidden p-2 rounded-md border border-[var(--border-medium)] hover:bg-[var(--surface-hover)] transition flex items-center justify-center"
+                    >
+                        {/* Hamburger icon — visible when menu is closed */}
+                        <svg
+                            class="w-5 h-5 menu-open-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path stroke-width="1.6" stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        {/* Close (X) icon — visible when menu is open */}
+                        <svg
+                            class="w-5 h-5 hidden menu-close-icon"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                        >
+                            <path stroke-width="1.6" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"></path>
+                        </svg>
+                    </button>
                 </div>
             </nav>
+
+            {/* Mobile menu panel — toggled by the hamburger; hidden on md+ where the inline nav shows */}
+            <div id="mobile-menu" class="md:hidden hidden border-t border-[var(--border-subtle)] bg-[var(--header-bg)]">
+                <ul class="max-w-7xl mx-auto px-6 py-3 flex flex-col text-base">
+                    <li><a href="/" class="block py-2.5 hover:text-[var(--color-magenta-400)] transition">Studio</a></li>
+                    <li><a href="/nopas/" class="block py-2.5 hover:text-[var(--color-magenta-400)] transition">NOPAS</a></li>
+                    <li><a href="/nopas/defenders/" class="block py-2.5 hover:text-[var(--color-denim-400)] transition">Defenders</a></li>
+                    <li><a href="/nopas/collectors/" class="block py-2.5 hover:text-[var(--color-alien-400)] transition">Collectors</a></li>
+                    <li><a href="/lore/" class="block py-2.5 hover:text-[var(--color-chaos-400)] transition">Lore</a></li>
+                </ul>
+            </div>
         </header>
 
         <main class="flex-1">
@@ -148,6 +192,40 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                         syncIcons();
                     });
                 }
+            })();
+        </script>
+
+        {/* Mobile menu open/close */}
+        <script is:inline>
+            (function () {
+                var btn = document.getElementById("mobile-menu-toggle");
+                var menu = document.getElementById("mobile-menu");
+                if (!btn || !menu) return;
+                var openIcon = btn.querySelector(".menu-open-icon");
+                var closeIcon = btn.querySelector(".menu-close-icon");
+
+                function setOpen(open) {
+                    menu.classList.toggle("hidden", !open);
+                    if (openIcon) openIcon.classList.toggle("hidden", open);
+                    if (closeIcon) closeIcon.classList.toggle("hidden", !open);
+                    btn.setAttribute("aria-expanded", open ? "true" : "false");
+                    btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+                }
+
+                btn.addEventListener("click", function () {
+                    setOpen(menu.classList.contains("hidden"));
+                });
+
+                // Tapping a link navigates — close the panel so it isn't left open.
+                menu.addEventListener("click", function (e) {
+                    if (e.target.closest("a")) setOpen(false);
+                });
+
+                // If the viewport grows to desktop width, the inline nav takes over —
+                // reset the panel so it can't be stuck open after a rotate/resize.
+                window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
+                    if (e.matches) setOpen(false);
+                });
             })();
         </script>
     </body>
