@@ -4,6 +4,12 @@ Recording clips of *Not Our Pants, Alien Swine!* for the website. The pipeline
 is: **Studio playtest → OBS recording → ffmpeg post-processing → drop into
 `src/assets/clips/`**.
 
+> **Automating it:** [`clips/capture-harness.md`](clips/capture-harness.md) is a
+> repeatable MCP-driven harness (Roblox Studio MCP + OBS MCP) that stages,
+> records, and hands off each clip. It defers to this doc for OBS settings,
+> ffmpeg recipes, and the `src/assets/clips/` layout. The specific shots are
+> defined in [`clips/scenarios/`](clips/scenarios/) — one file per clip.
+
 ---
 
 ## What we want to capture
