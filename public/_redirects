@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects.
+# Old game route was renamed /game/ -> /nopas/ (2026-05-31).
+# Path-preserving 301 so old links, bookmarks, and indexed URLs never 404.
+/game/*  /nopas/:splat  301

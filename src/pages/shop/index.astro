@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Starfield from "../../components/Starfield.astro";
+import { Image } from "astro:assets";
+import gameLogoSecondary from "../../assets/brand/game_title_logo-secondary.png";
+---
+
+<BaseLayout
+    title="NOPAS Shop"
+    description="The official Not Our Pants, Alien Swine! shop is coming soon. Merch worthy of the United Pants Defense Force."
+>
+    {/* ============================================================
+        Coming-soon holding page for the nopasgame.shop domain.
+        Reserves the /shop/ slot; no store logic yet.
+       ============================================================ */}
+    <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <Starfield seed={904} sunVerticalPct={34} />
+
+        <div class="max-w-3xl mx-auto px-6 py-20 text-center relative">
+            <Image
+                src={gameLogoSecondary}
+                alt="Not Our Pants, Alien Swine!"
+                widths={[480, 720, 960]}
+                sizes="(min-width: 768px) 600px, 90vw"
+                class="mx-auto w-full max-w-xl drop-shadow-[0_0_60px_rgba(255,31,122,0.4)]"
+                loading="eager"
+            />
+
+            <p class="mt-10 font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase">
+                The NOPAS Shop
+            </p>
+            <h1 class="mt-4 font-display text-3xl md:text-5xl text-paper-glow">
+                Coming soon.
+            </h1>
+            <p class="mt-6 text-lg max-w-xl mx-auto text-[var(--fg-body)] leading-relaxed">
+                Merch worthy of the United Pants Defense Force is on its way.
+                Pants not included &mdash; you&rsquo;ll need to defend your own.
+            </p>
+
+            <div class="mt-10">
+                <a
+                    href="/nopas/"
+                    class="inline-block font-display tracking-wider px-6 py-3 border border-[var(--color-magenta-500)]/40 text-[var(--color-magenta-200)] rounded-md hover:bg-[var(--color-magenta-500)]/10 hover:border-[var(--color-magenta-400)] transition"
+                >
+                    ← Back to NOPAS
+                </a>
+            </div>
+        </div>
+    </section>
+</BaseLayout>
