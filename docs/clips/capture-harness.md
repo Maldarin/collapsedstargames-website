@@ -155,7 +155,7 @@ notes. Fields:
 | ID | Slot | Idea |
 |---|---|---|
 | [`home-hero`](scenarios/home-hero.md) | `/` studio hero | Mothership descent over Suburbia, crane into the starfield |
-| [`nopas-hero`](scenarios/nopas-hero.md) ⭐ | `/nopas` hero | The marquee depants — jeans tractor-beamed off a citizen |
+| [`nopas-hero`](scenarios/nopas-hero.md) ⭐ | `/nopas` hero | The marquee depants — red beam channel → white flash → citizen in safety shorts |
 | [`collectors-hero`](scenarios/collectors-hero.md) | `/nopas/collectors` hero | Villain power-shot: mech + Overlord + minions |
 | [`defenders-hero`](scenarios/defenders-hero.md) | `/nopas/defenders` hero | UPDF squad rally under a sweeping beam |
 | [`lore-hero`](scenarios/lore-hero.md) | `/lore` hero | "Archives" found-footage first-contact descent |

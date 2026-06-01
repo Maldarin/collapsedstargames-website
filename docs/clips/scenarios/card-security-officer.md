@@ -3,6 +3,14 @@
 Square class-card loop for the Security Officer (Officer Blart) page. Signature
 beat: Blart Bash.
 
+> **Canonical (ClassConfig.SecurityOfficer.blartBash):** Blart Bash is a **committed
+> forward charge/breaching rush** (physics LinearVelocity, ~30-stud range) that
+> **stops on the first enemy or wall**. It's a setup/engage tool — **light** impact
+> (15 dmg) + a **0.6s stumble** on the victim, **no launch/airborne, no invuln**.
+> Play it as a charge that bowls into the minion and staggers it, not a knock-them-
+> flying slam. (SO's weapons are Button Blaster + Bobbin Bomber + Starch Bomb — the
+> Sewing Needle Rifle moved to the Needle Eye class.)
+
 ```yaml
 id: card-security-officer
 slot: "/nopas/defenders/security-officer — aspect-square portrait slot"
@@ -11,8 +19,8 @@ resolution: 800x800
 fps: 24
 duration_s: 3
 loop: palindrome
-logline: "Officer Blart dashes forward and shoulder-slams a Minion off its feet (Blart Bash)."
-tone: "'Not on my watch, swine.' Tiny punch-in on impact; the comedy is the minion tumbling. Heroic anchor energy."
+logline: "Officer Blart charges forward in a committed Blart Bash, bowling into a Minion and leaving it staggered."
+tone: "'Not on my watch, swine.' Tiny punch-in on impact; the comedy is the minion staggering/reeling. Heroic anchor energy."
 location: "Neutral staged area; denim-blue accent glow."
 lighting: "Key + denim-blue rim to match the Defender accent."
 cast:
@@ -30,9 +38,9 @@ camera:
   fov: 42
 beats:
   - { t: 0.0, action: "Blart braced (anchor pose)" }
-  - { t: 0.6, action: "Blart Bash dash forward" }
-  - { t: 1.0, action: "shoulder-slam connects; minion tumbles back" }
-  - { t: 1.6, action: "minion airborne, Blart settles" }
+  - { t: 0.6, action: "Blart Bash charge forward (committed rush)" }
+  - { t: 1.0, action: "charge connects on the minion; rush STOPS on contact; minion staggers (0.6s stumble)" }
+  - { t: 1.6, action: "minion reeling, Blart settles in his anchor stance" }
 output:
   dest: "src/assets/clips/defenders/security-officer/card.{webm,mp4}"
   budget: "< 1 MB webm"

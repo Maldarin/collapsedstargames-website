@@ -3,6 +3,13 @@
 Square class-card loop for the Needle Eye page. Signature beat: Sewing Needle
 Rifle rooftop pin.
 
+> **Canonical (verified):** Needle Eye is a real class (`ClassConfig.NeedleEye`,
+> displayName "Needle Eye") — a fragile rooftop marksman. Weapons: **Pin Pistol**,
+> **Sewing Needle Rifle** (precision rifle, the focus here), **Pin Mine** (trap);
+> class ability is the **Grappling Hook** reposition. "Sewing Needle Rifle rooftop
+> pin + scope glint" is accurate. (Note "pin" = a clean rifle hit; the literal trap
+> is the separate Pin Mine.)
+
 ```yaml
 id: card-needle-eye
 slot: "/nopas/defenders/needle-eye — aspect-square portrait slot"

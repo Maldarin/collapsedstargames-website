@@ -3,6 +3,11 @@
 Square class-card loop for the Commander page portrait slot. Signature beat: the
 Quad Lasers.
 
+> **Canonical (verified):** the Commander's primary is `CommanderLaser`, displayName
+> **"Mech Quad Lasers"** — four arm-mounted laser emitters on the mech rig. "Quad
+> Lasers sweep + mech recoil" is accurate. (Commander also has the AoE De-Pantsinator,
+> Ballooninator, and Shrinkinator; mech walking is a real system.)
+
 ```yaml
 id: card-commander
 slot: "/nopas/collectors/commander — aspect-square portrait slot"

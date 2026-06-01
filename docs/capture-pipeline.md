@@ -216,8 +216,10 @@ the `loading="lazy"` attribute on a `<picture>`-equivalent if supported.
 
 **Phase 1 — most impactful for marketing:**
 
-1. **The depants moment** — Overlord beams a citizen, jeans separate from
-   citizen, citizen panics. 4–6 seconds. Hero clip for the home page game tease.
+1. **The depants moment** — Overlord holds the red De-Pantsinator beam on a
+   citizen (3s channel, red aura swells), white flash, citizen instantly in
+   safety shorts and panicking. 4–6 seconds. Hero clip for the home page game
+   tease. (Canonical: no detaching/flying pants — it's a clothing swap.)
 2. **Mothership Final Stand cannon volley** — Pants Factory roof cannons firing
    at the mothership, mothership shields flicker, hull damage. 8–10 seconds.
 3. **Mech rampage** — Commander quad-laser barrage through a wall, minions

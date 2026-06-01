@@ -3,6 +3,13 @@
 Square class-card loop for the Tailor Engineer page. Signature beat: Button
 Turret deploy + spin-up.
 
+> **Canonical:** the **Button Turret** is a **craftable** built through the
+> **Spanner's build menu** (RMB) — it's not an instantly-thrown gadget (real build
+> cost Cloth/Buttons/Battery, ~4s build, team limit 3). The card may compress the
+> build for a 3s loop, but the readable thing is "Tailor builds → turret unfolds →
+> fires." TE's held weapons are the **Spanner** (melee/repair + build) and the
+> **Laundry Launcher**; the MMB class ability is the **Dryer Door Shield** brace.
+
 ```yaml
 id: card-tailor-engineer
 slot: "/nopas/defenders/tailor-engineer — aspect-square portrait slot"
