@@ -2,7 +2,6 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import minionHero from "../../../assets/classes/Minions/Minion_solo.png";
-import minionGroup from "../../../assets/classes/Minions/Minions_group.png";
 import minionRun from "../../../assets/classes/Minions/Minion_run.png";
 import minionCloseup from "../../../assets/classes/Minions/Minion_closeup.png";
 import minionStreet from "../../../assets/classes/Minions/Minion_street.png";
@@ -239,13 +238,13 @@ import minionCharge from "../../../assets/classes/Minions/Minion_charge.png";
                 Both agree there are far, far too many of them.
             </p>
         </div>
-        {/* field still · group — native 457px, capped at 260 */}
-        <figure class="justify-self-center w-full max-w-[260px] surface rounded-lg overflow-hidden border border-[var(--color-alien-500)]/20">
+        {/* field still · closeup — native 277px, capped at 220 */}
+        <figure class="justify-self-center w-full max-w-[220px] surface rounded-lg overflow-hidden border border-[var(--color-alien-500)]/20">
             <div class="bg-[var(--bg-deep)]">
-                <Image src={minionGroup} alt="A swarm of Minions advancing down the street" width={260} densities={[1, 2]} class="w-full h-auto object-contain" loading="lazy" />
+                <Image src={minionCloseup} alt="Close-up of a Minion" width={220} densities={[1, 2]} class="w-full h-auto object-contain" loading="lazy" />
             </div>
             <figcaption class="px-3 py-2 text-[10px] tracking-[0.25em] uppercase font-display text-[var(--fg-soft)] border-t border-[var(--color-alien-500)]/15">
-                ▸ Field still · the swarm advances
+                ▸ Field still · specimen up close
             </figcaption>
         </figure>
     </section>
