@@ -72,9 +72,9 @@ import minionCharge from "../../../assets/classes/Minions/Minion_charge.png";
     </section>
 
     {/* ============================================================
-        Role Fantasy + Playstyle
+        Role Fantasy — text left, field still right
        ============================================================ */}
-    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
         <div>
             <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Role Fantasy</p>
             <h2 class="mt-3 font-display text-2xl md:text-3xl">Strength in numbers.</h2>
@@ -93,7 +93,31 @@ import minionCharge from "../../../assets/classes/Minions/Minion_charge.png";
                 The UPDF cannot stop the concept of Minions.
             </p>
         </div>
-        <div>
+        {/* field still · charge — native 285px, capped at 220 */}
+        <figure class="justify-self-center md:justify-self-end w-full max-w-[220px] surface rounded-lg overflow-hidden border border-[var(--color-alien-500)]/20">
+            <div class="bg-[var(--bg-deep)]">
+                <Image src={minionCharge} alt="A Minion charging forward" width={220} densities={[1, 2]} class="w-full h-auto object-contain" loading="lazy" />
+            </div>
+            <figcaption class="px-3 py-2 text-[10px] tracking-[0.25em] uppercase font-display text-[var(--fg-soft)] border-t border-[var(--color-alien-500)]/15">
+                ▸ Field still · charging the line
+            </figcaption>
+        </figure>
+    </section>
+
+    {/* ============================================================
+        Playstyle — field still left, text right
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+        {/* field still · run — native 168px, capped at 150 */}
+        <figure class="order-2 md:order-1 justify-self-center md:justify-self-start w-full max-w-[150px] surface rounded-lg overflow-hidden border border-[var(--color-alien-500)]/20">
+            <div class="bg-[var(--bg-deep)]">
+                <Image src={minionRun} alt="A Minion running" width={150} densities={[1, 2]} class="w-full h-auto object-contain" loading="lazy" />
+            </div>
+            <figcaption class="px-3 py-2 text-[10px] tracking-[0.25em] uppercase font-display text-[var(--fg-soft)] border-t border-[var(--color-alien-500)]/15">
+                ▸ Field still · on the move
+            </figcaption>
+        </figure>
+        <div class="order-1 md:order-2">
             <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Playstyle</p>
             <h2 class="mt-3 font-display text-2xl md:text-3xl">Flood. Overwhelm. Collect.</h2>
             <p class="mt-6 text-[var(--fg-body)] leading-relaxed">
@@ -113,38 +137,17 @@ import minionCharge from "../../../assets/classes/Minions/Minion_charge.png";
     </section>
 
     {/* ============================================================
-        In-game gallery
+        Feature still — the largest capture, centered
        ============================================================ */}
-    <section class="max-w-7xl mx-auto px-6 py-8">
-        <div class="text-center mb-6">
-            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-alien-400)] uppercase">
-                The Invasion, In Progress
-            </p>
-            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
-                Spotted on the streets.
-            </h2>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            <div class="surface rounded-lg overflow-hidden md:col-span-2 md:row-span-2">
-                <Image src={minionGroup} alt="A swarm of Minions advancing down the street" widths={[400, 600, 900]} sizes="(min-width: 768px) 60vw, 100vw" class="w-full h-full object-cover" loading="lazy" />
+    <section class="max-w-3xl mx-auto px-6 py-8">
+        <figure class="mx-auto w-full max-w-[340px] surface rounded-lg overflow-hidden border border-[var(--color-alien-500)]/25">
+            <div class="bg-[var(--bg-deep)]">
+                <Image src={minionStreet} alt="Minions spreading across a road" width={340} densities={[1, 2]} class="w-full h-auto object-contain" loading="lazy" />
             </div>
-            <div class="surface rounded-lg overflow-hidden">
-                <Image src={minionRun} alt="A Minion running" widths={[240, 360, 480]} sizes="(min-width: 768px) 30vw, 50vw" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div class="surface rounded-lg overflow-hidden">
-                <Image src={minionCloseup} alt="Close-up of a Minion" widths={[240, 360, 480]} sizes="(min-width: 768px) 30vw, 50vw" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div class="surface rounded-lg overflow-hidden">
-                <Image src={minionStreet} alt="Minions spreading across a road" widths={[240, 360, 480]} sizes="(min-width: 768px) 30vw, 50vw" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div class="surface rounded-lg overflow-hidden">
-                <Image src={minionPair} alt="A pair of Minions in the dark" widths={[240, 360, 480]} sizes="(min-width: 768px) 30vw, 50vw" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div class="surface rounded-lg overflow-hidden">
-                <Image src={minionCharge} alt="A Minion charging forward" widths={[240, 360, 480]} sizes="(min-width: 768px) 30vw, 50vw" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-        </div>
+            <figcaption class="px-4 py-2.5 text-[10px] tracking-[0.25em] uppercase font-display text-[var(--fg-soft)] border-t border-[var(--color-alien-500)]/15 text-center">
+                ▸ Street-level saturation · invasion in progress
+            </figcaption>
+        </figure>
     </section>
 
     {/* ============================================================
@@ -215,9 +218,9 @@ import minionCharge from "../../../assets/classes/Minions/Minion_charge.png";
     </section>
 
     {/* ============================================================
-        Lore
+        Lore — narrow text, field still alongside
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-8">
+    <section class="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-[1fr_auto] gap-8 md:gap-10 items-center">
         <div class="surface rounded-lg p-5 md:p-6 border-l-2 border-[var(--color-alien-500)]/40">
             <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Lore</p>
             <h2 class="mt-3 font-display text-2xl md:text-3xl">Bred for enthusiasm, not paperwork.</h2>
@@ -236,19 +239,40 @@ import minionCharge from "../../../assets/classes/Minions/Minion_charge.png";
                 Both agree there are far, far too many of them.
             </p>
         </div>
+        {/* field still · group — native 457px, capped at 260 */}
+        <figure class="justify-self-center w-full max-w-[260px] surface rounded-lg overflow-hidden border border-[var(--color-alien-500)]/20">
+            <div class="bg-[var(--bg-deep)]">
+                <Image src={minionGroup} alt="A swarm of Minions advancing down the street" width={260} densities={[1, 2]} class="w-full h-auto object-contain" loading="lazy" />
+            </div>
+            <figcaption class="px-3 py-2 text-[10px] tracking-[0.25em] uppercase font-display text-[var(--fg-soft)] border-t border-[var(--color-alien-500)]/15">
+                ▸ Field still · the swarm advances
+            </figcaption>
+        </figure>
     </section>
 
     {/* ============================================================
-        Quotes pull-out
+        Quotes pull-out — small still beside the heading
        ============================================================ */}
     <section class="max-w-5xl mx-auto px-6 py-8">
-        <p class="font-display text-xs tracking-[0.4em] text-[var(--color-alien-400)] uppercase text-center">
-            Field Recordings
-        </p>
-        <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow text-center">
-            Heard on the battlefield.
-        </h2>
-        <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10">
+            <figure class="w-full max-w-[145px] surface rounded-lg overflow-hidden border border-[var(--color-alien-500)]/20 shrink-0">
+                <div class="bg-[var(--bg-deep)]">
+                    <Image src={minionPair} alt="A pair of Minions in the dark" width={145} densities={[1, 2]} class="w-full h-auto object-contain" loading="lazy" />
+                </div>
+                <figcaption class="px-3 py-2 text-[10px] tracking-[0.25em] uppercase font-display text-[var(--fg-soft)] border-t border-[var(--color-alien-500)]/15">
+                    ▸ Field still · after dark
+                </figcaption>
+            </figure>
+            <div class="text-center sm:text-left">
+                <p class="font-display text-xs tracking-[0.4em] text-[var(--color-alien-400)] uppercase">
+                    Field Recordings
+                </p>
+                <h2 class="font-display text-2xl md:text-3xl mt-3 text-paper-glow">
+                    Heard on the battlefield.
+                </h2>
+            </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
             <blockquote class="surface rounded-lg p-4 text-sm text-[var(--fg-strong)] italic">
                 &ldquo;There is one Minion. Oh. There are more Minions.&rdquo;
             </blockquote>
