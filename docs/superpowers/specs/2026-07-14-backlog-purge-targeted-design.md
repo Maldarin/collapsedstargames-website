@@ -88,6 +88,7 @@ Returns `Purged N item(s).`
 
 - **`duplicate_of` RESTRICT FK.** Same hazard and handling as the parent §5.3/§8: a live or soft-deleted row may point at a targeted id; step 3.5.1 nulls those pointers first, or the `DELETE` fails.
 - **Mixed valid/invalid list.** Fail-closed (§3.3): one live or unknown id rejects the entire call; no partial purge.
+- **Restore in the validation→commit race window (targeted TOCTOU).** Fail-closed is validation-time, not commit-time: it guarantees no *live* row is ever hard-deleted, not that the confirmed set is immutable. The shared confirmed transaction re-checks `deleted_at IS NOT NULL` (parent §5.3), so if a named id is restored between the targeted validation and the transaction, that id is dropped and the remaining named ids still purge — `Purged N` with N below the requested count. This degrades to a subset-purge-of-still-eligible, identical to age mode's behavior and always in the safe direction (never destroys a restored/live row). Near-impossible on today's single-operator local MCP; documented, not guarded.
 - **`ids` + `olderThanDays` both supplied.** `ids` wins; the age bound is ignored (§3.2). No error.
 - **Empty `ids: []`.** Falls through to age mode (§3.2).
 - **Duplicate ids in the list.** De-duplicated before validation/delete; `ANY($ids)` makes repeats harmless either way.
