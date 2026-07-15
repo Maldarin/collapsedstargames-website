@@ -133,3 +133,13 @@ When it posts, it stamps `resolution_notified_at = now()` (a non-status write, s
 - **Commit-driven CI automation** (Approach C) — parsing `report #N` on push to auto-resolve. Needs an exposed write endpoint; revisit only if manual triage outgrows the session workflow.
 - **Verified-user Q&A knowledge base** — the separately-planned Spec 2.
 - **Two-way GitHub Issues sync** and converting `#playtester-hub` to a forum.
+
+## 11. Addendum — as-built refinements (2026-07-15)
+
+Implemented and reviewed; these refine §3/§5 without changing the design's intent:
+
+- **Reply is dedup-guarded, "effectively once."** True exactly-once across Discord + DB is impossible without an idempotency key. `maybePostResolution` now calls `hasResolutionReply(threadId)` before posting: if the bot's `✅ Fixed…` reply is already in the thread (a prior pass posted it but a DB drop lost the stamp), it skips the post and just (re)stamps. This closes the sequential post-succeeds/stamp-fails window. A narrow **concurrent** window remains (a NOTIFY overlapping a reconnect sweep for the same id) — a pre-existing reconcile-architecture property; follow-up is a per-report-id in-flight guard in `reconcileService`.
+- **Migration `005` backfills `resolution_notified_at = now()`** for all pre-existing resolved rows, so the first deploy's startup reconcile does **not** retroactively reply-and-ping every historically-resolved thread.
+- **Rearm trigger (`006`) also nulls `resolution_note`** when a report leaves `resolved`, so a reopen → re-resolve-*without*-note can't re-post a stale note (the note text is preserved in `report_notes`).
+- **`RESOLUTION_REPLY_PREFIX`** is a single exported constant used both to build the reply and to detect it — no template/detector drift.
+- **Deferred (per decision):** the `/backlog` slash-command note field. The MCP `backlog_set_status` `note` is the resolving surface; `reportsRepo.setStatus` already supports the note, so exposing it on the slash command later is trivial.
