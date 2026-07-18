@@ -95,6 +95,26 @@ The button is a **Link** button (`ButtonStyle.Link`) whose `url` is the profile 
 
 ## 10. Out of scope / deferred
 
-- **Profile enrichment** (Roblox display name + headshot avatar via the no-auth `users` + `thumbnails` APIs, best-effort, degrade silently). Nice-to-have for a richer embed; adds two network calls per invocation. Add in a follow-up if wanted.
+- ~~**Profile enrichment**~~ — **PROMOTED to §11 (2026-07-18), being implemented.** (Originally deferred: Roblox display name + headshot avatar via the no-auth `users` + `thumbnails` APIs.)
 - **Rate limiting** — Bloxlink's free tier is rate-limited; at current server volume this is a non-issue. Revisit if `/roblox` sees heavy use (bundle with the same launch-volume thinking as the other launch-gated items).
 - **`/config` setter for `BLOXLINK_API_KEY`** — set via env var / Railway, not a slash command (a secret, not a per-guild toggle).
+
+## 11. Addendum — profile enrichment (2026-07-18)
+
+**Motivation:** as shipped (v1, live on Railway), the success card shows only a generic "Roblox profile" title + link — it doesn't say *whose* profile the button opens. This addendum adds identifying detail so a viewer knows the account before clicking. Promotes the §10 deferred item; implemented via direct TDD (not the full SDD cycle), on top of the merged v1.
+
+**Data source — Roblox public, no-auth APIs (no new secret):**
+- `GET https://users.roblox.com/v1/users/{id}` → `name` (the unique `@username`) + `displayName` (shown name).
+- `GET https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds={id}&size=150x150&format=Png&isCircular=false` → `data[0].imageUrl` (headshot CDN URL).
+
+**New unit — `src/roblox/robloxProfile.ts`:** `makeRobloxProfileFetcher(fetchFn = fetch): (robloxId: string) => Promise<{ displayName: string; username: string; avatarUrl: string | null } | null>`. **Best-effort, NEVER throws** (catches internally): users call fails/errors → returns `null` (card falls back to generic); only the avatar call fails → returns name with `avatarUrl: null` (name shown, no thumbnail). Injectable `fetchFn` for tests, mirroring the `bloxlink.ts` seam.
+
+**`runRoblox` gains an optional injected dep** `enrich?: (robloxId) => Promise<{ displayName; username; avatarUrl } | null>`. On a `self`/`lookup` success it calls `enrich(robloxId)` (wrapped so any failure just omits the fields) and attaches optional `displayName`, `username`, `avatarUrl` to the result. Logic stays discord.js-free and unit-tested with a fake `enrich`. `robloxId` is already on the result (the v1 hook), so no input change.
+
+**Router render:** for success kinds, embed title becomes `` `${displayName} (@${username})` `` when enriched, else the current "Roblox profile"; `embed.setThumbnail(avatarUrl)` when present; description + Link button unchanged. Applies to both self and lookup.
+
+**Wiring:** `index.ts` constructs `makeRobloxProfileFetcher()` and passes it into `RouterCtx` (new `robloxEnrich` field). Enrichment is independent of `BLOXLINK_API_KEY` — it needs no key — so it works whenever a profile resolves.
+
+**Failure/degradation:** enrichment can never block or break `/roblox`; worst case is the v1 generic card. No new secrets; Roblox public endpoints, non-issue at current volume.
+
+**Tests (TDD):** `makeRobloxProfileFetcher` (name+avatar success; avatar-fails → name-only, `avatarUrl:null`; users-fails → `null`); `runRoblox` (enrich attaches fields on success; enrich returns `null` → generic, no fields; enrich throws → caught, generic).
