@@ -1,0 +1,274 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+/*
+  Player stats. The site is a static Astro build on Cloudflare Pages, so there is no server to
+  render against — the browser fetches the public read API on the bot service instead.
+
+  The base URL is resolved at BUILD time and handed to the inline script through a data attribute
+  rather than being read inside the script. `is:inline` scripts are passed through untouched by
+  Astro, so `import.meta.env` would NOT be substituted in one and would arrive at the browser as
+  a literal. Every other script on this site is `is:inline`; this keeps that convention without
+  the footgun.
+*/
+const STATS_API = import.meta.env.PUBLIC_STATS_API ?? "https://stats.collapsedstargames.com";
+
+const METRICS = [
+    { id: "xp", label: "XP Earned" },
+    { id: "kills", label: "Eliminations" },
+    { id: "wins", label: "Matches Won" },
+    { id: "pants_stolen", label: "Pants Stolen" },
+    { id: "matches", label: "Matches Played" },
+];
+---
+
+<BaseLayout
+    title="Player Stats"
+    description="Career stats and leaderboards for Not Our Pants, Alien Swine! Look up any player's matches, eliminations, pants stolen, pants lost, XP and coins earned."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 -z-10 hero-glow"></div>
+        <div class="max-w-4xl mx-auto px-6 pt-14 pb-10 text-center">
+            <h1 class="font-display text-4xl md:text-6xl text-comic-stroke leading-tight">
+                PLAYER STATS
+            </h1>
+            <p class="mt-6 text-base md:text-lg text-[var(--fg-body)] leading-relaxed max-w-2xl mx-auto">
+                Every match is recorded. Look up a career, or see who's on top &mdash;
+                and who's lost the most pants.
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Player lookup
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 pb-12">
+        <div class="surface rounded-xl p-6 md:p-8" data-stats-api={STATS_API}>
+            <h2 class="font-display text-xl text-[var(--fg-primary)]">Look up a player</h2>
+            <p class="mt-2 text-sm text-[var(--fg-muted)]">
+                Enter a Roblox username. Stats appear after a player's first completed match.
+            </p>
+
+            <form id="lookup-form" class="mt-5 flex flex-col sm:flex-row gap-3" novalidate>
+                <label for="lookup-name" class="sr-only">Roblox username</label>
+                <input
+                    id="lookup-name"
+                    name="name"
+                    type="text"
+                    autocomplete="off"
+                    spellcheck="false"
+                    maxlength="64"
+                    placeholder="Roblox username"
+                    class="flex-1 px-4 py-3 rounded-lg bg-[var(--bg-elevated)] border border-[var(--border-medium)] text-[var(--fg-primary)] placeholder:text-[var(--fg-faint)] focus:outline-none focus:border-[var(--color-magenta-400)] transition"
+                />
+                <button
+                    type="submit"
+                    class="px-6 py-3 rounded-lg font-display tracking-wide bg-[var(--color-magenta-500)] text-white hover:bg-[var(--color-magenta-400)] transition focus:outline-none focus:ring-2 focus:ring-[var(--color-magenta-400)] focus:ring-offset-2 focus:ring-offset-[var(--bg-base)]"
+                >
+                    SEARCH
+                </button>
+            </form>
+
+            {/* aria-live so a screen reader announces the result, which arrives asynchronously
+                and would otherwise be silent. */}
+            <div id="lookup-result" class="mt-6" aria-live="polite"></div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Leaderboards
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 pb-20">
+        <div class="surface rounded-xl p-6 md:p-8">
+            <h2 class="font-display text-xl text-[var(--fg-primary)]">Leaderboards</h2>
+
+            <div class="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="Leaderboard metric">
+                {METRICS.map((m, i) => (
+                    <button
+                        type="button"
+                        role="tab"
+                        data-metric={m.id}
+                        aria-selected={i === 0 ? "true" : "false"}
+                        tabindex={i === 0 ? 0 : -1}
+                        class="metric-tab px-4 py-2 rounded-lg text-sm border border-[var(--border-medium)] hover:bg-[var(--surface-hover)] transition focus:outline-none focus:ring-2 focus:ring-[var(--color-magenta-400)]"
+                    >
+                        {m.label}
+                    </button>
+                ))}
+            </div>
+
+            <div id="board" class="mt-6" aria-live="polite"></div>
+        </div>
+
+        <p class="mt-6 text-xs text-[var(--fg-soft)] text-center leading-relaxed">
+            Stats cover completed matches only. Leaving early doesn't bank a match &mdash;
+            and yes, we can tell.
+        </p>
+    </section>
+
+    <script is:inline>
+        (function () {
+            var root = document.querySelector("[data-stats-api]");
+            if (!root) return;
+            var API = root.getAttribute("data-stats-api");
+            var resultEl = document.getElementById("lookup-result");
+            var boardEl = document.getElementById("board");
+            var form = document.getElementById("lookup-form");
+            var input = document.getElementById("lookup-name");
+            var tabs = Array.prototype.slice.call(document.querySelectorAll(".metric-tab"));
+
+            var ACTIVE = "bg-[var(--color-magenta-500)]";
+            var num = function (v) { return (v == null ? 0 : v).toLocaleString("en-US"); };
+
+            // Everything from the API is rendered as TEXT, never interpolated into innerHTML.
+            // Usernames are player-controlled input arriving from a third party; building markup
+            // out of them is how a stats page becomes an XSS vector.
+            function el(tag, cls, text) {
+                var e = document.createElement(tag);
+                if (cls) e.className = cls;
+                if (text != null) e.textContent = String(text);
+                return e;
+            }
+
+            function notice(container, message, tone) {
+                container.textContent = "";
+                var color = tone === "error" ? "var(--color-magenta-400)" : "var(--fg-muted)";
+                var p = el("p", "text-sm", message);
+                p.style.color = color;
+                container.appendChild(p);
+            }
+
+            // One message for "not deployed yet" and "temporarily unreachable" on purpose: the
+            // difference is ours to care about, not the visitor's. Detail goes to the console.
+            function offline(container) {
+                notice(container, "Stats aren't live yet — check back once the game launches.", "muted");
+            }
+
+            function statRow(label, value) {
+                var row = el("div", "flex items-baseline justify-between gap-4 py-2 border-b border-[var(--border-subtle)]");
+                row.appendChild(el("span", "text-sm text-[var(--fg-muted)]", label));
+                row.appendChild(el("span", "font-display text-lg text-[var(--fg-primary)]", value));
+                return row;
+            }
+
+            function kd(kills, deaths) {
+                // 0/0 is NaN, which renders as "NaN" and reads as a broken page rather than as a
+                // new player.
+                if (!deaths) return (kills || 0).toFixed(2);
+                return (kills / deaths).toFixed(2);
+            }
+
+            function renderPlayer(data) {
+                var s = data.stats || {};
+                resultEl.textContent = "";
+
+                var head = el("div", "flex items-baseline gap-3 flex-wrap");
+                head.appendChild(el("h3", "font-display text-2xl text-[var(--fg-primary)]", data.username || ("Roblox " + data.robloxUserId)));
+                var winRate = s.matchesPlayed ? Math.round((s.wins / s.matchesPlayed) * 100) + "%" : "—";
+                head.appendChild(el("span", "text-sm text-[var(--fg-soft)]", num(s.matchesPlayed) + " matches · " + winRate + " win rate"));
+                resultEl.appendChild(head);
+
+                var grid = el("div", "mt-4 grid sm:grid-cols-2 gap-x-8");
+                grid.appendChild(statRow("Wins / Losses", num(s.wins) + " / " + num(s.losses)));
+                grid.appendChild(statRow("K / D", kd(s.kills, s.deaths)));
+                grid.appendChild(statRow("Eliminations", num(s.kills)));
+                grid.appendChild(statRow("Deaths", num(s.deaths)));
+                grid.appendChild(statRow("Minions defeated", num(s.npcKills)));
+                grid.appendChild(statRow("Objectives", num(s.objectivesCapped)));
+                grid.appendChild(statRow("Pants stolen", num(s.pantsStolen)));
+                grid.appendChild(statRow("Pants lost", num(s.pantsLost)));
+                grid.appendChild(statRow("XP earned", num(s.xpEarned)));
+                grid.appendChild(statRow("Coins earned", num(s.coinsEarned)));
+                resultEl.appendChild(grid);
+
+                if (s.lastPlayed) {
+                    resultEl.appendChild(el("p", "mt-4 text-xs text-[var(--fg-soft)]", "Last played " + String(s.lastPlayed).slice(0, 10)));
+                }
+            }
+
+            function lookup(name) {
+                notice(resultEl, "Searching…", "muted");
+                fetch(API + "/nmpa/public/player?name=" + encodeURIComponent(name))
+                    .then(function (r) {
+                        if (r.status === 404) {
+                            notice(resultEl, "No player found by that name. Stats appear after a first completed match.", "muted");
+                            return null;
+                        }
+                        if (!r.ok) throw new Error("HTTP " + r.status);
+                        return r.json();
+                    })
+                    .then(function (data) { if (data) renderPlayer(data); })
+                    .catch(function (err) { console.warn("[stats] lookup failed:", err); offline(resultEl); });
+            }
+
+            function renderBoard(rows) {
+                boardEl.textContent = "";
+                if (!rows || rows.length === 0) {
+                    notice(boardEl, "Nobody's on the board yet.", "muted");
+                    return;
+                }
+                var list = el("ol", "space-y-1");
+                rows.forEach(function (r, i) {
+                    var li = el("li", "flex items-baseline gap-3 py-2 border-b border-[var(--border-subtle)]");
+                    li.appendChild(el("span", "font-display text-sm w-8 shrink-0 text-[var(--fg-soft)]", "#" + (i + 1)));
+                    li.appendChild(el("span", "flex-1 text-[var(--fg-primary)]", r.username || ("Roblox " + r.robloxUserId)));
+                    li.appendChild(el("span", "font-display text-[var(--color-magenta-400)]", num(r.value)));
+                    list.appendChild(li);
+                });
+                boardEl.appendChild(list);
+            }
+
+            function loadBoard(metric) {
+                notice(boardEl, "Loading…", "muted");
+                fetch(API + "/nmpa/public/leaderboard?metric=" + encodeURIComponent(metric))
+                    .then(function (r) {
+                        if (!r.ok) throw new Error("HTTP " + r.status);
+                        return r.json();
+                    })
+                    .then(function (data) { renderBoard(data.rows); })
+                    .catch(function (err) { console.warn("[stats] board failed:", err); offline(boardEl); });
+            }
+
+            function selectTab(tab) {
+                tabs.forEach(function (t) {
+                    var on = t === tab;
+                    t.setAttribute("aria-selected", on ? "true" : "false");
+                    t.setAttribute("tabindex", on ? "0" : "-1");
+                    t.classList.toggle(ACTIVE, on);
+                    t.classList.toggle("text-white", on);
+                });
+                loadBoard(tab.getAttribute("data-metric"));
+            }
+
+            tabs.forEach(function (tab) {
+                tab.addEventListener("click", function () { selectTab(tab); });
+                // Roving tabindex: a tablist is one tab stop, arrows move between options.
+                tab.addEventListener("keydown", function (e) {
+                    var i = tabs.indexOf(tab);
+                    var next = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : -1;
+                    if (next < 0 || next >= tabs.length) return;
+                    e.preventDefault();
+                    tabs[next].focus();
+                    selectTab(tabs[next]);
+                });
+            });
+
+            if (form) {
+                form.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    var name = (input.value || "").trim();
+                    if (!name) {
+                        notice(resultEl, "Enter a Roblox username to search.", "muted");
+                        return;
+                    }
+                    lookup(name);
+                });
+            }
+
+            if (tabs.length) selectTab(tabs[0]);
+        })();
+    </script>
+</BaseLayout>
