@@ -43,6 +43,14 @@ const api = createServer((req, res) => {
     return send(200, { robloxUserId: 23374549, username: "Maldarin", stats: {
       matchesPlayed: 37, wins: 20, losses: 17, kills: 148, npcKills: 812, deaths: 96,
       pantsStolen: 4, pantsLost: 61, objectivesCapped: 22, xpEarned: 29600, coinsEarned: 2450,
+      playtimeSeconds: 26640,
+      mainClass: { classId: "Overlord", matches: 14, wins: 8 },
+      xpBySource: [
+        { source: "_challenge_weekly_mothership_kill", xp: 5120 },
+        { source: "mothershipDestroyed", xp: 4633 },
+        { source: "npcDefeated", xp: 3097 },
+        { source: "_challenge_daily_play_match", xp: 667 },
+      ],
       lastPlayed: "2026-08-05T23:28:33.000Z" }});
   }
   send(404, { error: "not found" });
@@ -91,6 +99,18 @@ check("shows the player", r.includes("Maldarin"));
 check("shows pants lost (the comedy stat)", r.includes("Pants lost") && r.includes("61"));
 check("computes K/D", r.includes("1.54"));
 check("shows win rate", r.includes("54%"));
+
+console.log("== P1 card fields ==");
+check("renders playtime as a duration", r.includes("7h 24m"));
+check("renders main class with its record", r.includes("Overlord") && r.includes("57%"));
+check("prettifies ledger keys instead of showing raw camelCase", r.includes("Mothership destroyed"));
+check("groups challenge payouts into one bucket", r.includes("Challenges") && r.includes("5,787"));
+check("does not rank challenge keys inline", !r.includes("_challenge_"));
+
+console.log("== playtime board ==");
+await page.getByRole("tab", { name: "Playtime" }).click();
+await page.waitForTimeout(300);
+check("board formats seconds as a duration", (await page.locator("#board").innerText()).includes("8h 13m"));
 
 console.log("== unknown player ==");
 await page.fill("#lookup-name", "nobody-here");

@@ -25,6 +25,7 @@ const METRICS = [
     { id: "best_match_xp", label: "Best Match XP" },
     { id: "kd", label: "K/D" },
     { id: "winrate", label: "Win Rate" },
+    { id: "playtime", label: "Playtime" },
 ];
 ---
 
@@ -128,11 +129,45 @@ const METRICS = [
 
             var ACTIVE = "bg-[var(--color-magenta-500)]";
             var num = function (v) { return (v == null ? 0 : v).toLocaleString("en-US"); };
-            // Board values format per metric: K/D as 2 decimals, win rate as a percent, else a count.
+            // duration_seconds is nullable game-side, so a zero means "never told us", not
+            // "played for no time" — hence a dash rather than "0m".
+            function fmtDuration(seconds) {
+                if (!seconds || seconds <= 0) return "—";
+                var mins = Math.round(seconds / 60);
+                if (mins < 60) return mins + "m";
+                var h = Math.floor(mins / 60), m = mins % 60;
+                return m === 0 ? h + "h" : h + "h " + m + "m";
+            }
+
+            // Board values format per metric: K/D as 2 decimals, win rate as a percent,
+            // playtime as a duration, else a count.
             function fmtValue(metric, v) {
                 if (metric === "kd") return (v == null ? 0 : v).toFixed(2);
                 if (metric === "winrate") return (v == null ? 0 : v) + "%";
+                if (metric === "playtime") return fmtDuration(v);
                 return num(v);
+            }
+
+            // The ledger emits ~35 sources and roughly a third of all XP is challenge payouts.
+            // Ranked inline they crowd out the gameplay earnings this breakdown exists to show,
+            // so they collapse into one bucket. Prefix matches the game's ledger namespace.
+            var CHALLENGE_PREFIX = "_challenge_";
+
+            function prettySource(source) {
+                var spaced = String(source).replace(/[_-]+/g, " ").replace(/([a-z0-9])([A-Z])/g, "$1 $2").trim().toLowerCase();
+                return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+            }
+
+            function summarizeXpSources(sources, topN) {
+                var n = topN || 5, challenges = 0, gameplay = [];
+                (sources || []).forEach(function (x) {
+                    if (!x || !(x.xp > 0)) return;
+                    if (String(x.source).indexOf(CHALLENGE_PREFIX) === 0) challenges += x.xp;
+                    else gameplay.push(x);
+                });
+                var other = 0;
+                gameplay.slice(n).forEach(function (x) { other += x.xp; });
+                return { top: gameplay.slice(0, n), challenges: challenges, other: other };
             }
 
             // Everything from the API is rendered as TEXT, never interpolated into innerHTML.
@@ -194,7 +229,25 @@ const METRICS = [
                 grid.appendChild(statRow("Pants lost", num(s.pantsLost)));
                 grid.appendChild(statRow("XP earned", num(s.xpEarned)));
                 grid.appendChild(statRow("Coins earned", num(s.coinsEarned)));
+                grid.appendChild(statRow("Playtime", fmtDuration(s.playtimeSeconds)));
+                if (s.mainClass) {
+                    var mc = s.mainClass;
+                    var mcRate = mc.matches ? Math.round((mc.wins / mc.matches) * 100) + "%" : "—";
+                    grid.appendChild(statRow("Main class", mc.classId + " · " + num(mc.matches) + " · " + mcRate));
+                }
                 resultEl.appendChild(grid);
+
+                var xp = summarizeXpSources(s.xpBySource);
+                if (xp.top.length || xp.challenges > 0 || xp.other > 0) {
+                    resultEl.appendChild(el("h4", "mt-6 font-display text-sm uppercase tracking-wide text-[var(--fg-muted)]", "Where the XP came from"));
+                    var breakdown = el("div", "mt-2 grid sm:grid-cols-2 gap-x-8");
+                    xp.top.forEach(function (x) {
+                        breakdown.appendChild(statRow(prettySource(x.source), num(x.xp)));
+                    });
+                    if (xp.challenges > 0) breakdown.appendChild(statRow("Challenges", num(xp.challenges)));
+                    if (xp.other > 0) breakdown.appendChild(statRow("Other", num(xp.other)));
+                    resultEl.appendChild(breakdown);
+                }
 
                 if (s.lastPlayed) {
                     resultEl.appendChild(el("p", "mt-4 text-xs text-[var(--fg-soft)]", "Last played " + String(s.lastPlayed).slice(0, 10)));
