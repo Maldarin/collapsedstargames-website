@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test:stats": "node scripts/e2e-stats.mjs"
+    "test:stats": "node scripts/e2e-stats.mjs",
+    "test:videos": "node scripts/e2e-videos.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

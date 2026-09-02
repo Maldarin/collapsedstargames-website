@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# raw media staging (videos exceed Cloudflare Pages' 25 MiB per-file limit)
+intake/
+
 # macOS-specific files
 .DS_Store
 

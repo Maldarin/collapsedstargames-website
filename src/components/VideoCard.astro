@@ -1,0 +1,56 @@
+---
+/*
+ * Click-to-play YouTube facade. Renders only a thumbnail (i.ytimg.com) until clicked,
+ * then swaps itself for a youtube-nocookie.com embed — zero YouTube JS on page load.
+ */
+interface Props {
+    id: string;
+    title: string;
+}
+const { id, title } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+// maxresdefault only exists for videos uploaded at 720p+; fall back to the always-present size.
+const thumbFallback = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+---
+
+<article class="surface rounded-lg overflow-hidden group">
+    <button
+        type="button"
+        class="video-facade relative block w-full aspect-video overflow-hidden cursor-pointer"
+        data-video-id={id}
+        data-video-title={title}
+        aria-label={`Play ${title}`}
+    >
+        <img
+            src={thumb}
+            onerror={`this.onerror=null;this.src='${thumbFallback}'`}
+            alt=""
+            loading="lazy"
+            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition"
+        />
+        <span class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)]/60 via-transparent to-transparent"></span>
+        <span class="absolute inset-0 grid place-items-center">
+            <span class="grid place-items-center w-14 h-14 rounded-full bg-[var(--bg-base)]/70 border border-[var(--color-magenta-400)]/60 backdrop-blur-sm group-hover:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" class="w-6 h-6 ml-1 fill-[var(--color-magenta-400)]" aria-hidden="true">
+                    <path d="M8 5v14l11-7z"></path>
+                </svg>
+            </span>
+        </span>
+    </button>
+    <p class="p-4 font-display text-sm md:text-base text-[var(--fg-strong)]">{title}</p>
+</article>
+
+<script>
+    document.querySelectorAll<HTMLButtonElement>(".video-facade").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const { videoId, videoTitle } = btn.dataset;
+            const iframe = document.createElement("iframe");
+            iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+            iframe.title = videoTitle ?? "Gameplay video";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.allowFullscreen = true;
+            iframe.className = "block w-full aspect-video";
+            btn.replaceWith(iframe);
+        });
+    });
+</script>
