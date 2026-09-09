@@ -5,8 +5,8 @@ import { Image } from "astro:assets";
 import gameLogoMain from "../../assets/brand/game_title_logo-main.png";
 import battleLong from "../../assets/battle/long_battle.png";
 import battle2 from "../../assets/battle/2v2.png";
-import minionCharge from "../../assets/classes/Minions/Minion_charge.png";
 import bowlingStrike from "../../assets/bowling/strike.png";
+import survivorsHorde from "../../assets/survivors/horde.png";
 ---
 
 <BaseLayout
@@ -196,7 +196,7 @@ import bowlingStrike from "../../assets/bowling/strike.png";
             {/* Minion Survivors — in development */}
             <div class="block surface rounded-lg overflow-hidden">
                 <div class="relative aspect-[16/9] overflow-hidden">
-                    <Image src={minionCharge} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-40 saturate-50" loading="lazy" />
+                    <Image src={survivorsHorde} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-50 saturate-[.65]" loading="lazy" />
                     <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)] via-transparent to-transparent"></div>
                     <p class="absolute top-4 right-4 font-display text-[10px] tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border border-[var(--color-chaos-400)]/40 text-[var(--color-chaos-400)] bg-[var(--bg-base)]/70 backdrop-blur-sm">
                         In development
