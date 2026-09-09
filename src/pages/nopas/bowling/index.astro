@@ -1,0 +1,388 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import minionSolo from "../../../assets/classes/Minions/Minion_solo.png";
+import lanesWide from "../../../assets/bowling/lanes-wide.png";
+import aimUi from "../../../assets/bowling/aim-ui.png";
+import buildABall from "../../../assets/bowling/build-a-ball.png";
+import kingpinTumble from "../../../assets/bowling/kingpin-tumble.png";
+import strike from "../../../assets/bowling/strike.png";
+import arcade from "../../../assets/bowling/arcade.png";
+import shrunkenPin from "../../../assets/bowling/shrunken-pin.png";
+import mutationRoll from "../../../assets/bowling/mutation-roll.png";
+---
+
+<BaseLayout
+    title="Minion Panic Bowling"
+    description="Minion Panic Bowling is NOPAS's lobby attraction: real ten-pin bowling where every pin is a live, complaining Minion. Classic Mode for purists — Mayhem Mode for mutant pins, Build-a-Ball abilities, lane mutations, Kingpin bounties, and bonus rounds."
+>
+    {/* ============================================================
+        Hero
+       ============================================================ */}
+    <section class="relative overflow-hidden border-b border-[var(--color-golden-500)]/20">
+        <div class="absolute inset-0 -z-10 opacity-25 dark-only-backdrop">
+            <Image src={lanesWide} alt="" class="w-full h-full object-cover" loading="eager" />
+        </div>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-base)]/50 via-[var(--bg-base)]/85 to-[var(--bg-base)] dark-only-backdrop"></div>
+        <div
+            class="absolute inset-0 -z-10 pointer-events-none"
+            style="background: radial-gradient(ellipse at 50% 30%, rgba(255, 212, 59, 0.12), transparent 60%);"
+        ></div>
+
+        <div class="max-w-5xl mx-auto px-6 pt-10 pb-10 md:pt-16 text-center">
+            <a href="/nopas/" class="inline-block mb-5 text-xs tracking-[0.3em] text-[var(--fg-soft)] hover:text-[var(--color-golden-400)] uppercase font-display transition">
+                ← Back to the game
+            </a>
+
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-golden-400)] uppercase">
+                Lobby Attraction
+            </p>
+            <h1 class="font-display text-3xl md:text-5xl mt-4 text-paper-glow leading-tight">
+                MINION PANIC
+                <span class="text-[var(--color-golden-400)]">BOWLING</span>
+            </h1>
+            <p class="mt-6 max-w-2xl mx-auto text-[var(--fg-body)] leading-relaxed">
+                The UPDF converted a perfectly good recreational facility into a
+                <strong class="text-[var(--color-golden-400)]">Minion disposal and training center</strong>.
+                The rules are real ten-pin bowling. The pins are live, captured Minions.
+                They are aware of this arrangement, and they have opinions about it.
+            </p>
+            <p class="mt-4 max-w-xl mx-auto text-[var(--fg-muted)] leading-relaxed italic text-sm">
+                Ten pins. All of them Minions. None of them happy.
+            </p>
+            <p class="mt-6 font-display text-base md:text-lg tracking-wide text-[var(--color-magenta-300)] italic">
+                &ldquo;Bowling Minions are trained professionals. Probably.&rdquo;
+            </p>
+            <p class="mt-1 text-[10px] tracking-[0.3em] text-[var(--fg-soft)] uppercase font-display">
+                Sign posted above Lane 1
+            </p>
+        </div>
+    </section>
+
+    {/* ============================================================
+        The basics — real bowling underneath
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">
+                The Basics
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-2 text-paper-glow">
+                Real bowling. Really.
+            </h2>
+            <p class="mt-4 max-w-2xl mx-auto text-[var(--fg-body)] text-sm leading-relaxed">
+                Underneath the chaos is honest ten-pin bowling: ten frames, strikes,
+                spares, proper tenth-frame bonus throws, and a maximum score of 300.
+                Aim across the lane, lock your power, ride the hook meter, and hope the
+                pins don't duck.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+            <div class="surface rounded-lg p-5">
+                <p class="font-display text-3xl text-[var(--color-golden-400)]">4</p>
+                <p class="mt-1 text-xs tracking-wider uppercase text-[var(--fg-soft)] font-display">Lanes</p>
+            </div>
+            <div class="surface rounded-lg p-5">
+                <p class="font-display text-3xl text-[var(--color-golden-400)]">6</p>
+                <p class="mt-1 text-xs tracking-wider uppercase text-[var(--fg-soft)] font-display">Players per lane</p>
+            </div>
+            <div class="surface rounded-lg p-5">
+                <p class="font-display text-3xl text-[var(--color-golden-400)]">10</p>
+                <p class="mt-1 text-xs tracking-wider uppercase text-[var(--fg-soft)] font-display">Frames of regret</p>
+            </div>
+            <div class="surface rounded-lg p-5">
+                <p class="font-display text-3xl text-[var(--color-golden-400)]">300</p>
+                <p class="mt-1 text-xs tracking-wider uppercase text-[var(--fg-soft)] font-display">Perfect game</p>
+            </div>
+        </div>
+
+        <p class="mt-5 text-center text-xs text-[var(--fg-soft)]">
+            Keyboard, gamepad, and touch supported. Spectators welcome — taunting encouraged.
+        </p>
+    </section>
+
+    {/* ============================================================
+        Two modes
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-golden-400)] uppercase">
+                Pick your poison
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Two modes. One apology letter to bowling.
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            {/* Classic */}
+            <article class="surface rounded-lg p-6 relative overflow-hidden">
+                <div class="absolute top-0 right-0 font-display text-7xl text-[var(--fg-primary)]/5 leading-none p-4 pointer-events-none">01</div>
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Classic Mode</p>
+                <h3 class="mt-2 font-display text-lg md:text-2xl">Just bowling. Sort of.</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed text-sm">
+                    Standard ten-pin rules, normal Minion pins, no abilities, no
+                    mutations, no surprises. The purest test of skill NOPAS offers.
+                </p>
+                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
+                    The Minions still flinch, taunt, cover their eyes, and occasionally
+                    try to sneak off the pin deck. That part is not configurable.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    For purists, league night, and settling arguments properly.
+                </p>
+            </article>
+
+            {/* Mayhem */}
+            <article class="surface rounded-lg p-6 relative overflow-hidden border border-[var(--color-magenta-500)]/20">
+                <div class="absolute top-0 right-0 font-display text-7xl text-[var(--fg-primary)]/5 leading-none p-4 pointer-events-none">02</div>
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Mayhem Mode</p>
+                <h3 class="mt-2 font-display text-lg md:text-2xl">Everything, everywhere, all at once.</h3>
+                <p class="mt-4 text-[var(--fg-body)] leading-relaxed text-sm">
+                    The featured NOPAS experience. Mutant Minion pins, a Build-a-Ball
+                    ability draft, announced lane mutations, Kingpin bounties, and
+                    mid-match bonus rounds — all layered on top of real scoring that
+                    never gets corrupted by the chaos.
+                </p>
+                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    Skill still wins. It just has to win louder.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Mayhem feature grid
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase">
+                Mayhem Mode
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                What could possibly go wrong.
+            </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <article class="surface rounded-lg p-6">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Mutant Minion Pins</p>
+                <h3 class="mt-2 font-display text-lg">The pins fight back. Passively.</h3>
+                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
+                    Balloon Minions drift. Shrunken Minions hide. Mega Minions refuse to
+                    fall. Rubber Minions ricochet, Magnetic Minions pull your ball off
+                    course, and the rare Golden-Pants Minion pays a bounty on the way down.
+                </p>
+                <p class="mt-3 text-[var(--fg-soft)] italic text-xs">
+                    Log every mutation you topple in the Minion Mugshot Collection.
+                </p>
+            </article>
+
+            <article class="surface rounded-lg p-6">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Build-a-Ball Draft</p>
+                <h3 class="mt-2 font-display text-lg">UPDF weapons research, misapplied.</h3>
+                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
+                    Draft two limited-use ball abilities per match — Starch Bomb
+                    shockwaves, Button Blaster shrapnel, the split-threading
+                    Shrinkinator, the unhinged Ballooninator, the target-seeking
+                    Tractor Ball, and more.
+                </p>
+                <p class="mt-3 text-[var(--fg-soft)] italic text-xs">
+                    Charge them with strikes and spares. Spend them wisely. Or don't.
+                </p>
+            </article>
+
+            <article class="surface rounded-lg p-6">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-chaos-400)] uppercase">Lane Mutation Events</p>
+                <h3 class="mt-2 font-display text-lg">The lane has moods.</h3>
+                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
+                    Announced frames where the lane itself misbehaves: Moon Pants
+                    Gravity, Disco Depantsing dance floors, Laundry Cyclone crosswinds,
+                    a slowly drifting pin deck, Pantsquakes, bank-shot Alien Geometry,
+                    and a Minion Union Strike, complete with protest signs.
+                </p>
+                <p class="mt-3 text-[var(--fg-soft)] italic text-xs">
+                    Always announced before your throw. Never an excuse.
+                </p>
+            </article>
+
+            <article class="surface rounded-lg p-6">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Kingpin Bounty</p>
+                <h3 class="mt-2 font-display text-lg">One Minion thinks he's in charge.</h3>
+                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
+                    Some frames crown one pin the Kingpin — crown, cape, or a
+                    &ldquo;Definitely Not the Kingpin&rdquo; sign. Drop him first throw
+                    to claim the bounty. Miss, and it grows and carries to the next
+                    player, who will absolutely steal it from you.
+                </p>
+                <p class="mt-3 text-[var(--fg-soft)] italic text-xs">
+                    Never changes your bowling score. Only your reputation.
+                </p>
+            </article>
+
+            <article class="surface rounded-lg p-6">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Bonus Rounds</p>
+                <h3 class="mt-2 font-display text-lg">Minion Panic, scheduled.</h3>
+                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
+                    Short mid-match interruptions: bowl down a Minion Stampede, stop a
+                    Golden-Pants runner in Protect the Pants, demolish an absurd Minion
+                    Pyramid, or team up to topple a giant Minion in Boss Bowl.
+                </p>
+                <p class="mt-3 text-[var(--fg-soft)] italic text-xs">
+                    Separate rewards. Your real score stays sacred.
+                </p>
+            </article>
+
+            <article class="surface rounded-lg p-6">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Between Turns</p>
+                <h3 class="mt-2 font-display text-lg">Waiting is also a game.</h3>
+                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
+                    Lane-side arcade mini-games against friends or the house while you
+                    wait your turn, a dedicated taunt zone, and full celebrations when
+                    someone strings a Turkey — three strikes, one very confused
+                    turkey-costumed Minion.
+                </p>
+                <p class="mt-3 text-[var(--fg-soft)] italic text-xs">
+                    A perfect game gets the Golden Pants spotlight. Earn it.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Screenshot gallery
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-golden-400)] uppercase">
+                Facility Photos
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                Postcards from the lanes.
+            </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <figure class="surface rounded-lg overflow-hidden">
+                <div class="aspect-[16/9] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={mutationRoll} alt="A bowling ball rolling down the lane toward orange Minion pins during a Mutation Frame" widths={[480, 720, 960]} sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <figcaption class="p-3 text-xs text-[var(--fg-soft)]">
+                    Frame 7, Mutation Frame active. Four of those pins are not normal.
+                </figcaption>
+            </figure>
+
+            <figure class="surface rounded-lg overflow-hidden">
+                <div class="aspect-[16/9] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={strike} alt="A giant glowing STRIKE celebration over the pin deck, with a Kingpin bounty claimed" widths={[480, 720, 960]} sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <figcaption class="p-3 text-xs text-[var(--fg-soft)]">
+                    Strike, Kingpin claimed, bounty collected. A very good throw.
+                </figcaption>
+            </figure>
+
+            <figure class="surface rounded-lg overflow-hidden">
+                <div class="aspect-[16/9] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={kingpinTumble} alt="Orange Minion pins tumbling mid-air next to a 'Definitely Not the Kingpin' sign" widths={[480, 720, 960]} sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <figcaption class="p-3 text-xs text-[var(--fg-soft)]">
+                    &ldquo;Definitely Not the Kingpin,&rdquo; moments before becoming definitely down.
+                </figcaption>
+            </figure>
+
+            <figure class="surface rounded-lg overflow-hidden">
+                <div class="aspect-[16/9] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={buildABall} alt="The Build-a-Ball draft screen offering Ballooninator, Tractor Ball, and Shrinkinator" widths={[480, 720, 960]} sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <figcaption class="p-3 text-xs text-[var(--fg-soft)]">
+                    The Build-a-Ball draft. The Ballooninator is &ldquo;completely sure it knows best.&rdquo;
+                </figcaption>
+            </figure>
+
+            <figure class="surface rounded-lg overflow-hidden">
+                <div class="aspect-[16/9] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={aimUi} alt="First-person bowling view with aim, power, and hook meters — the power meter maxes out at MAX PANTS" widths={[480, 720, 960]} sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <figcaption class="p-3 text-xs text-[var(--fg-soft)]">
+                    Aim, power, hook. The power meter tops out at MAX PANTS.
+                </figcaption>
+            </figure>
+
+            <figure class="surface rounded-lg overflow-hidden">
+                <div class="aspect-[16/9] overflow-hidden bg-[var(--bg-deep)]">
+                    <Image src={arcade} alt="Two retro arcade cabinets, Minion Kong and Minion Invaders, both reading INSERT PANTS" widths={[480, 720, 960]} sizes="(min-width: 1024px) 400px, (min-width: 640px) 45vw, 90vw" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+                <figcaption class="p-3 text-xs text-[var(--fg-soft)]">
+                    The between-turns arcade. Insert pants to play.
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Facility signage — flavor strip
+       ============================================================ */}
+    <section class="border-y border-[var(--color-golden-500)]/15 py-8 my-8 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-center font-display text-[10px] tracking-[0.4em] text-[var(--fg-soft)] uppercase mb-4">
+                Posted facility rules
+            </p>
+            <ul class="flex flex-wrap justify-center gap-x-10 gap-y-3 text-center text-[var(--fg-soft)] font-display text-xs tracking-wider uppercase">
+                <li>No depantsing past the foul line.</li>
+                <li class="text-[var(--color-golden-400)]/70">Rental shoes do not include emergency pants.</li>
+                <li>Minions may complain when struck.</li>
+                <li class="text-[var(--color-golden-400)]/70">Please return all balls and unauthorized trousers.</li>
+                <li>Definitely not a Minion intake chute.</li>
+            </ul>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Minion morale aside
+       ============================================================ */}
+    <section class="max-w-5xl mx-auto px-6 py-10">
+        <div class="surface rounded-lg overflow-hidden md:flex items-stretch">
+            <div class="md:w-2/5 relative bg-[var(--bg-deep)]">
+                <Image src={shrunkenPin} alt="A lone pale Shrunken Minion pin standing on the glowing pin deck" widths={[320, 480, 640]} sizes="(min-width: 768px) 400px, 90vw" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="p-6 md:w-3/5">
+                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">A note on Minion welfare</p>
+                <h2 class="mt-2 font-display text-xl md:text-2xl">They're fine.</h2>
+                <p class="mt-4 text-[var(--fg-body)] text-sm leading-relaxed">
+                    Before every throw, the pins fidget, wave, taunt you, cover their
+                    eyes, and occasionally attempt to sneak off the deck before being
+                    dragged back into formation. After every throw, the survivors are
+                    swept up by tractor beam and re-racked, unharmed and deeply
+                    inconvenienced.
+                </p>
+                <p class="mt-3 text-[var(--fg-soft)] italic text-sm leading-relaxed">
+                    The Collectors have filed a formal complaint. The UPDF filed it
+                    under &ldquo;fan mail.&rdquo;
+                </p>
+            </div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        CTA
+       ============================================================ */}
+    <section class="max-w-3xl mx-auto px-6 py-10 text-center">
+        <Image src={minionSolo} alt="" widths={[160, 240]} sizes="140px" class="mx-auto w-28 md:w-36 opacity-90" loading="lazy" />
+        <h2 class="mt-4 font-display text-2xl md:text-3xl text-paper-glow">
+            Bowl a few frames while Earth burns.
+        </h2>
+        <p class="mt-3 text-[var(--fg-muted)] text-sm">
+            Minion Panic Bowling lives in the NOPAS lobby — roll a match while you
+            wait for the next invasion, then go save some pants.
+        </p>
+        <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="/nopas/" class="font-display text-sm tracking-wider px-5 py-2.5 bg-[var(--color-golden-500)] text-[var(--color-void-900)] rounded-md hover:brightness-110 transition">
+                Back to the game →
+            </a>
+            <a href="/nopas/defenders/" class="font-display text-sm tracking-wider px-5 py-2.5 border border-[var(--border-strong)] text-[var(--fg-strong)] rounded-md hover:bg-[var(--surface-hover)] transition">
+                Meet the Defenders
+            </a>
+        </div>
+    </section>
+</BaseLayout>

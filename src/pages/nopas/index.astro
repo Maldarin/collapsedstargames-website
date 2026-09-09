@@ -5,6 +5,8 @@ import { Image } from "astro:assets";
 import gameLogoMain from "../../assets/brand/game_title_logo-main.png";
 import battleLong from "../../assets/battle/long_battle.png";
 import battle2 from "../../assets/battle/2v2.png";
+import minionCharge from "../../assets/classes/Minions/Minion_charge.png";
+import bowlingStrike from "../../assets/bowling/strike.png";
 ---
 
 <BaseLayout
@@ -153,6 +155,66 @@ import battle2 from "../../assets/battle/2v2.png";
                     mothership down.
                 </p>
             </article>
+        </div>
+    </section>
+
+    {/* ============================================================
+        More ways to play — lobby attractions & upcoming modes
+       ============================================================ */}
+    <section class="max-w-7xl mx-auto px-6 py-10">
+        <div class="text-center mb-6">
+            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-golden-400)] uppercase">
+                More ways to play
+            </p>
+            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
+                The invasion is only the beginning.
+            </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            {/* Minion Panic Bowling */}
+            <a href="/nopas/bowling/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
+                <div class="relative aspect-[16/9] overflow-hidden">
+                    <Image src={bowlingStrike} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)] via-transparent to-transparent"></div>
+                </div>
+                <div class="p-6">
+                    <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Lobby Attraction</p>
+                    <h3 class="mt-2 font-display text-lg md:text-3xl">Minion Panic Bowling</h3>
+                    <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                        Real ten-pin bowling where every pin is a live, complaining
+                        Minion. Classic Mode for purists — Mayhem Mode for mutant pins,
+                        ball abilities, lane mutations, Kingpin bounties, and bonus
+                        rounds.
+                    </p>
+                    <p class="mt-6 text-sm text-[var(--color-golden-400)] font-display tracking-wide group-hover:translate-x-1 transition-transform">
+                        Step up to the lane →
+                    </p>
+                </div>
+            </a>
+
+            {/* Minion Survivors — in development */}
+            <div class="block surface rounded-lg overflow-hidden">
+                <div class="relative aspect-[16/9] overflow-hidden">
+                    <Image src={minionCharge} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-40 saturate-50" loading="lazy" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)] via-transparent to-transparent"></div>
+                    <p class="absolute top-4 right-4 font-display text-[10px] tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border border-[var(--color-chaos-400)]/40 text-[var(--color-chaos-400)] bg-[var(--bg-base)]/70 backdrop-blur-sm">
+                        In development
+                    </p>
+                </div>
+                <div class="p-6">
+                    <p class="font-display text-xs tracking-[0.3em] text-[var(--color-chaos-400)] uppercase">Coming to the lobby</p>
+                    <h3 class="mt-2 font-display text-lg md:text-3xl">Minion Survivors</h3>
+                    <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
+                        The Minions are coming in waves, and this time nobody is
+                        stopping to bowl them. A survivors-style mode, currently on the
+                        UPDF drawing board.
+                    </p>
+                    <p class="mt-6 text-sm text-[var(--fg-soft)] font-display tracking-wide">
+                        Details classified. For now.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
