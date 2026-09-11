@@ -1,0 +1,88 @@
+.bowling-page .bowling-hero { display:grid; grid-template-columns: .9fr 1.2fr; gap:36px; align-items:center; background:#211646 radial-gradient(circle,#ffffff10 1px,transparent 1.5px); background-size:9px 9px; color:#fff; }
+.bowling-hero .overview-back { margin-bottom:23px; }
+.bowling-hero .overview-eyebrow { color:#cbb7eb; }
+.bowling-hero h1 { font-size:clamp(42px,5vw,72px); margin:13px 0 5px; line-height:1.08; }
+.bowling-hero h1 span { color:#ffdb56; }
+.bowling-subtitle { font-size:12px; color:#cebcf5; letter-spacing:1px; }
+.bowling-lede { font-size:20px; line-height:1.5; margin:22px 0; }
+.bowling-actions { display:flex; gap:13px; flex-wrap:wrap; }
+.bowling-hero-picture { border:3px solid #131326; box-shadow:7px 7px 0 #100b20; transform:rotate(1.5deg); background:#171329; }
+.bowling-hero-picture img { width:100%; height:auto; }
+.bowling-hero-picture figcaption { font-size:10px; padding:10px 13px; color:#ded3ef; }
+.bowling-stats { background:#ffdb56; border-block:3px solid #131326; display:grid; grid-template-columns:repeat(4,1fr); padding:22px max(24px,calc((100vw - 1240px)/2)); gap:20px; text-align:center; }
+.bowling-stats strong { display:block; font-family:var(--font-display); font-size:35px; line-height:1.3; }
+.bowling-stats span { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px; }
+.bowling-basics-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
+.bowling-basics-grid p { font-size:15px; line-height:1.7; margin-bottom:18px; }
+.bowling-basics-grid figure { border:2px solid #131326; background:#eee7f8; }
+.bowling-basics-grid figure img { width:100%; height:auto; }
+.bowling-basics-grid figcaption { font-size:11px; padding:12px; }
+.bowling-steps { list-style:none; counter-reset:throw; display:grid; gap:12px; padding-top:4px; }
+.bowling-steps li { counter-increment:throw; display:grid; grid-template-columns:34px 75px 1fr; align-items:center; gap:11px; font-size:13px; }
+.bowling-steps li::before { content:counter(throw); font-family:var(--font-display); background:#ffdb56; border:2px solid #131326; text-align:center; padding:4px; }
+.bowling-steps strong { font-family:var(--font-display); font-size:14px; }
+.bowling-modes { background:#eee7f8; border-block:3px solid #131326; }
+.bowling-mode-grid { display:grid; grid-template-columns:1fr 1fr; gap:25px; }
+.bowling-mode-grid article { padding:30px; border:3px solid #131326; box-shadow:6px 6px 0 #131326; }
+.bowling-classic { background:#74caff; }
+.bowling-mayhem { background:#ffda56; }
+.bowling-mode-grid h3 { font-size:30px; margin:12px 0 20px; }
+.bowling-mode-grid p:not(.overview-eyebrow) { font-size:15px; line-height:1.7; margin-bottom:18px; }
+.bowling-gag { font-style:italic; }
+.bowling-feature-grid { display:grid; grid-template-columns:1fr 1fr; align-items:start; gap:17px; }
+.bowling-feature { border:2px solid #131326; background:#fffdf5; }
+.bowling-feature summary { padding:22px 50px 22px 22px; position:relative; cursor:pointer; list-style:none; min-height:114px; }
+.bowling-feature summary::-webkit-details-marker { display:none; }
+.bowling-feature summary:hover { background:#ffdb5633; }
+.bowling-feature summary .overview-eyebrow { display:block; color:#64418b; margin-bottom:8px; }
+.bowling-feature summary strong { display:block; font-family:var(--font-display); font-size:17px; line-height:1.4; }
+.bowling-disclosure { position:absolute; top:38px; right:20px; font-size:27px; line-height:1; transition:transform .16s; }
+.bowling-feature[open] .bowling-disclosure { transform:rotate(45deg); }
+.bowling-feature[open] summary { border-bottom:1px solid #13132630; background:#ffdb5633; }
+.bowling-feature > div { padding:0 22px 20px; }
+.bowling-feature > div p { font-size:14px; line-height:1.7; margin-top:16px; }
+.bowling-feature summary:focus-visible { outline:4px solid #fa3fa1; outline-offset:3px; }
+.bowling-gallery { background:#171329; color:#fff; border-block:3px solid #131326; }
+.bowling-gallery .overview-heading .overview-eyebrow { color:#cbb7eb; }
+.bowling-gallery-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:23px; }
+.bowling-gallery-grid figure { border:2px solid #756499; background:#231b37; }
+.bowling-gallery-grid a { display:block; position:relative; overflow:hidden; }
+.bowling-gallery-grid img { width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; transition:transform .2s; }
+.bowling-gallery-grid a:hover img { transform:scale(1.035); }
+.bowling-gallery-grid a > span { position:absolute; right:10px; bottom:10px; background:#ffdb56; color:#131326; border:2px solid #131326; width:30px; height:30px; text-align:center; font-size:20px; }
+.bowling-gallery-grid figcaption { padding:17px; }
+.bowling-gallery-grid figcaption strong { display:block; font-family:var(--font-display); font-size:15px; margin-bottom:8px; }
+.bowling-gallery-grid figcaption > span { font-size:12px; line-height:1.6; color:#ded2ee; }
+.bowling-welfare { display:grid; grid-template-columns:.85fr 1.15fr; gap:35px; align-items:center; }
+.bowling-welfare figure { border:2px solid #131326; background:#eee7f8; }
+.bowling-welfare img { width:100%; height:auto; }
+.bowling-welfare figcaption { padding:9px 12px; font-size:10px; }
+.bowling-welfare h2 { margin:10px 0 20px; }
+.bowling-welfare p:not(.overview-eyebrow) { font-size:15px; line-height:1.7; margin-bottom:16px; }
+.bowling-rules { text-align:center; padding:25px max(24px,calc((100vw - 1000px)/2)) 45px; }
+.bowling-rules > p:not(.overview-eyebrow) { font-size:12px; line-height:1.9; margin-top:12px; }
+.bowling-rules blockquote { font-family:var(--font-display); font-size:19px; line-height:1.5; margin-top:27px; }
+.bowling-rules cite { display:block; font-family:var(--font-body); font-size:10px; font-style:normal; margin-top:10px; letter-spacing:1px; }
+.bowling-universe { display:grid; grid-template-columns:1.5fr 1fr; gap:35px; background:#a9ef79; border-top:3px solid #131326; align-items:center; }
+.bowling-universe h2 { margin:12px 0 17px; }
+.bowling-universe p:not(.overview-eyebrow) { max-width:680px; font-size:15px; line-height:1.7; }
+.bowling-universe > div:last-child { display:flex; align-items:center; flex-direction:column; gap:20px; }
+@media(max-width:1000px) { .bowling-page .bowling-hero { gap:24px; grid-template-columns:1fr 1fr; }.bowling-hero h1 { font-size:43px; }.bowling-gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) {
+  .bowling-page .bowling-hero { grid-template-columns:1fr; gap:32px; }
+  .bowling-hero h1 { font-size:52px; }
+  .bowling-hero-picture { transform:none; }
+  .bowling-hero-picture figcaption { font-size:9px; }
+  .bowling-lede { font-size:18px; }
+  .bowling-stats { grid-template-columns:repeat(2,1fr); gap:21px; }
+  .bowling-stats strong { font-size:31px; }
+  .bowling-stats span { font-size:10px; }
+  .bowling-basics-grid,.bowling-mode-grid,.bowling-feature-grid,.bowling-welfare,.bowling-universe { grid-template-columns:1fr; }
+  .bowling-mode-grid article { padding:24px; }
+  .bowling-mode-grid h3 { font-size:27px; }
+  .bowling-steps li { grid-template-columns:30px 65px 1fr; gap:9px; font-size:12px; }
+  .bowling-feature summary { min-height:110px; }
+  .bowling-gallery-grid { grid-template-columns:1fr; }
+  .bowling-welfare { gap:24px; }
+  .bowling-universe > div:last-child { align-items:start; }
+}

@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import horde from "../../../assets/survivors/horde.png";
+import officer from "../../../assets/classes/SecurityOfficer/SecurityOfficer.png";
+import minion from "../../../assets/classes/Minions/Minion_solo.png";
+import "../../../styles/nopas-overview.css";
+import "../../../styles/nopas-survivors.css";
+const upgrades = [
+  { name: "Double-Stitched Rounds", category: "PRIMARY WEAPON", text: "Put more punch behind your primary weapon damage.", color: "#ffda56" },
+  { name: "Overstarched Payload", category: "EXPLOSIVE BACKUP", text: "Boost splash damage and splash radius for the Bobbin Bomber and Starch Bomb.", color: "#74caff" },
+  { name: "Second Wind", category: "STAMINA", text: "More stamina and faster stamina recovery. The Minions are not taking a breather.", color: "#a9ef79" },
+  { name: "Greased Ankles", category: "MOVEMENT", text: "Move faster. Give that approaching crowd a little more work to do.", color: "#dfb6ff" },
+];
+---
+<BaseLayout title="NOPAS Survivors — Survive the swarm" description="Fight the swarm in NOPAS Survivors, a co-op third-person roguelite. Discover class roles, Pants Scrap upgrades, the Laundry Line Draft and upcoming beta events.">
+  <div class="nopas-overview survivors-page">
+    <section class="overview-pad survivors-hero" aria-labelledby="survivors-title">
+      <div><a class="overview-back" href="/nopas/#modes">← All three NOPAS modes</a><p class="overview-eyebrow">SAME UNIVERSE. MUCH BIGGER MINION PROBLEM.</p><h1 id="survivors-title">NOPAS<br/><span>SURVIVORS</span></h1><p class="survivors-lede">The whole neighborhood showed up.<br/>Unfortunately, it's Minions.</p><div class="survivors-actions"><a class="overview-button survivors-green" href="#the-run">Get the survival briefing ↓</a><a class="overview-button" href="#upgrades">Build your run ↓</a></div><p class="overview-status"><span></span>Beta coming soon <b>/</b> Coming to Roblox</p></div>
+      <figure class="survivors-hero-image"><Image src={horde} alt="A defender faces a huge crowd of orange Minions across a suburban arena" widths={[640,960,1280]} sizes="(min-width: 800px) 52vw, 100vw" loading="eager"/><figcaption>Development screenshot · Things may change before beta.</figcaption></figure>
+    </section>
+    <div class="survivors-strip"><span>SOLO OR WITH A SQUAD</span><b aria-hidden="true">✦</b><span>OUTBUILD THE SWARM</span><b aria-hidden="true">✦</b><span>BUILD AS YOU GO</span></div>
+
+    <section id="the-run" class="overview-pad" aria-labelledby="run-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">YOUR SURVIVAL BRIEFING</p><h2 id="run-title">Move. Shoot. Scrap. Repeat.</h2></div><p>Third-person roguelite survival in the NOPAS universe.<br/>A fresh build for every run.</p></div>
+      <div class="survivors-loop-grid">
+        <article><span class="survivors-step">01</span><h3>Keep moving.</h3><p>The Minions close in. Aim your shots, make room to move, and watch your health and stamina. Standing still is a very generous offer.</p></article>
+        <article><span class="survivors-step">02</span><h3>Grab the scrap.</h3><p>Defeated Minions drop Pants Scrap. Pick it up to level up during the run and choose an upgrade card.</p></article>
+        <article><span class="survivors-step">03</span><h3>Make a build.</h3><p>Stack upgrades as the pressure rises. During the longer breaks, the Laundry Line Draft gives you another chance to shape your loadout.</p></article>
+      </div>
+    </section>
+
+    <section id="events" class="overview-pad survivors-events" aria-labelledby="events-title">
+<div class="overview-heading"><div><p class="overview-eyebrow">COMING IN THE BETA</p><h2 id="events-title">The swarm has company.</h2></div><p>Three events bring more trouble to your survival run. Consider this your advance warning.</p></div>
+<div class="survivors-event-grid"><article><span aria-hidden="true">⚡</span><p class="overview-eyebrow">HOLD THE LINE</p><h3>Generator Defense</h3><p>A generator to defend. A crowd with other ideas.</p></article><article><span aria-hidden="true">♥</span><p class="overview-eyebrow">LOOK OUT FOR THE LOCALS</p><h3>Protect the Citizens</h3><p>The neighborhood needs more than a good hiding spot.</p></article><article><span aria-hidden="true">✦</span><p class="overview-eyebrow">WATCH THE SKIES</p><h3>UFO Attacks</h3><p>As if the trouble at ground level wasn't enough.</p></article></div></section>
+    <section id="upgrades" class="overview-pad survivors-upgrades" aria-labelledby="upgrades-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">BUILD YOUR WAY THROUGH</p><h2 id="upgrades-title">Laundry with side effects.</h2></div><p>Bigger hits. Better movement. New combinations.<br/>Shape your build one choice at a time.</p></div>
+      <div class="survivors-upgrade-grid">{upgrades.map(upgrade=><article style={`--upgrade:${upgrade.color}`}><p class="overview-eyebrow">{upgrade.category}</p><h3>{upgrade.name}</h3><p>{upgrade.text}</p></article>)}</div>
+      <p class="survivors-draft-note">The Laundry Line Draft mixes performance and luck. Every player gets their own pick, so you can focus on your build instead of racing your friends to the good stuff.</p>
+    </section>
+
+    <section class="overview-pad survivors-squad" aria-labelledby="squad-title">
+      <div class="survivors-squad-copy"><p class="overview-eyebrow">ONE SIDE. A WHOLE LOT OF MINIONS.</p><h2 id="squad-title">Keep your squad standing.</h2><p>Take on the run solo or with a squad. In co-op, get close to a knocked teammate and hold the revive action to help them back into the fight.</p><p>The swarm doesn't stop while you help. Make space, watch each other's backs, and don't let the whole squad go down.</p><p class="survivors-gag">Teamwork: because “every Minion for themselves” is their strategy.</p></div>
+      <figure><Image src={minion} alt="Orange alien Minion character artwork" widths={[360,600]} sizes="(min-width: 800px) 280px, 65vw" loading="lazy"/><figcaption>Character artwork · Small alien. Large attendance.</figcaption></figure>
+    </section>
+
+    <section id="classes" class="overview-pad survivors-kit" aria-labelledby="kit-title"><figure><Image src={officer} alt="Security Officer in UPDF armor holding a weapon, character artwork" widths={[360,600]} sizes="(min-width: 800px) 280px, 65vw" loading="lazy"/><figcaption>Security Officer · Character artwork</figcaption></figure><div><p class="overview-eyebrow">FIND YOUR PLACE IN THE FIGHT</p><h2 id="kit-title">Different strengths.<br/>Same pants emergency.</h2><p>Class roles give your build a starting point. Hold a lane, control the crowd, support your friends, or keep the biggest threats in your sights.</p><dl class="survivors-roles"><div><dt>Security Officer</dt><dd>The anchor. Hold the line and make space for the squad.</dd></div><div><dt>Tailor Engineer</dt><dd>Control territory with turrets and dispensers.</dd></div><div><dt>Dr. Peepers</dt><dd>Keep teammates in the fight with healing and support.</dd></div><div><dt>Athlete</dt><dd>Stay mobile, lead the swarm around, and scoop up scrap.</dd></div><div><dt>Needle Eye</dt><dd>Bring precision to the fight against elites and bosses.</dd></div></dl></div></section>
+<section class="overview-pad survivors-horizon" aria-labelledby="horizon-title"><div class="overview-heading"><div><p class="overview-eyebrow">BUILT FOR ANOTHER RUN</p><h2 id="horizon-title">The trouble keeps growing.</h2></div><p>Escalating enemies, bosses, and different arenas give your next build something new to handle.</p></div><div class="survivors-horizon-grid"><article><h3>Find the combination.</h3><p>Mix shared upgrades with class-specific choices. The wider design brings orbitals, auras, turrets, drones and chain effects into the chaos, with synergies to discover as you play.</p></article><article><h3>Bring something home.</h3><p>Pants Scrap powers your build during a run. Lint is the longer game: persistent progression and unlocks that give you more to work toward between runs.</p></article></div></section>
+    <section class="overview-pad survivors-return"><div><p class="overview-eyebrow">ONE RIDICULOUS UNIVERSE. THREE WAYS TO PLAY.</p><h2>Same Minions.<br/>Different bad decisions.</h2><p>Match, NOPAS Bowling, and NOPAS Survivors are planned for the upcoming beta. Timing and availability will be announced.</p></div><nav aria-label="Explore the NOPAS modes"><a class="overview-button" href="/nopas/#match">Explore Match ↗</a><a class="overview-button" href="/nopas/bowling/">Explore Bowling ↗</a><a class="overview-link" href="/nopas/#modes">Back to all three modes ↑</a></nav></section>
+  </div>
+</BaseLayout>

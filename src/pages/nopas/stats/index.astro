@@ -1,4 +1,6 @@
 ---
+import "../../../styles/nopas-utilities.css";
+
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 /*
@@ -33,21 +35,11 @@ const METRICS = [
     title="Player Stats"
     description="Career stats and leaderboards for Not Our Pants, Alien Swine! Look up any player's matches, eliminations, pants stolen, pants lost, XP and coins earned."
 >
+<div class="utility-pages stats-page">
     {/* ============================================================
         Hero
        ============================================================ */}
-    <section class="relative overflow-hidden">
-        <div class="absolute inset-0 -z-10 hero-glow"></div>
-        <div class="max-w-4xl mx-auto px-6 pt-14 pb-10 text-center">
-            <h1 class="font-display text-4xl md:text-6xl text-comic-stroke leading-tight">
-                PLAYER STATS
-            </h1>
-            <p class="mt-6 text-base md:text-lg text-[var(--fg-body)] leading-relaxed max-w-2xl mx-auto">
-                Every match is recorded. Look up a career, or see who's on top &mdash;
-                and who's lost the most pants.
-            </p>
-        </div>
-    </section>
+<section class="utility-hero"><a href="/nopas/">← NOPAS universe</a><p class="utility-eyebrow">THE NUMBERS HAVE WITNESSES.</p><h1>PLAYER <span>STATS</span></h1><p>Look up a career, or see who's on top —<br/>and who's lost the most pants.</p></section><div class="stats-panels">
 
     {/* ============================================================
         Player lookup
@@ -116,6 +108,7 @@ const METRICS = [
         </p>
     </section>
 
+</div><nav class="utility-nav" aria-label="Explore NOPAS"><a href="/nopas/">Explore all three modes ↗</a><a href="/nopas/defenders/">Meet the Defenders ↗</a><a href="/nopas/collectors/">Meet the Collectors ↗</a></nav></div>
     <script is:inline>
         (function () {
             var root = document.querySelector("[data-stats-api]");

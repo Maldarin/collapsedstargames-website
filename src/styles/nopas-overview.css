@@ -1,0 +1,109 @@
+.nopas-overview {
+  --overview-ink: #131326;
+  color: var(--overview-ink);
+  background: #fff9e9;
+  overflow: clip;
+}
+.nopas-overview :is(h1,h2,h3,.overview-button) { font-family: var(--font-display); }
+.nopas-overview h1 { font-size: clamp(26px, 3.1vw, 43px); line-height: 1.2; }
+.nopas-overview h2 { font-size: clamp(24px, 2.8vw, 37px); line-height: 1.2; }
+.nopas-overview h3 { font-size: 24px; line-height: 1.2; }
+.overview-pad { padding: 58px max(24px, calc((100vw - 1240px) / 2)); }
+.nopas-overview section[id] { scroll-margin-top: 94px; }
+.overview-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; line-height: 1.6; }
+.overview-intro { display: grid; grid-template-columns: 1.6fr 1fr; gap: 45px; align-items: center; color: #fff; background: #211646 radial-gradient(circle, #ffffff10 1px, transparent 1.5px); background-size: 9px 9px; border-bottom: 4px solid var(--overview-ink); }
+.overview-back { display: inline-block; font-size: 12px; color: #e0d1f8; margin-bottom: 25px; text-decoration: underline; text-underline-offset: 4px; }
+.overview-intro .overview-eyebrow { color: #cbb7eb; margin-bottom: 12px; }
+.overview-intro h1 span { color: #ffdb56; }
+.overview-lede { color: #e8ddf8; font-size: 16px; line-height: 1.65; margin: 19px 0 22px; }
+.overview-logo { width: 370px; height: auto; max-width: 100%; justify-self: center; filter: drop-shadow(0 10px 24px #100c29); }
+.overview-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 10px; padding: 12px 17px; font-size: 11px; line-height: 1.5; background: #fff9e9; color: var(--overview-ink); border: 2px solid var(--overview-ink); box-shadow: 4px 4px 0 var(--overview-ink); transition: transform .16s, box-shadow .16s; }
+.overview-button:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--overview-ink); }
+.overview-yellow { background: #ffdb56; }
+.overview-status { display: flex; align-items: center; gap: 9px; color: #dfd0f3; font-size: 11px; margin-top: 23px; }
+.overview-status span { width: 7px; height: 7px; border-radius: 50%; background: #a9ef79; }
+.overview-status b { font-weight: 400; color: #9f89bb; margin-inline: 3px; }
+.overview-heading { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 27px; }
+.overview-heading .overview-eyebrow { color: #64418b; margin-bottom: 10px; }
+.overview-heading > p { font-size: 13px; line-height: 1.6; max-width: 310px; }
+.overview-mode-grid, .overview-video-grid, .overview-phase-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.overview-mode { display: flex; flex-direction: column; background: var(--mode); border: 3px solid var(--overview-ink); box-shadow: 6px 6px 0 var(--overview-ink); }
+.overview-mode-image { position: relative; aspect-ratio: 16/9; border-bottom: 3px solid var(--overview-ink); overflow: hidden; }
+.overview-mode-image img { width: 100%; height: 100%; object-fit: cover; }
+.overview-media-label { position: absolute; bottom: 8px; left: 8px; background: #131326dc; padding: 3px 6px; color: #fff; font-size: 9px; }
+.overview-number { position: absolute; top: 10px; right: 10px; background: var(--mode); font-family: var(--font-display); font-size: 21px; border: 2px solid var(--overview-ink); padding: 3px 9px; transform: rotate(5deg); }
+.overview-mode-copy { padding: 22px; flex: 1; display: flex; flex-direction: column; align-items: start; }
+.overview-mode-copy .overview-eyebrow { font-size: 9px; letter-spacing: 1px; }
+.overview-mode h3 { margin: 10px 0 14px; }
+.overview-mode-copy > p:not(.overview-eyebrow):not(.overview-beta) { font-size: 15px; line-height: 1.6; min-height: 72px; margin-bottom: 18px; }
+.overview-mode-copy .overview-beta { font-size: 11px; font-weight: 700; margin: auto 0 15px; }
+.overview-mode-copy .overview-button { width: 100%; }
+.overview-gameplay { background: #eee7f8; border-block: 3px solid var(--overview-ink); }
+.overview-video-grid article { border: 2px solid var(--overview-ink); border-radius: 0; background: #fff9e9; }
+.overview-video-grid article p { color: var(--overview-ink); font-size: 13px; }
+.overview-link { display: inline-block; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 5px; line-height: 1.6; }
+.overview-gameplay > .overview-link { margin-top: 23px; }
+.overview-section-intro { max-width: 800px; font-size: 16px; line-height: 1.7; margin: -5px 0 27px; }
+.overview-phase { padding: 25px; border: 2px solid var(--overview-ink); background: #e5f4ff; }
+.overview-phase .overview-eyebrow { color: #305075; }
+.overview-phase h3 { margin: 8px 0 18px; }
+.overview-phase p:not(.overview-eyebrow) { font-size: 14px; line-height: 1.7; margin-top: 14px; }
+.overview-gag { font-style: italic; }
+.overview-phase .overview-gag { border-top: 1px solid #13132633; padding-top: 14px; }
+.overview-extra-modes { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; padding-top: 0; }
+.overview-detail { padding: 30px; border: 3px solid var(--overview-ink); box-shadow: 6px 6px 0 var(--overview-ink); }
+.overview-detail h2 { font-size: 29px; margin: 12px 0 20px; }
+.overview-detail > p:not(.overview-eyebrow) { font-size: 15px; line-height: 1.7; margin-bottom: 20px; }
+.overview-detail .overview-link { min-height: 48px; display: inline-flex; align-items: center; }
+.overview-bowling { background: #ffda56; }
+.overview-survivors { background: #a9ef79; }
+.overview-factions { color: #fff; background: #171329; border-block: 3px solid var(--overview-ink); }
+.overview-factions .overview-heading .overview-eyebrow { color: #cbb7eb; }
+.overview-faction-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+.overview-faction { display: grid; grid-template-columns: .85fr 1fr; border: 2px solid #756499; background: #211c37; overflow: hidden; transition: border-color .16s; }
+.overview-faction:hover { border-color: #cbb7eb; }
+.overview-faction img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+.overview-faction > div { padding: 24px; }
+.overview-faction .overview-eyebrow { color: #b6ef85; }
+.overview-faction h3 { font-size: 23px; margin: 10px 0 18px; }
+.overview-faction p:not(.overview-eyebrow) { font-size: 14px; line-height: 1.65; color: #ded4ee; margin-bottom: 20px; }
+.overview-art-note { font-size: 10px; color: #b8abc9; margin-top: 13px; }
+.overview-factions blockquote { font-family: var(--font-display); text-align: center; font-size: 20px; line-height: 1.5; margin: 42px auto 0; color: #d3b9ff; }
+.overview-factions cite { display: block; font-family: var(--font-body); font-style: normal; font-size: 10px; letter-spacing: 2px; color: #d8cfe5; margin-top: 13px; }
+.overview-contact { background: #ffdb56; display: flex; justify-content: space-between; gap: 30px; align-items: center; }
+.overview-contact h2 { font-size: 28px; margin-top: 10px; }
+.overview-contact .overview-button { flex-shrink: 0; }
+.nopas-overview :is(a,button):focus-visible { outline: 4px solid #fa3fa1; outline-offset: 5px; }
+@media(max-width:1100px) {
+  .overview-intro { gap: 22px; }
+  .overview-mode-copy { padding: 18px; }
+  .overview-mode h3 { font-size: 20px; }
+  .overview-faction { grid-template-columns: 1fr; }
+  .overview-faction img { height: 270px; object-fit: contain; background: #100e20; }
+}
+@media(max-width:760px) {
+  .overview-pad { padding: 38px 22px; }
+  .overview-intro { grid-template-columns: 1fr; gap: 20px; }
+  .overview-intro > div { order: 2; }
+  .overview-logo { width: 230px; order: 1; }
+  .overview-intro h1 { font-size: 27px; }
+  .overview-back { margin-bottom: 18px; }
+  .overview-lede { font-size: 15px; }
+  .overview-heading { display: block; }
+  .overview-heading > p, .overview-heading > a { margin-top: 15px; }
+  .overview-mode-grid, .overview-video-grid, .overview-phase-grid, .overview-extra-modes, .overview-faction-grid { grid-template-columns: 1fr; }
+  .overview-mode-copy { padding: 22px; }
+  .overview-mode h3 { font-size: 26px; }
+  .overview-mode-copy > p:not(.overview-eyebrow):not(.overview-beta) { margin-bottom: 19px; }
+  .overview-extra-modes { padding-top: 0; }
+  .overview-detail { padding: 24px; }
+  .overview-detail h2 { font-size: 26px; }
+  .overview-faction { grid-template-columns: 1fr; }
+  .overview-faction img { height: 300px; }
+  .overview-faction h3 { font-size: 25px; }
+  .overview-factions blockquote { font-size: 17px; }
+  .overview-contact { display: block; }
+  .overview-contact h2 { font-size: 26px; }
+  .overview-contact .overview-button { margin-top: 23px; }
+}
+@media(prefers-reduced-motion:reduce) { .nopas-overview * { transition: none !important; } }

@@ -1,0 +1,46 @@
+import { chromium } from 'playwright';
+import { mkdir } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+const out=process.env.HOMEPAGE_SCREENSHOT_DIR || join(tmpdir(),'nopas-homepage-review');
+await mkdir(out,{recursive:true});
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('http://127.0.0.1:4321/',{waitUntil:'networkidle'});
+await page.evaluate(()=>document.fonts.ready);
+assert.equal(await page.locator("video").count(),0, "Rejected local development clip must not be promoted");
+await page.evaluate(()=>scrollTo(0,0)); await page.screenshot({path:out+'/homepage-desktop.png',fullPage:true,style:'astro-dev-toolbar { display:none!important }'}); await page.screenshot({path:out+'/homepage-desktop-hero.png',style:'astro-dev-toolbar { display:none!important }'});
+console.log('desktop',await page.locator('.mode-card').evaluateAll(es=>es.map(e=>({width:e.clientWidth,height:e.clientHeight}))), 'overflow',await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth));
+const cards=await page.locator('.mode-card').evaluateAll(es=>es.map(e=>({width:e.clientWidth,height:e.clientHeight})));
+assert.equal(cards.length,3);
+assert.ok(cards.every(c=>c.width===cards[0].width && c.height===cards[0].height));
+assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+await page.setViewportSize({width:390,height:844});
+await page.evaluate(()=>scrollTo(0,0)); await page.screenshot({path:out+'/homepage-mobile.png',fullPage:true,style:'astro-dev-toolbar { display:none!important }'}); await page.screenshot({path:out+'/homepage-mobile-hero.png',style:'astro-dev-toolbar { display:none!important }'});
+console.log('mobile overflow',await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth));
+assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+await page.getByRole('button',{name:'Open menu',exact:true}).click();
+console.log('mobile menu',await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'));
+assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');
+await page.getByRole('button',{name:'Close menu',exact:true}).click();
+await page.locator('.hero-actions a').first().click();
+console.log('gameplay anchor',new URL(page.url()).hash);
+assert.equal(new URL(page.url()).hash,'#gameplay');
+
+await page.route('**/www.youtube-nocookie.com/**',r=>r.fulfill({body:'video embed verified'}));
+await page.locator('.video-facade').first().click();
+console.log('embed',await page.locator('iframe').getAttribute('src'));
+assert.match(await page.locator('iframe').getAttribute('src'),/youtube-nocookie.com\/embed\/kSqdf0DlD8s/);
+await page.emulateMedia({reducedMotion:'reduce'});await page.reload({waitUntil:'networkidle'});
+assert.equal(await page.locator("iframe").count(),0);
+for(const width of [320,768,1024]) {
+ await page.setViewportSize({width,height:900});
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`overflow at ${width}`);
+}
+await page.locator('#theme-toggle').click();
+assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+assert.deepEqual(errors,[]);
+console.log('All homepage checks passed. Screenshots:',out);
+await browser.close();

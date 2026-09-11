@@ -1,15 +1,15 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import battleLong from "../../assets/battle/long_battle.png";
+import "../../styles/nopas-lore.css";
 import loreHero from "../../assets/lore/lore-hero-they-came-for-pants.png";
-import loreUpdfFounded from "../../assets/lore/lore-updf-founded.png";
+import loreUpdfFounded from "../../assets/lore/lore-updf-founded-v2.png";
 import loreUpdfMotto from "../../assets/lore/lore-updf-motto.png";
 import loreSetupPhase from "../../assets/lore/lore-setup-phase.png";
 import loreInvasionBegins from "../../assets/lore/lore-invasion-begins.png";
 import loreCollectorsGoal from "../../assets/lore/lore-collectors-goal.png";
 import loreFinalStandFactory from "../../assets/lore/lore-final-stand-factory.png";
-import loreKnowYourEnemy from "../../assets/lore/lore-know-your-enemy.png";
+import minion from "../../assets/classes/Minions/Minion_solo.png";
 import loreCitizenSafetyTips from "../../assets/lore/lore-citizen-safety-tips.png";
 import lorePantsAreImportant from "../../assets/lore/lore-pants-are-important.png";
 import loreJoinUpdf from "../../assets/lore/lore-join-updf.png";
@@ -55,59 +55,50 @@ const glossary = [
     title="The Pants War — Lore"
     description="The full history of the alien invasion no one saw coming, the local force nobody trained for, and the cosmic resource humanity didn't know was valuable until we accidentally showed someone."
 >
+<div class="lore-page" id="lore-top">
     {/* ============================================================
         Hero
        ============================================================ */}
-    <section class="relative overflow-hidden border-b border-[var(--border-subtle)]">
-        <div class="absolute inset-0 -z-10 opacity-15 dark-only-backdrop">
-            <Image src={battleLong} alt="" class="w-full h-full object-cover" loading="eager" />
-        </div>
-        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-base)]/60 via-[var(--bg-base)]/90 to-[var(--bg-base)] dark-only-backdrop"></div>
-        <div class="absolute inset-0 -z-10 pointer-events-none hero-glow"></div>
-
-        <div class="max-w-4xl mx-auto px-6 pt-12 pb-10 md:pt-16 text-center">
-            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase">
+    <section class="lore-hero"><div><a class="lore-back" href="/nopas/">← NOPAS universe</a><p class="font-display text-xs tracking-[0.4em] uppercase">
                 Earth's Most Embarrassing Conflict
             </p>
             <h1 class="font-display text-4xl md:text-6xl mt-3 text-paper-glow leading-tight">
-                THE <span class="text-[var(--color-magenta-400)]">PANTS</span> WAR
+                THE <span class="">PANTS</span> WAR
             </h1>
-            <p class="mt-6 text-[var(--fg-body)] text-lg leading-relaxed max-w-2xl mx-auto">
+            <p class="mt-6 text-lg leading-relaxed max-w-2xl mx-auto">
                 The galaxy's most expensive misunderstanding.
-                <br/><strong class="text-[var(--fg-strong)]">And, technically, our fault.</strong>
+                <br/><strong class="">And, technically, our fault.</strong>
             </p>
-            <p class="mt-4 text-[var(--fg-muted)] text-sm leading-relaxed max-w-2xl mx-auto">
+            <p class="mt-4 text-sm leading-relaxed max-w-2xl mx-auto">
                 The full history of the alien invasion no one saw coming, the local
                 force nobody trained for, and the cosmic resource humanity didn't
                 know was valuable until we accidentally showed someone.
             </p>
-            <blockquote class="mt-8 max-w-xl mx-auto text-[var(--fg-body)] italic">
+            <blockquote class="mt-8 max-w-xl mx-auto italic">
                 &ldquo;We opened the door. They walked in. They took our pants. The rest is footnotes.&rdquo;
-                <footer class="mt-2 text-xs tracking-[0.2em] uppercase font-display text-[var(--fg-soft)] not-italic">— UPDF Volume 1, Foreword</footer>
+                <footer class="mt-2 text-xs tracking-[0.2em] uppercase font-display not-italic">— UPDF Volume 1, Foreword</footer>
             </blockquote>
 
-            <figure class="mt-10 max-w-3xl mx-auto">
+            <div class="lore-actions"><a href="#origin">Read the story ↓</a><a href="#timeline">Jump to timeline ↓</a></div></div><figure class="mt-10 max-w-3xl mx-auto">
                 <Image
                     src={loreHero}
                     alt="A Collector beam suspends a startled citizen above a Suburbia street while UPDF Defenders rally in the foreground. Cover text: 'They came for our pants. Now we're coming for them.'"
                     class="w-full rounded-lg border border-[var(--border-subtle)] shadow-2xl"
                     loading="eager"
                 />
-                <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center tracking-wide">
+                <figcaption class="mt-3 text-xs italic text-center tracking-wide">
                     They came for our pants. Now we're coming for them.
                 </figcaption>
-            </figure>
-        </div>
-    </section>
+            </figure></section><div class="lore-reading"><nav class="lore-chapters" aria-label="Lore chapters"><p>THE PANTS WAR</p><h2>Field guide</h2><ol><li><a href="#origin"><span>01</span>The rift</a></li><li><a href="#first-contact"><span>02</span>First contact</a></li><li><a href="#summit"><span>03</span>Underpants Summit</a></li><li><a href="#updf"><span>04</span>The UPDF</a></li><li><a href="#collective"><span>05</span>The Collectors</a></li><li><a href="#mothership"><span>06</span>The mothership</a></li><li><a href="#factory"><span>07</span>Pants Factory</a></li><li><a href="#golden-pants"><span>08</span>Golden Pants</a></li><li><a href="#citizens"><span>09</span>The citizens</a></li><li><a href="#timeline"><span>10</span>Timeline</a></li><li><a href="#glossary"><span>11</span>Glossary</a></li><li><a href="#join"><span>12</span>The fight continues</a></li></ol><a class="lore-home" href="/nopas/">← NOPAS overview</a></nav><div class="lore-story">
 
     {/* ============================================================
         Section 1: The Mistake That Started It All
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Origin</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The mistake that started it all.</h2>
+    <section id="origin" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">01</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">Origin</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">The mistake that started it all.</h2>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>For most of human history, pants were pants.</p>
             <p>
                 You wore them. You washed them. You complained about them. You bought
@@ -115,11 +106,11 @@ const glossary = [
                 They were, by every measure humanity ever applied, deeply ordinary.
             </p>
             <p>
-                What humanity did not know &mdash; what humanity had <strong class="text-[var(--fg-strong)]">no reason to suspect</strong>
+                What humanity did not know &mdash; what humanity had <strong class="">no reason to suspect</strong>
                 &mdash; was that woven plant-cellulose textiles, particularly those with
                 high denim or canvas density, contain an extraordinarily powerful form
                 of cosmic energy. The technical term, retroactively coined by UPDF
-                Sciences Division, is <strong class="text-[var(--color-magenta-400)]">denimium.</strong>
+                Sciences Division, is <strong class="">denimium.</strong>
                 Every pair of jeans on Earth has been quietly humming with it for as
                 long as denim has existed.
             </p>
@@ -135,42 +126,41 @@ const glossary = [
             </p>
             <p>
                 What the researchers did not realize was that for those six minutes,
-                <strong class="text-[var(--fg-strong)]">a portion of the adjacent dimension's inhabitants had been watching back</strong>
+                <strong class="">a portion of the adjacent dimension's inhabitants had been watching back</strong>
                 &mdash; and during those six minutes, those inhabitants had clearly
                 observed roughly two dozen lab technicians, all of whom were wearing
                 pants, all of whom were unknowingly broadcasting a denimium signature
                 visible across the multidimensional spectrum.
             </p>
             <p>By the time the rift sealed, the Collector Collective knew three things:</p>
-            <ol class="ml-6 space-y-1 list-decimal text-[var(--fg-body)] marker:text-[var(--color-magenta-400)] marker:font-display">
-                <li><strong class="text-[var(--fg-strong)]">Pants exist.</strong></li>
-                <li><strong class="text-[var(--fg-strong)]">Pants are saturated with the densest concentration of denimium energy ever recorded.</strong></li>
-                <li><strong class="text-[var(--fg-strong)]">The species producing them appears to have no idea.</strong></li>
+            <ol class="ml-6 space-y-1 list-decimal marker:text-[var(--color-magenta-400)] marker:font-display">
+                <li><strong class="">Pants exist.</strong></li>
+                <li><strong class="">Pants are saturated with the densest concentration of denimium energy ever recorded.</strong></li>
+                <li><strong class="">The species producing them appears to have no idea.</strong></li>
             </ol>
             <p>The Collective convened. The Collective deliberated. The Collective wrote a memo.</p>
-            <p>The memo authorized <strong class="text-[var(--color-magenta-400)]">immediate acquisition operations.</strong></p>
+            <p>The memo authorized <strong class="">immediate acquisition operations.</strong></p>
         </div>
 
-        <aside class="document-card mt-8">
-            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-magenta-400)] uppercase">Internal UPDF Sciences Division Report &mdash; Document 003-A</p>
-            <p class="mt-2 text-[var(--fg-body)] italic">
+        <details class="lore-document"><summary>Internal UPDF Sciences Division Report &mdash; Document 003-A<span aria-hidden="true">+</span></summary><div>
+            <p class="mt-2 italic">
                 &ldquo;In retrospect, the experiment may have been imprudent.&rdquo;
             </p>
-            <p class="mt-1 text-[var(--fg-body)] italic">
+            <p class="mt-1 italic">
                 &ldquo;In further retrospect, we should have at least drawn the blinds.&rdquo;
             </p>
-            <p class="mt-2 text-xs text-[var(--fg-soft)]">Classified report submitted three days after first beam.</p>
-        </aside>
-    </section>
+            <p class="mt-2 text-xs">Classified report submitted three days after first beam.</p>
+        </div></details>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 2: First Contact
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">First Contact</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">A Tuesday.</h2>
+    <section id="first-contact" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">02</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">First Contact</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">A Tuesday.</h2>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>The first mothership entered Earth's airspace on a Tuesday.</p>
             <p>
                 Nobody noticed for forty-three minutes. The world was, by all accounts,
@@ -182,15 +172,15 @@ const glossary = [
             <p>The sample was processed in the Collective's central archives within the hour.</p>
             <p>
                 The reply was immediate:
-                <em class="text-[var(--fg-strong)]">&ldquo;Recommend full acquisition operation. Subject region: Suburbia. Strategic priority: the Pants Factory.&rdquo;</em>
+                <em class="">&ldquo;Recommend full acquisition operation. Subject region: Suburbia. Strategic priority: the Pants Factory.&rdquo;</em>
             </p>
-            <h3 class="font-display text-xl mt-6 text-[var(--fg-primary)]">Why Suburbia?</h3>
+            <h3 class="font-display text-xl mt-6">Why Suburbia?</h3>
             <p>
                 The portal had been opened in a laboratory nearby. The dimensional
                 signature led the Collectors straight back to the source. And within
                 a short distance of that laboratory sat the densest concentration of
                 woven textiles anywhere on Earth: the
-                <strong class="text-[var(--fg-strong)]">Suburbia Pants Factory</strong>,
+                <strong class="">Suburbia Pants Factory</strong>,
                 which manufactured approximately twelve thousand pairs of denim
                 trousers per week. Even worse, the experimental
                 <em>golden pants</em> were held there.
@@ -212,25 +202,25 @@ const glossary = [
                 authorities looked up at the sky and said the same thing everyone
                 else had said:
             </p>
-            <p class="text-center font-display text-lg text-[var(--color-magenta-400)] italic">&ldquo;Oh crap.&rdquo;</p>
+            <p class="text-center font-display text-lg italic">&ldquo;Oh crap.&rdquo;</p>
             <p>It was, in fact, happening.</p>
         </div>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 3: The Underpants Summit
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Diplomacy: Concluded</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Underpants Summit.</h2>
+    <section id="summit" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">03</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">Diplomacy: Concluded</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">The Underpants Summit.</h2>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>Humanity is a species that, when confronted with an existential threat, tries to talk it out first.</p>
             <p>
                 Eleven days into the invasion, a diplomatic delegation was assembled.
                 It consisted of three career negotiators, two retired generals, one
                 linguistics professor, a young aide who had been told this was a
-                routine assignment, and <strong class="text-[var(--fg-strong)]">Senator Johnson</strong>,
+                routine assignment, and <strong class="">Senator Johnson</strong>,
                 who had volunteered specifically so he could put &ldquo;first contact&rdquo;
                 on his memoir cover.
             </p>
@@ -243,7 +233,7 @@ const glossary = [
             </p>
             <p>
                 The Collector delegation responded by
-                <strong class="text-[var(--color-magenta-400)]">immediately depantsing the entire human delegation in a single coordinated beam volley.</strong>
+                <strong class="">immediately depantsing the entire human delegation in a single coordinated beam volley.</strong>
             </p>
             <p>
                 Records indicate that the beams operated for approximately eleven
@@ -253,38 +243,37 @@ const glossary = [
                 accounts, did not finish his prepared remarks.
             </p>
             <p>The Collectors issued a brief statement before leaving:</p>
-            <p class="text-center text-[var(--fg-strong)] italic">
+            <p class="text-center italic">
                 &ldquo;Acquisition successful. We thank the human delegation for their cooperation. Future negotiations are not anticipated.&rdquo;
             </p>
             <p>This was the only diplomatic effort humanity ever attempted.</p>
             <p>
                 It has gone down in history as
-                <strong class="text-[var(--fg-strong)]">The Underpants Summit</strong>,
+                <strong class="">The Underpants Summit</strong>,
                 and every UPDF recruit is shown the surveillance footage during basic
                 training as a reminder of what is at stake. The footage runs
                 approximately ninety seconds. There is no audio.
             </p>
-            <p class="text-[var(--fg-muted)] italic">There is also no audio commentary required.</p>
+            <p class="italic">There is also no audio commentary required.</p>
         </div>
 
-        <aside class="document-card mt-8">
-            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-magenta-400)] uppercase">The Underpants Summit &mdash; post-summit press conference</p>
-            <div class="mt-2 space-y-2 text-sm text-[var(--fg-body)]">
-                <p><strong class="text-[var(--fg-strong)]">Reporter:</strong> &ldquo;Senator Johnson, can you describe what happened in there?&rdquo;</p>
-                <p><strong class="text-[var(--fg-strong)]">Sen. Johnson:</strong> &ldquo;I would prefer not to.&rdquo;</p>
-                <p><strong class="text-[var(--fg-strong)]">Reporter:</strong> &ldquo;Sir, you appear to be &mdash;&rdquo;</p>
-                <p><strong class="text-[var(--fg-strong)]">Sen. Johnson:</strong> &ldquo;I am very aware of what I appear to be. Next question.&rdquo;</p>
+        <details class="lore-document"><summary>The Underpants Summit &mdash; post-summit press conference<span aria-hidden="true">+</span></summary><div>
+            <div class="mt-2 space-y-2 text-sm">
+                <p><strong class="">Reporter:</strong> &ldquo;Senator Johnson, can you describe what happened in there?&rdquo;</p>
+                <p><strong class="">Sen. Johnson:</strong> &ldquo;I would prefer not to.&rdquo;</p>
+                <p><strong class="">Reporter:</strong> &ldquo;Sir, you appear to be &mdash;&rdquo;</p>
+                <p><strong class="">Sen. Johnson:</strong> &ldquo;I am very aware of what I appear to be. Next question.&rdquo;</p>
             </div>
-            <p class="mt-3 text-xs text-[var(--fg-soft)]">Press transcript, archived in UPDF historical records under file <em>&ldquo;Diplomacy: Concluded.&rdquo;</em></p>
-        </aside>
-    </section>
+            <p class="mt-3 text-xs">Press transcript, archived in UPDF historical records under file <em>&ldquo;Diplomacy: Concluded.&rdquo;</em></p>
+        </div></details>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 4: The Founding of the UPDF
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">The UPDF</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Someone had to do something.</h2>
+    <section id="updf" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">04</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">The UPDF</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">Someone had to do something.</h2>
 
         <figure class="mt-6">
             <Image
@@ -292,12 +281,12 @@ const glossary = [
                 alt="A UPDF recruitment scene at the Suburbia Mall food court. A Security Officer and Dr. Peepers stand beside the founding napkin and recruitment sign."
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 The UPDF was founded in a mall food court. Recruitment opened the same afternoon.
             </figcaption>
         </figure>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>The federal authorities took three weeks to convene a task force.</p>
             <p>Suburbia did not have three weeks.</p>
             <p>
@@ -316,7 +305,7 @@ const glossary = [
                 continued to ignore him. He drew his service blaster and issued one
                 final warning.
             </p>
-            <p class="text-center font-display text-lg text-[var(--color-denim-400)] italic">
+            <p class="text-center font-display text-lg italic">
                 &ldquo;I asked them to stop. They did not stop.&rdquo;
             </p>
             <p>
@@ -329,7 +318,7 @@ const glossary = [
             </p>
             <p>
                 This was the founding membership of what would later be called the
-                <strong class="text-[var(--color-denim-400)]">United Pants Defense Force.</strong>
+                <strong class="">United Pants Defense Force.</strong>
             </p>
             <p>They held the perimeter for six hours. They did not lose a single pair of pants.</p>
             <p>
@@ -354,29 +343,28 @@ const glossary = [
                 alt="A chalkboard mounted at UPDF Central Command displaying the force's motto in hand-lettered chalk."
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 The motto, chalked daily at Central Command. Smudges acceptable. Sentiment non-negotiable.
             </figcaption>
         </figure>
 
-        <aside class="document-card mt-8" style="border-left-color: var(--color-denim-500);">
-            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-denim-400)] uppercase">UPDF Founding Document &mdash; Article I</p>
-            <div class="mt-2 space-y-2 text-[var(--fg-body)] italic">
+        <details class="lore-document"><summary>UPDF Founding Document &mdash; Article I<span aria-hidden="true">+</span></summary><div>
+            <div class="mt-2 space-y-2 italic">
                 <p>&ldquo;In the matter of the alien Collectors and their unsanctioned harvesting of woven textiles from the persons, residences, and clotheslines of Earth, we the undersigned do hereby declare ourselves opposed.&rdquo;</p>
                 <p>&ldquo;We do not pretend to be soldiers. We do not pretend to be qualified. We do not pretend to know how the cannons work yet.&rdquo;</p>
                 <p>&ldquo;We do, however, know whose pants those were. And they were not theirs.&rdquo;</p>
                 <p>&ldquo;This is the only credential we require.&rdquo;</p>
             </div>
-            <p class="mt-3 text-xs text-[var(--fg-soft)]">Signed by the seven founding members of the UPDF, on a folded napkin from the Suburbia Mall food court. Original currently displayed under glass at UPDF Central Command.</p>
-        </aside>
-    </section>
+            <p class="mt-3 text-xs">Signed by the seven founding members of the UPDF, on a folded napkin from the Suburbia Mall food court. Original currently displayed under glass at UPDF Central Command.</p>
+        </div></details>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 5: The Collector Collective
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">The Enemy</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Collector Collective.</h2>
+    <section id="collective" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">05</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">The Enemy</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">The Collector Collective.</h2>
 
         <figure class="mt-6">
             <Image
@@ -384,32 +372,32 @@ const glossary = [
                 alt="Collector minions sort pants into towering piles inside the mothership processing bay. From the Collective's view, this is not theft — it is inventory management."
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 They do not think they are stealing. They think they are processing inventory.
             </figcaption>
         </figure>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>The Collectors are not, despite the UPDF's strong opinions on the matter, a malicious species.</p>
             <p>
                 They are a
-                <strong class="text-[var(--color-alien-400)]">highly organized administrative civilization</strong>
+                <strong class="">highly organized administrative civilization</strong>
                 that views the rest of the multiverse through a single conceptual lens:
                 <em>unprocessed inventory.</em>
                 Everything that exists, in the Collector worldview, is either currently
                 catalogued or scheduled to be catalogued. Pants are not stolen. Pants
                 are <em>reclassified.</em>
             </p>
-            <p class="text-[var(--fg-muted)] italic">This is not malice. This is paperwork.</p>
+            <p class="italic">This is not malice. This is paperwork.</p>
             <p>
                 The Collective's official charter &mdash; a document of considerable
                 age, written in a language that does not translate cleanly into any
                 Earth tongue &mdash; establishes three foundational principles:
             </p>
-            <ol class="ml-6 space-y-1.5 list-decimal text-[var(--fg-body)] marker:text-[var(--color-alien-400)] marker:font-display">
-                <li><strong class="text-[var(--fg-strong)]">Resources belong to those who recognize them as resources.</strong></li>
-                <li><strong class="text-[var(--fg-strong)]">Sentimental attachment is not a legal defense.</strong></li>
-                <li><strong class="text-[var(--fg-strong)]">All disputes will be resolved through enhanced logistical efficiency.</strong></li>
+            <ol class="ml-6 space-y-1.5 list-decimal marker:text-[var(--color-alien-400)] marker:font-display">
+                <li><strong class="">Resources belong to those who recognize them as resources.</strong></li>
+                <li><strong class="">Sentimental attachment is not a legal defense.</strong></li>
+                <li><strong class="">All disputes will be resolved through enhanced logistical efficiency.</strong></li>
             </ol>
             <p>
                 By Collector law, Earth's pants are already Collective property. They
@@ -422,17 +410,17 @@ const glossary = [
                 They have been making up for lost time ever since.
             </p>
             <p>
-                The <a href="/nopas/collectors/overlord/" class="text-[var(--color-magenta-400)] hover:underline"><strong>Overlord</strong></a>
+                The <a href="/nopas/collectors/overlord/" class="hover:underline"><strong>Overlord</strong></a>
                 class manages logistics from above. The
-                <a href="/nopas/collectors/commander/" class="text-[#ffae3d] hover:underline"><strong>Commander</strong></a>
+                <a href="/nopas/collectors/commander/" class="hover:underline"><strong>Commander</strong></a>
                 class handles structural acquisition operations on the ground.
-                <strong class="text-[var(--color-alien-400)]">Minions</strong> serve as
+                <strong class="">Minions</strong> serve as
                 the workforce &mdash; disposable, replaceable, and remarkably
                 committed considering they receive no benefits.
             </p>
             <p>
                 The mothership above Suburbia is officially registered as
-                <strong class="text-[var(--fg-strong)]">Collection Vessel CV-7745</strong>
+                <strong class="">Collection Vessel CV-7745</strong>
                 and is one of approximately four hundred such vessels currently
                 operating across Earth. The other vessels are deployed across other
                 dense fabric-bearing regions of the world; Suburbia remains the
@@ -440,20 +428,10 @@ const glossary = [
             </p>
         </div>
 
-        <figure class="mt-8 mx-auto max-w-md">
-            <Image
-                src={loreKnowYourEnemy}
-                alt="A UPDF-issued propaganda poster titled 'Know Your Enemy', listing Collector ranks alongside unflattering UPDF nicknames."
-                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
-            />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
-                UPDF break-room poster. The Collectors find the naming conventions inaccurate but have not formally objected.
-            </figcaption>
-        </figure>
+        <aside class="lore-enemy" aria-labelledby="enemy-title"><figure><Image src={minion} alt="Established orange alien Minion character artwork" widths={[320,480]} sizes="(min-width: 768px) 240px, 80vw" loading="lazy"/><figcaption>Minion · Character artwork</figcaption></figure><div><p class="uppercase">UPDF FIELD GUIDE</p><h3 id="enemy-title">Know your enemy.</h3><p>Minions are the little orange aliens in the Collector workforce. They swarm the streets and collect pants while the Overlord directs and the Commander advances.</p><p class="lore-enemy-note">“Alien Swine” is a Defender insult. The Collectors are aliens, not pigs (at least we think).</p><a href="/nopas/collectors/minions/">Meet the Minions ↗</a></div></aside>
 
-        <aside class="document-card mt-8" style="border-left-color: var(--color-alien-500);">
-            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-alien-400)] uppercase">Intercepted Collective Dispatch &mdash; File CV-7745-308</p>
-            <div class="mt-2 space-y-1 text-sm text-[var(--fg-body)] italic">
+        <details class="lore-document"><summary>Intercepted Collective Dispatch &mdash; File CV-7745-308<span aria-hidden="true">+</span></summary><div>
+            <div class="mt-2 space-y-1 text-sm italic">
                 <p>&ldquo;Acquisition Operation Status: Active&rdquo;</p>
                 <p>&ldquo;Sector: Suburbia, Earth&rdquo;</p>
                 <p>&ldquo;Estimated yield: 12,400 units pre-loss&rdquo;</p>
@@ -462,16 +440,16 @@ const glossary = [
                 <p>&ldquo;Recommended action: continue operation; accept moderate inventory shrinkage; revise quarterly projections upward to account for Tuesday-related slowdowns&rdquo;</p>
                 <p>&ldquo;Status of citizen-side inventory: ongoing &mdash; note that some units are mobile and prefer to remain so&rdquo;</p>
             </div>
-            <p class="mt-3 text-xs text-[var(--fg-soft)]">Decoded by UPDF Signals Division, displayed in the break room next to a hand-drawn caricature of an Overlord.</p>
-        </aside>
-    </section>
+            <p class="mt-3 text-xs">Decoded by UPDF Signals Division, displayed in the break room next to a hand-drawn caricature of an Overlord.</p>
+        </div></details>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 6: The Mothership
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Hardware</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Mothership.</h2>
+    <section id="mothership" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">06</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">Hardware</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">The Mothership.</h2>
 
         <figure class="mt-6">
             <Image
@@ -479,12 +457,12 @@ const glossary = [
                 alt="An Overlord directs swarms of minions through Suburbia streets while Defenders return fire and citizens panic in the background."
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 The Invasion phase. The mothership opens its bays. Suburbia stops being quiet.
             </figcaption>
         </figure>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>Every Collection Vessel is structurally identical.</p>
             <p>
                 The mothership currently hovering over Suburbia is approximately the
@@ -498,58 +476,57 @@ const glossary = [
             <p>
                 The mothership's outer hull is constructed of an alloy the UPDF has
                 not yet successfully identified. The lower section contains the
-                <strong class="text-[var(--fg-strong)]">tractor beam</strong> &mdash; a
+                <strong class="">tractor beam</strong> &mdash; a
                 focused gravity-displacement field used for the involuntary
                 relocation of textiles, citizens, and occasionally small dogs.
             </p>
-            <p class="font-display text-lg text-[var(--color-magenta-400)] mt-6">The mothership is not invincible. It is, however, conditionally invincible.</p>
+            <p class="font-display text-lg mt-6">The mothership is not invincible. It is, however, conditionally invincible.</p>
             <p>
                 The mothership's primary defense is a
-                <strong class="text-[var(--fg-strong)]">denimium-fueled shield array</strong>
+                <strong class="">denimium-fueled shield array</strong>
                 powered directly by the pants it has collected during the current
                 operation. The more pants it has stored, the stronger the shield. At
                 full storage, the hull is functionally impenetrable.
             </p>
-            <p class="italic text-[var(--fg-muted)]">But the shields run on what's in the tank.</p>
+            <p class="italic">But the shields run on what's in the tank.</p>
             <p>
                 Every pair the Collectors <em>fail</em> to collect is one less charge
                 in the reactor. The UPDF realized this early and built the entire
                 defensive doctrine around it:
-                <strong class="text-[var(--fg-strong)]">protect the pants, weaken the shields, take the shot.</strong>
+                <strong class="">protect the pants, weaken the shields, take the shot.</strong>
                 When the storage falls below a critical threshold, the mothership's
                 hull becomes vulnerable to
-                <strong class="text-[var(--color-magenta-400)]">conventional armaments</strong>
+                <strong class="">conventional armaments</strong>
                 &mdash; the modified cannons of the Pants Factory, sustained blaster
                 fire from coordinated ground forces, even small-arms fire from
                 Defenders who manage to climb high enough.
             </p>
         </div>
 
-        <aside class="document-card mt-6" style="border-left-color: var(--color-denim-500);">
-            <p class="font-display text-[10px] tracking-[0.25em] text-[var(--color-denim-400)] uppercase">Core UPDF Strategic Doctrine</p>
-            <p class="mt-2 text-[var(--fg-body)] italic leading-relaxed">
+        <details class="lore-document"><summary>Core UPDF Strategic Doctrine<span aria-hidden="true">+</span></summary><div>
+            <p class="mt-2 italic leading-relaxed">
                 &ldquo;Fewer pants stolen means weaker shields means the mothership
                 can be brought down with what we already have. We do not need a
                 miracle weapon. We need to hold the line.&rdquo;
             </p>
-        </aside>
+        </div></details>
 
-        <div class="mt-6 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-6 space-y-4 leading-relaxed">
             <p>
                 The Collectors have, repeatedly, declined to engineer a non-pants-based
                 shield system because &mdash; and this is a direct quote from a
                 Collector dispatch &mdash; <em>&ldquo;the locals are unlikely to figure out the cannons.&rdquo;</em>
             </p>
-            <p class="font-display text-[var(--color-magenta-400)]">The locals have figured out the cannons.</p>
+            <p class="font-display">The locals have figured out the cannons.</p>
         </div>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 7: The Pants Factory
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">The Battlefield</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Pants Factory.</h2>
+    <section id="factory" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">07</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">The Battlefield</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">The Pants Factory.</h2>
 
         <figure class="mt-6">
             <Image
@@ -557,12 +534,12 @@ const glossary = [
                 alt="The Final Stand. Pants Factory cannons fire skyward against the descending mothership while UPDF Defenders hold the perimeter."
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 Final Stand. Cannons hot. Shields weakening. Every match comes down to this building.
             </figcaption>
         </figure>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>The Suburbia Pants Factory is not in this conflict by accident.</p>
             <p>
                 Before the rift opened, the factory produced approximately twelve
@@ -570,7 +547,7 @@ const glossary = [
                 regional supply chain. The warehouse stored several times that volume
                 at any moment. The factory floor employed nearly four hundred people.
                 It was, by every metric available,
-                <strong class="text-[var(--fg-strong)]">the single densest concentration of unbeamed denimium energy on Earth.</strong>
+                <strong class="">the single densest concentration of unbeamed denimium energy on Earth.</strong>
             </p>
             <p>When the Collectors mapped Earth's textile signatures through the rift, the Pants Factory glowed.</p>
             <p>
@@ -586,7 +563,7 @@ const glossary = [
                 purpose: continued (greatly reduced) civilian pants manufacturing
                 during peacetime hours, and rapid-response defensive operations
                 during invasion phases. The factory now mounts
-                <strong class="text-[var(--fg-strong)]">four converted cannons</strong>
+                <strong class="">four converted cannons</strong>
                 originally designed for industrial fabric-shearing that, when
                 modified with UPDF targeting software, produce a high-velocity
                 denim-disrupting projectile capable of damaging the mothership's
@@ -594,7 +571,7 @@ const glossary = [
             </p>
             <p>
                 The factory's central vault holds the
-                <strong class="text-[var(--color-golden-400)]">Golden Pants</strong>
+                <strong class="">Golden Pants</strong>
                 (see next section).
             </p>
             <p>
@@ -603,16 +580,16 @@ const glossary = [
                 If the UPDF holds it, they retain control of both the cannons and
                 the Golden Pants.
             </p>
-            <p class="font-display text-[var(--fg-strong)]">This is why every match comes down to the factory.</p>
+            <p class="font-display">This is why every match comes down to the factory.</p>
         </div>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 8: The Golden Pants
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">The Artifact</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Golden Pants.</h2>
+    <section id="golden-pants" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">08</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">The Artifact</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">The Golden Pants.</h2>
 
         <figure class="mt-6 mx-auto max-w-md">
             <Image
@@ -621,12 +598,12 @@ const glossary = [
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
                 style="border-left: 4px solid var(--color-golden-400);"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 Community-printed clothesline poster. Distributed weekly by the UPDF Outreach Volunteer Squad.
             </figcaption>
         </figure>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>There is exactly one pair of Golden Pants in existence.</p>
             <p>
                 They were woven decades ago by a UPDF Tailor Engineer's
@@ -636,8 +613,8 @@ const glossary = [
                 &mdash; <em>spite.</em>
             </p>
             <p>The resulting pants display two properties that have never been successfully reproduced:</p>
-            <ol class="ml-6 space-y-1.5 list-decimal text-[var(--fg-body)] marker:text-[var(--color-golden-400)] marker:font-display">
-                <li>They contain approximately <strong class="text-[var(--fg-strong)]">eight hundred times the denimium density</strong> of standard denim. A single pair could power a fully-charged mothership shield for several weeks.</li>
+            <ol class="ml-6 space-y-1.5 list-decimal marker:text-[var(--color-golden-400)] marker:font-display">
+                <li>They contain approximately <strong class="">eight hundred times the denimium density</strong> of standard denim. A single pair could power a fully-charged mothership shield for several weeks.</li>
                 <li>They have never, in their entire existence, sustained damage of any kind.</li>
             </ol>
             <p>
@@ -649,16 +626,16 @@ const glossary = [
             </p>
             <p>The UPDF has filed multiple internal motions requesting that the Golden Pants be moved to a more secure location.</p>
             <p>The motions have been declined every time.</p>
-            <p class="font-display text-[var(--color-golden-400)] italic">The official UPDF position is that the Golden Pants are bait.</p>
+            <p class="font-display italic">The official UPDF position is that the Golden Pants are bait.</p>
         </div>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 9: The Citizens
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[#ffc14d] uppercase">Non-Combatants</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">The Citizens.</h2>
+    <section id="citizens" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">09</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">Non-Combatants</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">The Citizens.</h2>
 
         <figure class="mt-6 mx-auto max-w-md">
             <Image
@@ -667,12 +644,12 @@ const glossary = [
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
                 style="border-left: 4px solid #ffc14d;"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 UPDF Citizen Safety Advisory #4. Posted on refrigerators across Suburbia. Compliance: optional. Effectiveness: variable.
             </figcaption>
         </figure>
 
-        <div class="mt-5 space-y-4 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-5 space-y-4 leading-relaxed">
             <p>
                 There are approximately four thousand permanent residents of
                 Suburbia. The tunnel to the other parts of town has been collapsed.
@@ -688,12 +665,12 @@ const glossary = [
             <p>
                 Citizen behavior during invasion phases has been studied extensively
                 and falls into five broad categories &mdash; the
-                <strong class="text-[#ffc14d]">Screamer</strong>, the
-                <strong class="text-[#ffc14d]">Hider</strong>, the
-                <strong class="text-[#ffc14d]">Crowd Follower</strong>, the
-                <strong class="text-[#ffc14d]">Freezer</strong>, and the rare but
-                invaluable <strong class="text-[#ffc14d]">Hero</strong>.
-                <a href="/nopas/defenders/citizen/" class="text-[#ffc14d] hover:underline">Each personality archetype responds differently to alien pressure</a>,
+                <strong class="">Screamer</strong>, the
+                <strong class="">Hider</strong>, the
+                <strong class="">Crowd Follower</strong>, the
+                <strong class="">Freezer</strong>, and the rare but
+                invaluable <strong class="">Hero</strong>.
+                <a href="/nopas/defenders/citizen/" class="hover:underline">Each personality archetype responds differently to alien pressure</a>,
                 and effective Defenders learn to read citizen movement patterns the
                 way a quarterback reads a defense.
             </p>
@@ -703,19 +680,19 @@ const glossary = [
                 and every successful match is measured first by how many of them
                 still have their pants when the dust settles.
             </p>
-            <p class="text-center font-display text-[var(--fg-strong)] italic mt-6">
+            <p class="text-center font-display italic mt-6">
                 Cannon fire does not measure success. Pants count does.
             </p>
         </div>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 10: Timeline
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">The Record</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Timeline of the invasion.</h2>
-        <p class="mt-2 text-sm text-[var(--fg-muted)] italic">Approximate dates. Some events occurred faster than the UPDF was able to log them.</p>
+    <section id="timeline" class="lore-chapter max-w-3xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">10</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">The Record</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">Timeline of the invasion.</h2>
+        <p class="mt-2 text-sm italic">Approximate dates. Some events occurred faster than the UPDF was able to log them.</p>
 
         <figure class="mt-6">
             <Image
@@ -723,7 +700,7 @@ const glossary = [
                 alt="The Setup phase. Citizens shelter while Defenders haul barricades, lay caltrops, and prepare position. Above, the mothership scouts silently."
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 The Setup phase. Defenders shore up. Collectors scout. The clock starts the moment the mothership casts a shadow.
             </figcaption>
         </figure>
@@ -731,49 +708,49 @@ const glossary = [
         <ol class="mt-8 space-y-0">
             {timeline.map((t) => (
                 <li class="flex gap-5 py-3 border-b border-[var(--border-subtle)] last:border-b-0">
-                    <span class="font-display text-xs tracking-[0.2em] text-[var(--color-magenta-400)] uppercase shrink-0 w-24 pt-0.5">{t.day}</span>
-                    <span class="text-[var(--fg-body)] text-sm leading-relaxed">{t.event}</span>
+                    <span class="font-display text-xs tracking-[0.2em] uppercase shrink-0 w-24 pt-0.5">{t.day}</span>
+                    <span class="text-sm leading-relaxed">{t.event}</span>
                 </li>
             ))}
         </ol>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Section 11: Glossary
        ============================================================ */}
-    <section class="max-w-4xl mx-auto px-6 py-12">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Reference</p>
-        <h2 class="mt-2 font-display text-2xl md:text-3xl text-[var(--fg-primary)]">Glossary.</h2>
+    <section id="glossary" class="lore-chapter max-w-4xl mx-auto px-6 py-12"><p class="lore-number" aria-hidden="true">11</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">Reference</p>
+        <h2 class="mt-2 font-display text-2xl md:text-3xl">Glossary.</h2>
 
         <dl class="mt-6 grid sm:grid-cols-2 gap-x-8 gap-y-4">
             {glossary.map(([term, def]) => (
                 <div>
-                    <dt class="font-display text-[var(--color-magenta-400)] text-sm tracking-wide">{term}</dt>
-                    <dd class="mt-1 text-[var(--fg-body)] text-sm leading-relaxed">{def}</dd>
+                    <dt class="font-display text-sm tracking-wide">{term}</dt>
+                    <dd class="mt-1 text-sm leading-relaxed">{def}</dd>
                 </div>
             ))}
         </dl>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
     {/* ============================================================
         Closing
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-16 text-center border-t border-[var(--border-subtle)]">
-        <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">In Conclusion</p>
-        <h2 class="mt-3 font-display text-2xl md:text-3xl text-[var(--fg-primary)] leading-tight">
+    <section id="join" class="lore-chapter max-w-3xl mx-auto px-6 py-16 text-center border-t border-[var(--border-subtle)]"><p class="lore-number" aria-hidden="true">12</p>
+        <p class="font-display text-xs tracking-[0.3em] uppercase">In Conclusion</p>
+        <h2 class="mt-3 font-display text-2xl md:text-3xl leading-tight">
             The war for Earth's pants is far from over.
         </h2>
-        <div class="mt-6 space-y-3 text-[var(--fg-body)] leading-relaxed">
+        <div class="mt-6 space-y-3 leading-relaxed">
             <p>
                 Every Collector beam stopped is a citizen who keeps their dignity.
                 Every pair of pants the UPDF protects is one less denimium charge in
                 the mothership's reactor. Every weakened shield is one good cannon
                 volley away from a mothership in pieces.
             </p>
-            <p class="text-[var(--fg-strong)]">The UPDF does not need heroes.</p>
-            <p class="text-[var(--fg-strong)]">The UPDF needs people who care enough to say no.</p>
+            <p class="">The UPDF does not need heroes.</p>
+            <p class="">The UPDF needs people who care enough to say no.</p>
         </div>
-        <p class="mt-6 font-display text-xl md:text-2xl text-[var(--color-magenta-400)] italic">
+        <p class="mt-6 font-display text-xl md:text-2xl italic">
             Not our pants. Not today. Not ever.
         </p>
 
@@ -784,18 +761,19 @@ const glossary = [
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
                 style="border-left: 4px solid var(--color-denim-400);"
             />
-            <figcaption class="mt-3 text-xs italic text-[var(--fg-soft)] text-center">
+            <figcaption class="mt-3 text-xs italic text-center">
                 Recruitment opens daily at the laundromat parking lot. Bring your own pants.
             </figcaption>
         </figure>
 
         <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="/nopas/defenders/" class="font-display text-sm tracking-wider px-5 py-2.5 bg-[var(--color-denim-500)] text-[var(--color-paper)] rounded-md hover:bg-[var(--color-denim-400)] transition">
+            <a href="/nopas/defenders/" class="font-display text-sm tracking-wider px-5 py-2.5 bg-[var(--color-denim-500)] rounded-md hover:bg-[var(--color-denim-400)] transition">
                 Join the UPDF →
             </a>
-            <a href="/nopas/collectors/" class="font-display text-sm tracking-wider px-5 py-2.5 border border-[var(--border-strong)] text-[var(--fg-strong)] rounded-md hover:bg-[var(--surface-hover)] transition">
+            <a href="/nopas/collectors/" class="font-display text-sm tracking-wider px-5 py-2.5 border border-[var(--border-strong)] rounded-md hover:bg-[var(--surface-hover)] transition">
                 or the Collectors
             </a>
         </div>
-    </section>
+    <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
+</div></div></div>
 </BaseLayout>

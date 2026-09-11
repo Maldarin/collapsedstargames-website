@@ -1,0 +1,85 @@
+/* Reading surfaces follow the existing pre-paint data-theme attribute. Ink
+   outlines and vivid printed panels keep their own foreground in either mode. */
+html[data-theme="dark"] {
+  --comic-page: #111321;
+  --comic-panel: #202439;
+  --comic-plum: #28203c;
+  --comic-blue: #192e46;
+  --comic-text: #fff9ed;
+  --comic-body: #e4dfec;
+  --comic-muted: #c5bed5;
+  --comic-line: #74688a;
+  --comic-label: #d9b5ff;
+}
+html[data-theme="dark"] :is(.homepage,.nopas-overview,.character-pages,.lore-page,.utility-pages) {
+  --fg-primary: var(--comic-text);
+  --fg-strong: var(--comic-text);
+  --fg-body: var(--comic-body);
+  --fg-muted: var(--comic-muted);
+  --fg-soft: var(--comic-muted);
+  --fg-faint: var(--comic-muted);
+  --bg-elevated: var(--comic-panel);
+  --bg-deep: var(--comic-blue);
+  --border-subtle: #74688a80;
+  --border-medium: var(--comic-line);
+  --border-strong: var(--comic-line);
+  --color-magenta-400: #ff91cf;
+  color: var(--comic-text);
+  background: var(--comic-page);
+}
+html[data-theme="dark"] .character-pages { --tint:var(--comic-blue); }
+html[data-theme="dark"] .character-pages.collectors { --tint:var(--comic-plum); --bg-deep:var(--comic-plum); }
+
+/* Neutral cards, reading matter and pale faction tints. */
+html[data-theme="dark"] #glossary dl > div,
+html[data-theme="dark"] :is(.homepage,.nopas-overview,.character-pages,.lore-page,.utility-pages) :where(.video-grid article,.overview-video-grid article,.surface,.character-roster > .grid > a,.bowling-feature,.survivors-loop-grid article,.lore-document,.shop-sign) {
+  background: var(--comic-panel);
+  color: var(--comic-text);
+  border-color: var(--comic-line);
+}
+html[data-theme="dark"] :is(.homepage .gameplay,.overview-gameplay,.bowling-modes,.bowling-basics-grid figure,.bowling-welfare figure,.survivors-squad,.lore-chapter:nth-child(even)) { background:var(--comic-plum); }
+html[data-theme="dark"] :is(.overview-phase,.survivors-horizon,.lore-chapter:nth-child(3n)) { background:var(--comic-blue); }
+html[data-theme="dark"] :is(.video-grid article p,.overview-video-grid article p) { color:var(--comic-text); }
+html[data-theme="dark"] :is(.homepage .section-heading .eyebrow,.overview-heading .overview-eyebrow,.bowling-feature summary .overview-eyebrow,.lore-chapter > p.uppercase) { color:var(--comic-label); }
+html[data-theme="dark"] :is(.mode-note,.overview-phase .overview-eyebrow) { color:var(--comic-muted); }
+html[data-theme="dark"] :is(.overview-phase .overview-gag,.survivors-roles > div,#timeline li,.lore-story,.lore-page .lore-chapter) { border-color:var(--comic-line); }
+html[data-theme="dark"] :is(.bowling-feature[open] summary,.bowling-feature summary:hover) { background:#3b3445; border-color:var(--comic-line); }
+
+/* Saturated comic panels are deliberate islands of dark ink on bright color.
+   Scope the inherited utility text tokens too, including original character
+   body copy and lore details that still use the shared Tailwind utilities. */
+html[data-theme="dark"] :is(.ticker,.mode-card,.homepage .studio,.overview-mode,.overview-detail,.overview-contact,.bowling-stats,.bowling-mode-grid article,.bowling-universe,.bowling-steps li::before,.survivors-strip,.survivors-step,.survivors-upgrade-grid article,.survivors-return,.character-pages blockquote.surface,.character-abilities .surface,.character-footer-nav,.lore-chapters,.lore-number,.lore-document summary,.lore-enemy,.utility-nav,.shop-contact) {
+  --fg-primary:#131326;
+  --fg-strong:#131326;
+  --fg-body:#303046;
+  --fg-muted:#444459;
+  --fg-soft:#444459;
+  --fg-faint:#444459;
+  color:#131326;
+}
+html[data-theme="dark"] .character-pages blockquote.surface { background:var(--accent); border-color:#131326; }
+html[data-theme="dark"] .character-abilities .surface { background:var(--accent); border-color:#131326; }
+html[data-theme="dark"] .character-abilities .surface:nth-child(2n) { background:#ffda56; }
+html[data-theme="dark"] .character-abilities .surface:nth-child(3n) { background:#a9ef79; }
+html[data-theme="dark"] .homepage .studio .button { color:#131326; }
+html[data-theme="dark"] .shop-sign img { background:#eee7f8; }
+
+/* Stats uses the same semantic tokens for its asynchronously rendered rows. */
+html[data-theme="dark"] .stats-panels > section:first-child .surface { border-top-color:#74caff; }
+html[data-theme="dark"] .stats-panels > section:last-child .surface { border-top-color:#dfb6ff; }
+html[data-theme="dark"] #lookup-name { color:var(--comic-text); background:var(--comic-page); border-color:var(--comic-line); }
+html[data-theme="dark"] #lookup-name::placeholder { color:var(--comic-muted); opacity:1; }
+html[data-theme="dark"] .stats-page .metric-tab { background:var(--comic-plum); color:var(--comic-text); border-color:var(--comic-line); }
+html[data-theme="dark"] .stats-page .metric-tab[aria-selected="true"] { background:#dfb6ff; color:#131326; border-color:#131326; }
+html[data-theme="dark"] :is(#board,#lookup-result:not(:empty)) { border-color:var(--comic-line); }
+html[data-theme="dark"] :is(#board > p,#lookup-result > p:only-child) { background:var(--comic-plum); color:var(--comic-body); border-color:var(--comic-line); }
+
+/* Shared chrome: legible supporting copy and focus in both color schemes. */
+body > footer { color:var(--fg-body); }
+body > footer > div { color:var(--fg-body); }
+:is(header,body > footer) :is(a,button):focus-visible { outline:3px solid var(--color-magenta-400); outline-offset:4px; }
+html[data-theme="dark"] header nav > a img { background:#fff9e9; border-radius:4px; }
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto!important; }
+  body,:is(header,body > footer) * { transition:none!important; }
+}

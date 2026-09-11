@@ -2,290 +2,85 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import VideoCard from "../../components/VideoCard.astro";
 import { Image } from "astro:assets";
-import gameLogoMain from "../../assets/brand/game_title_logo-main.png";
-import battleLong from "../../assets/battle/long_battle.png";
-import battle2 from "../../assets/battle/2v2.png";
-import bowlingStrike from "../../assets/bowling/strike.png";
+import gameLogo from "../../assets/brand/game_title_logo-main.png";
+import matchArt from "../../assets/battle/2v2.png";
+import bowlingPins from "../../assets/bowling/minion-pins.png";
 import survivorsHorde from "../../assets/survivors/horde.png";
+import defender from "../../assets/classes/SecurityOfficer/SecurityOfficer.png";
+import minion from "../../assets/classes/Minions/Minion_solo.png";
+import "../../styles/nopas-overview.css";
+
+const modes = [
+  { id: "match", name: "Match", color: "#74caff", tag: "DEFEND. INVADE. DEPANTS.", image: matchArt, alt: "Defenders and Collectors in NOPAS universe artwork", label: "Universe artwork", text: "Protect Earth's pants as a Defender—or join the alien Collectors and steal the lot.", action: "Explore Match" },
+  { id: "bowling", name: "NOPAS Bowling", color: "#ffda56", tag: "BIG BALL. LITTLE ALIENS.", image: bowlingPins, alt: "Orange Minion pins and a blue bowling ball on a NOPAS lane", label: "Development screenshot", text: "Ten-pin bowling. Live Minion pins. A lane full of very questionable personalities.", action: "Explore Bowling" },
+  { id: "survivors", name: "NOPAS Survivors", color: "#a9ef79", tag: "MORE MINIONS. SEND HELP.", image: survivorsHorde, alt: "A player faces a large horde of orange Minions", label: "Development screenshot", text: "The Minions are coming in waves. See how long you can keep the chaos under control.", action: "Explore Survivors" },
+];
+const phases = [
+  { name: "Setup", intro: "Before the invasion begins, Defenders get a short window to prepare.", body: "Move citizens indoors. Build defenses. Set up safe zones. Repair what you can. Panic efficiently.", gag: "The UPDF calls it preparation. The aliens call it annoying." },
+  { name: "Invasion", intro: "When the mothership opens, the Collectors come pouring in.", body: "Alien minions swarm the streets. UFO beams light up the sky. Part action game, part base defense, part rescue mission, part complete neighborhood disaster.", gag: "The aliens want pants. The UPDF brought blasters." },
+  { name: "Final Stand", intro: "If the Collectors gather enough pants, the battle moves to the Pants Factory.", body: "Cannons come online. Citizens panic. Defenders regroup. The mothership looms overhead, ready to complete the most insulting invasion in galactic history.", gag: "Hold the factory. Protect the Golden Pants. Bring the mothership down." },
+];
 ---
 
-<BaseLayout
-    title="Not Our Pants, Alien Swine!"
-    description="A fast, funny, class-based Roblox invasion game. The United Pants Defense Force protects Earth's pants supply from alien Collectors. Class-based combat, citizen rescue, base-defense chaos. Coming to Roblox."
->
-    {/* ============================================================
-        Hero — game title logo + premise
-       ============================================================ */}
-    <section class="relative overflow-hidden">
-        <div class="absolute inset-0 -z-10 opacity-25 dark-only-backdrop">
-            <Image src={battleLong} alt="" class="w-full h-full object-cover" loading="eager" />
-        </div>
-        <div class="absolute inset-0 -z-10 bg-gradient-to-b from-[var(--bg-base)]/40 via-[var(--bg-base)]/80 to-[var(--bg-base)] dark-only-backdrop"></div>
-
-        <div class="max-w-5xl mx-auto px-6 pt-10 pb-8 md:pt-14 text-center">
-            <Image
-                src={gameLogoMain}
-                alt="Not Our Pants, Alien Swine!"
-                widths={[480, 720, 960, 1200]}
-                sizes="(min-width: 1024px) 900px, 90vw"
-                class="mx-auto w-full max-w-3xl drop-shadow-[0_0_60px_rgba(255,31,122,0.4)]"
-                loading="eager"
-            />
-            <p class="mt-8 text-lg md:text-2xl max-w-3xl mx-auto text-[var(--fg-strong)] leading-relaxed font-display tracking-wide">
-                A fast, funny, class-based Roblox invasion game.
-            </p>
-            <p class="mt-6 text-base md:text-lg max-w-2xl mx-auto text-[var(--fg-body)] leading-relaxed">
-                The <strong class="text-[var(--color-denim-400)]">United Pants Defense Force</strong>
-                battles <strong class="text-[var(--color-alien-400)]">alien Collectors</strong> trying
-                to steal Earth's most valuable resource: pants.
-            </p>
-            <p class="mt-4 text-sm tracking-[0.3em] text-[var(--color-magenta-400)] uppercase font-display">
-                Coming to Roblox
-            </p>
-            <p class="mt-5 text-sm text-[var(--fg-soft)]">
-                Press &amp; player inquiries: <a href="mailto:info@collapsedstargames.com" class="text-[var(--color-magenta-400)] hover:underline">info@collapsedstargames.com</a>
-            </p>
-        </div>
+<BaseLayout title="Explore NOPAS — Three ways to play" description="Explore the NOPAS universe: Match, NOPAS Bowling, and NOPAS Survivors. Meet the factions, watch development gameplay, and discover three modes planned for the upcoming beta.">
+  <div class="nopas-overview">
+    <section class="overview-intro overview-pad" aria-labelledby="overview-title">
+      <div>
+        <a class="overview-back" href="/">← Collapsed Star Games</a>
+        <p class="overview-eyebrow">WELCOME TO NOT OUR PANTS, ALIEN SWINE!</p>
+        <h1 id="overview-title">One ridiculous universe.<br/><span>Three ways to play.</span></h1>
+        <p class="overview-lede">The aliens want Earth's pants. The UPDF has objections.<br/>Meet the shared world behind Match, Bowling, and Survivors.</p>
+        <a class="overview-button overview-yellow" href="#gameplay">▶ Watch gameplay</a>
+        <p class="overview-status"><span></span>Beta coming soon <b>/</b> Coming to Roblox</p>
+      </div>
+      <Image src={gameLogo} alt="Not Our Pants, Alien Swine!" widths={[480,720,960]} sizes="(min-width: 800px) 370px, 70vw" loading="eager" class="overview-logo"/>
     </section>
 
-    {/* ============================================================
-        Premise / pull-quote
-       ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 py-8 text-center">
-        <p class="font-display text-2xl md:text-3xl text-paper-glow leading-tight">
-            &ldquo;Every person deserves to have a good pair of jeans.<br/>
-            This ends today.<br/>
-            <span class="text-[var(--color-magenta-400)]">Not Our Pants, Alien Swine!</span>&rdquo;
-        </p>
-        <p class="mt-4 text-xs tracking-[0.3em] text-[var(--fg-soft)] uppercase font-display">
-            UPDF Official Motto
-        </p>
+    <section id="modes" class="overview-pad overview-modes" aria-labelledby="overview-modes-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">PICK YOUR KIND OF CHAOS</p><h2 id="overview-modes-title">Same aliens. New problems.</h2></div><p>All three modes are planned for the upcoming beta.<br/>Timing and availability will be announced.</p></div>
+      <div class="overview-mode-grid">
+        {modes.map((mode,i) => <article class="overview-mode" style={`--mode:${mode.color}`}>
+          <div class="overview-mode-image"><Image src={mode.image} alt={mode.alt} widths={[480,720,960]} sizes="(min-width: 800px) 31vw, 90vw" loading="lazy"/><span class="overview-media-label">{mode.label}</span><b class="overview-number" aria-hidden="true">0{i+1}</b></div>
+          <div class="overview-mode-copy"><p class="overview-eyebrow">{mode.tag}</p><h3>{mode.name}</h3><p>{mode.text}</p><p class="overview-beta">● Beta coming soon</p><a class="overview-button" href={`#${mode.id}`}>{mode.action} ↓</a></div>
+        </article>)}
+      </div>
     </section>
 
-    {/* ============================================================
-        Gameplay footage — click-to-play YouTube facades
-       ============================================================ */}
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="text-center mb-6">
-            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase">
-                Field Footage
-            </p>
-            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
-                The waistband war, in motion.
-            </h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-            <VideoCard id="kSqdf0DlD8s" title="Commander Depantsing" />
-            <VideoCard id="-fuITOqPR1Q" title="The Commander Attacks" />
-            <VideoCard id="CQkpU3rfi1E" title="Defender Gets Ballooninated" />
-        </div>
-
-        <p class="mt-6 text-center text-sm text-[var(--fg-soft)]">
-            More footage on
-            <a href="https://www.youtube.com/@CollapsedStarGames" target="_blank" rel="noopener" class="text-[var(--color-magenta-400)] hover:underline">YouTube</a>.
-        </p>
+    <section id="gameplay" class="overview-pad overview-gameplay" aria-labelledby="footage-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">FIELD FOOTAGE / NOPAS</p><h2 id="footage-title">The waistband war, in motion.</h2></div><p>Actual development gameplay.<br/>Things may change before beta.</p></div>
+      <div class="overview-video-grid"><VideoCard id="kSqdf0DlD8s" title="Commander Depantsing"/><VideoCard id="-fuITOqPR1Q" title="The Commander Attacks"/><VideoCard id="CQkpU3rfi1E" title="Defender Gets Ballooninated"/></div>
+      <a class="overview-link" href="https://www.youtube.com/@CollapsedStarGames" target="_blank" rel="noopener">More footage on YouTube ↗</a>
     </section>
 
-    {/* ============================================================
-        Three-phase timeline
-       ============================================================ */}
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="text-center mb-6">
-            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase">
-                Match Structure
-            </p>
-            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
-                Three phases. Escalating chaos.
-            </h2>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6">
-            {/* Setup */}
-            <article class="surface rounded-lg p-6 relative overflow-hidden">
-                <div class="absolute top-0 right-0 font-display text-7xl text-[var(--fg-primary)]/5 leading-none p-4 pointer-events-none">01</div>
-                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Phase 1</p>
-                <h3 class="mt-2 font-display text-lg">Setup</h3>
-                <p class="mt-4 text-[var(--fg-body)] leading-relaxed text-sm">
-                    Before the invasion begins, Defenders get a short window to prepare.
-                </p>
-                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
-                    Move citizens indoors. Build defenses. Set up safe zones. Repair what
-                    you can. Panic efficiently.
-                </p>
-                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
-                    The UPDF calls it preparation.<br/>The aliens call it annoying.
-                </p>
-            </article>
-
-            {/* Invasion */}
-            <article class="surface rounded-lg p-6 relative overflow-hidden">
-                <div class="absolute top-0 right-0 font-display text-7xl text-[var(--fg-primary)]/5 leading-none p-4 pointer-events-none">02</div>
-                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Phase 2</p>
-                <h3 class="mt-2 font-display text-lg">Invasion</h3>
-                <p class="mt-4 text-[var(--fg-body)] leading-relaxed text-sm">
-                    When the mothership opens, the Collectors come pouring in.
-                </p>
-                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
-                    Alien minions swarm the streets. UFO beams light up the sky. Part
-                    action game, part base defense, part rescue mission, part complete
-                    neighborhood disaster.
-                </p>
-                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
-                    The aliens want pants.<br/>The UPDF brought blasters.
-                </p>
-            </article>
-
-            {/* Final Stand */}
-            <article class="surface rounded-lg p-6 relative overflow-hidden border border-[var(--color-magenta-500)]/20">
-                <div class="absolute top-0 right-0 font-display text-7xl text-[var(--fg-primary)]/5 leading-none p-4 pointer-events-none">03</div>
-                <p class="font-display text-xs tracking-[0.3em] text-[var(--color-magenta-400)] uppercase">Phase 3</p>
-                <h3 class="mt-2 font-display text-lg">Final Stand</h3>
-                <p class="mt-4 text-[var(--fg-body)] leading-relaxed text-sm">
-                    If the Collectors gather enough pants, the battle moves to the
-                    Pants Factory.
-                </p>
-                <p class="mt-3 text-[var(--fg-body)] leading-relaxed text-sm">
-                    Cannons come online. Citizens panic. Defenders regroup. The
-                    mothership looms overhead, ready to complete the most insulting
-                    invasion in galactic history.
-                </p>
-                <p class="mt-4 text-[var(--fg-soft)] italic text-sm leading-relaxed">
-                    Hold the factory. Protect the Golden Pants.<br/>Bring the
-                    mothership down.
-                </p>
-            </article>
-        </div>
+    <section id="match" class="overview-pad overview-match" aria-labelledby="match-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">01 / MATCH · BETA COMING SOON</p><h2 id="match-title">Three phases. Escalating chaos.</h2></div><a class="overview-link" href="#modes">All three modes ↑</a></div>
+      <p class="overview-section-intro">The United Pants Defense Force battles alien Collectors trying to steal Earth's most valuable resource. Prepare the neighborhood, survive the invasion, and hold the line.</p>
+      <div class="overview-phase-grid">{phases.map((phase,i) => <article class="overview-phase"><p class="overview-eyebrow">PHASE 0{i+1}</p><h3>{phase.name}</h3><p>{phase.intro}</p><p>{phase.body}</p><p class="overview-gag">{phase.gag}</p></article>)}</div>
     </section>
 
-    {/* ============================================================
-        More ways to play — lobby attractions & upcoming modes
-       ============================================================ */}
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="text-center mb-6">
-            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-golden-400)] uppercase">
-                More ways to play
-            </p>
-            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
-                The invasion is only the beginning.
-            </h2>
-        </div>
+    <div class="overview-pad overview-extra-modes">
+      <section id="bowling" class="overview-detail overview-bowling" aria-labelledby="bowling-title">
+        <p class="overview-eyebrow">02 / NOPAS BOWLING · BETA COMING SOON</p><h2 id="bowling-title">The pins have complaints.</h2>
+        <p>Real ten-pin bowling where every pin is a live, complaining Minion. Classic Mode for purists. Mayhem Mode for mutant pins, ball abilities, lane mutations, Kingpin bounties, and bonus rounds.</p>
+        <p class="overview-gag">They signed up for an invasion. Nobody mentioned the bowling ball.</p>
+        <a class="overview-button" href="/nopas/bowling/">Explore the bowling guide ↗</a>
+      </section>
+      <section id="survivors" class="overview-detail overview-survivors" aria-labelledby="survivors-title">
+        <p class="overview-eyebrow">03 / NOPAS SURVIVORS · BETA COMING SOON</p><h2 id="survivors-title">Here comes the horde.</h2>
+        <p>The Minions are coming in waves, and this time nobody is stopping to bowl them. A survivors-style mode in the same ridiculous NOPAS universe.</p>
+        <p>Build around your class, collect Pants Scrap, and keep your squad standing. Coming in beta: Generator Defense, Protect the Citizens, and UFO Attacks.</p><a class="overview-button" href="/nopas/survivors/">Explore the survival guide ↗</a>
+      </section>
+    </div>
 
-        <div class="grid md:grid-cols-2 gap-8">
-            {/* Minion Panic Bowling */}
-            <a href="/nopas/bowling/" class="group block surface rounded-lg overflow-hidden hover:bg-[var(--surface-hover)] transition">
-                <div class="relative aspect-[16/9] overflow-hidden">
-                    <Image src={bowlingStrike} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition" loading="lazy" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)] via-transparent to-transparent"></div>
-                </div>
-                <div class="p-6">
-                    <p class="font-display text-xs tracking-[0.3em] text-[var(--color-golden-400)] uppercase">Lobby Attraction</p>
-                    <h3 class="mt-2 font-display text-lg md:text-3xl">Minion Panic Bowling</h3>
-                    <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
-                        Real ten-pin bowling where every pin is a live, complaining
-                        Minion. Classic Mode for purists — Mayhem Mode for mutant pins,
-                        ball abilities, lane mutations, Kingpin bounties, and bonus
-                        rounds.
-                    </p>
-                    <p class="mt-6 text-sm text-[var(--color-golden-400)] font-display tracking-wide group-hover:translate-x-1 transition-transform">
-                        Step up to the lane →
-                    </p>
-                </div>
-            </a>
-
-            {/* Minion Survivors — in development */}
-            <div class="block surface rounded-lg overflow-hidden">
-                <div class="relative aspect-[16/9] overflow-hidden">
-                    <Image src={survivorsHorde} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-50 saturate-[.65]" loading="lazy" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)] via-transparent to-transparent"></div>
-                    <p class="absolute top-4 right-4 font-display text-[10px] tracking-[0.3em] uppercase px-3 py-1.5 rounded-full border border-[var(--color-chaos-400)]/40 text-[var(--color-chaos-400)] bg-[var(--bg-base)]/70 backdrop-blur-sm">
-                        In development
-                    </p>
-                </div>
-                <div class="p-6">
-                    <p class="font-display text-xs tracking-[0.3em] text-[var(--color-chaos-400)] uppercase">Coming to the lobby</p>
-                    <h3 class="mt-2 font-display text-lg md:text-3xl">Minion Survivors</h3>
-                    <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
-                        The Minions are coming in waves, and this time nobody is
-                        stopping to bowl them. A survivors-style mode, currently on the
-                        UPDF drawing board.
-                    </p>
-                    <p class="mt-6 text-sm text-[var(--fg-soft)] font-display tracking-wide">
-                        Details classified. For now.
-                    </p>
-                </div>
-            </div>
-        </div>
+    <section id="factions" class="overview-pad overview-factions" aria-labelledby="factions-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">THE FACES BEHIND THE CHAOS</p><h2 id="factions-title">Pick a faction. Pick a fight.</h2></div><a class="overview-link" href="/lore/">Explore the lore ↗</a></div>
+      <div class="overview-faction-grid">
+        <a class="overview-faction" href="/nopas/defenders/"><Image src={defender} alt="UPDF Security Officer character artwork" widths={[360,600]} sizes="(min-width: 800px) 230px, 40vw" loading="lazy"/><div><p class="overview-eyebrow">THE DEFENDERS</p><h3>United Pants Defense Force</h3><p>Specialized heroes with very questionable training and very strong opinions about pants. Hold the line. Rescue citizens. Build the defenses. Save Earth's denim.</p><span class="overview-link">Meet the UPDF ↗</span></div></a>
+        <a class="overview-faction" href="/nopas/collectors/"><Image src={minion} alt="Orange alien Minion character artwork" widths={[360,600]} sizes="(min-width: 800px) 230px, 40vw" loading="lazy"/><div><p class="overview-eyebrow">THE COLLECTORS</p><h3>The Alien Collectors</h3><p>An elite invasion force with one sacred mission: collect every pair of pants Earth has foolishly left lying around on people. UFOs, minions, beams, and deeply unnecessary confidence.</p><span class="overview-link">Meet the aliens ↗</span></div></a>
+      </div>
+      <p class="overview-art-note">Character artwork</p>
+      <blockquote>“Every person deserves to have a good pair of jeans.<br/>This ends today. Not Our Pants, Alien Swine!”<cite>UPDF Official Motto</cite></blockquote>
     </section>
-
-    {/* ============================================================
-        Faction selector
-       ============================================================ */}
-    <section class="max-w-7xl mx-auto px-6 py-10">
-        <div class="text-center mb-6">
-            <p class="font-display text-xs tracking-[0.4em] text-[var(--color-magenta-400)] uppercase">
-                Choose a side
-            </p>
-            <h2 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow">
-                Pick a faction. Pick a fight.
-            </h2>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-            {/* Defenders */}
-            <a href="/nopas/defenders/" class="group block surface rounded-lg overflow-hidden faction-defender hover:bg-[var(--surface-hover)] transition">
-                <div class="relative aspect-[16/9] overflow-hidden">
-                    <Image src={battle2} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition" loading="lazy" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)] via-transparent to-transparent"></div>
-                </div>
-                <div class="p-6">
-                    <p class="font-display text-xs tracking-[0.3em] text-[var(--color-denim-400)] uppercase">Defenders</p>
-                    <h3 class="mt-2 font-display text-lg md:text-3xl">United Pants Defense Force</h3>
-                    <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
-                        Specialized heroes with very questionable training and very strong
-                        opinions about pants. Hold the line. Rescue citizens. Build the
-                        defenses. Save Earth's denim.
-                    </p>
-                    <p class="mt-6 text-sm text-[var(--color-denim-400)] font-display tracking-wide group-hover:translate-x-1 transition-transform">
-                        Meet the UPDF →
-                    </p>
-                </div>
-            </a>
-
-            {/* Collectors */}
-            <a href="/nopas/collectors/" class="group block surface rounded-lg overflow-hidden faction-collector hover:bg-[var(--surface-hover)] transition">
-                <div class="relative aspect-[16/9] overflow-hidden">
-                    <Image src={battleLong} alt="" widths={[480, 720, 960]} sizes="(min-width: 768px) 600px, 90vw" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition" loading="lazy" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-base)] via-transparent to-transparent"></div>
-                </div>
-                <div class="p-6">
-                    <p class="font-display text-xs tracking-[0.3em] text-[var(--color-alien-400)] uppercase">Collectors</p>
-                    <h3 class="mt-2 font-display text-lg md:text-3xl">The Alien Collectors</h3>
-                    <p class="mt-3 text-[var(--fg-body)] text-sm leading-relaxed">
-                        An elite invasion force with one sacred mission: collect every pair
-                        of pants Earth has foolishly left lying around on people. UFOs,
-                        minions, beams, and deeply unnecessary confidence.
-                    </p>
-                    <p class="mt-6 text-sm text-[var(--color-alien-400)] font-display tracking-wide group-hover:translate-x-1 transition-transform">
-                        Join the invasion →
-                    </p>
-                </div>
-            </a>
-        </div>
-    </section>
-
-    {/* ============================================================
-        Tagline rotation strip
-       ============================================================ */}
-    <section class="border-y border-[var(--border-subtle)] py-10 my-12 overflow-hidden">
-        <div class="max-w-6xl mx-auto px-6">
-            <ul class="flex flex-wrap justify-center gap-x-12 gap-y-4 text-center text-[var(--fg-soft)] font-display text-sm tracking-wider uppercase">
-                <li>Not our pants. Not today.</li>
-                <li class="text-[var(--color-magenta-400)]/70">Defend Earth. Save the pants.</li>
-                <li>The waistband war has begun.</li>
-                <li class="text-[var(--color-magenta-400)]/70">No pants left behind.</li>
-                <li>Earth's last defense has pockets.</li>
-            </ul>
-        </div>
-    </section>
+    <section class="overview-pad overview-contact"><div><p class="overview-eyebrow">NOT OUR PANTS. NOT TODAY.</p><h2>Earth's last defense has pockets.</h2></div><a class="overview-button" href="mailto:info@collapsedstargames.com">Press &amp; player inquiries ↗</a></section>
+  </div>
 </BaseLayout>
