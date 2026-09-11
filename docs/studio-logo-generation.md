@@ -1,0 +1,9 @@
+# Studio-logo dark variant — local review
+
+Owner requested built-in imagegen using official `src/assets/brand/CSG-Logo_clean.png` as reference. Preserve the studio's black-hole spiral, diagonal magenta slash, geometric COLLAPSED STAR / GAMES lettering and identity; adapt near-black lettering and outer edges to white/silver/lavender for visibility on the purple hero, retaining bright pink/magenta accents. Request a fully transparent background. Original assets are preserved.
+
+The first generated draft is `exec-7b058355-9894-4684-9b9e-1d7da01d4ac0.png` under this task's generated-images directory. A second explicit background-removal generation, `exec-99fb7742-3f61-4efa-bad6-a4f60fba4224.png`, also returned RGB with a baked checkerboard. Neither opaque draft was integrated directly.
+
+Owner explicitly authorized another image-editing method for cleanup. Sharp/raw-pixel processing removed the neutral mid-gray checkerboard into alpha, retained white highlights, dark core and colored foreground, removed isolated texture specks, smoothed the alpha edge and restored small enclosed silver-letter details from the original generated pixels. Final: `src/assets/brand/CSG-Logo_dark-v1.png` (1672×941 RGBA). True transparency verified with alpha minimum 0 and maximum 255; inspected against the actual #211646 hero background and at rendered desktop/mobile sizes. The webpage uses no opaque backing or CSS image filter. This is a generated colorway for owner review, not a replacement for the original master logo.
+
+The homepage green ribbon is separately centered to the 1240px reading width, with a three-column mobile presentation of the three slogans. Owner reviewed the completed asset/placement and ribbon preview and approved it: "Yeah, that looks great." This satisfies the requested preview checkpoint and authorizes publication through the existing Cloudflare workflow.

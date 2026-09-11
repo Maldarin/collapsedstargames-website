@@ -67,9 +67,11 @@
 .comic-callout > span { font-size: clamp(14px, 1.4vw, 20px); }
 .comic-callout strong { font-size: clamp(21px, 2.1vw, 30px); }
 .studio-lockup { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
-.studio-lockup img { width: 100px; height: auto; padding: 7px; background: #fff9e9; border: 2px solid #131326; border-radius: 7px; }
+.studio-lockup img { width: 100px; height: auto; }
 .studio-lockup .studio-credit { line-height: 1.7; }
 .studio-lockup .studio-credit span { color: #ffdb56; font-size: 10px; letter-spacing: 3px; }
+/* Align the ribbon with the centered reading width, including wide desktops. */
+.homepage .ticker { max-width: 1240px; width: calc(100% - 48px); margin-inline: auto; border-inline: 3px solid var(--ink); }
 @media (max-width: 760px) {
   .hero-art { width: 100%; max-width: 480px; height: auto; }
   .hero-art img { object-position: center top; }
@@ -79,4 +81,6 @@
   .studio-lockup { justify-content: center; gap: 12px; text-align: left; }
   .studio-lockup img { width: 86px; }
   .studio-lockup .studio-credit { font-size: 9px; letter-spacing: 1px; }
+  .homepage .ticker { width: calc(100% - 44px); display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; white-space: normal; text-align: center; align-items: center; padding: 12px; }
+  .homepage .ticker b,.homepage .ticker span:last-child { display: none; }
 }
