@@ -1,0 +1,44 @@
+/* Patch notes: same comic system as nopas-overview (ink borders, hard drop shadows, cream paper),
+   with the three section headings drawn as laundry tags. Tags are keyed off the heading ids Astro
+   generates ("🆕 New" -> id ending "new"), so colors follow meaning even when a section is omitted. */
+.patch-hero { color: #fff; background: #211646 radial-gradient(circle, #ffffff10 1px, transparent 1.5px); background-size: 9px 9px; border-bottom: 4px solid var(--overview-ink); }
+.patch-hero .overview-eyebrow { color: #cbb7eb; margin-bottom: 12px; }
+.patch-hero h1 span { color: #ffdb56; }
+.patch-hero p.patch-hero-lede { color: #e8ddf8; font-size: 16px; line-height: 1.65; margin-top: 16px; max-width: 640px; }
+
+.patch-feature, .patch-card { display: block; background: #fff; border: 3px solid var(--overview-ink); box-shadow: 6px 6px 0 var(--overview-ink); padding: 24px 26px; transition: transform .16s, box-shadow .16s; }
+.patch-feature:hover, .patch-card:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--overview-ink); }
+.patch-feature { background: #ffdb56; margin-bottom: 34px; }
+.patch-feature h2 { margin: 6px 0 10px; }
+.patch-meta { font-size: 12px; letter-spacing: 1px; color: #64418b; font-weight: 700; }
+.patch-feature .patch-meta { color: var(--overview-ink); }
+.patch-summary { font-size: 15px; line-height: 1.6; }
+.patch-older { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+.patch-card h3 { margin: 6px 0 8px; }
+.patch-empty { font-size: 18px; text-align: center; padding: 40px 0; }
+
+.patch-body { max-width: 760px; }
+.patch-body h2 { display: inline-block; font-size: 18px; margin: 34px 0 14px; padding: 6px 16px 6px 26px; border: 2px solid var(--overview-ink); box-shadow: 3px 3px 0 var(--overview-ink); position: relative; transform: rotate(-1.5deg); background: #fff; }
+.patch-body h2::before { content: ""; position: absolute; left: 9px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; border: 2px solid var(--overview-ink); background: #fff9e9; }
+.patch-body h2[id$="new"] { background: #a9ef79; }
+.patch-body h2[id$="changes"] { background: #8fd3ff; transform: rotate(1deg); }
+.patch-body h2[id$="fixes"] { background: #ffb36b; transform: rotate(-.5deg); }
+.patch-body ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.patch-body li { background: #fff; border: 2px solid var(--overview-ink); padding: 12px 16px; font-size: 15px; line-height: 1.6; }
+.patch-body li strong { font-weight: 700; }
+
+.patch-nav { display: flex; justify-content: space-between; gap: 16px; margin-top: 44px; flex-wrap: wrap; }
+.patch-teaser { display: flex; align-items: center; justify-content: space-between; gap: 18px; background: #ffdb56; border-bottom: 4px solid var(--overview-ink); padding-top: 22px; padding-bottom: 22px; }
+.patch-teaser p { margin: 0; }
+
+@media (max-width: 700px) {
+  .patch-teaser { flex-direction: column; align-items: flex-start; }
+  .patch-feature, .patch-card { padding: 18px; }
+}
+
+/* Dark theme, following comic-themes.css: neutral paper cards become comic panels with light text;
+   saturated panels (yellow feature/teaser, colored tags) stay islands of dark ink. */
+html[data-theme="dark"] :is(.patch-card, .patch-body li) { background: var(--comic-panel); color: var(--comic-text); border-color: var(--comic-line); }
+html[data-theme="dark"] .patch-card .patch-meta { color: var(--comic-label); }
+html[data-theme="dark"] :is(.patch-feature, .patch-teaser, .patch-body h2) { color: #131326; }
+html[data-theme="dark"] .patch-empty { color: var(--comic-body); }

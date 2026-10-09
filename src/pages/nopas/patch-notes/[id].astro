@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import { publishedNewestFirst, neighbors, displayDate } from "../../../lib/patch-notes.mjs";
+import "../../../styles/nopas-overview.css";
+import "../../../styles/nopas-patch-notes.css";
+
+export async function getStaticPaths() {
+  const sorted = publishedNewestFirst(await getCollection("patchNotes"));
+  return sorted.map((entry) => ({ params: { id: entry.id }, props: { entry, ...neighbors(sorted, entry.id) } }));
+}
+
+const { entry, newer, older } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`${entry.data.version}: ${entry.data.title} — NOPAS Patch Notes`} description={entry.data.summary}>
+  <div class="nopas-overview">
+    <section class="overview-pad patch-hero" aria-labelledby="patch-title">
+      <a class="overview-back" href="/nopas/patch-notes/">← All patch notes</a>
+      <p class="overview-eyebrow">{entry.data.version.toUpperCase()} · {displayDate(entry.data.date).toUpperCase()}</p>
+      <h1 id="patch-title">{entry.data.title}</h1>
+      <p class="patch-hero-lede">{entry.data.summary}</p>
+    </section>
+
+    <section class="overview-pad">
+      <div class="patch-body"><Content /></div>
+      <nav class="patch-nav" aria-label="More patches">
+        {older ? <a class="overview-button" href={`/nopas/patch-notes/${older.id}/`}>← {older.data.version}</a> : <span></span>}
+        {newer && <a class="overview-button" href={`/nopas/patch-notes/${newer.id}/`}>{newer.data.version} →</a>}
+      </nav>
+    </section>
+  </div>
+</BaseLayout>

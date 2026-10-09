@@ -12,7 +12,8 @@
     "astro": "astro",
     "test:stats": "node scripts/e2e-stats.mjs",
     "test:videos": "node scripts/e2e-videos.mjs",
-    "test:unit": "node --test \"src/lib/*.test.mjs\" \"scripts/patch-notes/*.test.mjs\""
+    "test:unit": "node --test \"src/lib/*.test.mjs\" \"scripts/patch-notes/*.test.mjs\"",
+    "test:patch-notes": "node scripts/e2e-patch-notes.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",

@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { publishedNewestFirst, displayDate } from "../../../lib/patch-notes.mjs";
+import "../../../styles/nopas-overview.css";
+import "../../../styles/nopas-patch-notes.css";
+
+const patches = publishedNewestFirst(await getCollection("patchNotes"));
+const [latest, ...older] = patches;
+---
+
+<BaseLayout title="Patch Notes — NOPAS" description="Every change to Not Our Pants, Alien Swine!, freshly laundered: new things, tweaks, and the bugs we finally caught.">
+  <div class="nopas-overview">
+    <section class="overview-pad patch-hero" aria-labelledby="patch-title">
+      <a class="overview-back" href="/nopas/">← Back to NOPAS</a>
+      <p class="overview-eyebrow">FRESHLY LAUNDERED CHANGES</p>
+      <h1 id="patch-title">PATCH <span>NOTES</span></h1>
+      <p class="patch-hero-lede">Everything that changed in Not Our Pants, Alien Swine!, newest on top. Folded, pressed, and only slightly singed.</p>
+    </section>
+
+    <section class="overview-pad" aria-label="Patches">
+      {!latest && <p class="patch-empty">No patches yet. The pants are still in the wash.</p>}
+      {latest && (
+        <a class="patch-feature" href={`/nopas/patch-notes/${latest.id}/`}>
+          <p class="patch-meta">LATEST · {latest.data.version.toUpperCase()} · {displayDate(latest.data.date)}</p>
+          <h2>{latest.data.title}</h2>
+          <p class="patch-summary">{latest.data.summary}</p>
+          <p class="patch-meta">Read the full notes →</p>
+        </a>
+      )}
+      {older.length > 0 && (
+        <div class="patch-older">
+          {older.map((p) => (
+            <a class="patch-card" href={`/nopas/patch-notes/${p.id}/`}>
+              <p class="patch-meta">{p.data.version.toUpperCase()} · {displayDate(p.data.date)}</p>
+              <h3>{p.data.title}</h3>
+              <p class="patch-summary">{p.data.summary}</p>
+            </a>
+          ))}
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>
