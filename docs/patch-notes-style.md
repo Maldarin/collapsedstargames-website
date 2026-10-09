@@ -10,7 +10,7 @@ The spec is `docs/superpowers/specs/2026-10-09-patch-notes-design.md`.
    - The date is the day it went live.
    - The slug is the punny title in lowercase-dashes.
 4. Hand the owner three things: the draft, the skipped list, and the PRs behind each item.
-   - Preview it locally with `npm run dev`; drafts show there but not in a real build.
+   - Preview it locally with `npm run dev`. Drafts show there, marked DRAFT; a real build and the feed never include them.
 5. When the owner approves, delete the `draft: true` line and commit: `patch-notes: <version> — <title>`. Push `main`.
 6. Cloudflare rebuilds the site in about 90 seconds. The bot posts to #patch-notes within about 5 minutes after that.
 

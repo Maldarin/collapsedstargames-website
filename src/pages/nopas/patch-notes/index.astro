@@ -5,7 +5,7 @@ import { publishedNewestFirst, displayDate } from "../../../lib/patch-notes.mjs"
 import "../../../styles/nopas-overview.css";
 import "../../../styles/nopas-patch-notes.css";
 
-const patches = publishedNewestFirst(await getCollection("patchNotes"));
+const patches = publishedNewestFirst(await getCollection("patchNotes"), { includeDrafts: import.meta.env.DEV });
 const [latest, ...older] = patches;
 ---
 

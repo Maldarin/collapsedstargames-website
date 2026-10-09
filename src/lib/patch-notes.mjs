@@ -8,9 +8,11 @@ export function isPublished(entry) {
 
 // Newest first; the same date breaks ties by id DESCENDING. The bot posts oldest first with the
 // mirror-image rule (date asc, id asc), so the patch shown on top here is the last one posted.
-export function publishedNewestFirst(entries) {
+// includeDrafts is for the local dev preview only (pages pass import.meta.env.DEV); a real build and
+// the feed never include drafts.
+export function publishedNewestFirst(entries, { includeDrafts = false } = {}) {
   return entries
-    .filter(isPublished)
+    .filter((e) => includeDrafts || isPublished(e))
     .sort((a, b) => b.data.date - a.data.date || (a.id < b.id ? 1 : a.id > b.id ? -1 : 0));
 }
 

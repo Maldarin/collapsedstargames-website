@@ -12,7 +12,7 @@ import "../../styles/nopas-overview.css";
 import "../../styles/nopas-patch-notes.css";
 import { getCollection } from "astro:content";
 import { publishedNewestFirst } from "../../lib/patch-notes.mjs";
-const latestPatch = publishedNewestFirst(await getCollection("patchNotes"))[0];
+const latestPatch = publishedNewestFirst(await getCollection("patchNotes"), { includeDrafts: import.meta.env.DEV })[0];
 
 const modes = [
   { id: "match", name: "NOPAS: Invasion", color: "#74caff", tag: "DEFEND. INVADE. DEPANTS.", image: matchArt, alt: "Defenders and Collectors in NOPAS: Invasion universe artwork", label: "Universe artwork", text: "Protect Earth's pants as a Defender—or join the alien Collectors and steal the lot.", action: "Explore NOPAS: Invasion" },

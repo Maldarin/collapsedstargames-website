@@ -6,7 +6,7 @@ import "../../../styles/nopas-overview.css";
 import "../../../styles/nopas-patch-notes.css";
 
 export async function getStaticPaths() {
-  const sorted = publishedNewestFirst(await getCollection("patchNotes"));
+  const sorted = publishedNewestFirst(await getCollection("patchNotes"), { includeDrafts: import.meta.env.DEV });
   return sorted.map((entry) => ({ params: { id: entry.id }, props: { entry, ...neighbors(sorted, entry.id) } }));
 }
 
@@ -18,7 +18,7 @@ const { Content } = await render(entry);
   <div class="nopas-overview">
     <section class="overview-pad patch-hero" aria-labelledby="patch-title">
       <a class="overview-back" href="/nopas/patch-notes/">← All patch notes</a>
-      <p class="overview-eyebrow">{entry.data.version.toUpperCase()} · {displayDate(entry.data.date).toUpperCase()}</p>
+      <p class="overview-eyebrow">{entry.data.draft ? "DRAFT (LOCAL PREVIEW ONLY) · " : ""}{entry.data.version.toUpperCase()} · {displayDate(entry.data.date).toUpperCase()}</p>
       <h1 id="patch-title">{entry.data.title}</h1>
       <p class="patch-hero-lede">{entry.data.summary}</p>
     </section>

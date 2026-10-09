@@ -52,3 +52,12 @@ test("feed: published only, newest first; empty collection gives empty list", ()
   const f = buildFeed([e("a", "2026-10-10"), e("b", "2026-10-11", { draft: true }), e("c", "2026-10-12")]);
   assert.deepEqual(f.patches.map((p) => p.id), ["c", "a"]);
 });
+
+test("includeDrafts (local dev preview) keeps drafts in the list, same ordering", () => {
+  const out = publishedNewestFirst([e("2026-10-10-a", "2026-10-10"), e("2026-10-12-d", "2026-10-12", { draft: true })], { includeDrafts: true });
+  assert.deepEqual(out.map((x) => x.id), ["2026-10-12-d", "2026-10-10-a"]);
+});
+
+test("the feed never includes drafts", () => {
+  assert.deepEqual(buildFeed([e("d", "2026-10-12", { draft: true })]), { patches: [] });
+});
