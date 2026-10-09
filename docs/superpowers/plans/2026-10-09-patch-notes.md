@@ -44,7 +44,7 @@ The bot polls the feed every 5 minutes. Before sending a patch it records a clai
 
 ## Review Focus
 
-- **Unquoted `coveredThrough`.** YAML turns `coveredThrough: 2026-10-10T18:42:00Z` (no quotes) into a Date. The schema must accept it, and `gather` must still read it. Tests: Task 1 and Task 4.
+- **Unquoted `coveredThrough`.** YAML turns `coveredThrough: 2026-10-10T18:42:00Z` (no quotes) into a Date. The schema must accept it, and `gather` must still read it. Tests: Task 2 (an unquoted fixture that must build) and Task 4.
 - **One enormous bullet longer than 4096 characters.** The embed must still be ≤ 4096 characters and end with the "read the full patch notes" link. It must not throw or exceed the limit. Test: Task 6.
 - **Two patches with the same `date`.** The website (newest first) and the bot (oldest first) must order them deterministically by id, so "newest" on the site is the last one the bot posts. Tests: Task 1 and Task 7.
 - **A PR merged exactly at the start time.** It belongs to the previous patch and is excluded (strict `>`). A PR merged after "now" is excluded too. Test: Task 4.
@@ -1192,7 +1192,7 @@ describe("buildPatchEmbed", () => {
     expect(e.description.length).toBeLessThanOrEqual(EMBED_DESCRIPTION_MAX);
     expect(e.description).toMatch(/…plus more — \[read the full patch notes →\]\(https:\/\/collapsedstargames\.com\/nopas\/patch-notes\/2026-10-10-a\/\)$/);
     const body = e.description.split("\n\n…plus more")[0];
-    expect(body.split("\n").at(-1)).toMatch(/pants $/); // last kept line is a complete bullet
+    expect(body.split("\n").at(-1)).toMatch(/pants$/); // last kept line is a complete bullet (trailing space trimmed)
   });
 
   it("a single bullet longer than the limit is still capped (hard cut) and linked", () => {
@@ -1203,7 +1203,8 @@ describe("buildPatchEmbed", () => {
 
   it("drops a heading left dangling with no items after truncation", () => {
     const first = Array.from({ length: 60 }, (_, i) => `- **A${i}.** ${"y".repeat(50)}`).join("\n");
-    const second = Array.from({ length: 60 }, (_, i) => `- **B${i}.** ${"y".repeat(50)}`).join("\n");
+    // Each B bullet is far too big to fit, so the cut lands right after the Fixes heading: that heading must be dropped.
+    const second = Array.from({ length: 60 }, (_, i) => `- **B${i}.** ${"y".repeat(500)}`).join("\n");
     const e = buildPatchEmbed(p(`## 🆕 New\n${first}\n\n## 🐛 Fixes\n${second}`));
     const body = e.description.split("\n\n…plus more")[0].trimEnd();
     expect(body.split("\n").at(-1)!.startsWith("**")).toBe(false);
