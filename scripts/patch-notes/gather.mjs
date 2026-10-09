@@ -7,14 +7,19 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { execFileSync } from "node:child_process";
-import { findStart, classifyPr, selectPrs, suggestedCoveredThrough, isInternalPath } from "./lib.mjs";
+import { findStart, unreadableCoveredThrough, classifyPr, selectPrs, suggestedCoveredThrough, isInternalPath } from "./lib.mjs";
 
 const REPO = "Maldarin/not-my-pants-alien-scum";
 const DIR = "src/content/patch-notes";
 
 const sinceArg = process.argv.indexOf("--since");
-const texts = readdirSync(DIR).filter((f) => f.endsWith(".md")).map((f) => readFileSync(join(DIR, f), "utf8"));
-const start = sinceArg > 0 ? new Date(process.argv[sinceArg + 1]).toISOString() : findStart(texts);
+const files = readdirSync(DIR).filter((f) => f.endsWith(".md")).map((f) => ({ name: f, text: readFileSync(join(DIR, f), "utf8") }));
+const bad = unreadableCoveredThrough(files);
+if (bad.length) {
+  console.error(`STOPPED: these patch files have no readable coveredThrough (quoted ISO UTC, e.g. "2026-10-10T18:42:00Z"):\n  ${bad.join("\n  ")}`);
+  process.exit(1);
+}
+const start = sinceArg > 0 ? new Date(process.argv[sinceArg + 1]).toISOString() : findStart(files.map((f) => f.text));
 const now = new Date().toISOString();
 
 let raw;

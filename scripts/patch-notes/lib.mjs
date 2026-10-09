@@ -8,8 +8,19 @@ export const INTERNAL_PREFIXES = ["tests/", "docs/", "design docs/", ".claude/",
 export function readCoveredThrough(text) {
   const fm = text.match(/^---\r?\n([\s\S]*?)\r?\n---/);
   if (!fm) return null;
-  const m = fm[1].match(/^coveredThrough:\s*["']?([^"'\r\n]+?)["']?\s*$/m);
+  const line = fm[1].match(/^coveredThrough:(.*)$/m);
+  if (!line) return null;
+  // Drop a trailing YAML comment, then optional quotes. (The spec's own template comments this line.)
+  const m = line[1].replace(/\s+#.*$/, "").trim().match(/^["']?([^"']+?)["']?$/);
   return m ? m[1] : null;
+}
+
+// Every patch file must carry a readable coveredThrough. One that doesn't would silently drop out
+// of findStart and move the next draft's start backwards, so gather names it and stops instead.
+export function unreadableCoveredThrough(files) {
+  return files
+    .filter(({ text }) => { const v = readCoveredThrough(text); return !v || Number.isNaN(Date.parse(v)); })
+    .map(({ name }) => name);
 }
 
 // Drafts count: a pending draft already covers its PRs, so the next gather must not repeat them.

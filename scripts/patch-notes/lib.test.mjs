@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { INITIAL_START, readCoveredThrough, findStart, isInternalPath, classifyPr, selectPrs, suggestedCoveredThrough } from "./lib.mjs";
+import { INITIAL_START, readCoveredThrough, findStart, unreadableCoveredThrough, isInternalPath, classifyPr, selectPrs, suggestedCoveredThrough } from "./lib.mjs";
 
 const file = (ct, extra = "") => `---\nversion: "x"\ntitle: "t"\ndate: 2026-10-10\nsummary: "s"\nprs: [1]\ncoveredThrough: ${ct}\n${extra}---\n\nbody\n`;
 
@@ -44,4 +44,19 @@ test("selects PRs strictly after start and not after now, oldest first", () => {
 test("suggested coveredThrough is the newest mergedAt, null when none", () => {
   assert.equal(suggestedCoveredThrough([]), null);
   assert.equal(suggestedCoveredThrough([{ mergedAt: "2026-10-10T02:00:00Z" }, { mergedAt: "2026-10-10T03:00:00Z" }]), "2026-10-10T03:00:00Z");
+});
+
+test("reads coveredThrough with a trailing YAML comment (the spec's own template has one)", () => {
+  assert.equal(readCoveredThrough(file('"2026-10-10T18:42:00Z"    # newest mergedAt included')), "2026-10-10T18:42:00Z");
+  assert.equal(readCoveredThrough(file("2026-10-10T18:42:00Z # note")), "2026-10-10T18:42:00Z");
+});
+
+test("names every patch file whose coveredThrough is missing or not a time, so gather can stop", () => {
+  const files = [
+    { name: "ok.md", text: file('"2026-10-10T18:42:00Z"') },
+    { name: "missing.md", text: '---\nversion: "x"\n---\nbody' },
+    { name: "garbage.md", text: file('"next tuesday"') },
+  ];
+  assert.deepEqual(unreadableCoveredThrough(files), ["missing.md", "garbage.md"]);
+  assert.deepEqual(unreadableCoveredThrough([files[0]]), []);
 });
