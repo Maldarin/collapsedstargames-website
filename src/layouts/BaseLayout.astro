@@ -10,7 +10,9 @@ interface Props {
     ogImage?: string;
 }
 
-const { title, description = "Collapsed Star Games — an independent game studio building multiplayer and single-player games designed to be remembered, replayed, and shared.", ogImage } = Astro.props;
+// Default share image (1200x630) for every page that doesn't pass its own ogImage.
+const DEFAULT_OG_IMAGE = "https://collapsedstargames.com/og/nopas-og.jpg";
+const { title, description = "Collapsed Star Games — an independent game studio building multiplayer and single-player games designed to be remembered, replayed, and shared.", ogImage = DEFAULT_OG_IMAGE } = Astro.props;
 const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Collapsed Star Games`;
 ---
 
@@ -25,7 +27,10 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
         <meta property="og:title" content={fullTitle} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
-        {ogImage && <meta property="og:image" content={ogImage} />}
+        <meta property="og:image" content={ogImage} />
+        {ogImage === DEFAULT_OG_IMAGE && <meta property="og:image:width" content="1200" />}
+        {ogImage === DEFAULT_OG_IMAGE && <meta property="og:image:height" content="630" />}
+        <meta name="twitter:card" content="summary_large_image" />
         <link rel="icon" type="image/png" href="/favicon.png" />
 
         {/* Theme init — runs BEFORE first paint to avoid flash of wrong theme.
@@ -159,6 +164,7 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                     <p class="mt-1">Independent game studio. United States.</p>
                     <p class="mt-1">Support: <a href="mailto:info@collapsedstargames.com" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">info@collapsedstargames.com</a></p>
                     <p class="mt-1"><a href="/shop/" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Shop · Coming soon</a></p>
+                    <p class="mt-1"><a href="https://www.roblox.com/communities/237551237" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Join the Collapsed Star Games community on Roblox ↗</a></p>
                 </div>
                 <p>© {new Date().getFullYear()} Collapsed Star Games. All rights reserved.</p>
             </div>

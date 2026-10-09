@@ -7,7 +7,7 @@ import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
 
 <BaseLayout
     title="The Overlord — Collector Class"
-    description="The Overlord is the floating mastermind of the Collector invasion — part commander, part psychic menace, part workplace supervisor. Hover above the chaos, direct minions, freeze Defenders, and organize the pants-removal operation."
+    description="The Overlord is the floating mastermind of the Collector invasion — part commander, part psychic menace, part workplace supervisor. Hover above the chaos, direct minions, chill Defenders, and organize the pants-removal operation."
 >
 <div class="character-pages collectors detail-page">
     {/* ============================================================
@@ -35,7 +35,7 @@ import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
                     </p>
                     <h1 class="font-display text-2xl md:text-4xl mt-3 text-paper-glow leading-tight">
                         THE <span class="">OVERLORD</span>
-                    </h1><p class="character-mode-note">NOPAS MATCH · CHARACTER GUIDE</p>
+                    </h1><p class="character-mode-note">NOPAS: INVASION · CHARACTER GUIDE</p>
                     <p class="mt-6 italic text-lg">
                         Why chase pants yourself when minions exist?
                     </p>
@@ -45,7 +45,7 @@ import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
                         with absolutely no regard for personal space.
                     </p>
                     <p class="mt-4 leading-relaxed">
-                        Hover above the chaos, direct minions, freeze Defenders,
+                        Hover above the chaos, direct minions, chill Defenders,
                         disrupt safe zones, and turn the battlefield into a carefully
                         organized pants-removal operation.
                     </p>
@@ -123,8 +123,9 @@ import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
                 <p class="font-display text-xs tracking-[0.3em] uppercase">Ability</p>
                 <h3 class="mt-2 font-display text-lg">Freeze Ray</h3>
                 <p class="mt-4 leading-relaxed">
-                    Stop Defenders in their tracks and make rescue attempts extremely
-                    inconvenient.
+                    A channeled freeze cone that damages and slows Defenders, making
+                    rescue attempts extremely inconvenient. With the Freeze Out overclock,
+                    holding it on one target encases them in solid ice.
                 </p>
                 <p class="mt-4 italic text-sm leading-relaxed">
                     A frozen Defender is not defending.<br/>A frozen Defender is decor.
@@ -144,24 +145,79 @@ import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
                 </p>
             </div>
 
-            {/* Minion Direction */}
+            {/* Ballooninator & Shrinkinator */}
+            <div class="surface rounded-lg p-4 border border-[var(--color-magenta-500)]/20">
+                <p class="font-display text-xs tracking-[0.3em] uppercase">Alien Tech</p>
+                <h3 class="mt-2 font-display text-lg">Ballooninator &amp; Shrinkinator</h3>
+                <p class="mt-4 leading-relaxed">
+                    Hold the Ballooninator on a Defender to puff them up and float them
+                    off, helpless. Hold the Shrinkinator instead and shrink them small
+                    enough to step on. Both unlock along the class path.
+                </p>
+                <p class="mt-4 italic text-sm leading-relaxed">
+                    Two beams. Zero dignity.
+                </p>
+            </div>
+
+            {/* Dagger Cloak Spin */}
+            <div class="surface rounded-lg p-4 border border-[var(--color-magenta-500)]/20">
+                <p class="font-display text-xs tracking-[0.3em] uppercase">Melee</p>
+                <h3 class="mt-2 font-display text-lg">Dagger Cloak Spin</h3>
+                <p class="mt-4 leading-relaxed">
+                    When Defenders crowd in, the cloak's daggers flare out and spin
+                    through everyone in reach, and the Overlord takes far less damage
+                    mid-spin.
+                </p>
+                <p class="mt-4 italic text-sm leading-relaxed">
+                    Personal space, enforced. Spin into an iced target and the ice shatters.
+                </p>
+            </div>
+
+            {/* Wave Direction */}
             <div class="surface rounded-lg p-4 border border-[var(--color-magenta-500)]/20">
                 <p class="font-display text-xs tracking-[0.3em] uppercase">Command</p>
-                <h3 class="mt-2 font-display text-lg">Minion Direction</h3>
+                <h3 class="mt-2 font-display text-lg">Wave Direction</h3>
                 <p class="mt-4 leading-relaxed">
-                    The Overlord thrives when minions are nearby. Guide the swarm,
+                    The Overlord thrives when minions are nearby. Redirect the swarm,
                     pressure weak zones, and turn small alien chaos into large alien
                     success.
                 </p>
             </div>
 
+            {/* Minion Possession */}
+            <div class="surface rounded-lg p-4 border border-[var(--color-magenta-500)]/20">
+                <p class="font-display text-xs tracking-[0.3em] uppercase">Command</p>
+                <h3 class="mt-2 font-display text-lg">Minion Possession</h3>
+                <p class="mt-4 leading-relaxed">
+                    Take direct control of a single Minion: tougher, faster and
+                    harder-hitting than the AI version, with nearby Minions ready to
+                    be called in behind you.
+                </p>
+            </div>
+
+            {/* Airdrop Maulers */}
+            <div class="surface rounded-lg p-4 border border-[var(--color-magenta-500)]/20">
+                <p class="font-display text-xs tracking-[0.3em] uppercase">Reinforcements</p>
+                <h3 class="mt-2 font-display text-lg">Airdrop Maulers</h3>
+                <p class="mt-4 leading-relaxed">
+                    Drop up to two Iron Maulers in right beside you, exactly where
+                    the Defenders least want them. (Not from inside the mothership.)
+                </p>
+            </div>
+
             {/* Evil Eye Drone */}
             <div class="surface rounded-lg p-4 border border-[var(--color-magenta-500)]/20">
-                <p class="font-display text-xs tracking-[0.3em] uppercase">Setup Phase · Recon</p>
+                <p class="font-display text-xs tracking-[0.3em] uppercase">Command Terminal · Recon</p>
                 <h3 class="mt-2 font-display text-lg">Evil Eye Drone</h3>
                 <p class="mt-4 leading-relaxed">
-                    During the setup phase, the Overlord can use the command terminal
-                    aboard the mothership to scout with the Evil Eye Drone.
+                    From the command terminal aboard the mothership, the Overlord flies
+                    the Evil Eye Drone: its pulse marks Defenders, and during the setup
+                    phase it tows citizens into shielded holding pens. Defenders can
+                    shoot it down.
+                </p>
+                <p class="mt-4 leading-relaxed">
+                    The same terminal handles Deploy Minions: pick a drop spot during
+                    Setup and the swarm lands there when the Invasion phase begins.
                 </p>
                 <p class="mt-4 italic text-sm leading-relaxed">
                     Watch citizens. Track Defenders. Identify panic clusters.<br/>
@@ -169,6 +225,11 @@ import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
                 </p>
             </div>
         </div>
+        <p class="mt-6 text-center text-sm max-w-2xl mx-auto">
+            The Overlord's class path unlocks gameplay variants, like Single File Swine
+            and Scatterbrain for Wave Direction. Collectors unlock at account Level 5,
+            after 3 Defender matches and the Collector briefing.
+        </p>
     </section>
 
     {/* ============================================================
@@ -241,6 +302,6 @@ import overlordHero from "../../../assets/classes/Overlord/Overlord.png";
             </p>
         </a>
     </section>
-<nav class="character-footer-nav" aria-label="Explore the factions"><a href="/nopas/">← NOPAS overview</a><a href="/nopas/defenders/">Meet the Defenders ↗</a><a href="/nopas/collectors/">Meet the Collectors ↗</a><a href="/nopas/survivors/">Survivors guide ↗</a></nav>
+<nav class="character-footer-nav" aria-label="Explore the factions"><a href="/nopas/">← NOPAS overview</a><a href="/nopas/defenders/">Meet the Defenders ↗</a><a href="/nopas/collectors/">Meet the Collectors ↗</a><a href="/nopas/survivors/">Minion Survivors guide ↗</a></nav>
 </div>
 </BaseLayout>

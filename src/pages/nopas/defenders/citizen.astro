@@ -6,7 +6,7 @@ import citizenHero from "../../../assets/classes/Citizen/citizen_4.png";
 import citizenScreamer from "../../../assets/classes/Citizen/citizen_8.png";
 import citizenHider from "../../../assets/classes/Citizen/citizen_5.png";
 import citizenCrowdFollower from "../../../assets/classes/Citizen/citizen_10.png";
-import citizenFreezer from "../../../assets/classes/Citizen/citizen_3.png";
+import citizenFainter from "../../../assets/classes/Citizen/citizen_3.png";
 import citizenHero2 from "../../../assets/classes/Citizen/citizen_7.png";
 import citizenScene1 from "../../../assets/classes/Citizen/citizen_1.png";
 import citizenScene2 from "../../../assets/classes/Citizen/citizen_2.png";
@@ -44,7 +44,7 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
                     </p>
                     <h1 class="font-display text-3xl md:text-5xl mt-3 text-paper-glow leading-tight">
                         THE <span class="">CITIZENS</span>
-                    </h1><p class="character-mode-note">NOPAS MATCH · CHARACTER GUIDE</p>
+                    </h1><p class="character-mode-note">NOPAS: INVASION · CHARACTER GUIDE</p>
                     <p class="mt-4 italic">
                         Untrained. Unarmed. Unreasonably important.
                     </p>
@@ -104,6 +104,39 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
     </section>
 
     {/* ============================================================
+        Playing as a Citizen — compact 2-col
+       ============================================================ */}
+    <section class="character-section max-w-5xl mx-auto px-6 pb-10 grid md:grid-cols-2 gap-6">
+        <div class="surface rounded-lg p-5 border-l-2 border-[#ffc14d]/40">
+            <p class="font-display text-xs tracking-[0.3em] uppercase">Playable Class</p>
+            <h2 class="mt-2 font-display text-xl md:text-2xl">You can be the citizen.</h2>
+            <p class="mt-3 text-sm leading-relaxed">
+                Citizen is also a playable, non-combat Defender class, and up to six
+                players can be Citizens in a match. No weapons. Just missions, nerve,
+                and a surprisingly useful amount of dancing.
+            </p>
+            <p class="mt-3 text-sm leading-relaxed">
+                On phones, beta players play as Citizen.
+            </p>
+            <p class="mt-3 italic text-sm leading-relaxed">
+                Athletes only carry and throw the computer-controlled townsfolk.
+                Player Citizens have to run on their own legs.
+            </p>
+        </div>
+        <div class="surface rounded-lg p-5">
+            <p class="font-display text-xs tracking-[0.3em] uppercase">Citizen Toolkit</p>
+            <h2 class="mt-2 font-display text-xl md:text-2xl">Unarmed. Still useful.</h2>
+            <ul class="mt-3 space-y-1.5 text-sm leading-relaxed">
+                <li><span class="font-display">Answer the Call:</span> complete missions that help your team.</li>
+                <li><span class="font-display">Distraction emotes:</span> hold an emote to keep nearby minions spellbound. Hold it long enough and they stay stunned while you slip away.</li>
+                <li><span class="font-display">Citizen Orders:</span> follow Rally and Hide calls from Security Officers and Athletes.</li>
+                <li><span class="font-display">Cannon Crew:</span> help work the Pants Factory cannons during Final Stand.</li>
+                <li><span class="font-display">Class path:</span> a 12-node path of cosmetics and gameplay variants, like Dance Emergency and Mime Business.</li>
+            </ul>
+        </div>
+    </section>
+
+    {/* ============================================================
         Behavior types — 5 archetype cards (compact grid)
        ============================================================ */}
     <section class="character-section character-behaviors max-w-7xl mx-auto px-6 py-10">
@@ -153,14 +186,14 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
             </div>
             <div class="surface rounded-lg overflow-hidden border-l-2 border-[#8edcff]/40">
                 <div class="relative aspect-[4/3] bg-[var(--bg-deep)] overflow-hidden">
-                    <Image src={citizenFreezer} alt="" widths={[200, 320]} sizes="(min-width: 1024px) 220px, 50vw" class="w-full h-full object-contain" loading="lazy" />
+                    <Image src={citizenFainter} alt="" widths={[200, 320]} sizes="(min-width: 1024px) 220px, 50vw" class="w-full h-full object-contain" loading="lazy" />
                 </div>
                 <div class="p-3">
-                    <h3 class="font-display text-base">The Freezer</h3>
+                    <h3 class="font-display text-base">The Fainter</h3>
                     <p class="mt-1.5 text-xs leading-relaxed">
-                        When danger appears, the Freezer briefly becomes public art.
-                        Defenders are encouraged to relocate them before the aliens
-                        admire the exhibit.
+                        When danger gets too close, the Fainter stiffens, topples, and
+                        goes limp. Defenders are encouraged to relocate them before the
+                        aliens admire the exhibit.
                     </p>
                 </div>
             </div>
@@ -171,9 +204,10 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
                 <div class="p-3">
                     <h3 class="font-display text-base">The Hero</h3>
                     <p class="mt-1.5 text-xs leading-relaxed">
-                        Rare. Confused. Inspiring. May help man a cannon, follow a
-                        Defender's lead, or do something unexpectedly useful at the
-                        exact moment everyone assumed they would scream.
+                        Rumored. Rarely sighted. Possibly inspiring. Witnesses describe
+                        a citizen who did something unexpectedly useful at the exact
+                        moment everyone assumed they would scream. The UPDF is still
+                        reviewing the footage.
                     </p>
                 </div>
             </div>
@@ -200,7 +234,7 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
                 <p class="font-display text-xs tracking-[0.3em] uppercase">Invasion</p>
                 <h3 class="mt-1 font-display text-lg">Panic at full volume.</h3>
                 <p class="mt-2 text-xs leading-relaxed">
-                    Some run. Some hide. Some freeze. Some make decisions that will be
+                    Some run. Some hide. Some faint. Some make decisions that will be
                     reviewed later by a committee.
                 </p>
                 <p class="mt-2 italic text-xs">
@@ -233,7 +267,7 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
                 <li><span class="font-display">2.</span> Stay indoors.</li>
                 <li><span class="font-display">3.</span> Do not investigate glowing beams.</li>
                 <li><span class="font-display">4.</span> Do not negotiate with orange aliens.</li>
-                <li><span class="font-display">5.</span> If carried by an Athlete, remain calm and enjoy the emergency relocation.</li>
+                <li><span class="font-display">5.</span> Townsfolk carried by an Athlete should remain calm and enjoy the emergency relocation.</li>
                 <li><span class="font-display">6.</span> If placed in a safe zone, do not wander back to where the screaming came from.</li>
                 <li><span class="font-display">7.</span> If someone shouts &ldquo;Final Stand,&rdquo; look for a cannon or a very sturdy wall.</li>
                 <li><span class="font-display">8.</span> Pants are not optional.</li>
@@ -250,8 +284,8 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
             <p class="mt-3 text-sm leading-relaxed">
                 If approached by an orange alien, do not offer directions, snacks, or
                 pants. If a Defender tells you to move, please move. If an Athlete
-                throws you into a building, assume the building was safer than where
-                you were.
+                throws your neighbor into a building, assume the building was safer
+                than where they were.
             </p>
             <p class="mt-3 text-sm italic">
                 The UPDF thanks you for your cooperation.<br/>
@@ -292,7 +326,7 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
             <div class="surface rounded-lg p-4">
                 <p class="font-display text-xs">Athlete</p>
                 <p class="mt-2 text-xs italic leading-relaxed">
-                    May pick you up, carry you, or throw you somewhere safer. This is not kidnapping.
+                    May pick up a townsperson, carry them, or throw them somewhere safer. This is not kidnapping.
                 </p>
             </div>
             <div class="surface rounded-lg p-4">
@@ -416,6 +450,6 @@ import citizenPair from "../../../assets/classes/Citizen/citizen_6.png";
             </a>
         </div>
     </section>
-<nav class="character-footer-nav" aria-label="Explore the factions"><a href="/nopas/">← NOPAS overview</a><a href="/nopas/defenders/">Meet the Defenders ↗</a><a href="/nopas/collectors/">Meet the Collectors ↗</a><a href="/nopas/survivors/">Survivors guide ↗</a></nav>
+<nav class="character-footer-nav" aria-label="Explore the factions"><a href="/nopas/">← NOPAS overview</a><a href="/nopas/defenders/">Meet the Defenders ↗</a><a href="/nopas/collectors/">Meet the Collectors ↗</a><a href="/nopas/survivors/">Minion Survivors guide ↗</a></nav>
 </div>
 </BaseLayout>

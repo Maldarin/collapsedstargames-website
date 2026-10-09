@@ -50,7 +50,7 @@ for(const theme of ['light','dark'])for(const [size,width,height] of [['desktop'
  for(const state of ['populated','empty','missing','offline','loading']){
   mode=state;
   if(state==='missing'){await p.locator('#lookup-form button').click();await p.waitForFunction(()=>document.querySelector('#lookup-result').textContent.includes('No player found'));}
-  else if(state!=='populated'){await p.getByRole('tab').nth(1).click();await p.waitForFunction(s=>{const t=document.querySelector('#board').textContent;return s==='empty'?t.includes("Nobody's"):s==='offline'?t.includes("aren't live"):t==='Loading…';},state);}
+  else if(state!=='populated'){await p.getByRole('tab').nth(1).click();await p.waitForFunction(s=>{const t=document.querySelector('#board').textContent;return s==='empty'?t.includes("Nobody's"):s==='offline'?t.includes("taking a breather"):t==='Loading…';},state);}
   assert.deepEqual((await p.evaluate(inspectContrast)).fails,[],`stats ${theme} ${size} ${state} contrast`);
   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   await p.locator('.stats-panels').evaluate(e=>scrollTo(0,e.offsetTop-90));

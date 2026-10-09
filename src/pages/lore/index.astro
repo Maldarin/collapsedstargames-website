@@ -17,16 +17,16 @@ import loreJoinUpdf from "../../assets/lore/lore-join-updf.png";
 const timeline = [
     { day: "Day -∞", event: "Earth peacefully manufactures pants. No alien activity detected. Nobody knows how powerful pants are, and nobody bothers to check." },
     { day: "Day -1", event: "A Suburbia physics lab opens a stable interdimensional rift for six minutes. The rift is classified as a successful experiment." },
-    { day: "Day 0", event: "First Collector reconnaissance drone enters Earth's airspace. The Pants Factory glows on every Collector instrument." },
-    { day: "Day 1", event: "First confirmed pants theft. The Hendersons file a police report." },
-    { day: "Day 3", event: "Local authorities escalate. Federal task force convened." },
-    { day: "Day 6", event: "The security guard at the Suburbia Mall food court confronts a Collector minion patrol. The phrase “I asked them to stop” enters the historical record." },
-    { day: "Day 7", event: "The UPDF is formed at the Suburbia Mall food court. Founding document signed on a napkin." },
+    { day: "Day 0", event: "A Tuesday. The Collector mothership enters Earth's airspace and scans a backyard clothesline. The Pants Factory glows on every Collector instrument." },
+    { day: "Day 2", event: "First confirmed pants theft, 4:47 PM on a Thursday. The Hendersons file a police report. Local authorities escalate to state, state to federal. Federal authorities look up at the sky and say “Oh crap.”" },
+    { day: "Day 7", event: "The Henderson residence is depantsed entirely." },
     { day: "Day 11", event: "The Underpants Summit. Humanity attempts diplomacy. Humanity is depantsed in eleven seconds. Diplomacy is permanently retired." },
-    { day: "Day 14", event: "First UPDF defensive operation. The Suburbia Laundromat holds the line for six hours without losing a single pair of pants." },
-    { day: "Day 21", event: "Federal task force arrives. Is politely told to go home. Goes home." },
-    { day: "Day 40", event: "First mothership engagement at the Pants Factory. Cannons identified as a viable defense for the first time, once the shield-storage relationship is understood." },
-    { day: "Day 67", event: "First UPDF rescue of beam-suspended citizens. Athletes class formalized." },
+    { day: "Day 14", event: "Three more neighborhoods are raided." },
+    { day: "Day 21", event: "The security guard at the Suburbia Mall food court confronts a Collector minion patrol. The phrase “I asked them to stop” enters the historical record. Within the hour, he and eight others form the UPDF and hold the Suburbia Laundromat for six hours without losing a single pair of pants." },
+    { day: "Day 22", event: "The UPDF gets a napkin logo, a motto, and a recruitment booth in the laundromat parking lot. Founding document signed on a napkin." },
+    { day: "Day 30", event: "The federal task force, convened after three weeks, finally arrives. Is politely told to go home. Goes home." },
+    { day: "Day 40", event: "First mothership engagement at the Pants Factory. The factory's converted cannons are identified as the only weapon that can bring the mothership down." },
+    { day: "Day 67", event: "First UPDF rescue of beam-suspended citizens. Athlete class formalized." },
     { day: "Day 88", event: "Dr. Peepers joins the UPDF after determining that pants theft is medically stressful." },
     { day: "Day 112", event: "Needle Eye class formalized following a successful rooftop engagement of an Overlord." },
     { day: "Day 180", event: "Citizen panic personalities formally catalogued by UPDF Sociology Division." },
@@ -37,12 +37,12 @@ const glossary = [
     ["UPDF", "United Pants Defense Force. The all-volunteer defending force of Earth."],
     ["Collector", "Member of the Collective. Term applies to all alien personnel, leadership and minion alike."],
     ["Collective", "The full alien civilization. Officially: The Collective for Inter-Dimensional Acquisition Logistics."],
-    ["Mothership / Collection Vessel", "The orbital ship that processes captured pants into denimium fuel. CV-7745 is the one above Suburbia."],
-    ["Denimium", "The cosmic energy stored in woven plant-cellulose fibers. Recently rediscovered."],
+    ["Mothership / Collection Vessel", "The giant ship that hovers low over Suburbia and processes captured pants into denimium fuel. CV-7745 is the one above Suburbia."],
+    ["Denimium", "The cosmic energy stored in woven plant-cellulose fibers. Humanity had no idea until the Collectors came for it."],
     ["The Rift", "The interdimensional portal opened by Suburbia scientists. Lasted six minutes. Started the war."],
     ["The Underpants Summit", "Humanity's only attempt at diplomacy. Lasted eleven seconds. Ended in mass depantsing."],
     ["Depantsing", "The Collectors' term: “reclassification.” The UPDF's term: “a crime.”"],
-    ["Shield Storage", "The reactor charge that powers the mothership's defensive array. Pants in = shields up. Pants kept on Earth = shields weak. Weak shields = vulnerable mothership."],
+    ["Shield Storage", "The reactor charge that powers the mothership's defensive array. Hit the pants quota and the shield gets a one-time boost. Only the Pants Factory cannons can bring it down."],
     ["Setup", "Phase 1 of an engagement. Defenders prepare; Collectors scout from the mothership."],
     ["Invasion", "Phase 2. Active raids begin."],
     ["Final Stand", "Phase 3. The battle moves to the Pants Factory."],
@@ -82,7 +82,7 @@ const glossary = [
             <div class="lore-actions"><a href="#origin">Read the story ↓</a><a href="#timeline">Jump to timeline ↓</a></div></div><figure class="mt-10 max-w-3xl mx-auto">
                 <Image
                     src={loreHero}
-                    alt="A Collector beam suspends a startled citizen above a Suburbia street while UPDF Defenders rally in the foreground. Cover text: 'They came for our pants. Now we're coming for them.'"
+                    alt="A Collector beam lifts a startled citizen out of his jeans above a Suburbia street at night while orange Minions swarm below. Cover text: 'They came for our pants. Now we're coming for them.'"
                     class="w-full rounded-lg border border-[var(--border-subtle)] shadow-2xl"
                     loading="eager"
                 />
@@ -161,15 +161,15 @@ const glossary = [
         <h2 class="mt-2 font-display text-2xl md:text-3xl">A Tuesday.</h2>
 
         <div class="mt-5 space-y-4 leading-relaxed">
-            <p>The first mothership entered Earth's airspace on a Tuesday.</p>
+            <p>The mothership entered Earth's airspace on a Tuesday.</p>
             <p>
                 Nobody noticed for forty-three minutes. The world was, by all accounts,
                 having a normal Tuesday: weather, traffic, light political grumbling.
                 Above the clouds, a Collector saucer the size of a regional shopping
-                center had quietly performed three reconnaissance loops and beamed a
-                sample of laundry off a backyard clothesline.
+                center had quietly performed three reconnaissance loops and scanned the
+                laundry on a backyard clothesline.
             </p>
-            <p>The sample was processed in the Collective's central archives within the hour.</p>
+            <p>The scan was processed in the Collective's central archives within the hour.</p>
             <p>
                 The reply was immediate:
                 <em class="">&ldquo;Recommend full acquisition operation. Subject region: Suburbia. Strategic priority: the Pants Factory.&rdquo;</em>
@@ -182,13 +182,13 @@ const glossary = [
                 woven textiles anywhere on Earth: the
                 <strong class="">Suburbia Pants Factory</strong>,
                 which manufactured approximately twelve thousand pairs of denim
-                trousers per week. Even worse, the experimental
-                <em>golden pants</em> were held there.
+                trousers per week. Even worse, the
+                <em>Golden Pants</em> were held there.
             </p>
             <p>From the Collective's logistical perspective, this was not a coincidence. This was a delivery address.</p>
             <p>
-                Within forty-eight hours, three more motherships had positioned
-                themselves over the neighborhood. Citizens looked up. Citizens stared.
+                Within forty-eight hours, the mothership had lowered itself over
+                the neighborhood and stayed there. Citizens looked up. Citizens stared.
                 Citizens went inside. Citizens came back outside because they wanted
                 to see if they had really seen what they thought they had seen.
             </p>
@@ -278,11 +278,11 @@ const glossary = [
         <figure class="mt-6">
             <Image
                 src={loreUpdfFounded}
-                alt="A UPDF recruitment scene at the Suburbia Mall food court. A Security Officer and Dr. Peepers stand beside the founding napkin and recruitment sign."
+                alt="A Security Officer and Dr. Peepers stand outdoors before a giant United Pants Defense Force banner, a second officer behind them and a downtown skyline beyond. The banner shows a pants-on-a-shield badge and reads: 'UPDF. We were tired of having our pants stolen from us. Enough is enough, Alien Swine!'"
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
             <figcaption class="mt-3 text-xs italic text-center">
-                The UPDF was founded in a mall food court. Recruitment opened the same afternoon.
+                Founded by nine people who were tired of having their pants stolen. Recruitment opened the next morning.
             </figcaption>
         </figure>
 
@@ -340,11 +340,11 @@ const glossary = [
         <figure class="mt-8 mx-auto max-w-md">
             <Image
                 src={loreUpdfMotto}
-                alt="A chalkboard mounted at UPDF Central Command displaying the force's motto in hand-lettered chalk."
+                alt="A Security Officer points to a chalkboard at UPDF Central Command that reads: 'UPDF Motto: Not our pants. Not today. Enough is enough, alien swine!'"
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
             />
             <figcaption class="mt-3 text-xs italic text-center">
-                The motto, chalked daily at Central Command. Smudges acceptable. Sentiment non-negotiable.
+                The rallying cry, chalked daily at Central Command. Smudges acceptable. Sentiment non-negotiable.
             </figcaption>
         </figure>
 
@@ -355,7 +355,7 @@ const glossary = [
                 <p>&ldquo;We do, however, know whose pants those were. And they were not theirs.&rdquo;</p>
                 <p>&ldquo;This is the only credential we require.&rdquo;</p>
             </div>
-            <p class="mt-3 text-xs">Signed by the seven founding members of the UPDF, on a folded napkin from the Suburbia Mall food court. Original currently displayed under glass at UPDF Central Command.</p>
+            <p class="mt-3 text-xs">Signed by the nine founding members of the UPDF, on a folded napkin from the Suburbia Mall food court. Original currently displayed under glass at UPDF Central Command.</p>
         </div></details>
     <a class="lore-top-link" href="#lore-top">Back to the field guide ↑</a></section>
 
@@ -369,7 +369,7 @@ const glossary = [
         <figure class="mt-6">
             <Image
                 src={loreCollectorsGoal}
-                alt="Collector minions sort pants into towering piles inside the mothership processing bay. From the Collective's view, this is not theft — it is inventory management."
+                alt="Outdoors at night, Collector Minions stack bundles of pants around a glowing collection beam beneath the mothership. Cover text: 'The Collectors' goal: Steal enough pants to power the mothership.'"
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
             <figcaption class="mt-3 text-xs italic text-center">
@@ -424,7 +424,7 @@ const glossary = [
                 and is one of approximately four hundred such vessels currently
                 operating across Earth. The other vessels are deployed across other
                 dense fabric-bearing regions of the world; Suburbia remains the
-                highest-priority operation because of the factory and its golden pants.
+                highest-priority operation because of the factory and its Golden Pants.
             </p>
         </div>
 
@@ -454,7 +454,7 @@ const glossary = [
         <figure class="mt-6">
             <Image
                 src={loreInvasionBegins}
-                alt="An Overlord directs swarms of minions through Suburbia streets while Defenders return fire and citizens panic in the background."
+                alt="A towering alien leader in an armored mech fires a purple beam down a Suburbia street as Minions swarm and Defenders return fire, the mothership hovering in the distance. Cover text: 'The Invasion. The Collectors descend. Minions swarm. Citizens panic. Pants are at risk.'"
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
             />
             <figcaption class="mt-3 text-xs italic text-center">
@@ -466,8 +466,8 @@ const glossary = [
             <p>Every Collection Vessel is structurally identical.</p>
             <p>
                 The mothership currently hovering over Suburbia is approximately the
-                diameter of a regional sports stadium, hovers at a good altitude
-                depending, and contains a denimium-conversion reactor in its central
+                diameter of a regional sports stadium, hovers low over the
+                neighborhood, and contains a denimium-conversion reactor in its central
                 chamber. Each captured pair of pants is processed through a series of
                 extraction stages &mdash; the fibers are stripped of their stored
                 energy, and what remains is shredded into useless lint that the
@@ -485,28 +485,28 @@ const glossary = [
                 The mothership's primary defense is a
                 <strong class="">denimium-fueled shield array</strong>
                 powered directly by the pants it has collected during the current
-                operation. The more pants it has stored, the stronger the shield. At
-                full storage, the hull is functionally impenetrable.
+                operation. When the
+                Collectors hit their pants quota, the reactor gives the shield a
+                fresh boost.
             </p>
             <p class="italic">But the shields run on what's in the tank.</p>
             <p>
-                Every pair the Collectors <em>fail</em> to collect is one less charge
-                in the reactor. The UPDF realized this early and built the entire
+                Every pair the Collectors <em>fail</em> to collect never reaches the
+                reactor. The UPDF realized this early and built the entire
                 defensive doctrine around it:
-                <strong class="">protect the pants, weaken the shields, take the shot.</strong>
-                When the storage falls below a critical threshold, the mothership's
-                hull becomes vulnerable to
-                <strong class="">conventional armaments</strong>
-                &mdash; the modified cannons of the Pants Factory, sustained blaster
-                fire from coordinated ground forces, even small-arms fire from
-                Defenders who manage to climb high enough.
+                <strong class="">protect the pants, deny the quota, take the shot.</strong>
+                Only one thing on Earth can bring the mothership down:
+                <strong class="">the converted cannons of the Pants Factory</strong>,
+                which can start hurting it once the Final Stand is underway.
+                Everyone else's job is to hold the factory and keep those cannons
+                crewed.
             </p>
         </div>
 
         <details class="lore-document"><summary>Core UPDF Strategic Doctrine<span aria-hidden="true">+</span></summary><div>
             <p class="mt-2 italic leading-relaxed">
-                &ldquo;Fewer pants stolen means weaker shields means the mothership
-                can be brought down with what we already have. We do not need a
+                &ldquo;Fewer pants stolen means a weaker mothership means it can be
+                brought down with what we already have. We do not need a
                 miracle weapon. We need to hold the line.&rdquo;
             </p>
         </div></details>
@@ -558,7 +558,7 @@ const glossary = [
                 always the prize.
             </p>
             <p>
-                It is now the most heavily-defended building in the suburb. The
+                It is now the most heavily defended building in the suburb. The
                 factory's production lines have been retooled to serve a dual
                 purpose: continued (greatly reduced) civilian pants manufacturing
                 during peacetime hours, and rapid-response defensive operations
@@ -567,7 +567,7 @@ const glossary = [
                 originally designed for industrial fabric-shearing that, when
                 modified with UPDF targeting software, produce a high-velocity
                 denim-disrupting projectile capable of damaging the mothership's
-                hull <em>once the shields are weak enough.</em>
+                hull <em>once the Final Stand is underway.</em>
             </p>
             <p>
                 The factory's central vault holds the
@@ -614,7 +614,7 @@ const glossary = [
             </p>
             <p>The resulting pants display two properties that have never been successfully reproduced:</p>
             <ol class="ml-6 space-y-1.5 list-decimal marker:text-[var(--color-golden-400)] marker:font-display">
-                <li>They contain approximately <strong class="">eight hundred times the denimium density</strong> of standard denim. A single pair could power a fully-charged mothership shield for several weeks.</li>
+                <li>They contain approximately <strong class="">eight hundred times the denimium density</strong> of standard denim. A single pair could power a fully charged mothership shield for several weeks.</li>
                 <li>They have never, in their entire existence, sustained damage of any kind.</li>
             </ol>
             <p>
@@ -640,7 +640,7 @@ const glossary = [
         <figure class="mt-6 mx-auto max-w-md">
             <Image
                 src={loreCitizenSafetyTips}
-                alt="A laminated UPDF citizen safety advisory poster listing tips like 'Do not look up,' 'Stay indoors,' and 'Do not, under any circumstances, attempt diplomacy.'"
+                alt="A UPDF 'Citizen Safety Tips' poster: 1. Go indoors. 2. Stay indoors. 3. Avoid beams. 4. Trust UPDF. 5. Keep pants on. Thank you! — UPDF"
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
                 style="border-left: 4px solid #ffc14d;"
             />
@@ -664,12 +664,13 @@ const glossary = [
             </p>
             <p>
                 Citizen behavior during invasion phases has been studied extensively
-                and falls into five broad categories &mdash; the
+                and falls into four well-documented categories &mdash; the
                 <strong class="">Screamer</strong>, the
                 <strong class="">Hider</strong>, the
-                <strong class="">Crowd Follower</strong>, the
-                <strong class="">Freezer</strong>, and the rare but
-                invaluable <strong class="">Hero</strong>.
+                <strong class="">Crowd Follower</strong>, and the
+                <strong class="">Fainter</strong> &mdash; plus the rumored
+                <strong class="">Hero</strong>, known only from a handful of
+                unconfirmed sightings.
                 <a href="/nopas/defenders/citizen/" class="hover:underline">Each personality archetype responds differently to alien pressure</a>,
                 and effective Defenders learn to read citizen movement patterns the
                 way a quarterback reads a defense.
@@ -743,9 +744,9 @@ const glossary = [
         <div class="mt-6 space-y-3 leading-relaxed">
             <p>
                 Every Collector beam stopped is a citizen who keeps their dignity.
-                Every pair of pants the UPDF protects is one less denimium charge in
-                the mothership's reactor. Every weakened shield is one good cannon
-                volley away from a mothership in pieces.
+                Every pair of pants the UPDF protects never reaches the mothership's
+                reactor. Every crewed factory cannon is one good volley closer to a
+                mothership in pieces.
             </p>
             <p class="">The UPDF does not need heroes.</p>
             <p class="">The UPDF needs people who care enough to say no.</p>
@@ -757,7 +758,7 @@ const glossary = [
         <figure class="mt-10 mx-auto max-w-md">
             <Image
                 src={loreJoinUpdf}
-                alt="A UPDF recruitment poster: 'Join the UPDF. Earth's pants need you.' featuring a determined Security Officer with the napkin-logo badge."
+                alt="A UPDF recruitment poster reading 'Join the UPDF! No experience needed. Just patience, common sense, and a problem with aliens. Apply today!' beside a saluting Security Officer wearing a gold shield badge."
                 class="w-full rounded-lg border border-[var(--border-subtle)] shadow-lg"
                 style="border-left: 4px solid var(--color-denim-400);"
             />

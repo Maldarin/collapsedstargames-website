@@ -122,7 +122,7 @@ console.log("== API offline ==");
 apiUp = false;
 await page.getByRole("tab", { name: "Matches Won" }).click();
 await page.waitForTimeout(600);
-check("degrades to a friendly notice", (await page.locator("#board").innerText()).includes("aren't live yet"));
+check("degrades to a friendly notice", (await page.locator("#board").innerText()).includes("taking a breather"));
 
 await browser.close(); api.close(); site.close();
 console.log(fails.length ? `\nFAILED: ${fails.join(" | ")}` : "\nALL PASS");
