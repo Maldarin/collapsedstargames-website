@@ -6,7 +6,7 @@ const base=process.env.SITE_URL||'http://127.0.0.1:4321';
 async function files(dir){return (await Promise.all((await readdir(dir,{withFileTypes:true})).map(e=>e.isDirectory()?files(join(dir,e.name)):join(dir,e.name)))).flat();}
 const built=await files('dist');
 const routes=built.filter(f=>f.endsWith('index.html')).map(f=>'/'+f.replaceAll('\\','/').replace(/^dist\//,'').replace(/index\.html$/,''));
-assert.equal(routes.length,18);
+assert.equal(routes.length,19);
 for(const f of built)assert.ok((await stat(f)).size<25*1024*1024,`Cloudflare asset size: ${f}`);
 const b=await chromium.launch({args:['--mute-audio']});
 const p=await b.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
