@@ -7,3 +7,8 @@
 export const PLAY_URL = "https://www.roblox.com/join/146sr";
 
 export const COMMUNITY_URL = "https://www.roblox.com/communities/237551237";
+
+// Permanent (never-expiring) invite to the official NOPAS Discord, made for the website.
+export const DISCORD_URL = "https://discord.gg/k48JtphQuu";
+
+export const YOUTUBE_URL = "https://www.youtube.com/@CollapsedStarGames";

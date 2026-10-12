@@ -3,7 +3,7 @@ import "../styles/global.css";
 import "../styles/comic-themes.css";
 import { Image } from "astro:assets";
 import csgLogo from "../assets/brand/CSG-Logo_clean.png";
-import { PLAY_URL, COMMUNITY_URL } from "../lib/links.mjs";
+import { PLAY_URL, COMMUNITY_URL, DISCORD_URL, YOUTUBE_URL } from "../lib/links.mjs";
 
 interface Props {
     title: string;
@@ -177,6 +177,7 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                     <p class="mt-1"><a href="/shop/" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Shop · Coming soon</a></p>
                     <p class="mt-1"><a href={PLAY_URL} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Play NOPAS on Roblox ↗</a></p>
                     <p class="mt-1"><a href={COMMUNITY_URL} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Join the Collapsed Star Games community on Roblox ↗</a></p>
+                    <p class="mt-1"><a href={DISCORD_URL} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Join the NOPAS Discord ↗</a> · <a href={YOUTUBE_URL} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Watch on YouTube ↗</a></p>
                 </div>
                 <p>© {new Date().getFullYear()} Collapsed Star Games. All rights reserved.</p>
             </div>

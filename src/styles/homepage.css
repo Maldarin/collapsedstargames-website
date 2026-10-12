@@ -74,6 +74,11 @@
 .availability { flex-wrap: wrap; row-gap: 6px; }
 .hero-watch { color: #ffdb56; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 .mode-note a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+.studio-actions { display: flex; flex-wrap: wrap; gap: 12px; flex-shrink: 0; }
+@media (max-width: 760px) {
+  .studio-actions { margin-top: 25px; }
+  .homepage .studio-actions .button { margin-top: 0; }
+}
 /* Align the ribbon with the centered reading width, including wide desktops. */
 .homepage .ticker { max-width: 1240px; width: calc(100% - 48px); margin-inline: auto; border-inline: 3px solid var(--ink); }
 @media (max-width: 760px) {

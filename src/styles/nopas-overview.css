@@ -110,6 +110,7 @@
 .overview-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .overview-contact .overview-actions { flex-shrink: 0; }
 .hero-play { margin-bottom: 14px; }
+.overview-contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 @media(max-width:760px) {
   .overview-contact .overview-actions { margin-top: 23px; }
   .overview-contact .overview-actions .overview-button { margin-top: 0; }

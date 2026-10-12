@@ -12,7 +12,7 @@ import "../../styles/nopas-overview.css";
 import "../../styles/nopas-patch-notes.css";
 import { getCollection } from "astro:content";
 import { publishedNewestFirst } from "../../lib/patch-notes.mjs";
-import { PLAY_URL, COMMUNITY_URL } from "../../lib/links.mjs";
+import { PLAY_URL, COMMUNITY_URL, DISCORD_URL, YOUTUBE_URL } from "../../lib/links.mjs";
 const latestPatch = publishedNewestFirst(await getCollection("patchNotes"), { includeDrafts: import.meta.env.DEV })[0];
 
 const modes = [
@@ -60,7 +60,7 @@ const phases = [
     <section id="gameplay" class="overview-pad overview-gameplay" aria-labelledby="footage-title">
       <div class="overview-heading"><div><p class="overview-eyebrow">FIELD FOOTAGE / NOPAS</p><h2 id="footage-title">The waistband war, in motion.</h2></div><p>Actual gameplay footage.<br/>The beta is where it gets tuned.</p></div>
       <div class="overview-video-grid"><VideoCard id="kSqdf0DlD8s" title="Commander Depantsing"/><VideoCard id="-fuITOqPR1Q" title="The Commander Attacks"/><VideoCard id="CQkpU3rfi1E" title="Defender Gets Ballooninated"/></div>
-      <a class="overview-link" href="https://www.youtube.com/@CollapsedStarGames" target="_blank" rel="noopener">More footage on YouTube ↗</a>
+      <a class="overview-link" href={YOUTUBE_URL} target="_blank" rel="noopener">More footage on YouTube ↗</a>
     </section>
 
     <section id="match" class="overview-pad overview-match" aria-labelledby="match-title">
@@ -92,6 +92,6 @@ const phases = [
       <p class="overview-art-note">Character artwork</p>
       <blockquote>“Every person deserves to have a good pair of jeans.<br/>This ends today. Not Our Pants, Alien Swine!”<cite>UPDF Official Motto</cite></blockquote>
     </section>
-    <section class="overview-pad overview-contact"><div><p class="overview-eyebrow">NOT OUR PANTS. NOT TODAY.</p><h2>Earth's last defense has pockets.</h2><a class="overview-link" href={COMMUNITY_URL} target="_blank" rel="noopener">Join the Collapsed Star Games community on Roblox ↗</a></div><div class="overview-actions"><a class="overview-button" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a><a class="overview-button" href="mailto:info@collapsedstargames.com">Press &amp; player inquiries ↗</a></div></section>
+    <section class="overview-pad overview-contact"><div><p class="overview-eyebrow">NOT OUR PANTS. NOT TODAY.</p><h2>Earth's last defense has pockets.</h2><div class="overview-contact-links"><a class="overview-link" href={COMMUNITY_URL} target="_blank" rel="noopener">Join the Collapsed Star Games community on Roblox ↗</a><a class="overview-link" href={DISCORD_URL} target="_blank" rel="noopener">Join the NOPAS Discord ↗</a></div></div><div class="overview-actions"><a class="overview-button" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a><a class="overview-button" href="mailto:info@collapsedstargames.com">Press &amp; player inquiries ↗</a></div></section>
   </div>
 </BaseLayout>

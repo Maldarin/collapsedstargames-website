@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import {readdir,readFile,stat} from 'node:fs/promises';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
-import {PLAY_URL,COMMUNITY_URL} from '../src/lib/links.mjs';
+import {PLAY_URL,COMMUNITY_URL,DISCORD_URL,YOUTUBE_URL} from '../src/lib/links.mjs';
 const base=process.env.SITE_URL||'http://127.0.0.1:4321';
 async function files(dir){return (await Promise.all((await readdir(dir,{withFileTypes:true})).map(e=>e.isDirectory()?files(join(dir,e.name)):join(dir,e.name)))).flat();}
 const built=await files('dist');
@@ -30,6 +30,8 @@ for(const route of routes){
  if(!route.startsWith('/nopas/patch-notes/'))assert.doesNotMatch(data.text+' '+await p.locator('meta[name="description"]').getAttribute('content'),/\bOct(?:ober)?\.? 9\b/i,route+' stale launch date');
  assert.ok(data.links.some(l=>l.href===PLAY_URL&&l.target==='_blank'),route+' missing Play on Roblox link');
  assert.ok(data.links.some(l=>l.href===COMMUNITY_URL),route+' missing Roblox community link');
+ assert.ok(data.links.some(l=>l.href===DISCORD_URL&&l.target==='_blank'),route+' missing Discord link');
+ assert.ok(data.links.some(l=>l.href===YOUTUBE_URL&&l.target==='_blank'),route+' missing YouTube link');
  assert.ok(!data.links.some(l=>/roblox\.com\/games\//.test(l.href)),route+' plain game URL bypasses the Share Link');
  assert.equal(await p.locator('video,iframe').count(),0,'No unsolicited media playback');
  if(['/', '/nopas/'].includes(route)){assert.deepEqual(await p.locator('[data-video-id]').evaluateAll(es=>es.map(e=>e.dataset.videoId)),['kSqdf0DlD8s','-fuITOqPR1Q','CQkpU3rfi1E']);}

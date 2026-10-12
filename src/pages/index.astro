@@ -11,7 +11,7 @@ import survivors from "../assets/survivors/horde.png";
 import defender from "../assets/classes/SecurityOfficer/SecurityOfficer.png";
 import minion from "../assets/classes/Minions/Minion_solo.png";
 import "../styles/homepage.css";
-import { PLAY_URL, COMMUNITY_URL } from "../lib/links.mjs";
+import { PLAY_URL, COMMUNITY_URL, DISCORD_URL } from "../lib/links.mjs";
 const modes = [
  {name:"NOPAS: Invasion",tag:"DEFEND. INVADE. DEPANTS.",text:"Save Earth's pants. Or steal every last pair. Defenders and alien Collectors turn the neighborhood into a battleground.",image:match,label:"Universe artwork",color:"#74caff",id:"match"},
  {name:"Minion Panic Bowling",tag:"BIG BALL. LITTLE ALIENS.",text:"The pins are Minions. The Minions have complaints. Roll into ten-pin chaos with a very questionable alien workforce.",image:bowling,label:"Development screenshot",color:"#ffda56",id:"bowling"},
@@ -37,6 +37,6 @@ const modes = [
 <a class="character-card collector" href="/nopas/collectors/"><Image src={minion} alt="An orange alien Minion" widths={[360,600]} sizes="(min-width: 800px) 25vw, 44vw" loading="lazy"/><div><p class="eyebrow">THE COLLECTORS</p><h3>Steal the denim.</h3><span>Meet the aliens ↗</span></div></a></section>
 <section id="gameplay" class="gameplay section-pad" aria-labelledby="gameplay-title"><div class="section-heading"><div><p class="eyebrow">TRANSMISSION FROM THE FRONT LINES</p><h2 id="gameplay-title">Yes, it gets ridiculous.</h2></div><p>Actual gameplay footage.<br/>The beta is where it gets tuned.</p></div>
 <div class="video-grid"><VideoCard id="kSqdf0DlD8s" title="Commander Depantsing"/><VideoCard id="-fuITOqPR1Q" title="The Commander Attacks"/><VideoCard id="CQkpU3rfi1E" title="Defender Gets Ballooninated"/></div></section>
-<section id="studio" class="studio section-pad"><div><p class="eyebrow">SMALL STUDIO. COSMICALLY QUESTIONABLE IDEAS.</p><h2>Collapsed Star Games.</h2><p>We're an independent studio building games to be remembered, replayed, and shared. First mission: save the pants.</p></div><a href="mailto:info@collapsedstargames.com" class="button yellow">Get in touch ↗</a></section>
+<section id="studio" class="studio section-pad"><div><p class="eyebrow">SMALL STUDIO. COSMICALLY QUESTIONABLE IDEAS.</p><h2>Collapsed Star Games.</h2><p>We're an independent studio building games to be remembered, replayed, and shared. First mission: save the pants.</p></div><div class="studio-actions"><a class="button" href={DISCORD_URL} target="_blank" rel="noopener">Join the Discord ↗</a><a href="mailto:info@collapsedstargames.com" class="button yellow">Get in touch ↗</a></div></section>
 </div>
 </BaseLayout>
