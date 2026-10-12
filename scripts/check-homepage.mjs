@@ -1,6 +1,7 @@
 import { chromium } from 'playwright';
 import { mkdir } from 'node:fs/promises';
 import assert from 'node:assert/strict';
+import { PLAY_URL, COMMUNITY_URL } from '../src/lib/links.mjs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 const out=process.env.HOMEPAGE_SCREENSHOT_DIR || join(tmpdir(),'nopas-homepage-review');
@@ -24,8 +25,16 @@ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerW
 await page.getByRole('button',{name:'Open menu',exact:true}).click();
 console.log('mobile menu',await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'));
 assert.equal(await page.locator('#mobile-menu-toggle').getAttribute('aria-expanded'),'true');
+assert.ok(await page.locator(`#mobile-menu a[href="${PLAY_URL}"]`).isVisible(),'Play link in the open mobile menu');
 await page.getByRole('button',{name:'Close menu',exact:true}).click();
-await page.locator('.hero-actions a').first().click();
+// Open beta is live: the hero leads with the Share Link, then the community. Not clicked — both leave the site.
+const heroActions=await page.locator('.hero-actions a').evaluateAll(es=>es.map(a=>({href:a.getAttribute('href'),target:a.target,text:a.textContent.trim()})));
+console.log('hero actions',heroActions);
+assert.equal(heroActions.length,2);
+assert.equal(heroActions[0].href,PLAY_URL);assert.equal(heroActions[0].target,'_blank');assert.match(heroActions[0].text,/Play/);
+assert.equal(heroActions[1].href,COMMUNITY_URL);assert.equal(heroActions[1].target,'_blank');
+assert.match(await page.locator('.availability').innerText(),/Live now/);
+await page.locator('.hero-watch').click();
 console.log('gameplay anchor',new URL(page.url()).hash);
 assert.equal(new URL(page.url()).hash,'#gameplay');
 

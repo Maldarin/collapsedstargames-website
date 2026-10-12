@@ -11,6 +11,7 @@ import shrunken from "../../../assets/bowling/shrunken-pin.png";
 import mutation from "../../../assets/bowling/mutation-roll.png";
 import "../../../styles/nopas-overview.css";
 import "../../../styles/nopas-bowling.css";
+import { PLAY_URL } from "../../../lib/links.mjs";
 
 const features = [
   { tag: "MUTANT MINION PINS", title: "The pins fight back. Passively.", body: "Balloon Minions drift. Shrunken Minions hide. Mega Minions refuse to fall. Rubber Minions ricochet, Magnetic Minions pull your ball off course, and the rare Golden-Pants Minion pays a bounty on the way down.", note: "Topple a mutation nobody in the room has dropped yet and it’s NEW MINION DISCOVERED—straight onto the room’s mutation board." },
@@ -30,7 +31,7 @@ const gallery = [
 ];
 ---
 
-<BaseLayout title="Minion Panic Bowling — NOPAS" description="Explore Minion Panic Bowling: real ten-pin rules, live Minion pins, Classic and Mayhem modes, ball abilities and lane mutations in the shared NOPAS universe. Open beta October 9 on Roblox.">
+<BaseLayout title="Minion Panic Bowling — NOPAS" description="Explore Minion Panic Bowling: real ten-pin rules, live Minion pins, Classic and Mayhem modes, ball abilities and lane mutations in the shared NOPAS universe. Now in open beta on Roblox.">
   <div class="nopas-overview bowling-page">
     <section class="overview-pad bowling-hero" aria-labelledby="bowling-title">
       <div class="bowling-hero-copy">
@@ -39,8 +40,9 @@ const gallery = [
         <h1 id="bowling-title">MINION PANIC<br/><span>BOWLING</span></h1>
         <p class="bowling-subtitle">From the NOPAS universe</p>
         <p class="bowling-lede">Ten pins. All of them Minions.<br/>None of them happy.</p>
-        <div class="bowling-actions"><a class="overview-button overview-yellow" href="#basics">Learn the ropes ↓</a><a class="overview-button" href="#gallery">See the lanes ↓</a></div>
-        <p class="overview-status"><span></span>Open Beta <b>·</b> October 9 on Roblox</p>
+        <div class="overview-actions hero-play"><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a></div>
+        <div class="bowling-actions"><a class="overview-button" href="#basics">Learn the ropes ↓</a><a class="overview-button" href="#gallery">See the lanes ↓</a></div>
+        <p class="overview-status"><span></span>Open Beta <b>·</b> Live now on Roblox</p>
       </div>
       <figure class="bowling-hero-picture"><Image src={pins} alt="Orange Minion bowling pins and a blue ball on the NOPAS lane" widths={[640,960,1280]} sizes="(min-width: 800px) 52vw, 100vw" loading="eager"/><figcaption>Development screenshot · The beta is where it gets tuned.</figcaption></figure>
     </section>
@@ -71,6 +73,6 @@ const gallery = [
 
     <section class="overview-pad bowling-welfare" aria-labelledby="welfare-title"><figure><Image src={shrunken} alt="A small Shrunken Minion pin on the glowing pin deck" widths={[480,720]} sizes="(min-width: 800px) 40vw, 90vw" loading="lazy"/><figcaption>Development screenshot</figcaption></figure><div><p class="overview-eyebrow">A NOTE ON MINION WELFARE</p><h2 id="welfare-title">They're fine.</h2><p>Before every throw, the pins fidget, lean, get nervous, and taunt you, then jeer out loud when you miss. Between throws, any pin still standing is respotted right where it stood. At frame end the leftovers ride a tractor beam out of the lane, unharmed and deeply inconvenienced, and a fresh rack drops in. Anyone loitering in the pit gets beamed up with them and fed to a giant Minion.</p><p class="bowling-gag">The Collectors filed a formal complaint. The UPDF filed it under “fan mail.”</p></div></section>
     <aside class="bowling-rules"><p class="overview-eyebrow">POSTED FACILITY RULES</p><p>No depantsing past the foul line. · Rental shoes do not include emergency pants. · Please return all balls and unauthorized trousers.</p><blockquote>“Bowling Minions are trained professionals. Probably.”<cite>Sign posted above Lane 1</cite></blockquote></aside>
-    <section class="overview-pad bowling-universe"><div><p class="overview-eyebrow">ONE RIDICULOUS UNIVERSE. THREE WAYS TO PLAY.</p><h2>There's more chaos outside.</h2><p>NOPAS: Invasion, Minion Panic Bowling, and Minion Survivors all open together in the beta, October 9 on Roblox.</p></div><div><a class="overview-button" href="/nopas/#modes">Explore all three modes ↗</a><a class="overview-link" href="/nopas/defenders/">Meet the Defenders ↗</a></div></section>
+    <section class="overview-pad bowling-universe"><div><p class="overview-eyebrow">ONE RIDICULOUS UNIVERSE. THREE WAYS TO PLAY.</p><h2>There's more chaos outside.</h2><p>NOPAS: Invasion, Minion Panic Bowling, and Minion Survivors are all live now in the open beta on Roblox.</p></div><div><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a><a class="overview-button" href="/nopas/#modes">Explore all three modes ↗</a><a class="overview-link" href="/nopas/defenders/">Meet the Defenders ↗</a></div></section>
   </div>
 </BaseLayout>

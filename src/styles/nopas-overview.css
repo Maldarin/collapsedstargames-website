@@ -106,4 +106,12 @@
   .overview-contact h2 { font-size: 26px; }
   .overview-contact .overview-button { margin-top: 23px; }
 }
+/* Open beta is live: Play leads each action row. */
+.overview-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.overview-contact .overview-actions { flex-shrink: 0; }
+.hero-play { margin-bottom: 14px; }
+@media(max-width:760px) {
+  .overview-contact .overview-actions { margin-top: 23px; }
+  .overview-contact .overview-actions .overview-button { margin-top: 0; }
+}
 @media(prefers-reduced-motion:reduce) { .nopas-overview * { transition: none !important; } }

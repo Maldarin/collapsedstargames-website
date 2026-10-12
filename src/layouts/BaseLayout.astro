@@ -3,6 +3,7 @@ import "../styles/global.css";
 import "../styles/comic-themes.css";
 import { Image } from "astro:assets";
 import csgLogo from "../assets/brand/CSG-Logo_clean.png";
+import { PLAY_URL, COMMUNITY_URL } from "../lib/links.mjs";
 
 interface Props {
     title: string;
@@ -63,8 +64,8 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                         loading="eager"
                     />
                 </a>
-                <div class="flex items-center gap-4 md:gap-8">
-                    <ul class="hidden md:flex items-center gap-8 text-sm">
+                <div class="flex items-center gap-2 md:gap-4 lg:gap-8">
+                    <ul class="hidden md:flex items-center md:gap-4 lg:gap-8 text-sm whitespace-nowrap">
                         <li><a href="/" class="hover:text-[var(--color-magenta-400)] transition">Studio</a></li>
                         <li><a href="/nopas/" class="hover:text-[var(--color-magenta-400)] transition">NOPAS</a></li>
                         <li><a href="/nopas/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a></li>
@@ -73,6 +74,13 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                         <li><a href="/nopas/patch-notes/" class="hover:text-[var(--color-golden-400)] transition">Patch Notes</a></li>
                         <li><a href="/lore/" class="hover:text-[var(--color-chaos-400)] transition">Lore</a></li>
                     </ul>
+                    {/* Play — the Share Link, on every page. Fixed comic colors read on both header themes. */}
+                    <a
+                        href={PLAY_URL}
+                        target="_blank"
+                        rel="noopener"
+                        class="font-display whitespace-nowrap text-xs px-3 py-2 rounded-md border-2 border-[#131326] bg-[#ffdb56] text-[#131326] hover:bg-[#ffe680] transition"
+                    ><span aria-hidden="true">▶ </span>Play<span class="sr-only lg:not-sr-only"> on Roblox</span></a>
                     {/* Theme toggle */}
                     <button
                         id="theme-toggle"
@@ -144,6 +152,7 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
             {/* Mobile menu panel — toggled by the hamburger; hidden on md+ where the inline nav shows */}
             <div id="mobile-menu" class="md:hidden hidden border-t border-[var(--border-subtle)] bg-[var(--header-bg)]">
                 <ul class="max-w-7xl mx-auto px-6 py-3 flex flex-col text-base">
+                    <li class="pb-2"><a href={PLAY_URL} target="_blank" rel="noopener" class="font-display block text-center text-sm px-4 py-3 rounded-md border-2 border-[#131326] bg-[#ffdb56] text-[#131326] hover:bg-[#ffe680] transition"><span aria-hidden="true">▶ </span>Play NOPAS on Roblox ↗</a></li>
                     <li><a href="/" class="block py-2.5 hover:text-[var(--color-magenta-400)] transition">Studio</a></li>
                     <li><a href="/nopas/" class="block py-2.5 hover:text-[var(--color-magenta-400)] transition">NOPAS</a></li>
                     <li><a href="/nopas/defenders/" class="block py-2.5 hover:text-[var(--color-denim-400)] transition">Defenders</a></li>
@@ -166,7 +175,8 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                     <p class="mt-1">Independent game studio. United States.</p>
                     <p class="mt-1">Support: <a href="mailto:info@collapsedstargames.com" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">info@collapsedstargames.com</a></p>
                     <p class="mt-1"><a href="/shop/" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Shop · Coming soon</a></p>
-                    <p class="mt-1"><a href="https://www.roblox.com/communities/237551237" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Join the Collapsed Star Games community on Roblox ↗</a></p>
+                    <p class="mt-1"><a href={PLAY_URL} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Play NOPAS on Roblox ↗</a></p>
+                    <p class="mt-1"><a href={COMMUNITY_URL} target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-[var(--fg-body)] transition">Join the Collapsed Star Games community on Roblox ↗</a></p>
                 </div>
                 <p>© {new Date().getFullYear()} Collapsed Star Games. All rights reserved.</p>
             </div>

@@ -2,11 +2,13 @@ import {chromium} from 'playwright';
 import {readdir,readFile,stat} from 'node:fs/promises';
 import {join} from 'node:path';
 import assert from 'node:assert/strict';
+import {PLAY_URL,COMMUNITY_URL} from '../src/lib/links.mjs';
 const base=process.env.SITE_URL||'http://127.0.0.1:4321';
 async function files(dir){return (await Promise.all((await readdir(dir,{withFileTypes:true})).map(e=>e.isDirectory()?files(join(dir,e.name)):join(dir,e.name)))).flat();}
 const built=await files('dist');
 const routes=built.filter(f=>f.endsWith('index.html')).map(f=>'/'+f.replaceAll('\\','/').replace(/^dist\//,'').replace(/index\.html$/,''));
-assert.equal(routes.length,19);
+// Fixed site routes; each published patch note adds its own /nopas/patch-notes/<id>/ page on top.
+assert.equal(routes.filter(r=>!/^\/nopas\/patch-notes\/[^/]+\/$/.test(r)).length,19);
 for(const f of built)assert.ok((await stat(f)).size<25*1024*1024,`Cloudflare asset size: ${f}`);
 const b=await chromium.launch({args:['--mute-audio']});
 const p=await b.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
@@ -23,6 +25,12 @@ for(const route of routes){
  for(const l of data.links){assert.ok(l.href&&l.href!=='#',route+' empty link');assert.ok(l.label,route+' unnamed link '+l.href);if(l.target==='_blank')assert.match(l.rel,/noopener|noreferrer/);links.push({from:route,...l});}
  for(const m of data.media){assert.notEqual(m.alt,null,route+' missing image alt');media.add(m.src);}
  assert.doesNotMatch(data.text,/Definitely a swine|The pants aren't going to save themselves|Beta (?:launches|starts) (?:September|August)|TODO|Lorem ipsum/i);
+ // Open beta is live: no page may still promise a launch date (patch notes may cite history), and
+ // every page carries the Share Link so Creator Rewards can attribute the visit.
+ if(!route.startsWith('/nopas/patch-notes/'))assert.doesNotMatch(data.text+' '+await p.locator('meta[name="description"]').getAttribute('content'),/\bOct(?:ober)?\.? 9\b/i,route+' stale launch date');
+ assert.ok(data.links.some(l=>l.href===PLAY_URL&&l.target==='_blank'),route+' missing Play on Roblox link');
+ assert.ok(data.links.some(l=>l.href===COMMUNITY_URL),route+' missing Roblox community link');
+ assert.ok(!data.links.some(l=>/roblox\.com\/games\//.test(l.href)),route+' plain game URL bypasses the Share Link');
  assert.equal(await p.locator('video,iframe').count(),0,'No unsolicited media playback');
  if(['/', '/nopas/'].includes(route)){assert.deepEqual(await p.locator('[data-video-id]').evaluateAll(es=>es.map(e=>e.dataset.videoId)),['kSqdf0DlD8s','-fuITOqPR1Q','CQkpU3rfi1E']);}
  await p.locator('img').evaluateAll(es=>{es.forEach(e=>e.loading='eager');return Promise.all(es.map(e=>e.decode()));});

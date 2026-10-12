@@ -1,5 +1,6 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
+import {PLAY_URL} from '../src/lib/links.mjs';
 import {mkdir} from 'node:fs/promises';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
@@ -13,7 +14,8 @@ await page.setViewportSize({width:1440,height:1000});await page.locator('#events
 assert.equal(await page.locator('.survivors-event-grid article').count(),3);assert.equal(await page.locator('.survivors-roles dt').count(),5);
 assert.doesNotMatch(await page.locator('.survivors-page').innerText(),/five waves|final.wave|wave five|waves two and four/i);
 const invalid=await page.locator('.survivors-page a[href^="#"]').evaluateAll(es=>es.filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.hash));assert.deepEqual(invalid,[]);
-await page.locator('.survivors-actions a').first().click();assert.equal(new URL(page.url()).hash,'#the-run');
+const play=page.locator('.survivors-hero .hero-play a');assert.equal(await play.getAttribute('href'),PLAY_URL);assert.equal(await play.getAttribute('target'),'_blank');
+await page.locator('.survivors-actions a[href="#the-run"]').click();assert.equal(new URL(page.url()).hash,'#the-run');
 const links=await page.locator('.survivors-page a[href^="/"]').evaluateAll(es=>[...new Set(es.map(a=>a.getAttribute('href')))]);for(const href of links)assert.equal((await page.request.get('http://127.0.0.1:4321'+href)).status(),200,href);
 assert.deepEqual(await page.locator('.survivors-page img').evaluateAll(es=>es.filter(e=>!e.complete||!e.naturalWidth).map(e=>e.src)),[]);
 await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.locator('.overview-button').first().evaluate(e=>getComputedStyle(e).transitionDuration),'0s');

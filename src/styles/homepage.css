@@ -70,6 +70,10 @@
 .studio-lockup img { width: 100px; height: auto; }
 .studio-lockup .studio-credit { line-height: 1.7; }
 .studio-lockup .studio-credit span { color: #ffdb56; font-size: 10px; letter-spacing: 3px; }
+/* Open beta is live: the hero buttons leave for Roblox, so footage moves to a text link in the status line. */
+.availability { flex-wrap: wrap; row-gap: 6px; }
+.hero-watch { color: #ffdb56; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
+.mode-note a { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 /* Align the ribbon with the centered reading width, including wide desktops. */
 .homepage .ticker { max-width: 1240px; width: calc(100% - 48px); margin-inline: auto; border-inline: 3px solid var(--ink); }
 @media (max-width: 760px) {
