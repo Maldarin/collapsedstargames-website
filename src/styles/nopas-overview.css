@@ -27,6 +27,7 @@
 .overview-heading .overview-eyebrow { color: #64418b; margin-bottom: 10px; }
 .overview-heading > p { font-size: 13px; line-height: 1.6; max-width: 310px; }
 .overview-mode-grid, .overview-video-grid, .overview-phase-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 22px; }
+.overview-phase-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
 .overview-mode { display: flex; flex-direction: column; background: var(--mode); border: 3px solid var(--overview-ink); box-shadow: 6px 6px 0 var(--overview-ink); }
 .overview-mode-image { position: relative; aspect-ratio: 16/9; border-bottom: 3px solid var(--overview-ink); overflow: hidden; }
 .overview-mode-image img { width: 100%; height: 100%; object-fit: cover; }

@@ -21,8 +21,7 @@ const modes = [
   { id: "survivors", name: "Minion Survivors", color: "#a9ef79", tag: "MORE MINIONS. SEND HELP.", image: survivorsHorde, alt: "A player faces a large horde of orange Minions", label: "Development screenshot", text: "The Minions are coming in waves. See how long you can keep the chaos under control.", action: "Explore Minion Survivors" },
 ];
 const phases = [
-  { name: "Setup", intro: "Before the invasion begins, Defenders get a short window to prepare.", body: "Move citizens indoors. Build defenses. Set up safe zones. Repair what you can. Panic efficiently.", gag: "The UPDF calls it preparation. The aliens call it annoying." },
-  { name: "Invasion", intro: "When the mothership opens, the Collectors come pouring in.", body: "Alien minions swarm the streets. UFO beams light up the sky. Part action game, part base defense, part rescue mission, part complete neighborhood disaster.", gag: "The aliens want pants. The UPDF brought blasters." },
+  { name: "Invasion", intro: "No warm-up. The match opens with the mothership already overhead and the Collectors already on their way.", body: "Lead citizens into safe buildings, stop the minion raids, shoot down the drones snatching citizens off the street, and break captives out of the holding pens. The fight follows a Front that moves across Suburbia.", gag: "The aliens want pants. The UPDF brought blasters." },
   { name: "Final Stand", intro: "When the Invasion timer runs out (or sooner, if the Collectors bank their pants quota), the battle moves to the Pants Factory.", body: "Cannons come online. Citizens panic. Defenders regroup. The mothership looms overhead, ready to complete the most insulting invasion in galactic history.", gag: "Hold the factory. Protect the Golden Pants. Bring the mothership down." },
 ];
 ---
@@ -64,8 +63,8 @@ const phases = [
     </section>
 
     <section id="match" class="overview-pad overview-match" aria-labelledby="match-title">
-      <div class="overview-heading"><div><p class="overview-eyebrow">01 / NOPAS: INVASION · OPEN BETA · LIVE NOW</p><h2 id="match-title">Three phases. Escalating chaos.</h2></div><a class="overview-link" href="#modes">All three modes ↑</a></div>
-      <p class="overview-section-intro">The United Pants Defense Force battles alien Collectors trying to steal Earth's most valuable resource. Prepare the neighborhood, survive the Invasion phase, and hold the line. On phones, you can play any Defender class, Citizen included.</p>
+      <div class="overview-heading"><div><p class="overview-eyebrow">01 / NOPAS: INVASION · OPEN BETA · LIVE NOW</p><h2 id="match-title">Two phases. No warm-up.</h2></div><a class="overview-link" href="#modes">All three modes ↑</a></div>
+      <p class="overview-section-intro">The United Pants Defense Force battles alien Collectors trying to steal Earth's most valuable resource. Rescue the neighborhood, survive the Invasion, and hold the line at the Pants Factory. On phones, you can play any Defender class, Citizen included.</p>
       <div class="overview-phase-grid">{phases.map((phase,i) => <article class="overview-phase"><p class="overview-eyebrow">PHASE 0{i+1}</p><h3>{phase.name}</h3><p>{phase.intro}</p><p>{phase.body}</p><p class="overview-gag">{phase.gag}</p></article>)}</div>
     </section>
 

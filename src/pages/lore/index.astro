@@ -5,7 +5,6 @@ import "../../styles/nopas-lore.css";
 import loreHero from "../../assets/lore/lore-hero-they-came-for-pants.png";
 import loreUpdfFounded from "../../assets/lore/lore-updf-founded-v2.png";
 import loreUpdfMotto from "../../assets/lore/lore-updf-motto.png";
-import loreSetupPhase from "../../assets/lore/lore-setup-phase.png";
 import loreInvasionBegins from "../../assets/lore/lore-invasion-begins.png";
 import loreCollectorsGoal from "../../assets/lore/lore-collectors-goal.png";
 import loreFinalStandFactory from "../../assets/lore/lore-final-stand-factory.png";
@@ -43,9 +42,8 @@ const glossary = [
     ["The Underpants Summit", "Humanity's only attempt at diplomacy. Lasted eleven seconds. Ended in mass depantsing."],
     ["Depantsing", "The Collectors' term: “reclassification.” The UPDF's term: “a crime.”"],
     ["Shield Storage", "The reactor charge that powers the mothership's defensive array. Hit the pants quota and the shield gets a one-time boost. Only the Pants Factory cannons can bring it down."],
-    ["Setup", "Phase 1 of an engagement. Defenders prepare; Collectors scout from the mothership."],
-    ["Invasion", "Phase 2. Active raids begin."],
-    ["Final Stand", "Phase 3. The battle moves to the Pants Factory."],
+    ["Invasion", "Phase 1 of an engagement. The Collectors arrive and the raids begin at once. There is no warm-up."],
+    ["Final Stand", "Phase 2. The battle moves to the Pants Factory."],
     ["Golden Pants", "The single most denimium-dense pair of pants in existence. Stored at the Pants Factory. Officially: bait."],
     ["Suburbia", "Patient Zero. The neighborhood where the rift opened and the war began."],
 ];
@@ -694,17 +692,6 @@ const glossary = [
         <p class="font-display text-xs tracking-[0.3em] uppercase">The Record</p>
         <h2 class="mt-2 font-display text-2xl md:text-3xl">Timeline of the invasion.</h2>
         <p class="mt-2 text-sm italic">Approximate dates. Some events occurred faster than the UPDF was able to log them.</p>
-
-        <figure class="mt-6">
-            <Image
-                src={loreSetupPhase}
-                alt="The Setup phase. Citizens shelter while Defenders haul barricades, lay caltrops, and prepare position. Above, the mothership scouts silently."
-                class="w-full rounded-lg border border-[var(--border-subtle)] shadow-xl"
-            />
-            <figcaption class="mt-3 text-xs italic text-center">
-                The Setup phase. Defenders shore up. Collectors scout. The clock starts the moment the mothership casts a shadow.
-            </figcaption>
-        </figure>
 
         <ol class="mt-8 space-y-0">
             {timeline.map((t) => (
