@@ -524,12 +524,19 @@ const TAB_CLASS = "metric-tab px-4 py-2 rounded-lg text-sm border border-[var(--
                 grid.appendChild(statRow("Highest phase", highest));
                 grid.appendChild(statRow("Full clears", num(s.fullClears)));
                 grid.appendChild(statRow("Medals", num(m.Gold) + " gold · " + num(m.Silver) + " silver · " + num(m.Bronze) + " bronze"));
-                grid.appendChild(statRow("Pants stolen", num(s.pants)));
-                grid.appendChild(statRow("Defenders KO'd", num(s.defenderKOs)));
-                grid.appendChild(statRow("Bosses depantsed", num(s.bossKOs)));
-                grid.appendChild(statRow("Deaths", num(s.deaths)));
                 grid.appendChild(statRow("Playtime", fmtDuration(s.playtimeSeconds)));
                 card.appendChild(grid);
+
+                // The game counts these once per phase attempt, not per player, so in co-op every
+                // player in the run is credited the whole squad's tally. Say so rather than
+                // passing a team number off as a personal one.
+                card.appendChild(subhead("Team totals across their runs"));
+                var team = el("div", "mt-2 grid sm:grid-cols-2 gap-x-8");
+                team.appendChild(statRow("Pants banked", num(s.pants)));
+                team.appendChild(statRow("Defenders KO'd", num(s.defenderKOs)));
+                team.appendChild(statRow("Bosses depantsed", num(s.bossKOs)));
+                team.appendChild(statRow("Team deaths", num(s.deaths)));
+                card.appendChild(team);
 
                 var best = Array.isArray(s.bestTimes) ? s.bestTimes : [];
                 if (best.length) {

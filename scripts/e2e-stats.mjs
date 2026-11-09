@@ -213,7 +213,8 @@ check("Pants Rush card comes first", r.indexOf("Pants Rush") > -1 && r.indexOf("
 check("rush clears / attempts", r.includes("Clears / attempts") && r.includes("9 / 12"));
 check("rush runs, full clears, highest phase", r.includes("5 runs") && r.includes("Full clears") && /Highest phase\s+Gas & Go/.test(r));
 check("rush medals", r.includes("3 gold · 2 silver · 1 bronze"));
-check("rush pants / KOs / bosses / deaths", r.includes("160") && r.includes("1,230") && r.includes("Bosses depantsed") && /Deaths\s+4/.test(r));
+check("per-attempt counters sit under a team-totals subhead", /Team totals across their runs\s+Pants banked\s+160\s+Defenders KO'd\s+1,230\s+Bosses depantsed\s+9\s+Team deaths\s+4/i.test(r));
+check("team counters aren't labelled as personal stats", !/Pants stolen\s+160/.test(r) && !/(^|\n)Deaths\s+4/.test(r));
 check("rush playtime + last played", r.includes("45m") && r.includes("Last played 2026-11-08"));
 const bestRows = await page.locator(".rush-best tbody tr").allInnerTexts();
 check("best-times table has one row per entry", bestRows.length === 4);
