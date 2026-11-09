@@ -65,14 +65,18 @@ html[data-theme="dark"] .homepage .studio .button { color:#131326; }
 html[data-theme="dark"] .shop-sign img { background:#eee7f8; }
 
 /* Stats uses the same semantic tokens for its asynchronously rendered rows. */
-html[data-theme="dark"] .stats-panels > section:first-child .surface { border-top-color:#74caff; }
-html[data-theme="dark"] .stats-panels > section:last-child .surface { border-top-color:#dfb6ff; }
+html[data-theme="dark"] .stats-rush .surface { border-top-color:#ffda56; }
+html[data-theme="dark"] .stats-lookup .surface { border-top-color:#74caff; }
+html[data-theme="dark"] .stats-invasion .surface { border-top-color:#dfb6ff; }
 html[data-theme="dark"] #lookup-name { color:var(--comic-text); background:var(--comic-page); border-color:var(--comic-line); }
 html[data-theme="dark"] #lookup-name::placeholder { color:var(--comic-muted); opacity:1; }
 html[data-theme="dark"] .stats-page .metric-tab { background:var(--comic-plum); color:var(--comic-text); border-color:var(--comic-line); }
 html[data-theme="dark"] .stats-page .metric-tab[aria-selected="true"] { background:#dfb6ff; color:#131326; border-color:#131326; }
-html[data-theme="dark"] :is(#board,#lookup-result:not(:empty)) { border-color:var(--comic-line); }
-html[data-theme="dark"] :is(#board > p,#lookup-result > p:only-child) { background:var(--comic-plum); color:var(--comic-body); border-color:var(--comic-line); }
+html[data-theme="dark"] .rush-summary > div { background:var(--comic-plum); color:var(--comic-text); border-color:var(--comic-line); }
+html[data-theme="dark"] .rush-summary dt { color:var(--comic-muted); }
+html[data-theme="dark"] .stats-page .rush-toggle[aria-pressed="true"] { background:#ffda56; color:#131326; border-color:#131326; }
+html[data-theme="dark"] :is(#board,#rush-board,#lookup-result:not(:empty),#lookup-result .lookup-card) { border-color:var(--comic-line); }
+html[data-theme="dark"] :is(#board > p,#rush-board > p,#lookup-result > p:only-child,#lookup-result .card-note) { background:var(--comic-plum); color:var(--comic-body); border-color:var(--comic-line); }
 
 /* Shared chrome: legible supporting copy and focus in both color schemes. */
 body > footer { color:var(--fg-body); }

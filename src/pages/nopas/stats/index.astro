@@ -15,6 +15,27 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 */
 const STATS_API = import.meta.env.PUBLIC_STATS_API ?? "https://stats.collapsedstargames.com";
 
+/*
+  Pants Rush phases, in campaign order. Ids and names mirror the game's
+  src/shared/Config/PantsRushConfig.luau (Stages[i].Id / .Name, title-cased here). `index` is the
+  1-based stageIndex the API ranks by. The list goes to the inline script as JSON, so it is the
+  ONE place a phase is named: a phase the game adds later still gets a tab (from /summary) and
+  shows under its raw id until it's added here.
+*/
+const RUSH_STAGES = [
+    { index: 1, id: "HighSchool", name: "High School" },
+    { index: 2, id: "GarageAlley", name: "Garage Alley" },
+    { index: 3, id: "Playground", name: "Playground Plaza" },
+    { index: 4, id: "GasAndGo", name: "Gas & Go" },
+];
+const RUSH_DIFFICULTIES = ["Easy", "Normal", "Hard"];
+const RUSH_PARTIES = [
+    { id: "solo", label: "Solo" },
+    { id: "coop", label: "Co-op" },
+];
+const RUSH_DEFAULT_DIFFICULTY = "Normal";
+const RUSH_DEFAULT_PARTY = "solo";
+
 const METRICS = [
     { id: "xp", label: "XP Earned" },
     { id: "kills", label: "Eliminations" },
@@ -29,26 +50,78 @@ const METRICS = [
     { id: "winrate", label: "Win Rate" },
     { id: "playtime", label: "Playtime" },
 ];
+
+const TAB_CLASS = "metric-tab px-4 py-2 rounded-lg text-sm border border-[var(--border-medium)] hover:bg-[var(--surface-hover)] transition focus:outline-none focus:ring-2 focus:ring-[var(--color-magenta-400)]";
 ---
 
 <BaseLayout
     title="Player Stats"
-    description="Career stats and leaderboards for NOPAS: Invasion, the main mode of Not Our Pants, Alien Swine! Look up any player's matches, eliminations, pants stolen, pants lost, XP and coins earned."
+    description="Pants Rush fastest times and player stats for Not Our Pants, Alien Swine! See who clears each phase quickest on every difficulty, solo or co-op, look up any player's runs and medals, and check the NOPAS: Invasion leaderboards."
 >
 <div class="utility-pages stats-page">
     {/* ============================================================
         Hero
        ============================================================ */}
-<section class="utility-hero"><a href="/nopas/">← NOPAS universe</a><p class="utility-eyebrow">THE NUMBERS HAVE WITNESSES.</p><h1>PLAYER <span>STATS</span></h1><p>Look up a NOPAS: Invasion career, or see who's on top —<br/>and who's lost the most pants.</p></section><div class="stats-panels">
+<section class="utility-hero"><a href="/nopas/">← NOPAS universe</a><p class="utility-eyebrow">THE NUMBERS HAVE WITNESSES.</p><h1>PLAYER <span>STATS</span></h1><p>See who's clearing Pants Rush fastest, look up any player's runs —<br/>and find out who's lost the most pants.</p></section><div class="stats-panels" data-stats-api={STATS_API} data-rush-stages={JSON.stringify(RUSH_STAGES)}>
 
     {/* ============================================================
-        Player lookup
+        Pants Rush — the lead mode
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 pb-12">
-        <div class="surface rounded-xl p-6 md:p-8" data-stats-api={STATS_API}>
+    <section class="stats-rush max-w-3xl mx-auto px-6 pb-12" aria-labelledby="rush-heading">
+        <div class="surface rounded-xl p-6 md:p-8">
+            <p class="utility-eyebrow text-[var(--fg-muted)]">PHASE BY PHASE. PANTS BY PANTS.</p>
+            <h2 id="rush-heading" class="font-display text-xl text-[var(--fg-primary)]">Pants Rush</h2>
+
+            {/* Hidden until /summary answers with something worth showing: an empty or failed
+                summary is not news, so it simply doesn't appear. */}
+            <dl id="rush-summary" class="rush-summary mt-5" hidden>
+                <div><dt>Runs</dt><dd data-total="runs">0</dd></div>
+                <div><dt>Phase clears</dt><dd data-total="clears">0</dd></div>
+                <div><dt>Players</dt><dd data-total="players">0</dd></div>
+            </dl>
+
+            <h3 class="rush-subhead mt-6 font-display text-[var(--fg-primary)]">Fastest times</h3>
+            <p class="mt-1 text-sm text-[var(--fg-muted)]">Best Time Trial clear per player. Full Run adds up every phase of one run from the first bell.</p>
+
+            <div id="rush-stage-tabs" class="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="Pants Rush phase">
+                {RUSH_STAGES.map((s, i) => (
+                    <button type="button" role="tab" id={`rush-stage-${s.index}`} data-stage={String(s.index)} aria-controls="rush-board" aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1} class={TAB_CLASS}>
+                        {s.name}
+                    </button>
+                ))}
+                <button type="button" role="tab" id="rush-stage-full" data-stage="full" aria-controls="rush-board" aria-selected="false" tabindex="-1" class={TAB_CLASS}>
+                    Full Run
+                </button>
+            </div>
+
+            <div class="rush-filters mt-4">
+                <div class="rush-segment" role="group" aria-labelledby="rush-difficulty-label">
+                    <span id="rush-difficulty-label" class="rush-segment-label">Difficulty</span>
+                    {RUSH_DIFFICULTIES.map((d) => (
+                        <button type="button" data-difficulty={d} aria-pressed={d === RUSH_DEFAULT_DIFFICULTY ? "true" : "false"} class="metric-tab rush-toggle">{d}</button>
+                    ))}
+                </div>
+                <div class="rush-segment" role="group" aria-labelledby="rush-party-label">
+                    <span id="rush-party-label" class="rush-segment-label">Party</span>
+                    {RUSH_PARTIES.map((p) => (
+                        <button type="button" data-party={p.id} aria-pressed={p.id === RUSH_DEFAULT_PARTY ? "true" : "false"} class="metric-tab rush-toggle">{p.label}</button>
+                    ))}
+                </div>
+            </div>
+
+            <div id="rush-board" class="mt-6" role="tabpanel" aria-labelledby="rush-stage-1" aria-live="polite"></div>
+        </div>
+    </section>
+
+    {/* ============================================================
+        Player lookup — both modes
+       ============================================================ */}
+    <section class="stats-lookup max-w-3xl mx-auto px-6 pb-12">
+        <div class="surface rounded-xl p-6 md:p-8">
             <h2 class="font-display text-xl text-[var(--fg-primary)]">Look up a player</h2>
             <p class="mt-2 text-sm text-[var(--fg-muted)]">
-                Enter a Roblox username. Stats appear after a player's first completed NOPAS: Invasion match.
+                Enter a Roblox username. Pants Rush stats appear after a player's first phase;
+                NOPAS: Invasion stats after their first completed match.
             </p>
 
             <form id="lookup-form" class="mt-5 flex flex-col sm:flex-row gap-3" novalidate>
@@ -78,13 +151,15 @@ const METRICS = [
     </section>
 
     {/* ============================================================
-        Leaderboards
+        NOPAS: Invasion leaderboards
        ============================================================ */}
-    <section class="max-w-3xl mx-auto px-6 pb-20">
+    <section class="stats-invasion max-w-3xl mx-auto px-6 pb-20" aria-labelledby="invasion-heading">
         <div class="surface rounded-xl p-6 md:p-8">
-            <h2 class="font-display text-xl text-[var(--fg-primary)]">Leaderboards</h2>
+            <p class="utility-eyebrow text-[var(--fg-muted)]">THE PVP MODE</p>
+            <h2 id="invasion-heading" class="font-display text-xl text-[var(--fg-primary)]">NOPAS: Invasion</h2>
+            <p class="mt-1 text-sm text-[var(--fg-muted)]">Career leaderboards from completed matches.</p>
 
-            <div class="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="Leaderboard metric">
+            <div id="invasion-tabs" class="mt-5 flex flex-wrap gap-2" role="tablist" aria-label="Invasion leaderboard metric">
                 {METRICS.map((m, i) => (
                     <button
                         type="button"
@@ -92,7 +167,7 @@ const METRICS = [
                         data-metric={m.id}
                         aria-selected={i === 0 ? "true" : "false"}
                         tabindex={i === 0 ? 0 : -1}
-                        class="metric-tab px-4 py-2 rounded-lg text-sm border border-[var(--border-medium)] hover:bg-[var(--surface-hover)] transition focus:outline-none focus:ring-2 focus:ring-[var(--color-magenta-400)]"
+                        class={TAB_CLASS}
                     >
                         {m.label}
                     </button>
@@ -101,13 +176,14 @@ const METRICS = [
 
             <div id="board" class="mt-6" aria-live="polite"></div>
         </div>
-
-        <p class="mt-6 text-xs text-[var(--fg-soft)] text-center leading-relaxed">
-            Stats cover completed NOPAS: Invasion matches only &mdash; Minion Panic Bowling and Minion Survivors
-            runs don't count here. Leaving early doesn't bank a match &mdash;
-            and yes, we can tell.
-        </p>
     </section>
+
+    <p class="stats-footnote text-xs text-[var(--fg-soft)] text-center leading-relaxed">
+        Pants Rush counts every live phase attempt &mdash; cleared, failed or abandoned &mdash; and its
+        fastest times are won Time Trial clears. NOPAS: Invasion counts completed matches only:
+        leaving early doesn't bank a match &mdash; and yes, we can tell. Minion Panic Bowling and
+        Minion Survivors runs don't count on this page.
+    </p>
 
 </div><nav class="utility-nav" aria-label="Explore NOPAS"><a href="/nopas/">Explore all three modes ↗</a><a href="/nopas/defenders/">Meet the Defenders ↗</a><a href="/nopas/collectors/">Meet the Collectors ↗</a></nav></div>
     <script is:inline>
@@ -117,9 +193,13 @@ const METRICS = [
             var API = root.getAttribute("data-stats-api");
             var resultEl = document.getElementById("lookup-result");
             var boardEl = document.getElementById("board");
+            var rushBoardEl = document.getElementById("rush-board");
+            var rushSummaryEl = document.getElementById("rush-summary");
+            var rushStageList = document.getElementById("rush-stage-tabs");
+            var invasionTabList = document.getElementById("invasion-tabs");
             var form = document.getElementById("lookup-form");
             var input = document.getElementById("lookup-name");
-            var tabs = Array.prototype.slice.call(document.querySelectorAll(".metric-tab"));
+            var slice = function (list) { return Array.prototype.slice.call(list); };
 
             var ACTIVE = "bg-[var(--color-magenta-500)]";
             var num = function (v) { return (v == null ? 0 : v).toLocaleString("en-US"); };
@@ -133,6 +213,18 @@ const METRICS = [
                 return m === 0 ? h + "h" : h + "h " + m + "m";
             }
 
+            // Run times read like a stopwatch: 89.25 -> "1:29.25"; an hour or more -> "1:02:03.40".
+            // Rounded to centiseconds once, up front, so 59.996 becomes "1:00.00" and never "0:60.00".
+            function fmtTime(seconds) {
+                if (typeof seconds !== "number" || !isFinite(seconds) || seconds < 0) return "—";
+                var cs = Math.round(seconds * 100);
+                var h = Math.floor(cs / 360000), m = Math.floor((cs % 360000) / 6000);
+                var s = Math.floor((cs % 6000) / 100), c = cs % 100;
+                var pad = function (n) { return n < 10 ? "0" + n : String(n); };
+                var tail = pad(s) + "." + pad(c);
+                return h ? h + ":" + pad(m) + ":" + tail : m + ":" + tail;
+            }
+
             // Board values format per metric: K/D as 2 decimals, win rate as a percent,
             // playtime as a duration, else a count.
             function fmtValue(metric, v) {
@@ -140,6 +232,30 @@ const METRICS = [
                 if (metric === "winrate") return (v == null ? 0 : v) + "%";
                 if (metric === "playtime") return fmtDuration(v);
                 return num(v);
+            }
+
+            // ---- Pants Rush names -------------------------------------------------------------
+            // Phase names come from the build (data-rush-stages). An id the build doesn't know (a
+            // phase added to the game later) shows as its raw id rather than vanishing.
+            var STAGE_NAMES = {}, STAGE_BY_INDEX = {};
+            try {
+                JSON.parse(root.getAttribute("data-rush-stages") || "[]").forEach(function (s) {
+                    STAGE_NAMES[s.id] = s.name;
+                    STAGE_BY_INDEX[s.index] = s.name;
+                });
+            } catch (err) { console.warn("[stats] bad stage list:", err); }
+            function stageName(id, index) {
+                if (id != null && id !== "") return STAGE_NAMES[id] || String(id);
+                return STAGE_BY_INDEX[index] || ("Phase " + index);
+            }
+            var PARTY_NAMES = { solo: "Solo", coop: "Co-op" };
+            function partyName(id) { return PARTY_NAMES[id] || String(id); }
+            var MEDALS = { Gold: "gold", Silver: "silver", Bronze: "bronze" };
+            function medalBadge(medal) {
+                if (!medal) return null;
+                var b = el("span", "medal-badge", medal);
+                if (MEDALS[medal]) b.setAttribute("data-medal", MEDALS[medal]);
+                return b;
             }
 
             // The ledger emits ~35 sources and roughly a third of all XP is challenge payouts.
@@ -188,18 +304,22 @@ const METRICS = [
                 return e;
             }
 
+            function noticeEl(message, tone) {
+                var p = el("p", "text-sm", message);
+                p.style.color = tone === "error" ? "var(--color-magenta-400)" : "var(--fg-muted)";
+                return p;
+            }
+
             function notice(container, message, tone) {
                 container.textContent = "";
-                var color = tone === "error" ? "var(--color-magenta-400)" : "var(--fg-muted)";
-                var p = el("p", "text-sm", message);
-                p.style.color = color;
-                container.appendChild(p);
+                container.appendChild(noticeEl(message, tone));
             }
 
             // One message for every "unreachable" case on purpose (down, deploying, rate-limited): the
             // difference is ours to care about, not the visitor's. Detail goes to the console.
+            var OFFLINE = "Stats are taking a breather. Try again in a minute.";
             function offline(container) {
-                notice(container, "Stats are taking a breather. Try again in a minute.", "muted");
+                notice(container, OFFLINE, "muted");
             }
 
             function statRow(label, value) {
@@ -216,15 +336,238 @@ const METRICS = [
                 return (kills / deaths).toFixed(2);
             }
 
-            function renderPlayer(data) {
-                var s = data.stats || {};
-                resultEl.textContent = "";
+            // An error response's body is still drained: left unread, the request never
+            // finishes as far as the browser is concerned.
+            function drain(r) { return r.text().catch(function () {}); }
 
-                var head = el("div", "flex items-baseline gap-3 flex-wrap");
-                head.appendChild(el("h3", "font-display text-2xl text-[var(--fg-primary)]", data.username || ("Roblox " + data.robloxUserId)));
+            function fetchJson(path) {
+                return fetch(API + path).then(function (r) {
+                    if (!r.ok) return drain(r).then(function () { throw new Error("HTTP " + r.status); });
+                    return r.json();
+                });
+            }
+
+            // Roving tabindex: a tablist is one tab stop, arrows move between options. Tabs are
+            // re-read on every event because the Pants Rush list can grow after /summary answers.
+            function wireTablist(list, onSelect) {
+                var tabsOf = function () { return slice(list.querySelectorAll('[role="tab"]')); };
+                function select(tab) {
+                    tabsOf().forEach(function (t) {
+                        var on = t === tab;
+                        t.setAttribute("aria-selected", on ? "true" : "false");
+                        t.setAttribute("tabindex", on ? "0" : "-1");
+                        t.classList.toggle(ACTIVE, on);
+                        t.classList.toggle("text-white", on);
+                    });
+                    onSelect(tab);
+                }
+                list.addEventListener("click", function (e) {
+                    var tab = e.target.closest('[role="tab"]');
+                    if (tab && list.contains(tab)) select(tab);
+                });
+                list.addEventListener("keydown", function (e) {
+                    var tab = e.target.closest('[role="tab"]');
+                    if (!tab) return;
+                    var tabs = tabsOf(), i = tabs.indexOf(tab);
+                    var next = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : -1;
+                    if (next < 0 || next >= tabs.length) return;
+                    e.preventDefault();
+                    tabs[next].focus();
+                    select(tabs[next]);
+                });
+                return { select: select, first: function () { return tabsOf()[0]; } };
+            }
+
+            // ==== Pants Rush: summary strip ====================================================
+            function renderRushSummary(data) {
+                var t = (data && data.totals) || {};
+                var any = false;
+                slice(rushSummaryEl.querySelectorAll("[data-total]")).forEach(function (dd) {
+                    var v = t[dd.getAttribute("data-total")];
+                    if (typeof v === "number" && v > 0) any = true;
+                    dd.textContent = num(typeof v === "number" ? v : 0);
+                });
+                rushSummaryEl.hidden = !any;
+                addStageTabs(data && data.stages);
+            }
+
+            // A phase the game added after this build gets its own tab, slotted in by index,
+            // still ahead of Full Run.
+            function addStageTabs(stages) {
+                if (!Array.isArray(stages)) return;
+                var template = rushStageList.querySelector('[data-stage="1"]');
+                var full = rushStageList.querySelector('[data-stage="full"]');
+                if (!template || !full) return;
+                stages.forEach(function (s) {
+                    var idx = s && s.stageIndex;
+                    if (typeof idx !== "number" || idx < 1 || idx > 20 || idx % 1) return;
+                    if (!STAGE_BY_INDEX[idx]) STAGE_BY_INDEX[idx] = stageName(s.stageId, idx);
+                    if (rushStageList.querySelector('[data-stage="' + idx + '"]')) return;
+                    var tab = el("button", template.className.replace(ACTIVE, "").replace("text-white", ""), stageName(s.stageId, idx));
+                    tab.type = "button";
+                    tab.id = "rush-stage-" + idx;
+                    tab.setAttribute("role", "tab");
+                    tab.setAttribute("data-stage", String(idx));
+                    tab.setAttribute("aria-controls", "rush-board");
+                    tab.setAttribute("aria-selected", "false");
+                    tab.setAttribute("tabindex", "-1");
+                    var before = full;
+                    slice(rushStageList.querySelectorAll('[role="tab"]')).some(function (t) {
+                        var n = Number(t.getAttribute("data-stage"));
+                        if (n > idx) { before = t; return true; }
+                        return false;
+                    });
+                    rushStageList.insertBefore(tab, before);
+                });
+            }
+
+            function loadRushSummary() {
+                fetchJson("/nmpa/public/rush/summary")
+                    .then(renderRushSummary)
+                    .catch(function (err) { console.warn("[stats] rush summary failed:", err); rushSummaryEl.hidden = true; });
+            }
+
+            // ==== Pants Rush: fastest-times board ==============================================
+            // Defaults come from the markup (the pressed buttons), so they're stated in one place.
+            var pressed = function (attr, fallback) {
+                var b = document.querySelector('.rush-segment [' + attr + '][aria-pressed="true"]');
+                return b ? b.getAttribute(attr) : fallback;
+            };
+            var rush = { stage: "1", difficulty: pressed("data-difficulty", "Normal"), party: pressed("data-party", "solo") };
+            var rushSeq = 0;
+
+            function renderRushBoard(rows, isFull) {
+                rushBoardEl.textContent = "";
+                if (!Array.isArray(rows) || rows.length === 0) {
+                    notice(rushBoardEl, "No clears on this board yet.", "muted");
+                    return;
+                }
+                var list = el("ol", "space-y-1");
+                rows.forEach(function (r, i) {
+                    var li = el("li", "flex items-baseline gap-3 py-2 border-b border-[var(--border-subtle)]");
+                    li.appendChild(el("span", "font-display text-sm w-8 shrink-0 text-[var(--fg-soft)]", "#" + (i + 1)));
+                    li.appendChild(el("span", "flex-1 text-[var(--fg-primary)]", r.username || ("Roblox " + r.robloxUserId)));
+                    li.appendChild(el("span", "rush-time font-display text-[var(--color-magenta-400)]", fmtTime(r.seconds)));
+                    if (!isFull) {
+                        var medal = el("span", "rush-medal");
+                        var badge = medalBadge(r.medal);
+                        if (badge) medal.appendChild(badge);
+                        li.appendChild(medal);
+                    }
+                    list.appendChild(li);
+                });
+                rushBoardEl.appendChild(list);
+            }
+
+            function loadRushBoard() {
+                // Only the latest request may paint: a slow answer for a board the visitor has
+                // already left must not overwrite the one they're looking at.
+                var seq = ++rushSeq, isFull = rush.stage === "full";
+                notice(rushBoardEl, "Loading…", "muted");
+                fetchJson("/nmpa/public/rush/leaderboard?stage=" + encodeURIComponent(rush.stage) +
+                        "&difficulty=" + encodeURIComponent(rush.difficulty) +
+                        "&party=" + encodeURIComponent(rush.party) + "&limit=10")
+                    .then(function (data) { if (seq === rushSeq) renderRushBoard(data && data.rows, isFull); })
+                    .catch(function (err) {
+                        if (seq !== rushSeq) return;
+                        console.warn("[stats] rush board failed:", err);
+                        offline(rushBoardEl);
+                    });
+            }
+
+            var rushTabs = wireTablist(rushStageList, function (tab) {
+                rush.stage = tab.getAttribute("data-stage");
+                rushBoardEl.setAttribute("aria-labelledby", tab.id);
+                loadRushBoard();
+            });
+
+            function wireSegment(attr, key) {
+                var buttons = slice(document.querySelectorAll(".rush-segment [" + attr + "]"));
+                buttons.forEach(function (b) {
+                    b.addEventListener("click", function () {
+                        if (b.getAttribute("aria-pressed") === "true") return;
+                        buttons.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+                        rush[key] = b.getAttribute(attr);
+                        loadRushBoard();
+                    });
+                });
+            }
+            wireSegment("data-difficulty", "difficulty");
+            wireSegment("data-party", "party");
+
+            // ==== Player lookup ================================================================
+            function cardNote(message) {
+                var p = noticeEl(message, "muted");
+                p.classList.add("card-note");
+                return p;
+            }
+
+            function cardShell(title) {
+                var card = el("div", "lookup-card");
+                card.appendChild(el("h4", "font-display text-lg text-[var(--fg-primary)]", title));
+                return card;
+            }
+
+            function subhead(text) {
+                return el("h5", "mt-6 font-display text-sm uppercase tracking-wide text-[var(--fg-muted)]", text);
+            }
+
+            function renderRushCard(card, data) {
+                var s = data.stats || {};
+                card.appendChild(el("p", "lookup-meta text-sm text-[var(--fg-soft)]", num(s.clears) + " phase clears · " + num(s.runs) + (s.runs === 1 ? " run" : " runs")));
+
+                var m = s.medals || {};
+                var highest = s.highestStage > 0 ? stageName(null, s.highestStage) : "—";
+                var grid = el("div", "mt-4 grid sm:grid-cols-2 gap-x-8");
+                grid.appendChild(statRow("Clears / attempts", num(s.clears) + " / " + num(s.attempts)));
+                grid.appendChild(statRow("Runs", num(s.runs)));
+                grid.appendChild(statRow("Highest phase", highest));
+                grid.appendChild(statRow("Full clears", num(s.fullClears)));
+                grid.appendChild(statRow("Medals", num(m.Gold) + " gold · " + num(m.Silver) + " silver · " + num(m.Bronze) + " bronze"));
+                grid.appendChild(statRow("Pants stolen", num(s.pants)));
+                grid.appendChild(statRow("Defenders KO'd", num(s.defenderKOs)));
+                grid.appendChild(statRow("Bosses depantsed", num(s.bossKOs)));
+                grid.appendChild(statRow("Deaths", num(s.deaths)));
+                grid.appendChild(statRow("Playtime", fmtDuration(s.playtimeSeconds)));
+                card.appendChild(grid);
+
+                var best = Array.isArray(s.bestTimes) ? s.bestTimes : [];
+                if (best.length) {
+                    card.appendChild(subhead("Best times"));
+                    var table = el("table", "rush-best mt-2");
+                    var head = el("tr");
+                    ["Phase", "Board", "Time"].forEach(function (h) {
+                        var th = el("th", null, h);
+                        th.scope = "col";
+                        head.appendChild(th);
+                    });
+                    table.appendChild(el("thead")).appendChild(head);
+                    var body = table.appendChild(el("tbody"));
+                    best.forEach(function (b) {
+                        var tr = el("tr");
+                        var phase = el("th", null, stageName(b.stageId, b.stageIndex));
+                        phase.scope = "row";
+                        tr.appendChild(phase);
+                        tr.appendChild(el("td", null, String(b.difficulty || "—") + " · " + partyName(b.party)));
+                        var time = el("td", "rush-best-time");
+                        time.appendChild(el("span", "font-display", fmtTime(b.seconds)));
+                        var badge = medalBadge(b.medal);
+                        if (badge) time.appendChild(badge);
+                        tr.appendChild(time);
+                        body.appendChild(tr);
+                    });
+                    card.appendChild(table);
+                }
+
+                if (s.lastPlayed) {
+                    card.appendChild(el("p", "mt-4 text-xs text-[var(--fg-soft)]", "Last played " + String(s.lastPlayed).slice(0, 10)));
+                }
+            }
+
+            function renderInvasionCard(card, data) {
+                var s = data.stats || {};
                 var winRate = s.matchesPlayed ? Math.round((s.wins / s.matchesPlayed) * 100) + "%" : "—";
-                head.appendChild(el("span", "text-sm text-[var(--fg-soft)]", num(s.matchesPlayed) + " matches · " + winRate + " win rate"));
-                resultEl.appendChild(head);
+                card.appendChild(el("p", "lookup-meta text-sm text-[var(--fg-soft)]", num(s.matchesPlayed) + " matches · " + winRate + " win rate"));
 
                 var grid = el("div", "mt-4 grid sm:grid-cols-2 gap-x-8");
                 grid.appendChild(statRow("Wins / Losses", num(s.wins) + " / " + num(s.losses)));
@@ -243,40 +586,68 @@ const METRICS = [
                     var mcRate = mc.matches ? Math.round((mc.wins / mc.matches) * 100) + "%" : "—";
                     grid.appendChild(statRow("Main class", className(mc.classId) + " · " + num(mc.matches) + (mc.matches === 1 ? " match" : " matches") + " · " + mcRate + " win rate"));
                 }
-                resultEl.appendChild(grid);
+                card.appendChild(grid);
 
                 var xp = summarizeXpSources(s.xpBySource);
                 if (xp.top.length || xp.challenges > 0 || xp.other > 0) {
-                    resultEl.appendChild(el("h4", "mt-6 font-display text-sm uppercase tracking-wide text-[var(--fg-muted)]", "Where the XP came from"));
+                    card.appendChild(subhead("Where the XP came from"));
                     var breakdown = el("div", "mt-2 grid sm:grid-cols-2 gap-x-8");
                     xp.top.forEach(function (x) {
                         breakdown.appendChild(statRow(prettySource(x.source), num(x.xp)));
                     });
                     if (xp.challenges > 0) breakdown.appendChild(statRow("Challenges", num(xp.challenges)));
                     if (xp.other > 0) breakdown.appendChild(statRow("Other", num(xp.other)));
-                    resultEl.appendChild(breakdown);
+                    card.appendChild(breakdown);
                 }
 
                 if (s.lastPlayed) {
-                    resultEl.appendChild(el("p", "mt-4 text-xs text-[var(--fg-soft)]", "Last played " + String(s.lastPlayed).slice(0, 10)));
+                    card.appendChild(el("p", "mt-4 text-xs text-[var(--fg-soft)]", "Last played " + String(s.lastPlayed).slice(0, 10)));
                 }
             }
 
-            function lookup(name) {
-                notice(resultEl, "Searching…", "muted");
-                fetch(API + "/nmpa/public/player?name=" + encodeURIComponent(name))
+            // Each mode settles to { ok, data } | { missing } | { error }, so one mode being down
+            // or never played never hides what the other one knows.
+            function settle(path) {
+                return fetch(API + path)
                     .then(function (r) {
-                        if (r.status === 404) {
-                            notice(resultEl, "No player found by that name. Stats appear after a first completed NOPAS: Invasion match.", "muted");
-                            return null;
-                        }
-                        if (!r.ok) throw new Error("HTTP " + r.status);
-                        return r.json();
+                        if (r.status === 404) return drain(r).then(function () { return { missing: true }; });
+                        if (!r.ok) return drain(r).then(function () { throw new Error("HTTP " + r.status); });
+                        return r.json().then(function (data) { return { ok: true, data: data || {} }; });
                     })
-                    .then(function (data) { if (data) renderPlayer(data); })
-                    .catch(function (err) { console.warn("[stats] lookup failed:", err); offline(resultEl); });
+                    .catch(function (err) { console.warn("[stats] lookup failed:", path, err); return { error: true }; });
             }
 
+            var lookupSeq = 0;
+            function lookup(name) {
+                var seq = ++lookupSeq, q = "?name=" + encodeURIComponent(name);
+                notice(resultEl, "Searching…", "muted");
+                Promise.all([settle("/nmpa/public/rush/player" + q), settle("/nmpa/public/player" + q)]).then(function (res) {
+                    if (seq !== lookupSeq) return;
+                    var rushRes = res[0], invRes = res[1];
+                    if (rushRes.missing && invRes.missing) {
+                        notice(resultEl, "No player found by that name. Stats appear after a first Pants Rush phase or a first completed NOPAS: Invasion match.", "muted");
+                        return;
+                    }
+                    if (rushRes.error && invRes.error) { offline(resultEl); return; }
+
+                    resultEl.textContent = "";
+                    var known = (rushRes.ok && rushRes.data) || (invRes.ok && invRes.data) || null;
+                    var title = known ? (known.username || ("Roblox " + known.robloxUserId)) : name;
+                    resultEl.appendChild(el("h3", "font-display text-2xl text-[var(--fg-primary)]", title));
+
+                    var rushCard = cardShell("Pants Rush");
+                    if (rushRes.ok) renderRushCard(rushCard, rushRes.data);
+                    else rushCard.appendChild(cardNote(rushRes.missing ? "No Pants Rush stats yet." : OFFLINE));
+                    resultEl.appendChild(rushCard);
+
+                    var invCard = cardShell("NOPAS: Invasion");
+                    if (invRes.ok) renderInvasionCard(invCard, invRes.data);
+                    else invCard.appendChild(cardNote(invRes.missing ? "No NOPAS: Invasion stats yet." : OFFLINE));
+                    resultEl.appendChild(invCard);
+                });
+            }
+
+            // ==== NOPAS: Invasion leaderboards =================================================
             function renderBoard(rows, metric) {
                 boardEl.textContent = "";
                 if (!rows || rows.length === 0) {
@@ -298,37 +669,13 @@ const METRICS = [
 
             function loadBoard(metric) {
                 notice(boardEl, "Loading…", "muted");
-                fetch(API + "/nmpa/public/leaderboard?metric=" + encodeURIComponent(metric))
-                    .then(function (r) {
-                        if (!r.ok) throw new Error("HTTP " + r.status);
-                        return r.json();
-                    })
+                fetchJson("/nmpa/public/leaderboard?metric=" + encodeURIComponent(metric))
                     .then(function (data) { renderBoard(data.rows, metric); })
                     .catch(function (err) { console.warn("[stats] board failed:", err); offline(boardEl); });
             }
 
-            function selectTab(tab) {
-                tabs.forEach(function (t) {
-                    var on = t === tab;
-                    t.setAttribute("aria-selected", on ? "true" : "false");
-                    t.setAttribute("tabindex", on ? "0" : "-1");
-                    t.classList.toggle(ACTIVE, on);
-                    t.classList.toggle("text-white", on);
-                });
+            var invasionTabs = wireTablist(invasionTabList, function (tab) {
                 loadBoard(tab.getAttribute("data-metric"));
-            }
-
-            tabs.forEach(function (tab) {
-                tab.addEventListener("click", function () { selectTab(tab); });
-                // Roving tabindex: a tablist is one tab stop, arrows move between options.
-                tab.addEventListener("keydown", function (e) {
-                    var i = tabs.indexOf(tab);
-                    var next = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : -1;
-                    if (next < 0 || next >= tabs.length) return;
-                    e.preventDefault();
-                    tabs[next].focus();
-                    selectTab(tabs[next]);
-                });
             });
 
             if (form) {
@@ -343,7 +690,9 @@ const METRICS = [
                 });
             }
 
-            if (tabs.length) selectTab(tabs[0]);
+            loadRushSummary();
+            if (rushTabs.first()) rushTabs.select(rushTabs.first());
+            if (invasionTabs.first()) invasionTabs.select(invasionTabs.first());
         })();
     </script>
 </BaseLayout>
