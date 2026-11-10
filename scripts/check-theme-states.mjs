@@ -35,29 +35,36 @@ for(const [name,route,selector] of sections){
  }
 }
 // Test fixtures are intercepted in the browser only; no production data changes.
-let mode='populated',release;
+let mode='populated',releases=[];const release=()=>releases.splice(0).forEach(r=>r());
+const rushFixture={robloxUserId:1,username:'Theme_Test_Player',stats:{runs:5,attempts:12,clears:9,medals:{Gold:3,Silver:2,Bronze:1},pants:160,defenderKOs:230,bossKOs:9,deaths:4,highestStage:4,fullClears:1,playtimeSeconds:2710,lastPlayed:'2026-11-08',bestTimes:[{stageIndex:1,stageId:'HighSchool',difficulty:'Normal',party:'solo',seconds:89.25,medal:'Gold'},{stageIndex:2,stageId:'GarageAlley',difficulty:'Hard',party:'coop',seconds:131.5,medal:'Silver'},{stageIndex:3,stageId:'Playground',difficulty:'Easy',party:'solo',seconds:150,medal:'Bronze'}]}};
+const rushRows=[{robloxUserId:1,username:'Theme_Test_Player',seconds:89.25,medal:'Gold'},{robloxUserId:2,username:null,seconds:95.5,medal:'Silver'},{robloxUserId:3,username:'Third',seconds:101,medal:'Bronze'}];
 const fixture={robloxUserId:1,username:'Theme_Test_Player',stats:{matchesPlayed:37,wins:20,losses:17,kills:148,deaths:96,npcKills:812,objectivesCapped:22,pantsStolen:4,pantsLost:61,xpEarned:29600,coinsEarned:2450,playtimeSeconds:26640,mainClass:{classId:'Overlord',matches:14,wins:8},xpBySource:[{source:'_challenge_weekly_test',xp:5120},{source:'npcDefeated',xp:3097}],lastPlayed:'2026-09-11'}};
 await p.route('**/nmpa/public/**',async r=>{
- if(mode==='loading')await new Promise(resolve=>release=resolve);
+ const url=r.request().url();
+ if(mode==='loading')await new Promise(resolve=>releases.push(resolve));
  if(mode==='offline')return r.abort();
- if(mode==='missing'&&r.request().url().includes('/player'))return r.fulfill({status:404,json:{}});
- return r.fulfill({json:r.request().url().includes('/player')?fixture:{rows:mode==='empty'?[]:[{robloxUserId:1,username:'Theme_Test_Player',value:29600},{robloxUserId:2,username:null,value:12000}]}});
+ if(mode==='missing'&&url.includes('/player'))return r.fulfill({status:404,json:{}});
+ if(url.includes('/rush/summary'))return r.fulfill({json:{totals:{runs:41,attempts:97,clears:63,players:30},stages:[{stageIndex:1,stageId:'HighSchool',attempts:40,clears:31}]}});
+ if(url.includes('/rush/player'))return r.fulfill({json:rushFixture});
+ if(url.includes('/rush/leaderboard'))return r.fulfill({json:{rows:mode==='empty'?[]:rushRows}});
+ return r.fulfill({json:url.includes('/player')?fixture:{rows:mode==='empty'?[]:[{robloxUserId:1,username:'Theme_Test_Player',value:29600},{robloxUserId:2,username:null,value:12000}]}});
 });
+const rushTabs=p.locator('#rush-stage-tabs').getByRole('tab'),invasionTabs=p.locator('#invasion-tabs').getByRole('tab');
 for(const theme of ['light','dark'])for(const [size,width,height] of [['desktop',1440,1000],['mobile',390,844]]){
  await p.setViewportSize({width,height});mode='populated';await p.goto(base+'/nopas/stats/',{waitUntil:'networkidle'});await p.evaluate(t=>document.documentElement.dataset.theme=t,theme);
  await p.locator('#lookup-name').fill('Theme_Test_Player');await p.locator('#lookup-form button').click();await p.waitForFunction(()=>document.querySelector('#lookup-result h3'));
- assert.match(await p.locator('#lookup-result').innerText(),/1.54/);assert.match(await p.locator('#board').innerText(),/Roblox 2/);
+ assert.match(await p.locator('#lookup-result').innerText(),/1.54/);assert.match(await p.locator('#lookup-result').innerText(),/9 \/ 12/);assert.match(await p.locator('#board').innerText(),/Roblox 2/);assert.match(await p.locator('#rush-board').innerText(),/1:29\.25/);assert.equal(await p.locator('#rush-summary').isVisible(),true);
  for(const state of ['populated','empty','missing','offline','loading']){
   mode=state;
   if(state==='missing'){await p.locator('#lookup-form button').click();await p.waitForFunction(()=>document.querySelector('#lookup-result').textContent.includes('No player found'));}
-  else if(state!=='populated'){await p.getByRole('tab').nth(1).click();await p.waitForFunction(s=>{const t=document.querySelector('#board').textContent;return s==='empty'?t.includes("Nobody's"):s==='offline'?t.includes("taking a breather"):t==='Loading…';},state);}
+  else if(state!=='populated'){await invasionTabs.nth(1).click();await rushTabs.nth(1).click();await p.waitForFunction(s=>{const t=document.querySelector('#board').textContent,u=document.querySelector('#rush-board').textContent;return s==='empty'?t.includes("Nobody's")&&u.includes('No clears'):s==='offline'?t.includes("taking a breather")&&u.includes("taking a breather"):t==='Loading…'&&u==='Loading…';},state);}
   assert.deepEqual((await p.evaluate(inspectContrast)).fails,[],`stats ${theme} ${size} ${state} contrast`);
   assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   await p.locator('.stats-panels').evaluate(e=>scrollTo(0,e.offsetTop-90));
   await p.screenshot({path:`${out}/stats-fixture-${state}-${theme}-${size}.png`,style:'astro-dev-toolbar{display:none!important}'});
-  if(state==='loading'){mode='empty';release();await p.waitForFunction(()=>document.querySelector('#board').textContent.includes("Nobody's"));}
+  if(state==='loading'){mode='empty';release();await p.waitForFunction(()=>document.querySelector('#board').textContent.includes("Nobody's")&&document.querySelector('#rush-board').textContent.includes('No clears'));}
  }
- const tab=p.getByRole('tab').first();await tab.focus();await p.keyboard.press('ArrowRight');assert.equal(await p.getByRole('tab').nth(1).getAttribute('aria-selected'),'true');
- assert.equal(await p.getByRole('tab').nth(1).evaluate(e=>getComputedStyle(e).outlineStyle),'solid');
+ for(const tabs of [rushTabs,invasionTabs]){await tabs.first().focus();await p.keyboard.press('ArrowRight');assert.equal(await tabs.nth(1).getAttribute('aria-selected'),'true');
+ assert.equal(await tabs.nth(1).evaluate(e=>getComputedStyle(e).outlineStyle),'solid');}
 }
-await b.close();console.log('PASS: system preference; keyboard toggle/menu; reload/navigation persistence; unchanged artwork; open documents; representative mobile/desktop contrast; Stats populated, empty,404,offline,loading and keyboard tabs in both themes.');
+await b.close();console.log('PASS: system preference; keyboard toggle/menu; reload/navigation persistence; unchanged artwork; open documents; representative mobile/desktop contrast; Stats (Pants Rush + Invasion) populated, empty,404,offline,loading and keyboard tabs in both themes.');
