@@ -132,7 +132,10 @@ Built on the Bowling page's structure and CSS patterns (`nopas-overview.css` + a
 
 - **Hero:** title logo, tagline *"Collect 'em. Nab 'em. Keep 'em!"*, lede, ▶ Play free, status "Open Beta · Live now on Roblox",
   "How to get there: Lobby → Steal a Minion door, or PLAY → Steal a Minion."
-- **At a glance:** 8 players per server · 42 kinds of minion · 6 threat levels · Golden & Rainbow finishes.
+- **At a glance:** 8 players per server · 6 threat levels · Golden & Rainbow finishes · a six-minion Arena Team.
+  *(Call after the builder check: no species count. The game defines 42 species, but weekly ones unlock one
+  per Friday until 2027-01-01, so any number is either partly switched off or goes stale every week. Say
+  "dozens of minion kinds" if a count-like phrase is needed.)*
 - **How it works:** the delivery rift over Suburbia keeps dropping minions into the UPDF Rift Yard; alien
   billing pays Bounty every second for every minion anyone holds and never checks who. Fill your lot:
   buy off the belt, sneak past snoring Officer Dozy to the Evidence Locker, or nab from a neighbour's
@@ -140,10 +143,11 @@ Built on the Bowling page's structure and CSS patterns (`nopas-overview.css` + a
   minion is always protected, you get a chance to NAB IT BACK, plus Lock Gate and new-player protection.
 - **Features (disclosure cards, like Bowling):** Dirty Laundry jobs (Puff Round-Up, Probably Pants,
   Power Nap) and Guarded Salvage · the Research Arena (turn-based; Practice, League, friendly
-  same-server challenges; six-minion Arena Team that can't be nabbed) · Minion Index & 16 trophies ·
+  same-server challenges; six-minion Arena Team that can't be nabbed) · Minion Index and its trophies (no count: 16 is only the Index category of 57 trophies) ·
   Golden and Rainbow minions · UPDF career ranks / Evidence Cabinet · cosmetics (gamepasses are
   cosmetic only — say "cosmetic-only passes", no prices).
-- **Gallery:** `steal-a-minion-1.png` (Rift Yard lots), `steal-a-minion-2.png` (Research Arena; crop the
+- **Gallery:** `steal-a-minion-1.png` (Rift Yard lots; crop out the "+14/sec" Bounty tooltip on the right
+  and the stray cursor, keeping the player, the lots and the belt with its minions), `steal-a-minion-2.png` (Research Arena; crop the
   Roblox top-left menu chrome), the "Know your minions" poster, and the title logo.
 - **Closing band:** count-free universe line + links to the other games (from the list).
 - Never mention: global Player Battle search, minion stakes, the weekly minion schedule, earn rates.
@@ -210,6 +214,13 @@ Update the scripts to read `src/lib/games.mjs` instead of hard-coded counts:
   `audit-theme-contrast`: add the two routes.
 - Nav: keyboard open/close/Escape and mobile sub-list, in an existing script or a new `check-nav.mjs`.
 - A count-free grep gate (section 7).
+
+## Calls made after the builder check (owner to confirm)
+
+- No minion-species or trophy counts on the Steal a Minion page (weekly species are still switched off; anti-goal).
+- Crop the earn-rate tooltip and cursor out of `steal-a-minion-1.png` rather than drop the image.
+- `bowling-1.png` / `bowling-2.png` are already in use (accuracy fix `f63dba8`: `special-balls.png`,
+  `pins-in-flight.png`); the Bowling page only gets back-link and closing-band copy here.
 
 ## Left to the builder
 
