@@ -1,6 +1,8 @@
 // Card and spotlight art for each game in src/lib/games.mjs, keyed by game id.
 // Images are Astro asset imports, so they live here rather than in the .mjs list.
-// The *-card.png crops drop the player name, Roblox menu and cursor from the source screenshots.
+// The *-card.png crops drop the player name, Roblox menu buttons, mouse cursor and side panels
+// from the source screenshots (and also serve as the Survivors and Bowling page heroes).
+// The crosshair in horde-card.png is the game's weapon reticle (HUD), kept on purpose.
 import type { ImageMetadata } from "astro";
 import stealTitle from "../assets/steal-a-minion/title.png";
 import researchArena from "../assets/steal-a-minion/research-arena.png";
