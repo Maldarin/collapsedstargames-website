@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import title from "../../../assets/steal-a-minion/title.png";
+import riftYard from "../../../assets/steal-a-minion/rift-yard.png";
+import researchArena from "../../../assets/steal-a-minion/research-arena.png";
+import knowYourMinions from "../../../assets/steal-a-minion/know-your-minions.png";
+import "../../../styles/nopas-overview.css";
+import "../../../styles/nopas-steal.css";
+import { PLAY_URL } from "../../../lib/links.mjs";
+import { GAMES } from "../../../lib/games.mjs";
+
+const game = GAMES.find((g) => g.id === "steal-a-minion");
+if (!game) throw new Error("steal-a-minion is missing from GAMES");
+const otherGames = GAMES.filter((g) => g.id !== game.id);
+
+const glance = [
+  ["8", "Players per server"],
+  ["6", "Threat levels, Harmless to CLASSIFIED"],
+  ["2", "Rare finishes: Golden & Rainbow"],
+  ["6", "Minions on your Arena Team"],
+];
+const ways = [
+  { verb: "BUY", title: "Shop the belt.", body: "Minions ride the conveyor belt through the Rift Yard. Spend Bounty on one you like and walk it home to your lot." },
+  { verb: "SNEAK", title: "Raid the Evidence Locker.", body: "Officer Dozy guards the Locker. Officer Dozy is asleep. Tiptoe in while he snores, freeze when he wakes up, and bring minions home." },
+  { verb: "NAB", title: "Visit a neighbour.", body: "Spot an open gate, nab whoever is closest, and wobble home with a stack of them on your head. Nobody said it was dignified." },
+];
+const defences = [
+  ["Your best minion is always protected.", "Whatever else happens, that one stays put."],
+  ["NAB IT BACK!", "Get nabbed and you get a chance to grab it back before it's gone."],
+  ["Lock Gate.", "Shut your gate for a while when it's getting busy. It needs a recharge after."],
+  ["New Officer protection.", "Nobody can nab from brand-new players while they learn the ropes."],
+];
+const features = [
+  { tag: "DIRTY LAUNDRY", title: "Odd jobs. Very odd.", body: "Free solo missions from the Dirty Laundry desk by the Locker. Puff Round-Up: put the Puffs to bed. Probably Pants: match each thing to its picture, from socks to the occasional toaster. Power Nap: dig the sleepers out of the laundry and tuck them in. Then there's Guarded Salvage: find your shelf, hide from the guards and carry the case out.", note: "The Puffs would like it noted that they are not tired." },
+  { tag: "RESEARCH ARENA", title: "Minion battles, for science.", body: "Turn-based battles in the UPDF Mischief Lab. Pick a six-minion Arena Team, queue your orders, and outthink the other side. Warm up in Practice, climb the League, or challenge a friend in your own server.", note: "Minions on your Arena Team can't be nabbed. Science is a protected activity." },
+  { tag: "MINION INDEX", title: "Paperwork, but fun.", body: "Every kind, tier and finish you bring home goes into your Minion Index. Fill it in to earn trophies, then show them off in the UPDF Evidence Cabinet at your base.", note: "Dozens of minion kinds. The UPDF insists they're all perfectly normal." },
+  { tag: "GOLDEN & RAINBOW", title: "Shiny. Suspiciously shiny.", body: "Every so often a minion turns up Golden, on the belt or in the Locker. Rainbow ones are rarer still. Each finish gets its own entry in your Minion Index.", note: "Your neighbours will notice. Maybe lock the gate." },
+  { tag: "UPDF CAREER", title: "Climb to Chief of Mischief.", body: "Work your way up the UPDF ranks: Field Officer, Case Specialist, Vault Officer, Chief of Mischief. Each promotion gives you a bigger lot and opens deeper shelves in the Evidence Locker. Career Missions at the Dirty Laundry desk add stamps and medals, and every Career Level can be earned playing solo.", note: "The uniform does not come with pants. We checked." },
+  { tag: "COSMETICS", title: "Look the part.", body: "Give your lot a new bay theme, dress every minion as a Tiny Inspector, or throw Containment Confetti when a plan works. They're cosmetic-only passes: they change how things look, never who wins.", note: "One Evidence Cabinet style is called Museum of Questionable Decisions. Fitting." },
+];
+const gallery = [
+  { image: riftYard, title: "The Rift Yard", caption: "Lots down both sides, the belt down the middle, minions everywhere.", label: "Development screenshot", alt: "A player in the UPDF Rift Yard between rows of minion lots, with minions riding the conveyor belt", fit: "cover" },
+  { image: researchArena, title: "The Research Arena", caption: "Turn-based minion battles. Exhibit 01 is a pair of pants.", label: "Development screenshot", alt: "Minions face off on numbered pads in the Research Arena, with the battle menu on the right", fit: "cover" },
+  { image: knowYourMinions, title: "Know your minions", caption: "UPDF training poster. Harmless on the left. Less so on the right.", label: "Game artwork", alt: "UPDF Know Your Minions poster showing a yellow minion and a red armoured minion", fit: "cover" },
+  { image: title, title: "The title card", caption: "Exclamation mark included at no extra cost.", label: "Game artwork", alt: "Steal a Minion title logo with the NOPAS badge", fit: "contain" },
+];
+---
+
+<BaseLayout title="Steal a Minion — NOPAS" description="Steal a Minion: fill your lot with minions in the UPDF Rift Yard. Buy them off the belt, sneak them out of the Evidence Locker, or nab them from the neighbours. Now in open beta on Roblox.">
+  <div class="nopas-overview steal-page">
+    <section class="overview-pad steal-hero" aria-labelledby="steal-title">
+      <div class="steal-hero-copy">
+        <a class="overview-back" href="/nopas/#games">← All NOPAS games</a>
+        <p class="overview-eyebrow"><span class="steal-new">NEW</span>{game.tag}</p>
+        <h1 id="steal-title"><Image src={title} alt="" widths={[480,720,1080]} sizes="(min-width: 1000px) 560px, (min-width: 760px) 44vw, 90vw" loading="eager" class="steal-logo"/><span class="sr-only">Steal a Minion</span></h1>
+        <p class="steal-tagline">Collect ’em. Nab ’em. Keep ’em!</p>
+        <p class="steal-lede">A rift over Suburbia keeps dropping minions into the UPDF Rift Yard. Fill your lot with them, any way you can. Your neighbours are doing the same thing. Possibly to your lot.</p>
+        <div class="overview-actions hero-play"><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a></div>
+        <div class="steal-actions"><a class="overview-button" href="#how-it-works">How it works ↓</a><a class="overview-button" href="#gallery">See the Yard ↓</a></div>
+        <p class="overview-status"><span></span>Open Beta <b>·</b> Live now on Roblox</p>
+        <p class="steal-directions"><strong>How to get there:</strong> Lobby → Steal a Minion door, or PLAY → Steal a Minion.</p>
+      </div>
+      <figure class="steal-hero-picture"><Image src={riftYard} alt="A player in the UPDF Rift Yard, minion lots on the left and the conveyor belt on the right" widths={[640,960,1050]} sizes="(min-width: 800px) 50vw, 100vw" loading="eager"/><figcaption>Development screenshot · The Rift Yard. Every lot wants minions.</figcaption></figure>
+    </section>
+    <div class="steal-stats" aria-label="Steal a Minion at a glance">{glance.map(([value,label])=><div><strong>{value}</strong><span>{label}</span></div>)}</div>
+
+    <section id="how-it-works" class="overview-pad steal-how" aria-labelledby="how-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">HOW IT WORKS</p><h2 id="how-title">Free minions.<br/>Some assembly required.</h2></div><p>Alien billing pays Bounty for every minion anyone is holding.<br/>It has never once checked who.</p></div>
+      <p class="overview-section-intro">The delivery rift over Suburbia never stops, so the UPDF Rift Yard is always full of minions and very short on paperwork. Every player gets a lot. Your job is to fill it.</p>
+      <ol class="steal-ways">{ways.map(way=><li class="steal-way"><p class="overview-eyebrow">{way.verb}</p><h3>{way.title}</h3><p>{way.body}</p></li>)}</ol>
+      <div class="steal-defence">
+        <div><p class="overview-eyebrow">AND THEN THE NEIGHBOURS VISIT</p><h3>They can nab yours too.</h3><p>Fair’s fair. Luckily, the rules give you a fighting chance.</p></div>
+        <ul>{defences.map(([name,line])=><li><strong>{name}</strong><span>{line}</span></li>)}</ul>
+      </div>
+    </section>
+
+    <section id="features" class="overview-pad steal-features" aria-labelledby="features-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">UPDF FIELD MANUAL</p><h2 id="features-title">Things to do between nabs.</h2></div><p>Open a card to get the details.</p></div>
+      <div class="steal-feature-grid">{features.map((feature,i)=><details class="steal-feature" open={i===0}><summary><span class="overview-eyebrow">{feature.tag}</span><strong>{feature.title}</strong><span class="steal-disclosure" aria-hidden="true">+</span></summary><div><p>{feature.body}</p><p class="steal-gag">{feature.note}</p></div></details>)}</div>
+    </section>
+
+    <section id="gallery" class="overview-pad steal-gallery" aria-labelledby="gallery-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">EVIDENCE PHOTOS</p><h2 id="gallery-title">Exhibits A to D.</h2></div><p>Screenshots from development, plus game artwork.<br/>Open any image for a closer look.</p></div>
+      <div class="steal-gallery-grid">{gallery.map(shot=><figure><a href={shot.image.src} target="_blank" rel="noopener" aria-label={`Open full-size image: ${shot.title}`}><Image src={shot.image} alt={shot.alt} widths={[480,720,960]} sizes="(min-width: 1000px) 45vw, 90vw" loading="lazy" class={shot.fit === "contain" ? "steal-fit-contain" : undefined}/><span aria-hidden="true">↗</span></a><figcaption><strong>{shot.title}</strong><span>{shot.caption}</span><small>{shot.label}</small></figcaption></figure>)}</div>
+    </section>
+
+    <section class="overview-pad steal-universe" aria-labelledby="universe-title">
+      <div><p class="overview-eyebrow">ONE RIDICULOUS UNIVERSE. EVERY KIND OF CHAOS.</p><h2 id="universe-title">Same aliens.<br/>New problems.</h2><p>Steal a Minion is one door in the NOPAS Lobby. The others lead somewhere just as unreasonable, and they’re all in the same open beta on Roblox.</p><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a></div>
+      <nav aria-label="Other NOPAS games"><ul class="steal-universe-list">{otherGames.map(g=><li style={`--game:${g.color}`}><a href={g.href}><span class="overview-eyebrow">{g.tag}</span><strong>{g.name} ↗</strong></a></li>)}</ul></nav>
+    </section>
+  </div>
+</BaseLayout>
