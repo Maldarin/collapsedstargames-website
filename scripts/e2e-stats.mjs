@@ -52,7 +52,7 @@ const rushPlayer = (username) => ({ robloxUserId: 23374549, username, stats: {
     { stageIndex: 1, stageId: "HighSchool", difficulty: "Normal", party: "solo", seconds: 89.25, medal: "Gold" },
     { stageIndex: 1, stageId: "HighSchool", difficulty: "Hard", party: "coop", seconds: 131.5, medal: "Bronze" },
     { stageIndex: 4, stageId: "GasAndGo", difficulty: "Easy", party: "solo", seconds: 59.996, medal: "Silver" },
-    { stageIndex: 5, stageId: "MallMadness", difficulty: "Normal", party: "solo", seconds: 3725.4, medal: null },
+    { stageIndex: 7, stageId: "MallMadness", difficulty: "Normal", party: "solo", seconds: 3725.4, medal: null },
   ],
 } });
 
@@ -86,7 +86,7 @@ const api = createServer((req, res) => {
       totals: { runs: 1041, attempts: 2097, clears: 1563, players: 30 },
       stages: [
         { stageIndex: 1, stageId: "HighSchool", attempts: 40, clears: 31 },
-        { stageIndex: 5, stageId: "MallMadness", attempts: 3, clears: 1 },
+        { stageIndex: 7, stageId: "MallMadness", attempts: 3, clears: 1 },
       ],
     });
   }
@@ -168,7 +168,7 @@ check("first phase tab selected", await rushTab("High School").getAttribute("ari
 
 console.log("== future stage from summary ==");
 const tabNames = await page.locator("#rush-stage-tabs [role=tab]").allInnerTexts();
-check("unknown stage gets a tab under its raw id, before Full Run", tabNames.map(s => s.trim()).join("|") === "High School|Garage Alley|Playground Plaza|Gas & Go|MallMadness|Full Run");
+check("unknown stage gets a tab under its raw id, before Full Run", tabNames.map(s => s.trim()).join("|") === "High School|Garage Alley|Playground Plaza|Gas & Go|Water Tower|Pants Factory|MallMadness|Full Run");
 
 console.log("== rush controls ==");
 await page.locator('[data-difficulty="Hard"]').click();
@@ -191,7 +191,7 @@ check("Full Run shows no medals", !/gold|silver|bronze/i.test(fb) && await page.
 await rushTab("Full Run").focus();
 await page.keyboard.press("ArrowLeft");
 await waitText("#rush-board", "Maldarin");
-check("ArrowLeft moves to the previous phase tab", await rushTab("MallMadness").getAttribute("aria-selected") === "true" && lastQuery().stage === "5");
+check("ArrowLeft moves to the previous phase tab", await rushTab("MallMadness").getAttribute("aria-selected") === "true" && lastQuery().stage === "7");
 check("roving tabindex leaves one tab stop", await page.locator('#rush-stage-tabs [role=tab][tabindex="0"]').count() === 1);
 
 console.log("== rush board empty / error ==");
@@ -277,7 +277,7 @@ await page.reload();
 await page.waitForSelector("#rush-board li", { timeout: 5000 }).catch(() => {});
 await page.waitForTimeout(300);
 check("all-zero summary stays hidden", !(await page.locator("#rush-summary").isVisible()));
-check("no future tab without summary stages", (await page.locator("#rush-stage-tabs [role=tab]").count()) === 5);
+check("no future tab without summary stages", (await page.locator("#rush-stage-tabs [role=tab]").count()) === 7);
 stub.summary = "error";
 await page.reload();
 await page.waitForSelector("#rush-board li", { timeout: 5000 }).catch(() => {});

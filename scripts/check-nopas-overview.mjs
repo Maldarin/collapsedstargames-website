@@ -32,7 +32,7 @@ for(const id of ['match','bowling','survivors']) {
   assert.equal(await page.locator(`section#${id}`).count(),1);
 }
 assert.equal(await page.locator('.overview-mode .overview-beta').count(),3);
-assert.equal(await page.locator('.overview-phase').count(),3);
+assert.equal(await page.locator('.overview-phase').count(),2);
 const missingAnchors=await page.locator('.nopas-overview a[href^="#"]').evaluateAll(links=>links.filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.hash));
 assert.deepEqual(missingAnchors,[]);
 const routes=await page.locator('.nopas-overview a[href^="/"]').evaluateAll(links=>[...new Set(links.map(a=>a.getAttribute('href')))]);
