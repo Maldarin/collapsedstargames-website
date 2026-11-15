@@ -303,12 +303,15 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                     setOpen(!isOpen());
                 });
 
-                // Escape closes and hands focus back to the button.
-                wrap.addEventListener("keydown", function (e) {
+                // Escape closes from anywhere (Safari doesn't focus a clicked button,
+                // so focus may be on <body>). Focus goes back to the button only if
+                // it was inside the button + list.
+                document.addEventListener("keydown", function (e) {
                     if (e.key === "Escape" && isOpen()) {
                         e.preventDefault();
+                        var hadFocus = wrap.contains(document.activeElement);
                         setOpen(false);
-                        btn.focus();
+                        if (hadFocus) btn.focus();
                     }
                 });
 
@@ -317,8 +320,9 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                     if (isOpen() && e.relatedTarget && !wrap.contains(e.relatedTarget)) setOpen(false);
                 });
 
-                // Clicking anywhere else closes it.
-                document.addEventListener("click", function (e) {
+                // Pressing anywhere else closes it. pointerdown, not click: iOS/iPadOS
+                // Safari sends no click for taps on non-interactive content.
+                document.addEventListener("pointerdown", function (e) {
                     if (isOpen() && !wrap.contains(e.target)) setOpen(false);
                 });
 

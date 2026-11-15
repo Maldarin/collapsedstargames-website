@@ -27,6 +27,13 @@ await p.keyboard.press('Enter');await p.keyboard.press('Tab');assert.deepEqual(a
 await p.keyboard.press('Enter');for(let i=0;i<expected.length;i++){await p.keyboard.press('Tab');assert.equal(await expanded(),true,'still open on item '+i);}
 await p.keyboard.press('Tab');await closed('Tab past last item');
 await toggle.click();assert.equal(await expanded(),true,'click opens');await p.locator('main').click({position:{x:4,y:4}});await closed('outside click');assert.equal(new URL(p.url()).pathname,'/');
+// Safari/iPad: a clicked button isn't focused, so Escape must work with focus on <body>,
+// and iOS sends no click for taps on non-interactive content, so a bare pointerdown must close it.
+await toggle.click();await p.evaluate(()=>document.activeElement?.blur());assert.equal(await p.evaluate(()=>document.activeElement?.tagName),'BODY','focus on body');
+await p.keyboard.press('Escape');await closed('Escape with focus on body');assert.equal(await p.evaluate(()=>document.activeElement?.tagName),'BODY','focus not stolen from body');
+await toggle.click();assert.equal(await expanded(),true,'reopens');
+await p.evaluate(()=>document.querySelector('main p, main h1, main').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'touch'})));await closed('outside pointerdown (tap)');
+await toggle.click();await p.evaluate(()=>document.querySelector('#games-menu a').dispatchEvent(new PointerEvent('pointerdown',{bubbles:true,pointerType:'touch'})));assert.equal(await expanded(),true,'pointerdown inside the menu keeps it open');await toggle.click();await closed('toggle closes');
 await toggle.click();await menu.getByRole('link',{name:'Pants Rush',exact:true}).click();await p.waitForURL('**/nopas/pants-rush/');assert.equal(new URL(p.url()).pathname,'/nopas/pants-rush/');
 
 // Header height and fit at md widths; screenshot every width open in both themes.
@@ -55,4 +62,4 @@ for(const theme of ['light','dark']){await p.setViewportSize({width:390,height:8
  assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'overflow 390');await shot(`mobile-390-${theme}`);}
 await p.locator('#mobile-games').getByRole('link',{name:'Steal a Minion',exact:true}).click();await p.waitForURL('**/nopas/steal-a-minion/');
 
-assert.deepEqual(errors,[]);console.log('PASS: Games disclosure (Enter/Space/Escape/Tab-out/outside click/link), hrefs = GAMES + All games, no header wrap at 768/1024, both themes legible, mobile Games list, no page errors. '+out);await b.close();
+assert.deepEqual(errors,[]);console.log('PASS: Games disclosure (Enter/Space/Escape/Escape-from-body/Tab-out/outside click/outside tap/link), hrefs = GAMES + All games, no header wrap at 768/1024, both themes legible, mobile Games list, no page errors. '+out);await b.close();
