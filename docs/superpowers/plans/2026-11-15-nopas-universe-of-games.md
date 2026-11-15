@@ -58,12 +58,12 @@
   - `COMING_SOON.line === "Pants Factory Manager is coming soon. Build pants. Build an empire!"`.
   - `EXTRAS.map(e=>e.name)` equals `["Arcade","AFK Lounge"]`.
   - `no copy names a game count`: every string in GAMES/EXTRAS/COMING_SOON fails `/\b(three|five|3|5) (ways|modes|games)\b|all three/i`.
-  - `no banned phrases`: every string fails `/player battle|stakes|\/sec|friday|weekly|badge|shrinkinator|ballooninator|next map|\bSAM\b|\bNAB\b|\bPFM\b/i`.
+  - `no banned phrases`: every string fails `/player battle|stakes|\/sec|friday|weekly|badge|shrinkinator|ballooninator|next map/i` and the case-sensitive `/\bSAM\b|\bPFM\b|NMPA_/`. ("Nab" is the game's player-facing verb, so it is not banned.)
 
 - [ ] **Step 2: Run** `npm run test:unit`. Expected: FAIL (`Cannot find module './games.mjs'`).
 
 - [ ] **Step 3: Implement `src/lib/games.mjs`.** Reuse today's Invasion/Bowling/Survivors tag + blurb from `src/pages/index.astro:15-19` and their colours (`#74caff`, `#ffda56`, `#a9ef79`). New entries:
-  - Steal a Minion: tag `"COLLECT. SNEAK. NAB."`, blurb `"Fill your lot with minions. Buy them, sneak them out of the Evidence Locker, or nab them from the neighbours. They can nab yours too."`
+  - Steal a Minion: tag `"COLLECT. SNEAK. STEAL."` (the in-game tagline), blurb `"Fill your lot with minions. Buy them, sneak them out of the Evidence Locker, or nab them from the neighbours. They can nab yours too."`
   - Pants Rush: tag `"THIS TIME, YOU'RE THE ALIEN."`, blurb `"Raid the suburbs for pants, solo or with a crew of four. Six phases, six bosses, one very golden finale."`
   - Colours for the two new games: the implementer picks from the title logo / character art; Task 8's contrast audit is the gate.
   - `navLabel`: the short name used in the Games menu (same as `name` except `"Invasion"` for match).
@@ -119,9 +119,9 @@ Folded here once so Tasks 3–5 can run in any order.
   - the page text matches `/Lobby/` and `/Steal a Minion door|PLAY/` (how to get there)
   - `.steal-feature` count ≥ 5, each a `<details>` that toggles with Enter
   - `#gallery figure` count = 4, all images load (`naturalWidth>0`)
-  - all `a[href^="#"]` resolve, and all local links return 200
+  - all `a[href^="#"]` resolve, and all local links return 200 **except** other games' pages that may not exist yet (`/nopas/pants-rush/`): those are checked only for href equality with `GAMES` (Task 9 / `check-release` verifies every link resolves)
   - the closing band links to every other game's `href` from `GAMES` (`/nopas/#match` is checked as an anchor)
-  - **banned phrases:** page text does not match `/player battle|stakes|\/sec|per second|friday|weekly|42|16 trophies|\bSAM\b|\bNAB\b|nab a minion/i`
+  - **banned phrases:** page text does not match `/player battle|stakes|\/sec|per second|friday|weekly|\b42\b|16 trophies|nab a minion/i` nor the case-sensitive `/\bSAM\b|\bPFM\b|NMPA_/`
   - reduced motion, mobile menu, no page errors
 - [ ] **Step 2: Run it** (dev server up). Expected: FAIL at `page.goto` (404 / missing h1).
 - [ ] **Step 3: Build the page** per spec §4 (hero, at-a-glance band, how it works, features, gallery, closing band). Base the structure and classes on `src/pages/nopas/bowling/index.astro`, reusing `nopas-overview.css`. `nopas-steal.css` holds only page-specific styles. Meta description names the game and "open beta on Roblox". The back-link is "← All NOPAS games" → `/nopas/#games`. The closing band is generated from `GAMES` minus this game.
@@ -147,7 +147,8 @@ Folded here once so Tasks 3–5 can run in any order.
   - `.rush-phase` count = 6, with texts in order: High School / The Hall Monitor, Garage Alley / The Seam Ripper, Playground Plaza / The Recess Menace, Gas & Go / Dr. Peepers, Water Tower / Needle Eye, Pants Factory / Golden Pants
   - a link to `/nopas/stats/#rush` exists, and on that page `#rush` exists
   - `#gallery figure` count ≥ 4, all loaded
-  - **banned phrases:** `/badge|shrinkinator|ballooninator|next map|daily|cap\b|\bNMPA/i`
+  - **banned phrases:** `/badge|shrinkinator|ballooninator|next map|daily|\bcaps?\b|NMPA/i`
+  - local links return 200 (by Task 4 both new pages exist, so no exception is needed)
   - the closing band links to the other games
 - [ ] **Step 2: Run it.** Expected: FAIL (404).
 - [ ] **Step 3: Build the page** per spec §5. Take the phase/boss names from Step 1's list (they match `PantsRushConfig.luau`). Write "No purchases needed", as the spec allows. Add `id="rush"` on the stats page.
@@ -168,7 +169,7 @@ Folded here once so Tasks 3–5 can run in any order.
 - Produces:
   - `GAME_IMAGES: Record<string, { image: ImageMetadata; alt: string; label: string }>` keyed by game id; Steal a Minion also gets `logo`.
   - `<GameSpotlight />`: no props, renders `section.game-spotlight[data-game-id]` with `.game-spotlight-play` (PLAY_URL) and `.game-spotlight-more` (the game href).
-  - `<GameGrid />`: no props, renders `#games` containing `.game-card[data-game-id][id]` links (each card's `id` = game id, so `#match`/`#bowling`/`#survivors` keep resolving), then `.game-extras` with EXTRAS and the COMING_SOON line (optionally with the PFM logo).
+  - `<GameGrid skipIds={[]} />`: renders `#games` containing `.game-card[data-game-id]` links. Each card's `id` = game id (so `#match`/`#bowling`/`#survivors` keep resolving) unless the id is in the optional `skipIds: string[]` prop (default `[]`). `/nopas/` passes `skipIds={["match"]}` because its Invasion `section#match` already owns that id, and duplicate ids fail `check-release`. It then `.game-extras` with EXTRAS and the COMING_SOON line (optionally with the PFM logo).
 
 - [ ] **Step 1: Update `scripts/check-homepage.mjs`.** Import `GAMES, SPOTLIGHT_ID, gridGames` from `../src/lib/games.mjs`. Replace the `.mode-card`/`3` assertions with:
   - `.game-spotlight` count 1, with `data-game-id === SPOTLIGHT_ID`
@@ -203,7 +204,7 @@ Folded here once so Tasks 3–5 can run in any order.
   - the latest-patch teaser still renders
   - the existing anchor, local-route, video, mobile-menu and theme checks are kept
 - [ ] **Step 2: Run it.** Expected: FAIL.
-- [ ] **Step 3: Rewrite the page top** (new headline, lede naming the games from `GAMES`, count-free title/description). Use `<GameSpotlight/>` + `<GameGrid/>` in place of `#modes`. Remove `.overview-extra-modes` (the Bowling/Survivors detail sections). In the Invasion section, drop the "01 /" prefix from the eyebrow and change "All three modes ↑" to "All NOPAS games ↑" → `#games`.
+- [ ] **Step 3: Rewrite the page top** (new headline, lede naming the games from `GAMES`, count-free title/description). Use `<GameSpotlight/>` + `<GameGrid skipIds={["match"]}/>` in place of `#modes`. Remove `.overview-extra-modes` (the Bowling/Survivors detail sections). In the Invasion section, drop the "01 /" prefix from the eyebrow and change "All three modes ↑" to "All NOPAS games ↑" → `#games`.
 - [ ] **Step 4: Run** `node scripts/check-nopas-overview.mjs` and `node scripts/check-nopas-survivors.mjs`. Expected: both PASS.
 - [ ] **Step 5: Commit** `feat(nopas): explore page leads with the universe of games`.
 
