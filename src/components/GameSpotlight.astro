@@ -14,7 +14,7 @@ const art = gameImage(game.id);
     <div class="game-spotlight-copy">
       <p class="game-spotlight-badges"><span class="game-spotlight-star"><span aria-hidden="true">★</span> Spotlight</span>{game.isNew && <span class="game-new">NEW</span>}<span class="game-status"><span class="game-status-dot" aria-hidden="true"></span>{game.status}</span></p>
       <h2 id="game-spotlight-title" class="game-spotlight-title">
-        {art.logo ? <><Image src={art.logo} alt="" widths={[400,640,960]} sizes="(min-width: 1000px) 460px, (min-width: 760px) 42vw, 86vw" loading="lazy" class="game-spotlight-logo"/><span class="game-sr-only">{game.name}</span></> : game.name}
+        {art.logo ? <><Image src={art.logo} alt="" widths={[400,640,960]} sizes="(min-width: 1000px) 460px, (min-width: 760px) 42vw, 86vw" loading="eager" class="game-spotlight-logo"/><span class="game-sr-only">{game.name}</span></> : game.name}
       </h2>
       <p class="game-spotlight-tag">{game.tag}</p>
       <p class="game-spotlight-pitch">{game.blurb}</p>
