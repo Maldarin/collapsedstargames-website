@@ -23,7 +23,7 @@ await page.setViewportSize({width:1440,height:1000});
 
 // Play goes to the Lobby Share Link, in a new tab; the page says how to get from the Lobby to the game.
 const play=page.locator('.steal-hero .hero-play a');assert.equal(await play.count(),1,'hero Play button');assert.equal(await play.getAttribute('href'),PLAY_URL);assert.equal(await play.getAttribute('target'),'_blank');assert.match(await play.getAttribute('rel')??'',/noopener/);
-const visible=await page.locator('main').innerText();assert.match(visible,/Lobby/);assert.match(visible,/Steal a Minion door|PLAY/);
+const directions=page.locator('.steal-hero .steal-directions');assert.equal(await directions.count(),1,'hero has the how-to-get-there line');const directionsText=(await directions.textContent()).replace(/\s+/g,' ');assert.match(directionsText,/How to get there/i,'directions label');assert.match(directionsText,/Lobby → Steal a Minion door/i,'directions: Lobby → Steal a Minion door');assert.match(directionsText,/PLAY → Steal a Minion/i,'directions: PLAY → Steal a Minion');
 
 // Required sections.
 for(const id of ['how-it-works','features','gallery'])assert.equal(await page.locator(`section#${id}`).count(),1,`section #${id}`);
