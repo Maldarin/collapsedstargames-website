@@ -23,7 +23,7 @@ const glance = [
 const ways = [
   { verb: "BUY", title: "Shop the belt.", body: "Minions ride the conveyor belt through the Rift Yard. Spend Bounty on one you like and walk it home to your lot." },
   { verb: "SNEAK", title: "Raid the Evidence Locker.", body: "Officer Dozy guards the Locker. Officer Dozy is asleep. Tiptoe in while he snores, freeze when he wakes up, and bring minions home." },
-  { verb: "NAB", title: "Visit a neighbour.", body: "Spot an open gate, nab whoever is closest, and wobble home with a stack of them on your head. Nobody said it was dignified." },
+  { verb: "NAB", title: "Visit a neighbour.", body: "Spot an open gate, nab the one you’re facing, then try the next gate — and wobble home with a stack on your head. Nobody said it was dignified." },
 ];
 const defences = [
   ["Your best minion is always protected.", "Whatever else happens, that one stays put."],
@@ -87,7 +87,7 @@ const gallery = [
 
     <section class="overview-pad steal-universe" aria-labelledby="universe-title">
       <div><p class="overview-eyebrow">ONE RIDICULOUS UNIVERSE. EVERY KIND OF CHAOS.</p><h2 id="universe-title">Same aliens.<br/>New problems.</h2><p>Steal a Minion is one door in the NOPAS Lobby. The others lead somewhere just as unreasonable, and they’re all in the same open beta on Roblox.</p><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a></div>
-      <nav aria-label="Other NOPAS games"><ul class="steal-universe-list">{otherGames.map(g=><li style={`--game:${g.color}`}><a href={g.href}><span class="overview-eyebrow">{g.tag}</span><strong>{g.name} ↗</strong></a></li>)}</ul></nav>
+      <nav aria-label="Other NOPAS games"><ul class="steal-universe-list">{otherGames.map(g=><li style={`--game:${g.color}`}><a href={g.href}><span class="overview-eyebrow">{g.tag}</span><strong>{g.name} →</strong></a></li>)}</ul></nav>
     </section>
   </div>
 </BaseLayout>
