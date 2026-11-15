@@ -5,7 +5,7 @@ import {mkdir,writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const out=process.env.THEME_SCREENSHOT_DIR || join(tmpdir(),'nopas-theme-review');
 await mkdir(out,{recursive:true});
-const routes=['/','/nopas/','/nopas/bowling/','/nopas/survivors/','/nopas/defenders/',...['security-officer','tailor-engineer','dr-peepers','athlete','needle-eye','citizen'].map(n=>`/nopas/defenders/${n}/`),'/nopas/collectors/',...['overlord','commander','minions'].map(n=>`/nopas/collectors/${n}/`),'/lore/','/nopas/stats/','/shop/'];
+const routes=['/','/nopas/','/nopas/steal-a-minion/','/nopas/pants-rush/','/nopas/bowling/','/nopas/survivors/','/nopas/defenders/',...['security-officer','tailor-engineer','dr-peepers','athlete','needle-eye','citizen'].map(n=>`/nopas/defenders/${n}/`),'/nopas/collectors/',...['overlord','commander','minions'].map(n=>`/nopas/collectors/${n}/`),'/lore/','/nopas/stats/','/shop/'];
 const browser=await chromium.launch({args:['--mute-audio']});
 const page=await browser.newPage({colorScheme:'light'});
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
@@ -21,7 +21,7 @@ for(const route of routes){
  for(const theme of ['light','dark']){
   if(await page.locator('html').getAttribute('data-theme')!==theme) await page.locator('#theme-toggle').click();
   backgrounds.push(await page.locator('main > div').first().evaluate(e=>getComputedStyle(e).backgroundColor));
-  const currentAccents=await page.locator('.mode-card,.overview-mode,.character-abilities .surface,.character-quotes blockquote,.stats-panels .surface').evaluateAll(es=>es.map(e=>({background:e.closest('.stats-panels')?null:getComputedStyle(e).backgroundColor,top:e.closest('.stats-panels')?getComputedStyle(e).borderTopColor:null})));
+  const currentAccents=await page.locator('.game-card,.game-spotlight,.character-abilities .surface,.character-quotes blockquote,.stats-panels .surface').evaluateAll(es=>es.map(e=>({background:e.closest('.stats-panels')?null:getComputedStyle(e).backgroundColor,top:e.closest('.stats-panels')?getComputedStyle(e).borderTopColor:null})));
   if(theme==='light')accents=currentAccents;else assert.deepEqual(currentAccents,accents,`${route} vivid accents preserved`);
   for(const [size,width,height] of [['desktop',1440,1000],['mobile',390,844]]){
    await page.setViewportSize({width,height});

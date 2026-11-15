@@ -4,7 +4,7 @@ import {chromium} from 'playwright';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {inspectContrast} from './theme-contrast.mjs';
 const b=await chromium.launch({args:['--mute-audio']});const p=await b.newPage({viewport:{width:1440,height:1000}});
-const routes=['/','/nopas/','/nopas/bowling/','/nopas/survivors/','/nopas/defenders/',...['security-officer','tailor-engineer','dr-peepers','athlete','needle-eye','citizen'].map(n=>`/nopas/defenders/${n}/`),'/nopas/collectors/',...['overlord','commander','minions'].map(n=>`/nopas/collectors/${n}/`),'/lore/','/nopas/stats/','/shop/'];
+const routes=['/','/nopas/','/nopas/steal-a-minion/','/nopas/pants-rush/','/nopas/bowling/','/nopas/survivors/','/nopas/defenders/',...['security-officer','tailor-engineer','dr-peepers','athlete','needle-eye','citizen'].map(n=>`/nopas/defenders/${n}/`),'/nopas/collectors/',...['overlord','commander','minions'].map(n=>`/nopas/collectors/${n}/`),'/lore/','/nopas/stats/','/shop/'];
 const out=process.env.THEME_SCREENSHOT_DIR||join(tmpdir(),'nopas-theme-review');await mkdir(out,{recursive:true});
 const report=[];
 for(const route of routes){await p.goto('http://127.0.0.1:4321'+route,{waitUntil:'networkidle'});await p.evaluate(()=>{document.querySelectorAll('details').forEach(e=>e.open=true)});

@@ -41,14 +41,14 @@ html[data-theme="dark"] :is(.homepage .gameplay,.overview-gameplay,.bowling-mode
 html[data-theme="dark"] :is(.overview-phase,.survivors-horizon,.lore-chapter:nth-child(3n)) { background:var(--comic-blue); }
 html[data-theme="dark"] :is(.video-grid article p,.overview-video-grid article p) { color:var(--comic-text); }
 html[data-theme="dark"] :is(.homepage .section-heading .eyebrow,.overview-heading .overview-eyebrow,.bowling-feature summary .overview-eyebrow,.lore-chapter > p.uppercase) { color:var(--comic-label); }
-html[data-theme="dark"] :is(.mode-note,.overview-phase .overview-eyebrow) { color:var(--comic-muted); }
+html[data-theme="dark"] .overview-phase .overview-eyebrow { color:var(--comic-muted); }
 html[data-theme="dark"] :is(.overview-phase .overview-gag,.survivors-roles > div,#timeline li,.lore-story,.lore-page .lore-chapter) { border-color:var(--comic-line); }
 html[data-theme="dark"] :is(.bowling-feature[open] summary,.bowling-feature summary:hover) { background:#3b3445; border-color:var(--comic-line); }
 
 /* Saturated comic panels are deliberate islands of dark ink on bright color.
    Scope the inherited utility text tokens too, including original character
    body copy and lore details that still use the shared Tailwind utilities. */
-html[data-theme="dark"] :is(.ticker,.mode-card,.homepage .studio,.overview-mode,.overview-detail,.overview-contact,.bowling-stats,.bowling-mode-grid article,.bowling-universe,.bowling-steps li::before,.survivors-strip,.survivors-step,.survivors-upgrade-grid article,.survivors-return,.character-pages blockquote.surface,.character-abilities .surface,.character-footer-nav,.lore-chapters,.lore-number,.lore-document summary,.lore-enemy,.utility-nav,.shop-contact) {
+html[data-theme="dark"] :is(.ticker,.homepage .studio,.overview-contact,.bowling-stats,.bowling-mode-grid article,.bowling-universe,.bowling-steps li::before,.survivors-strip,.survivors-step,.survivors-upgrade-grid article,.survivors-return,.character-pages blockquote.surface,.character-abilities .surface,.character-footer-nav,.lore-chapters,.lore-number,.lore-document summary,.lore-enemy,.utility-nav,.shop-contact) {
   --fg-primary:#131326;
   --fg-strong:#131326;
   --fg-body:#303046;

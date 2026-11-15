@@ -8,7 +8,7 @@ async function files(dir){return (await Promise.all((await readdir(dir,{withFile
 const built=await files('dist');
 const routes=built.filter(f=>f.endsWith('index.html')).map(f=>'/'+f.replaceAll('\\','/').replace(/^dist\//,'').replace(/index\.html$/,''));
 // Fixed site routes; each published patch note adds its own /nopas/patch-notes/<id>/ page on top.
-assert.equal(routes.filter(r=>!/^\/nopas\/patch-notes\/[^/]+\/$/.test(r)).length,19);
+assert.equal(routes.filter(r=>!/^\/nopas\/patch-notes\/[^/]+\/$/.test(r)).length,21);
 for(const f of built)assert.ok((await stat(f)).size<25*1024*1024,`Cloudflare asset size: ${f}`);
 const b=await chromium.launch({args:['--mute-audio']});
 const p=await b.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});

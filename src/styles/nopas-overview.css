@@ -93,3 +93,11 @@
   .overview-contact .overview-actions .overview-button { margin-top: 0; }
 }
 @media(prefers-reduced-motion:reduce) { .nopas-overview * { transition: none !important; } }
+
+/* Closing-band list of the other NOPAS games (Bowling, Survivors). */
+.universe-list { list-style:none; display:grid; grid-template-columns:1fr; gap:12px; width:100%; margin:0; padding:0; }
+.universe-list a { display:block; height:100%; padding:14px 18px; background:#fffdf5; color:#131326; border:2px solid #131326; border-left:10px solid var(--game); box-shadow:4px 4px 0 #131326; transition:transform .16s, box-shadow .16s; }
+.universe-list a:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 #131326; }
+.universe-list .overview-eyebrow { display:block; font-size:9px; color:#4c4c63; margin-bottom:6px; }
+.universe-list strong { display:block; font-family:var(--font-display); font-size:16px; line-height:1.35; }
+.bowling-universe > nav, .survivors-return > nav { display:block; }
