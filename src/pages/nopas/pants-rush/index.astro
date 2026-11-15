@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import hallway from "../../../assets/pants-rush/hallway.png";
+import commanderDeploy from "../../../assets/pants-rush/commander-deploy.png";
+import commander from "../../../assets/pants-rush/commander.png";
+import overlord from "../../../assets/pants-rush/overlord.png";
+import minion from "../../../assets/pants-rush/minion.png";
+import "../../../styles/nopas-overview.css";
+import "../../../styles/nopas-rush.css";
+import { PLAY_URL } from "../../../lib/links.mjs";
+import { GAMES } from "../../../lib/games.mjs";
+
+const game = GAMES.find((g) => g.id === "pants-rush");
+if (!game) throw new Error("pants-rush is missing from GAMES");
+const otherGames = GAMES.filter((g) => g.id !== game.id);
+
+const glance = [
+  ["6", "Phases, school to factory"],
+  ["6", "Bosses, one per phase"],
+  ["1–4", "Players, solo or co-op"],
+  ["3", "Difficulties: Easy, Normal, Hard"],
+];
+const steps = [
+  { verb: "ZAP", title: "Pick a target.", body: "Citizens see you coming and run. Zap them with your De-Pantsinator anyway." },
+  { verb: "GRAB", title: "Collect the pants.", body: "The pants come off. Scoop them up before somebody else does." },
+  { verb: "BANK", title: "Beam them up.", body: "Carry your haul to the mothership's beam and bank it before time runs out." },
+  { verb: "BOSS", title: "Meet the manager.", body: "Hit the quota and the boss shows up. Knock it down, then depants it." },
+];
+// Phase and boss names come from the game's PantsRushConfig.luau; the lines are the bosses' own WANTED-poster taglines.
+const phases = [
+  { place: "High School", boss: "The Hall Monitor", line: "No running. No pants." },
+  { place: "Garage Alley", boss: "The Seam Ripper", line: "Custom built. Alien proof." },
+  { place: "Playground Plaza", boss: "The Recess Menace", line: "No cutting. Just chucking." },
+  { place: "Gas & Go", boss: "Dr. Peepers", line: "The house call. No appointment needed." },
+  { place: "Water Tower", boss: "Needle Eye", line: "Dodge the red line. Send minions up the ladder!" },
+  { place: "Pants Factory", boss: "Golden Pants", bossLabel: "Finale", line: "Stop the cannons, smash the glass and carry the Golden Pants home. Then go giant: RAMPAGE HAUL.", finale: true },
+];
+const features = [
+  { tag: "PICK YOUR ALIEN", title: "Commander, Overlord or Minion.", body: "Play as the Commander, the Overlord or a Minion. In co-op, a crew is up to two alien bosses and two Minion players. If someone gets knocked out, the rest of the crew can revive them.", note: "Whoever is carrying the pants is, technically, the most important alien." },
+  { tag: "CREW UP", title: "Solo, co-op or friends.", body: "Play Solo for your own private run, with a tutorial if you want one. Find Co-op to team up and start together from phase 1. Play with Friends to pick your crew from your server. Finish the solo tutorial and the game asks WANT A CREW? You can keep it solo, open it to friends, or open it to anyone looking for co-op.", note: "Aliens work better in groups. So do pants." },
+  { tag: "TIME TRIAL OR UNLIMITED", title: "Race the clock. Or don't.", body: "Time Trial races the clock for medals and a place on the fastest-crew boards. Unlimited has no countdown, so you can play at your pace. Pick Easy, Normal or Hard either way.", note: "Hard brings fiercer waves and defenders with abilities. You were warned." },
+  { tag: "REWARDS", title: "It all goes home with you.", body: "Rewards go to your main NOPAS account: XP, coins and class mastery, plus titles for Gold medals. Time Trial pays the full reward; Unlimited pays less. No purchases needed.", note: "Gold on the Pants Factory makes you a Golden Pants Thief. It's a compliment." },
+  { tag: "FANCY PANTS", title: "Very fancy. Very fast.", body: "In the first five phases, keep an eye out for the Fancy Pants: one gold, very well-dressed citizen who makes a run for it. Catch them for extra pants. Between phases, the next boss's WANTED poster tells you who's coming.", note: "The Fancy Pants know they're fancy. That's the problem." },
+];
+const screenshots = [
+  { image: hallway, title: "High School hallway", caption: "First lesson: the citizens run.", label: "Development screenshot", alt: "The Commander zaps a fleeing citizen in a High School hallway lined with red lockers" },
+  { image: commanderDeploy, title: "Commander, deployed", caption: "The Commander lands. The aliens are impressed.", label: "Development screenshot", alt: "The Commander's armoured mech lands in the street behind a group of green aliens" },
+];
+const crew = [
+  { image: commander, title: "The Commander", caption: "Big, loud and pointed at your pants.", label: "Game artwork", alt: "The Commander, a black armoured alien mech with red spikes and a green arm cannon" },
+  { image: overlord, title: "The Overlord", caption: "Wears a crown. Expects to be obeyed.", label: "Game artwork", alt: "The Overlord, a crowned alien mech in purple and red holding a glowing purple orb" },
+  { image: minion, title: "The Minion", caption: "Holding the pants. Not letting go.", label: "Game artwork", alt: "An orange alien Minion hugging a folded pair of jeans" },
+];
+const gallery = [...screenshots.map((s) => ({ ...s, kind: "shot" })), ...crew.map((s) => ({ ...s, kind: "art" }))];
+---
+
+<BaseLayout title="Pants Rush — NOPAS" description="Pants Rush: this time, you're the alien. Raid six phases for pants, solo or with a crew of up to four, with a boss waiting at the end of each. Now in open beta on Roblox.">
+  <div class="nopas-overview rush-page">
+    <section class="overview-pad rush-hero" aria-labelledby="rush-title">
+      <div class="rush-hero-copy">
+        <a class="overview-back" href="/nopas/#games">← All NOPAS games</a>
+        <p class="overview-eyebrow"><span class="rush-new">NEW</span>CO-OP PANTS RAIDS</p>
+        <h1 id="rush-title">Pants Rush</h1>
+        <p class="rush-tagline">This time, you’re the alien.</p>
+        <p class="rush-lede">Land in the suburbs, zap the locals and beam their pants up to the mothership. Six phases, six bosses, one very golden finale. Bring friends or bring nobody.</p>
+        <div class="overview-actions hero-play"><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a></div>
+        <div class="rush-actions"><a class="overview-button" href="#how-it-works">How a run works ↓</a><a class="overview-button" href="#phases">The six phases ↓</a></div>
+        <p class="overview-status"><span></span>Open Beta <b>·</b> Live now on Roblox</p>
+        <p class="rush-directions"><strong>How to get there:</strong> PLAY → Invasion → Pants Rush.</p>
+      </div>
+      <figure class="rush-hero-picture"><Image src={commanderDeploy} alt="The Commander's armoured mech lands in the street behind a group of green aliens" widths={[640,960,1185]} sizes="(min-width: 800px) 50vw, 100vw" loading="eager"/><figcaption>Development screenshot · The Commander arrives. The pants should be worried.</figcaption></figure>
+    </section>
+    <div class="rush-stats" aria-label="Pants Rush at a glance">{glance.map(([value,label])=><div><strong>{value}</strong><span>{label}</span></div>)}</div>
+
+    <section id="how-it-works" class="overview-pad rush-how" aria-labelledby="how-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">HOW A RUN WORKS</p><h2 id="how-title">Zap. Grab. Bank.<br/>Depants the boss.</h2></div><p>For once, the pants are not yours to defend.<br/>They are yours to take.</p></div>
+      <p class="overview-section-intro">Each phase drops your crew into a new part of town with a pants quota and a clock. Fill the quota and the phase boss turns up to stop you. It tries.</p>
+      <ol class="rush-steps">{steps.map(step=><li class="rush-step"><p class="overview-eyebrow">{step.verb}</p><h3>{step.title}</h3><p>{step.body}</p></li>)}</ol>
+      <div class="rush-lose"><p class="overview-eyebrow">HOW TO LOSE A PHASE</p><p>Run out of time, or get the whole crew knocked out, and the phase is lost. Dust yourself off and try it again.</p></div>
+    </section>
+
+    <section id="phases" class="overview-pad rush-phases" aria-labelledby="phases-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">THE CAMPAIGN</p><h2 id="phases-title">Six phases.<br/>Six very cross bosses.</h2></div><p>From the High School to the Pants Factory, in order.<br/>Quotes from their WANTED posters.</p></div>
+      <ol class="rush-phase-list">{phases.map((p,i)=><li class:list={["rush-phase", { "rush-finale": p.finale }]}><p class="rush-phase-number">Phase {i+1}</p><h3>{p.place}</h3><p class="rush-boss"><span>{p.bossLabel ?? "Boss"}:</span> {p.boss}</p><p class="rush-line">{p.finale ? p.line : <q>{p.line}</q>}</p></li>)}</ol>
+      <div class="rush-board"><p>Every phase has a Time Trial board, and so does the full run.</p><a class="overview-button overview-yellow" href="/nopas/stats/#rush">See the fastest crews →</a></div>
+    </section>
+
+    <section id="features" class="overview-pad rush-features" aria-labelledby="features-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">MISSION BRIEFING</p><h2 id="features-title">Before you beam down.</h2></div><p>Open a card to get the details.</p></div>
+      <div class="rush-feature-grid">{features.map((feature,i)=><details class="rush-feature" open={i===0}><summary><span class="overview-eyebrow">{feature.tag}</span><strong>{feature.title}</strong><span class="rush-disclosure" aria-hidden="true">+</span></summary><div><p>{feature.body}</p><p class="rush-gag">{feature.note}</p></div></details>)}</div>
+    </section>
+
+    <section id="gallery" class="overview-pad rush-gallery" aria-labelledby="gallery-title">
+      <div class="overview-heading"><div><p class="overview-eyebrow">SURVEILLANCE PHOTOS</p><h2 id="gallery-title">The crew, on the job.</h2></div><p>Screenshots from development, plus game artwork.<br/>Open any image for a closer look.</p></div>
+      <div class="rush-gallery-grid">{gallery.map(shot=><figure class={shot.kind === "art" ? "rush-art" : "rush-shot"}><a href={shot.image.src} target="_blank" rel="noopener" aria-label={`Open full-size image: ${shot.title}`}><Image src={shot.image} alt={shot.alt} widths={shot.kind === "art" ? [400,600,800] : [480,720,960]} sizes={shot.kind === "art" ? "(min-width: 1000px) 30vw, (min-width: 760px) 45vw, 90vw" : "(min-width: 1000px) 45vw, 90vw"} loading="lazy"/><span aria-hidden="true">↗</span></a><figcaption><strong>{shot.title}</strong><span>{shot.caption}</span><small>{shot.label}</small></figcaption></figure>)}</div>
+    </section>
+
+    <section class="overview-pad rush-universe" aria-labelledby="universe-title">
+      <div><p class="overview-eyebrow">ONE RIDICULOUS UNIVERSE. EVERY KIND OF CHAOS.</p><h2 id="universe-title">Same aliens.<br/>New problems.</h2><p>Pants Rush is one of the games in the NOPAS Lobby. The others are just as unreasonable, and they’re all in the same open beta on Roblox.</p><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a></div>
+      <nav aria-label="Other NOPAS games"><ul class="rush-universe-list">{otherGames.map(g=><li style={`--game:${g.color}`}><a href={g.href}><span class="overview-eyebrow">{g.tag}</span><strong>{g.name} →</strong></a></li>)}</ul></nav>
+    </section>
+  </div>
+</BaseLayout>
