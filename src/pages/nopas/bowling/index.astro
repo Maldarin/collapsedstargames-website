@@ -2,7 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { GAMES } from "../../../lib/games.mjs";
 import { Image } from "astro:assets";
-import pins from "../../../assets/bowling/minion-pins.png";
+import pins from "../../../assets/bowling/minion-pins-card.png";
 import lanes from "../../../assets/bowling/lanes-foul-line.png";
 import specialBalls from "../../../assets/bowling/special-balls.png";
 import pinsInFlight from "../../../assets/bowling/pins-in-flight.png";
@@ -47,7 +47,7 @@ const otherGames = GAMES.filter((g) => g.id !== "bowling");
         <div class="bowling-actions"><a class="overview-button" href="#basics">Learn the ropes ↓</a><a class="overview-button" href="#gallery">See the lanes ↓</a></div>
         <p class="overview-status"><span></span>Open Beta <b>·</b> Live now on Roblox</p>
       </div>
-      <figure class="bowling-hero-picture"><Image src={pins} alt="Orange Minion bowling pins and a blue ball on the NOPAS lane" widths={[640,960,1280]} sizes="(min-width: 800px) 52vw, 100vw" loading="eager"/><figcaption>Development screenshot · The beta is where it gets tuned.</figcaption></figure>
+      <figure class="bowling-hero-picture"><Image src={pins} alt="Orange Minion bowling pins and a blue ball on the NOPAS lane" widths={[640,960,1140]} sizes="(min-width: 800px) 52vw, 100vw" loading="eager"/><figcaption>Development screenshot · The beta is where it gets tuned.</figcaption></figure>
     </section>
     <div class="bowling-stats" aria-label="Bowling at a glance">{[["4","Lanes"],["6","Players per lane"],["10","Frames of regret"],["300","Perfect game"]].map(([value,label])=><div><strong>{value}</strong><span>{label}</span></div>)}</div>
 

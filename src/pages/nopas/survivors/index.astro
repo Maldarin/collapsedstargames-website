@@ -2,7 +2,7 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { GAMES } from "../../../lib/games.mjs";
 import { Image } from "astro:assets";
-import horde from "../../../assets/survivors/horde.png";
+import horde from "../../../assets/survivors/horde-card.png";
 import officer from "../../../assets/classes/SecurityOfficer/SecurityOfficer.png";
 import minion from "../../../assets/classes/Minions/Minion_solo.png";
 import "../../../styles/nopas-overview.css";
@@ -20,7 +20,7 @@ const otherGames = GAMES.filter((g) => g.id !== "survivors");
   <div class="nopas-overview survivors-page">
     <section class="overview-pad survivors-hero" aria-labelledby="survivors-title">
       <div><a class="overview-back" href="/nopas/#games">← All NOPAS games</a><p class="overview-eyebrow">SAME UNIVERSE. MUCH BIGGER MINION PROBLEM.</p><h1 id="survivors-title">MINION<br/><span>SURVIVORS</span></h1><p class="survivors-lede">The whole neighborhood showed up.<br/>Unfortunately, it's Minions.</p><div class="overview-actions hero-play"><a class="overview-button survivors-green" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a></div><div class="survivors-actions"><a class="overview-button" href="#the-run">Get the survival briefing ↓</a><a class="overview-button" href="#upgrades">Build your run ↓</a></div><p class="overview-status"><span></span>Open Beta <b>/</b> Live now on Roblox</p></div>
-      <figure class="survivors-hero-image"><Image src={horde} alt="A defender faces a huge crowd of orange Minions across a suburban arena" widths={[640,960,1280]} sizes="(min-width: 800px) 52vw, 100vw" loading="eager"/><figcaption>Development screenshot · The beta is where it gets tuned.</figcaption></figure>
+      <figure class="survivors-hero-image"><Image src={horde} alt="A defender faces a huge crowd of orange Minions charging across the grass" widths={[640,960]} sizes="(min-width: 800px) 52vw, 100vw" loading="eager"/><figcaption>Development screenshot · The beta is where it gets tuned.</figcaption></figure>
     </section>
     <div class="survivors-strip"><span>SOLO OR WITH A SQUAD</span><b aria-hidden="true">✦</b><span>OUTBUILD THE SWARM</span><b aria-hidden="true">✦</b><span>BUILD AS YOU GO</span></div>
 
