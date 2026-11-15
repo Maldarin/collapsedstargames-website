@@ -82,6 +82,7 @@ html[data-theme="dark"] :is(#board > p,#rush-board > p,#lookup-result > p:only-c
 body > footer { color:var(--fg-body); }
 body > footer > div { color:var(--fg-body); }
 :is(header,body > footer) :is(a,button):focus-visible { outline:3px solid var(--color-magenta-400); outline-offset:4px; }
+#games-menu a:focus-visible { outline-offset:-3px; } /* full-width rows: keep the ring inside the panel */
 html[data-theme="dark"] header nav > a img { background:#fff9e9; border-radius:4px; }
 @media(prefers-reduced-motion:reduce) {
   html { scroll-behavior:auto!important; }

@@ -4,12 +4,16 @@ import "../styles/comic-themes.css";
 import { Image } from "astro:assets";
 import csgLogo from "../assets/brand/CSG-Logo_clean.png";
 import { PLAY_URL, COMMUNITY_URL, DISCORD_URL, YOUTUBE_URL } from "../lib/links.mjs";
+import { GAMES } from "../lib/games.mjs";
 
 interface Props {
     title: string;
     description?: string;
     ogImage?: string;
 }
+
+// Header "Games" menu: every game, then the universe overview.
+const gameLinks = [...GAMES.map((g) => ({ href: g.href, label: g.navLabel })), { href: "/nopas/", label: "All games" }];
 
 // Default share image (1200x630) for every page that doesn't pass its own ogImage.
 const DEFAULT_OG_IMAGE = "https://collapsedstargames.com/og/nopas-og-v2.jpg";
@@ -65,9 +69,28 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                     />
                 </a>
                 <div class="flex items-center gap-2 md:gap-4 lg:gap-8">
-                    <ul class="hidden md:flex items-center md:gap-4 lg:gap-8 text-sm whitespace-nowrap">
+                    <ul class="hidden md:flex items-center md:gap-3 lg:gap-8 text-sm whitespace-nowrap">
                         <li><a href="/" class="hover:text-[var(--color-magenta-400)] transition">Studio</a></li>
-                        <li><a href="/nopas/" class="hover:text-[var(--color-magenta-400)] transition">NOPAS</a></li>
+                        {/* Games — a click/keyboard disclosure (not hover-only); behaviour in the script below */}
+                        <li id="games-menu-wrap" class="relative">
+                            <button
+                                id="games-menu-toggle"
+                                type="button"
+                                aria-expanded="false"
+                                aria-controls="games-menu"
+                                class="group flex items-center gap-1 hover:text-[var(--color-magenta-400)] aria-expanded:text-[var(--color-magenta-400)] transition"
+                            >Games<svg class="w-3 h-3 transition-transform group-aria-expanded:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 12 12" aria-hidden="true"><path stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M2.5 4.5 6 8l3.5-3.5"></path></svg></button>
+                            <ul
+                                id="games-menu"
+                                class="hidden absolute left-0 top-full mt-3 min-w-52 py-2 rounded-md border border-[var(--border-strong)] bg-[var(--bg-elevated)] text-[var(--fg-primary)] shadow-lg"
+                            >
+                                {gameLinks.map((link) => (
+                                    <li class={link.href === "/nopas/" ? "mt-1 pt-1 border-t border-[var(--border-medium)]" : undefined}>
+                                        <a href={link.href} class="block px-4 py-2 hover:bg-[var(--surface-hover)] hover:text-[var(--color-magenta-400)] transition">{link.label}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
                         <li><a href="/nopas/defenders/" class="hover:text-[var(--color-denim-400)] transition">Defenders</a></li>
                         <li><a href="/nopas/collectors/" class="hover:text-[var(--color-alien-400)] transition">Collectors</a></li>
                         <li><a href="/nopas/stats/" class="hover:text-[var(--color-golden-400)] transition">Stats</a></li>
@@ -154,7 +177,14 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                 <ul class="max-w-7xl mx-auto px-6 py-3 flex flex-col text-base">
                     <li class="pb-2"><a href={PLAY_URL} target="_blank" rel="noopener" class="font-display block text-center text-sm px-4 py-3 rounded-md border-2 border-[#131326] bg-[#ffdb56] text-[#131326] hover:bg-[#ffe680] transition"><span aria-hidden="true">▶ </span>Play NOPAS on Roblox ↗</a></li>
                     <li><a href="/" class="block py-2.5 hover:text-[var(--color-magenta-400)] transition">Studio</a></li>
-                    <li><a href="/nopas/" class="block py-2.5 hover:text-[var(--color-magenta-400)] transition">NOPAS</a></li>
+                    <li class="py-2.5">
+                        <span id="mobile-games-label" class="block font-display text-xs tracking-wide text-[var(--fg-muted)]">Games</span>
+                        <ul id="mobile-games" aria-labelledby="mobile-games-label" class="mt-1 pl-4 border-l-2 border-[var(--border-medium)]">
+                            {gameLinks.map((link) => (
+                                <li><a href={link.href} class="block py-2 hover:text-[var(--color-magenta-400)] transition">{link.label}</a></li>
+                            ))}
+                        </ul>
+                    </li>
                     <li><a href="/nopas/defenders/" class="block py-2.5 hover:text-[var(--color-denim-400)] transition">Defenders</a></li>
                     <li><a href="/nopas/collectors/" class="block py-2.5 hover:text-[var(--color-alien-400)] transition">Collectors</a></li>
                     <li><a href="/nopas/stats/" class="block py-2.5 hover:text-[var(--color-golden-400)] transition">Stats</a></li>
@@ -248,6 +278,58 @@ const fullTitle = title === "Collapsed Star Games" ? title : `${title} — Colla
                 // reset the panel so it can't be stuck open after a rotate/resize.
                 window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
                     if (e.matches) setOpen(false);
+                });
+            })();
+        </script>
+        {/* Games menu open/close — same aria/state pattern as the mobile menu */}
+        <script is:inline>
+            (function () {
+                var wrap = document.getElementById("games-menu-wrap");
+                var btn = document.getElementById("games-menu-toggle");
+                var menu = document.getElementById("games-menu");
+                if (!wrap || !btn || !menu) return;
+
+                function isOpen() {
+                    return btn.getAttribute("aria-expanded") === "true";
+                }
+
+                function setOpen(open) {
+                    menu.classList.toggle("hidden", !open);
+                    btn.setAttribute("aria-expanded", open ? "true" : "false");
+                }
+
+                // A real <button>: click, Enter and Space all arrive here.
+                btn.addEventListener("click", function () {
+                    setOpen(!isOpen());
+                });
+
+                // Escape closes and hands focus back to the button.
+                wrap.addEventListener("keydown", function (e) {
+                    if (e.key === "Escape" && isOpen()) {
+                        e.preventDefault();
+                        setOpen(false);
+                        btn.focus();
+                    }
+                });
+
+                // Focus leaving the button + list (e.g. Tab past the last item) closes it.
+                wrap.addEventListener("focusout", function (e) {
+                    if (isOpen() && e.relatedTarget && !wrap.contains(e.relatedTarget)) setOpen(false);
+                });
+
+                // Clicking anywhere else closes it.
+                document.addEventListener("click", function (e) {
+                    if (isOpen() && !wrap.contains(e.target)) setOpen(false);
+                });
+
+                // Choosing a link closes it (matters for same-page links like /nopas/#match).
+                menu.addEventListener("click", function (e) {
+                    if (e.target.closest("a")) setOpen(false);
+                });
+
+                // Below md the inline nav is hidden — reset so it can't come back stuck open.
+                window.matchMedia("(min-width: 768px)").addEventListener("change", function (e) {
+                    if (!e.matches) setOpen(false);
                 });
             })();
         </script>
