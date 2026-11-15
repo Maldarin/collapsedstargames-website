@@ -1,0 +1,44 @@
+---
+// Every game except the spotlight, as linked cards, then the Lobby extras and the coming-soon line.
+// Each card's id is its game id so old anchors (/#match, /#bowling, /#survivors) keep resolving;
+// pass skipIds for any id the host page already uses (e.g. /nopas/ owns section#match).
+import { Image } from "astro:assets";
+import { gridGames, EXTRAS, COMING_SOON } from "../lib/games.mjs";
+import { gameImage, COMING_SOON_LOGO } from "./game-images";
+import "../styles/games.css";
+
+interface Props {
+  skipIds?: string[];
+}
+const { skipIds = [] } = Astro.props;
+const games = gridGames();
+---
+<div id="games" class="games-block">
+  <slot />
+  <ul class="game-grid" role="list">
+    {games.map((game) => {
+      const art = gameImage(game.id);
+      return (
+        <li>
+          <a class="game-card" href={game.href} data-game-id={game.id} id={skipIds.includes(game.id) ? undefined : game.id} style={`--game-color:${game.color}`}>
+            <div class="game-card-image">
+              <Image src={art.image} alt={art.alt} widths={[400,600,800]} sizes="(min-width: 1100px) 300px, (min-width: 640px) 46vw, 90vw" loading="lazy"/>
+              <span class="game-card-label">{art.label}</span>
+              {game.isNew && <span class="game-new game-card-new">NEW</span>}
+            </div>
+            <div class="game-card-copy">
+              <span class="game-card-tag">{game.tag}</span>
+              <h3 class="game-card-name">{game.name}</h3>
+              <p class="game-card-blurb">{game.blurb}</p>
+              <span class="game-card-foot"><span class="game-status"><span class="game-status-dot" aria-hidden="true"></span>{game.status}</span><span class="game-card-go">Explore <span aria-hidden="true">→</span></span></span>
+            </div>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+  <div class="game-extras">
+    <p class="game-extras-lobby"><strong>Also in the Lobby:</strong> {EXTRAS.map((x, i) => <>{i > 0 && <span class="game-extras-sep" aria-hidden="true"> · </span>}<span class="game-extra"><b>{x.name}</b> {x.line}</span></>)}</p>
+    <p class="game-extras-soon"><Image src={COMING_SOON_LOGO} alt="" widths={[200,320]} sizes="150px" loading="lazy" class="game-extras-logo"/><span>{COMING_SOON.line}</span></p>
+  </div>
+</div>

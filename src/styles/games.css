@@ -1,0 +1,79 @@
+/* NOPAS games: the spotlight band (GameSpotlight.astro) and the game grid (GameGrid.astro).
+   Self-contained so the homepage and /nopas/ can both host them. Printed comic panels keep
+   dark ink on their own vivid colour in both themes. */
+.game-spotlight, .games-block { --game-ink:#131326; --game-cream:#fff9e9; }
+.game-spotlight :where(h2,h3,p,figure), .games-block :where(h3,p,ul) { margin:0; }
+.game-sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+.game-new { display:inline-block; background:#ffdb56; color:var(--game-ink); border:2px solid var(--game-ink); padding:1px 7px; font-family:var(--font-display); font-size:11px; letter-spacing:1px; line-height:1.5; transform:rotate(-3deg); }
+.game-status { display:inline-flex; align-items:center; gap:7px; font-weight:700; }
+.game-status-dot { width:8px; height:8px; border-radius:50%; background:var(--game-ink); flex:none; }
+.game-btn { display:inline-flex; min-height:50px; align-items:center; justify-content:center; gap:10px; padding:13px 19px; font-family:var(--font-display); font-size:12px; line-height:1.3; color:var(--game-ink); background:var(--game-cream); border:2px solid var(--game-ink); box-shadow:4px 4px 0 var(--game-ink); text-align:center; transition:transform .16s, box-shadow .16s; }
+.game-btn:hover { transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--game-ink); }
+.game-btn-yellow { background:#ffdb56; }
+:is(.game-spotlight,.games-block) a:focus-visible { outline:4px solid #fa3fa1; outline-offset:5px; }
+
+/* Spotlight: one big printed panel, logo as the heading, screenshot tilted beside it. */
+.game-spotlight { padding:64px max(24px, calc((100vw - 1240px) / 2)) 24px; scroll-margin-top:90px; }
+.game-spotlight-panel { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.12fr); gap:44px; align-items:center; padding:46px 46px 46px 50px; color:var(--game-ink); background-color:var(--game-color); background-image:radial-gradient(circle,#13132618 1.2px,transparent 1.7px); background-size:10px 10px; border:3px solid var(--game-ink); box-shadow:8px 8px 0 var(--game-ink); }
+.game-spotlight-badges { display:flex; flex-wrap:wrap; align-items:center; gap:10px; font-size:12px; letter-spacing:1px; text-transform:uppercase; }
+.game-spotlight-star { font-family:var(--font-display); background:var(--game-ink); color:#ffdb56; padding:4px 10px; letter-spacing:1.5px; }
+.game-spotlight-title { margin:20px 0 6px; line-height:1; }
+.game-spotlight-logo { display:block; width:100%; max-width:470px; height:auto; filter:drop-shadow(5px 6px 0 #13132655); }
+.game-spotlight-tag { font-family:var(--font-display); font-size:clamp(13px,1.25vw,16px); letter-spacing:1px; margin-top:16px; }
+.game-spotlight-pitch { font-size:17px; line-height:1.6; margin:12px 0 24px; max-width:500px; }
+.game-spotlight-actions { display:flex; flex-wrap:wrap; gap:14px; }
+.game-spotlight-shot { position:relative; border:3px solid var(--game-ink); box-shadow:7px 7px 0 var(--game-ink); background:#171329; transform:rotate(1.6deg); }
+.game-spotlight-shot img { display:block; width:100%; height:auto; aspect-ratio:16/10; object-fit:cover; object-position:left center; }
+.game-spotlight-shot figcaption { position:absolute; left:8px; bottom:8px; background:#131326de; color:#fff; padding:3px 7px; font-size:10px; }
+
+/* Grid: four equal printed cards; whole card is the link. */
+.games-block { scroll-margin-top:90px; }
+.game-grid { list-style:none; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:22px; }
+.game-grid > li { display:flex; min-width:0; }
+.game-card { flex:1; display:flex; flex-direction:column; min-width:0; color:var(--game-ink); background:var(--game-color); border:3px solid var(--game-ink); box-shadow:6px 6px 0 var(--game-ink); scroll-margin-top:90px; transition:transform .16s, box-shadow .16s; }
+.game-card:hover { transform:translate(-3px,-3px); box-shadow:9px 9px 0 var(--game-ink); }
+.game-card-image { position:relative; aspect-ratio:16/10; overflow:hidden; border-bottom:3px solid var(--game-ink); background:#171329; }
+.game-card-image img { display:block; width:100%; height:100%; object-fit:cover; }
+.game-card-label { position:absolute; left:8px; bottom:8px; background:#131326de; color:#fff; padding:3px 6px; font-size:9px; }
+.game-card-new { position:absolute; right:10px; top:10px; font-size:13px; padding:2px 9px; }
+.game-card-copy { flex:1; display:flex; flex-direction:column; padding:20px 18px 16px; }
+.game-card-tag { font-family:var(--font-display); font-size:10px; letter-spacing:1px; line-height:1.5; }
+.game-card-name { font-family:var(--font-display); font-size:20px; line-height:1.2; margin:9px 0 11px; }
+.game-card-blurb { font-size:14px; line-height:1.6; flex:1; }
+.game-card-foot { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:16px; padding-top:13px; border-top:1px solid #13132640; font-size:12px; }
+.game-card-go { font-family:var(--font-display); font-size:11px; white-space:nowrap; }
+.game-card:hover .game-card-go { text-decoration:underline; text-underline-offset:3px; }
+
+/* Extras: quiet small print under the grid. */
+.game-extras { margin-top:34px; padding-top:20px; border-top:2px dashed #13132633; font-size:13px; line-height:1.6; color:#5a5264; }
+.game-extras strong, .game-extras b { color:var(--game-ink); white-space:nowrap; }
+.game-extras-soon { display:flex; align-items:center; gap:12px; margin-top:12px; font-style:italic; }
+.game-extras-logo { width:108px; height:auto; flex:none; }
+
+html[data-theme="dark"] .game-extras { color:var(--comic-muted, #c5bed5); border-top-color:#74688a80; }
+html[data-theme="dark"] .game-extras :is(strong,b) { color:var(--comic-text, #fff9ed); }
+html[data-theme="dark"] .game-spotlight-panel { box-shadow:8px 8px 0 #05050c; }
+html[data-theme="dark"] .game-card { box-shadow:6px 6px 0 #05050c; }
+html[data-theme="dark"] .game-card:hover { box-shadow:9px 9px 0 #05050c; }
+
+@media (max-width:1100px) {
+  .game-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .game-card-image { aspect-ratio:2/1; }
+  .game-spotlight-panel { gap:32px; padding:36px; }
+  .game-spotlight-pitch { font-size:16px; }
+}
+@media (max-width:760px) {
+  .game-spotlight { padding:42px 22px 14px; }
+  .game-spotlight-panel { grid-template-columns:1fr; gap:26px; padding:26px 22px 28px; }
+  .game-spotlight-logo { max-width:400px; }
+  .game-spotlight-shot { transform:rotate(1deg); }
+  .game-btn { font-size:11px; padding:13px 15px; }
+  .game-extras-soon { align-items:flex-start; }
+}
+@media (max-width:600px) {
+  .game-grid { grid-template-columns:1fr; gap:24px; }
+  .game-card-name { font-size:22px; }
+  .game-spotlight-actions .game-btn { flex:1 1 100%; }
+}
+@media (prefers-reduced-motion:reduce) { .game-btn, .game-card { transition:none; } }

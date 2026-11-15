@@ -1,0 +1,31 @@
+---
+// The spotlight band for the newest game (SPOTLIGHT_ID in src/lib/games.mjs).
+import { Image } from "astro:assets";
+import { spotlightGame } from "../lib/games.mjs";
+import { PLAY_URL } from "../lib/links.mjs";
+import { gameImage } from "./game-images";
+import "../styles/games.css";
+
+const game = spotlightGame();
+const art = gameImage(game.id);
+---
+<section class="game-spotlight" data-game-id={game.id} id={game.id} aria-labelledby="game-spotlight-title" style={`--game-color:${game.color}`}>
+  <div class="game-spotlight-panel">
+    <div class="game-spotlight-copy">
+      <p class="game-spotlight-badges"><span class="game-spotlight-star"><span aria-hidden="true">★</span> Spotlight</span>{game.isNew && <span class="game-new">NEW</span>}<span class="game-status"><span class="game-status-dot" aria-hidden="true"></span>{game.status}</span></p>
+      <h2 id="game-spotlight-title" class="game-spotlight-title">
+        {art.logo ? <><Image src={art.logo} alt="" widths={[400,640,960]} sizes="(min-width: 1000px) 460px, (min-width: 760px) 42vw, 86vw" loading="lazy" class="game-spotlight-logo"/><span class="game-sr-only">{game.name}</span></> : game.name}
+      </h2>
+      <p class="game-spotlight-tag">{game.tag}</p>
+      <p class="game-spotlight-pitch">{game.blurb}</p>
+      <div class="game-spotlight-actions">
+        <a class="game-btn game-btn-yellow game-spotlight-play" href={PLAY_URL} target="_blank" rel="noopener"><span aria-hidden="true">▶</span> Play free on Roblox</a>
+        <a class="game-btn game-spotlight-more" href={game.href}>What is {game.name}? <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <figure class="game-spotlight-shot">
+      <Image src={art.image} alt={art.alt} widths={[480,720,960,1280]} sizes="(min-width: 1000px) 640px, (min-width: 760px) 50vw, 90vw" loading="lazy"/>
+      <figcaption>{art.label}</figcaption>
+    </figure>
+  </div>
+</section>
