@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import VideoCard from "../../components/VideoCard.astro";
+import GameSpotlight from "../../components/GameSpotlight.astro";
+import GameGrid from "../../components/GameGrid.astro";
 import { Image } from "astro:assets";
 import gameLogo from "../../assets/brand/game_title_logo-main.png";
-import matchArt from "../../assets/battle/2v2.png";
-import bowlingPins from "../../assets/bowling/minion-pins.png";
-import survivorsHorde from "../../assets/survivors/horde.png";
 import defender from "../../assets/classes/SecurityOfficer/SecurityOfficer.png";
 import minion from "../../assets/classes/Minions/Minion_solo.png";
 import "../../styles/nopas-overview.css";
@@ -13,27 +12,26 @@ import "../../styles/nopas-patch-notes.css";
 import { getCollection } from "astro:content";
 import { publishedNewestFirst } from "../../lib/patch-notes.mjs";
 import { PLAY_URL, COMMUNITY_URL, DISCORD_URL, YOUTUBE_URL } from "../../lib/links.mjs";
+import { GAMES } from "../../lib/games.mjs";
 const latestPatch = publishedNewestFirst(await getCollection("patchNotes"), { includeDrafts: import.meta.env.DEV })[0];
 
-const modes = [
-  { id: "match", name: "NOPAS: Invasion", color: "#74caff", tag: "DEFEND. INVADE. DEPANTS.", image: matchArt, alt: "Defenders and Collectors in NOPAS: Invasion universe artwork", label: "Universe artwork", text: "Protect Earth's pants as a Defender—or join the alien Collectors and steal the lot.", action: "Explore NOPAS: Invasion" },
-  { id: "bowling", name: "Minion Panic Bowling", color: "#ffda56", tag: "BIG BALL. LITTLE ALIENS.", image: bowlingPins, alt: "Orange Minion pins and a blue bowling ball on a Minion Panic Bowling lane", label: "Development screenshot", text: "Ten-pin bowling. Live Minion pins. A lane full of very questionable personalities.", action: "Explore Minion Panic Bowling" },
-  { id: "survivors", name: "Minion Survivors", color: "#a9ef79", tag: "MORE MINIONS. SEND HELP.", image: survivorsHorde, alt: "A player faces a large horde of orange Minions", label: "Development screenshot", text: "The Minions are coming in waves. See how long you can keep the chaos under control.", action: "Explore Minion Survivors" },
-];
+// Name every game from the list so the title, description and lede never state a count.
+const names = GAMES.map((g) => g.name);
+const gameList = `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
 const phases = [
   { name: "Invasion", intro: "The match opens with the mothership already overhead and the Collectors already on their way.", body: "Lead citizens into safe buildings, stop the minion raids, shoot down the drones snatching citizens off the street, and break captives out of the holding pens. The fight follows a Front that moves across Suburbia.", gag: "The aliens want pants. The UPDF brought blasters." },
   { name: "Final Stand", intro: "When the Invasion timer runs out (or sooner, if the Collectors bank their pants quota), the battle moves to the Pants Factory.", body: "Cannons come online. Citizens panic. Defenders regroup. The mothership looms overhead, ready to complete the most insulting invasion in galactic history.", gag: "Hold the factory. Protect the Golden Pants. Bring the mothership down." },
 ];
 ---
 
-<BaseLayout title="Explore NOPAS — Three ways to play" description="Explore the NOPAS universe: NOPAS: Invasion, Minion Panic Bowling, and Minion Survivors. Meet the factions, watch gameplay, and discover three ways to play. Now in open beta on Roblox.">
+<BaseLayout title="Explore NOPAS — One ridiculous universe. Every kind of chaos." description={`Explore the NOPAS universe: ${gameList}. Meet the factions, watch gameplay, and pick your kind of chaos. Now in open beta on Roblox.`}>
   <div class="nopas-overview">
     <section class="overview-intro overview-pad" aria-labelledby="overview-title">
       <div>
         <a class="overview-back" href="/">← Collapsed Star Games</a>
         <p class="overview-eyebrow">WELCOME TO NOT OUR PANTS, ALIEN SWINE!</p>
-        <h1 id="overview-title">One ridiculous universe.<br/><span>Three ways to play.</span></h1>
-        <p class="overview-lede">The aliens want Earth's pants. The UPDF has objections.<br/>Meet the shared world behind NOPAS: Invasion, Minion Panic Bowling, and Minion Survivors.</p>
+        <h1 id="overview-title">One ridiculous universe.<br/><span>Every kind of chaos.</span></h1>
+        <p class="overview-lede">The aliens want Earth's pants. The UPDF has objections.<br/>Meet the shared world behind {gameList}.</p>
         <div class="overview-actions"><a class="overview-button overview-yellow" href={PLAY_URL} target="_blank" rel="noopener">▶ Play free on Roblox</a><a class="overview-button" href="#gameplay">Watch gameplay ↓</a></div>
         <p class="overview-status"><span></span>Open Beta <b>/</b> Live now on Roblox</p>
       </div>
@@ -46,14 +44,9 @@ const phases = [
       </section>
     )}
 
-    <section id="modes" class="overview-pad overview-modes" aria-labelledby="overview-modes-title">
-      <div class="overview-heading"><div><p class="overview-eyebrow">PICK YOUR KIND OF CHAOS</p><h2 id="overview-modes-title">Same aliens. New problems.</h2></div><p>All three modes are live<br/>in the open beta on Roblox.</p></div>
-      <div class="overview-mode-grid">
-        {modes.map((mode,i) => <article class="overview-mode" style={`--mode:${mode.color}`}>
-          <div class="overview-mode-image"><Image src={mode.image} alt={mode.alt} widths={[480,720,960]} sizes="(min-width: 800px) 31vw, 90vw" loading="lazy"/><span class="overview-media-label">{mode.label}</span><b class="overview-number" aria-hidden="true">0{i+1}</b></div>
-          <div class="overview-mode-copy"><p class="overview-eyebrow">{mode.tag}</p><h3>{mode.name}</h3><p>{mode.text}</p><p class="overview-beta">● Open Beta · Live now</p><a class="overview-button" href={`#${mode.id}`}>{mode.action} ↓</a></div>
-        </article>)}
-      </div>
+    <GameSpotlight />
+    <section class="overview-pad overview-games" aria-labelledby="overview-games-title">
+      <GameGrid skipIds={["match"]}><div class="overview-heading"><div><p class="overview-eyebrow">THE NOPAS UNIVERSE OF GAMES</p><h2 id="overview-games-title">Same aliens. New problems.</h2></div><p>One shared universe.<br/>All live now in the open beta on Roblox.</p></div></GameGrid>
     </section>
 
     <section id="gameplay" class="overview-pad overview-gameplay" aria-labelledby="footage-title">
@@ -63,24 +56,10 @@ const phases = [
     </section>
 
     <section id="match" class="overview-pad overview-match" aria-labelledby="match-title">
-      <div class="overview-heading"><div><p class="overview-eyebrow">01 / NOPAS: INVASION · OPEN BETA · LIVE NOW</p><h2 id="match-title">Two phases. No warm-up.</h2></div><a class="overview-link" href="#modes">All three modes ↑</a></div>
+      <div class="overview-heading"><div><p class="overview-eyebrow">NOPAS: INVASION · OPEN BETA · LIVE NOW</p><h2 id="match-title">Two phases. No warm-up.</h2></div><a class="overview-link" href="#games">All NOPAS games ↑</a></div>
       <p class="overview-section-intro">The United Pants Defense Force battles alien Collectors trying to steal Earth's most valuable resource. Rescue the neighborhood, survive the Invasion, and hold the line at the Pants Factory. On phones, you can play any Defender class, Citizen included.</p>
       <div class="overview-phase-grid">{phases.map((phase,i) => <article class="overview-phase"><p class="overview-eyebrow">PHASE 0{i+1}</p><h3>{phase.name}</h3><p>{phase.intro}</p><p>{phase.body}</p><p class="overview-gag">{phase.gag}</p></article>)}</div>
     </section>
-
-    <div class="overview-pad overview-extra-modes">
-      <section id="bowling" class="overview-detail overview-bowling" aria-labelledby="bowling-title">
-        <p class="overview-eyebrow">02 / MINION PANIC BOWLING · OPEN BETA · LIVE NOW</p><h2 id="bowling-title">The pins have complaints.</h2>
-        <p>Real ten-pin bowling where every pin is a live, complaining Minion. Classic Mode for purists. Mayhem Mode for mutant pins, ball abilities, lane mutations, Kingpin bounties, and bonus rounds.</p>
-        <p class="overview-gag">They signed up for an invasion. Nobody mentioned the bowling ball.</p>
-        <a class="overview-button" href="/nopas/bowling/">Explore the bowling guide ↗</a>
-      </section>
-      <section id="survivors" class="overview-detail overview-survivors" aria-labelledby="survivors-title">
-        <p class="overview-eyebrow">03 / MINION SURVIVORS · OPEN BETA · LIVE NOW</p><h2 id="survivors-title">Here comes the horde.</h2>
-        <p>The Minions are coming in waves, and this time nobody is stopping to bowl them. A survivors-style mode in the same ridiculous NOPAS universe.</p>
-        <p>Build around your class, collect Pants Scrap, and keep your squad standing. Squads of up to six pick from all five Defender classes, vote between three arenas, and fight through mini-bosses and a boss to reach EVAC.</p><a class="overview-button" href="/nopas/survivors/">Explore the survival guide ↗</a>
-      </section>
-    </div>
 
     <section id="factions" class="overview-pad overview-factions" aria-labelledby="factions-title">
       <div class="overview-heading"><div><p class="overview-eyebrow">THE FACES BEHIND THE CHAOS</p><h2 id="factions-title">Pick a faction. Pick a fight.</h2></div><a class="overview-link" href="/lore/">Explore the lore ↗</a></div>

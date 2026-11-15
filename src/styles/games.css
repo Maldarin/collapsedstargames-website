@@ -18,7 +18,8 @@
 .game-spotlight-panel { position:relative; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.12fr); gap:44px; align-items:center; padding:46px 46px 46px 50px; color:var(--game-ink); background-color:var(--game-color); background-image:radial-gradient(circle,#13132618 1.2px,transparent 1.7px); background-size:10px 10px; border:3px solid var(--game-ink); box-shadow:8px 8px 0 var(--game-ink); }
 .game-spotlight-badges { display:flex; flex-wrap:wrap; align-items:center; gap:10px; font-size:12px; letter-spacing:1px; text-transform:uppercase; }
 .game-spotlight-star { font-family:var(--font-display); background:var(--game-ink); color:#ffdb56; padding:4px 10px; letter-spacing:1.5px; }
-.game-spotlight-title { margin:20px 0 6px; line-height:1; }
+/* Two-class selectors so host-page heading rules (.homepage h2, .nopas-overview h2/h3) never restyle these. */
+.game-spotlight .game-spotlight-title { margin:20px 0 6px; font-size:clamp(25px,3.1vw,43px); line-height:1; letter-spacing:-1px; }
 .game-spotlight-logo { display:block; width:100%; max-width:470px; height:auto; filter:drop-shadow(5px 6px 0 #13132655); }
 .game-spotlight-tag { font-family:var(--font-display); font-size:clamp(13px,1.25vw,16px); letter-spacing:1px; margin-top:16px; }
 .game-spotlight-pitch { font-size:17px; line-height:1.6; margin:12px 0 24px; max-width:500px; }
@@ -39,7 +40,7 @@
 .game-card-new { position:absolute; right:10px; top:10px; font-size:13px; padding:2px 9px; }
 .game-card-copy { flex:1; display:flex; flex-direction:column; padding:20px 18px 16px; }
 .game-card-tag { font-family:var(--font-display); font-size:10px; letter-spacing:1px; line-height:1.5; }
-.game-card-name { font-family:var(--font-display); font-size:20px; line-height:1.2; margin:9px 0 11px; }
+.game-card .game-card-name { font-family:var(--font-display); font-size:20px; line-height:1.2; letter-spacing:normal; margin:9px 0 11px; }
 .game-card-blurb { font-size:14px; line-height:1.6; flex:1; }
 .game-card-foot { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:16px; padding-top:13px; border-top:1px solid #13132640; font-size:12px; }
 .game-card-go { font-family:var(--font-display); font-size:11px; white-space:nowrap; }
@@ -73,7 +74,7 @@ html[data-theme="dark"] .game-card:hover { box-shadow:9px 9px 0 #05050c; }
 }
 @media (max-width:600px) {
   .game-grid { grid-template-columns:1fr; gap:24px; }
-  .game-card-name { font-size:22px; }
+  .game-card .game-card-name { font-size:22px; }
   .game-spotlight-actions .game-btn { flex:1 1 100%; }
 }
 @media (prefers-reduced-motion:reduce) { .game-btn, .game-card { transition:none; } }
